@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Toko</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--    PENDAFTARTAN TOKO-->
+    <string name="field_nama">Nama</string>
+    <string name="field_email">Email</string>
+    <string name="field_jeniskelamin">Jenis kelamin</string>
+    <string name="option_lakilaki">Laki-laki</string>
+    <string name="option_perempuan">Perempuan</string>
+    <string name="field_tempat_lahir">Tempat lahir</string>
+    <string name="field_tanggal_lahir">Tanggal lahir</string>
+    <string name="field_alamat">Alamat</string>
+    <string name="field_alamat_toko">Alamat toko</string>
+    <string name="field_NIK">NIK</string>
+    <string name="field_foto_diri">Foto diri</string>
+    <string name="field_foto_KTP">Foro KTP</string>
+    <string name="field_foto_toko">Foto toko</string>
+    <string name="text_daftar">Daftar</string>
 </resources>

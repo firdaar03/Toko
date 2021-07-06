@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/utama"
+        >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="PENDAFTARAN TOKO"
+            android:textColor="@color/utama_tua"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20px">
+
+            <EditText
+                android:id="@+id/nama_pemilik"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_nama"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_email"/>
+
+            <RadioGroup
+                android:id="@+id/jenis_kelamin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/option_lakilaki"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/option_perempuan" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/tempat_lahir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_tempat_lahir"/>
+
+            <DatePicker
+                android:id="@+id/tanggal_lahir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_tanggal_lahir"/>
+
+            <EditText
+                android:id="@+id/alamat"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:inputType="text|textMultiLine"
+                android:hint="@string/field_alamat"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/alamat_toko"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:inputType="text|textMultiLine"
+                android:hint="@string/field_alamat_toko"
+                android:layout_gravity="top"/>
+
+            <EditText
+                android:id="@+id/NIK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_NIK"/>
+
+            <EditText
+                android:id="@+id/foto_ktp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_foto_KTP"/>
+
+            <EditText
+                android:id="@+id/foto_diri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_foto_diri"/>
+
+            <EditText
+                android:id="@+id/foto_toko"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_foto_toko"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_daftar"
+                android:layout_gravity="end" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>
