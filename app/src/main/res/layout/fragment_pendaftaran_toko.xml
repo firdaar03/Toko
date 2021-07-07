@@ -34,19 +34,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20px">
+            android:paddingHorizontal="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/data_diri"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
                 android:id="@+id/nama_pemilik"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_nama"/>
+                android:hint="@string/field_nama"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_email"/>
+                android:hint="@string/field_email"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
             <RadioGroup
                 android:id="@+id/jenis_kelamin"
@@ -73,9 +85,11 @@
                 android:id="@+id/tempat_lahir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_tempat_lahir"/>
+                android:hint="@string/field_tempat_lahir"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
-            <DatePicker
+            <EditText
                 android:id="@+id/tanggal_lahir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,37 +115,142 @@
                 android:id="@+id/NIK"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_NIK"/>
+                android:hint="@string/field_NIK"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
-            <EditText
-                android:id="@+id/foto_ktp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_foto_KTP"/>
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/field_foto_diri"/>
+
+                    <ImageView
+                        android:id="@+id/foto_diri"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        android:cropToPadding="true"
+                        android:background="@android:color/darker_gray"/>
+
+                    <ImageButton
+                        android:id="@+id/open_came_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_camera"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/field_foto_KTP"/>
+
+                    <ImageView
+                        android:id="@+id/foto_ktp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        android:cropToPadding="true"
+                        android:background="@android:color/darker_gray"/>
+
+                    <ImageButton
+                        android:id="@+id/open_came_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_camera"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/field_foto_toko"/>
+
+                    <ImageView
+                        android:id="@+id/foto_toko"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        android:cropToPadding="true"
+                        android:background="@android:color/darker_gray"/>
+
+                    <ImageButton
+                        android:id="@+id/open_came_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_camera"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#c0c0c0c0"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/data_akun"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
 
             <EditText
-                android:id="@+id/foto_diri"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_foto_diri"/>
+                android:hint="@string/field_username"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
             <EditText
-                android:id="@+id/foto_toko"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_foto_toko"/>
+                android:hint="@string/field_password"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
+
+            <EditText
+                android:id="@+id/password_verif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_verif_password"
+                android:imeOptions="actionGo"
+                android:singleLine="true"/>
+
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_daftar"
-                android:layout_gravity="end" />
+                android:layout_gravity="end"
+                android:background="@color/utama"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
     </ScrollView>
-
-
-
-
-
 
 </LinearLayout>

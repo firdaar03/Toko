@@ -3,7 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+<!--    LOGIN -->
+    <string name="buat_akun">Belum memiliki akun</string>
 <!--    PENDAFTARTAN TOKO-->
+    <string name="field_username">Nama pengguna</string>
+    <string name="field_password">Kata sandi</string>
+    <string name="field_verif_password">Verifikasi kata sandi</string>
     <string name="field_nama">Nama</string>
     <string name="field_email">Email</string>
     <string name="field_jeniskelamin">Jenis kelamin</string>
@@ -15,7 +20,9 @@
     <string name="field_alamat_toko">Alamat toko</string>
     <string name="field_NIK">NIK</string>
     <string name="field_foto_diri">Foto diri</string>
-    <string name="field_foto_KTP">Foro KTP</string>
+    <string name="field_foto_KTP">Foto KTP</string>
     <string name="field_foto_toko">Foto toko</string>
     <string name="text_daftar">Daftar</string>
+    <string name="data_diri">Data Pribadi</string>
+    <string name="data_akun">Data Akun</string>
 </resources>
