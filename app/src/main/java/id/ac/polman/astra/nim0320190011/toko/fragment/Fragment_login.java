@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ public class Fragment_login extends Fragment {
     }
     
     private TextView mCreate_akun;
+    private Button mLoginButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,11 +37,21 @@ public class Fragment_login extends Fragment {
                 Log.i(TAG, "onClick: Create akun");
             }
         });
+
+        mLoginButton = (Button) view.findViewById(R.id.login_button);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallbacks.onLoginButtonClicked();
+                Log.i(TAG, "onClick: Login");
+            }
+        });
         return view;
     }
 
     public interface Callbacks{
         public void onCreateAkunClicked();
+        public void onLoginButtonClicked();
     }
 
     private Callbacks mCallbacks = null;

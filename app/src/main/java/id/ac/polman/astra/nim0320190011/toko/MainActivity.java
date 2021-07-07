@@ -38,4 +38,13 @@ public class MainActivity extends AppCompatActivity
                 .addToBackStack(null)
                 .commit();
     }
+
+    @Override
+    public void onLoginButtonClicked() {
+        Fragment fragment = Fragment_tambah_produk.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }
