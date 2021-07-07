@@ -89,11 +89,27 @@
                 android:imeOptions="actionNext"
                 android:singleLine="true"/>
 
-            <EditText
-                android:id="@+id/tanggal_lahir"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_tanggal_lahir"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/field_tanggal_lahir"/>
+
+                <EditText
+                    android:id="@+id/tanggal_lahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/field_tanggal_lahir"
+                    android:focusableInTouchMode="false"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/alamat"
