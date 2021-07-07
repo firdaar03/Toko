@@ -18,17 +18,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        tes tes
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if(fragment == null){
-//            fragment = Fragment_daftar_toko.newInstance();
-//<<<<<<< HEAD
-//            fragment = Fragment_login.newInstance();
-//=======
-            fragment = Fragment_tambah_produk.newInstance();
-//>>>>>>> 34ed59b10d770d70330ded9924afa391d0d62f8c
+
+            fragment = Fragment_login.newInstance();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();
