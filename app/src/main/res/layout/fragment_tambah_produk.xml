@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/utama">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TAMBAH PRODUK"
+            android:textColor="@color/utama_tua"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20px">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/foto_produk"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@android:color/darker_gray"
+                    android:cropToPadding="true"
+                    android:scaleType="centerInside" />
+
+                <ImageButton
+                    android:id="@+id/produk_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_camera"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/nama_produk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nama_produk"/>
+
+            <EditText
+                android:id="@+id/merk_produk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/merk_produk"/>
+
+            <EditText
+                android:id="@+id/harga_produk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/harga_produk"/>
+
+            <EditText
+                android:id="@+id/jumlah_produk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/jumlah_produk"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/simpan_produk"
+                android:layout_gravity="end" />
+        </LinearLayout>
+
+</LinearLayout>

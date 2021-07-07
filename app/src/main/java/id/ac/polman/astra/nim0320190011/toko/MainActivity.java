@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_tambah_produk;
 
 public class MainActivity extends AppCompatActivity
     implements Fragment_login.Callbacks{
@@ -23,7 +24,11 @@ public class MainActivity extends AppCompatActivity
 
         if(fragment == null){
 //            fragment = Fragment_daftar_toko.newInstance();
-            fragment = Fragment_login.newInstance();
+//<<<<<<< HEAD
+//            fragment = Fragment_login.newInstance();
+//=======
+            fragment = Fragment_tambah_produk.newInstance();
+//>>>>>>> 34ed59b10d770d70330ded9924afa391d0d62f8c
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();
