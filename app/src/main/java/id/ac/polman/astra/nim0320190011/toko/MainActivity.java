@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
-import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_tambah_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
 
 public class MainActivity extends AppCompatActivity
     implements Fragment_login.Callbacks{
@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if(fragment == null){
-
             fragment = Fragment_login.newInstance();
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragment)
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onLoginButtonClicked(int id) {
-        Fragment fragment = Fragment_tambah_produk.newInstance();
+        Fragment fragment = Fragment_menu_utama.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)

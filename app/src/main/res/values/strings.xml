@@ -34,4 +34,14 @@
     <string name="harga_produk">Harga</string>
     <string name="jumlah_produk">Jumlah</string>
     <string name="simpan_produk">Simpan</string>
+    
+<!--    MENU UTAMA -->
+    <string name="produk">Produk</string>
+    <string name="dompet">Dompet</string>
+    <string name="asset">Total Uang pada Aset</string>
+    <string name="pemasukkan">Pemasukkan</string>
+    <string name="pengeluaran">Pengeluaran</string>
+    <string name="total_dompet">DALAM DOMPET</string>
+    <string name="aktifitas_produk">Aktivitas terakhir produk</string>
+    <string name="aktifitas_dompet">Aktivitas terakhir dompet</string>
 </resources>
