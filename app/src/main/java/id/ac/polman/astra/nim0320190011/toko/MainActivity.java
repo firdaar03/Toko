@@ -9,9 +9,10 @@ import android.os.Bundle;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_tambah_produk;
 
 public class MainActivity extends AppCompatActivity
-    implements Fragment_login.Callbacks{
+    implements Fragment_login.Callbacks, Fragment_menu_utama.Callbacks{
     private static final String TAG = "MainActivity";
 
     @Override
@@ -41,6 +42,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoginButtonClicked(int id) {
         Fragment fragment = Fragment_menu_utama.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onProdukButtonClicked() {
+        Fragment fragment = Fragment_tambah_produk.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
