@@ -1,70 +1,90 @@
 package id.ac.polman.astra.nim0320190011.toko.api.model;
 
-import android.os.Build;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 public class Toko {
     @PrimaryKey
     @NonNull
-    private UUID mId_toko;
+    @SerializedName("idToko")
+    private int idToko;
+    @SerializedName("username")
     private String mUsername;
+    @SerializedName("password")
     private String mPassword;
+    @SerializedName("nama_pemiliki")
     private String mNama_pemilik;
+    @SerializedName("no_telfon")
+    private String mNo_telfon;
+    @SerializedName("email")
     private String mEmail;
+    @SerializedName("jenis_kelamin")
     private String mJenis_kelamin;
+    @SerializedName("tempat_lahir")
     private String mTempat_lahir;
+    @SerializedName("tanggal_lahir")
     private Date mTanggal_lahir;
+    @SerializedName("alamat")
     private String mAlamat;
+    @SerializedName("nik")
     private String mNIK;
+    @SerializedName("foto_KTP")
     private String mFoto_KTP;
+    @SerializedName("foto_diri")
     private String mFoto_diri;
+    @SerializedName("foto_toko")
     private String mFoto_toko;
+    @SerializedName("creaby")
     private String mCreaby;
-    private LocalDateTime mCreadate;
+    @SerializedName("creadate")
+    private String mCreadate;
+    @SerializedName("modiby")
     private String mModiby;
-    private LocalDateTime mModidate;
-    private LocalDateTime mLast_login;
+    @SerializedName("modidate")
+    private String mModidate;
+    @SerializedName("last_login")
+    private String mLast_login;
+    @SerializedName("status")
     private int mStatus;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Toko(){
-        mId_toko = UUID.randomUUID();
-        mUsername = "";
-        mPassword = "";
-        mNama_pemilik  = "";
-        mEmail = "";
-        mJenis_kelamin = "";
-        mTempat_lahir = "";
-        mTanggal_lahir = new Date();
-        mAlamat = "";
-        mNIK = "";
-        mFoto_KTP = "";
-        mFoto_diri = "";
-        mFoto_toko = "";
-        mCreaby  = "";
-        mCreadate = LocalDateTime.now();
-        mModiby = "";
-        mModidate = LocalDateTime.now();
-        mLast_login = LocalDateTime.now();
-        mStatus = 1;
+    public Toko(int idToko, String username, String password, String nama_pemilik, String no_telfon, String email, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat, String NIK, String foto_KTP, String foto_diri, String foto_toko, String creaby, String creadate, String modiby, String modidate, String last_login, int status) {
+        this.idToko = idToko;
+        mUsername = username;
+        mPassword = password;
+        mNama_pemilik = nama_pemilik;
+        mNo_telfon = no_telfon;
+        mEmail = email;
+        mJenis_kelamin = jenis_kelamin;
+        mTempat_lahir = tempat_lahir;
+        mTanggal_lahir = tanggal_lahir;
+        mAlamat = alamat;
+        mNIK = NIK;
+        mFoto_KTP = foto_KTP;
+        mFoto_diri = foto_diri;
+        mFoto_toko = foto_toko;
+        mCreaby = creaby;
+        mCreadate = creadate;
+        mModiby = modiby;
+        mModidate = modidate;
+        mLast_login = last_login;
+        mStatus = status;
     }
 
-    @NonNull
-    public UUID getId_toko() {
-        return mId_toko;
+    public Toko(){}
+
+    public int getIdToko() {
+        return idToko;
     }
 
-    public void setId_toko(@NonNull UUID id_toko) {
-        mId_toko = id_toko;
+    public void setIdToko(int idToko) {
+        this.idToko = idToko;
     }
 
     public String getUsername() {
@@ -75,12 +95,28 @@ public class Toko {
         mUsername = username;
     }
 
+    public String getPassword() {
+        return mPassword;
+    }
+
+    public void setPassword(String password) {
+        mPassword = password;
+    }
+
     public String getNama_pemilik() {
         return mNama_pemilik;
     }
 
     public void setNama_pemilik(String nama_pemilik) {
         mNama_pemilik = nama_pemilik;
+    }
+
+    public String getNo_telfon() {
+        return mNo_telfon;
+    }
+
+    public void setNo_telfon(String no_telfon) {
+        mNo_telfon = no_telfon;
     }
 
     public String getEmail() {
@@ -163,11 +199,11 @@ public class Toko {
         mCreaby = creaby;
     }
 
-    public LocalDateTime getCreadate() {
+    public String getCreadate() {
         return mCreadate;
     }
 
-    public void setCreadate(LocalDateTime creadate) {
+    public void setCreadate(String creadate) {
         mCreadate = creadate;
     }
 
@@ -179,19 +215,19 @@ public class Toko {
         mModiby = modiby;
     }
 
-    public LocalDateTime getModidate() {
+    public String getModidate() {
         return mModidate;
     }
 
-    public void setModidate(LocalDateTime modidate) {
+    public void setModidate(String modidate) {
         mModidate = modidate;
     }
 
-    public LocalDateTime getLast_login() {
+    public String getLast_login() {
         return mLast_login;
     }
 
-    public void setLast_login(LocalDateTime last_login) {
+    public void setLast_login(String last_login) {
         mLast_login = last_login;
     }
 
@@ -201,13 +237,5 @@ public class Toko {
 
     public void setStatus(int status) {
         mStatus = status;
-    }
-
-    public String getPassword() {
-        return mPassword;
-    }
-
-    public void setPassword(String password) {
-        mPassword = password;
     }
 }

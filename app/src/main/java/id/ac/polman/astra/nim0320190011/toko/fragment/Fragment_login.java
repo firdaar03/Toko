@@ -96,7 +96,7 @@ public class Fragment_login extends Fragment {
             public void onClick(View v) {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
-                int id = checklogin(username, password);
+                int id = mTokoViewModelList.checklogin(username, password);
                 if(id != -1){
                     mCallbacks.onLoginButtonClicked(id);
                 }else {
@@ -129,26 +129,5 @@ public class Fragment_login extends Fragment {
     }
 
 //    ================================================= FUNGSI FUNGSI
-    public int checklogin(String username, String password){
-        Log.i(TAG, "checklogin: Ini loh masuk");
-        List<Toko> t = new ArrayList<>();
-        mTokoViewModelList.getTokos().observe(
-                getViewLifecycleOwner(),
-                new Observer<List<Toko>>() {
-                    @Override
-                    public void onChanged(List<Toko> tokos) {
-                        Log.i(TAG, "onChanged: size tokos observe " + tokos.size());
-                        t.addAll(tokos);
-                    }
-                }
-        );
 
-        Log.i(TAG, "checklogin: Ini loh masuk www : " + t.size());
-        for ( Toko tk : t) {
-            if(tk.getUsername() == username && tk.getPassword() == password){
-                return Integer.parseInt(tk.getId_toko().toString());
-            }
-        }
-        return -1;
-    }
 }

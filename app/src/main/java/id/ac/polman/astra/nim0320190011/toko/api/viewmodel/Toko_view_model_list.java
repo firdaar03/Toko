@@ -29,4 +29,16 @@ public class Toko_view_model_list extends ViewModel {
     public void addToko(Toko toko){
         mTokoRepository.addToko(toko);
     }
+
+//     ========================= fungsi-fungsi
+public int checklogin(String username, String password){
+    Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
+    for ( Toko tk : mTokoListMutableLiveData.getValue()) {
+        if(tk.getUsername().equals(username) && tk.getPassword().equals(password)){
+            return tk.getIdToko();
+        }
+        Log.i(TAG, "== : " + tk.getPassword());
+    }
+    return -1;
+}
 }

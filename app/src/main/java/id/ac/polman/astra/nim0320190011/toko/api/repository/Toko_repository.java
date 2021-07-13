@@ -6,7 +6,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.api.ApiUtils;
@@ -46,6 +47,7 @@ public class Toko_repository {
             @Override
             public void onResponse(Call<List<Toko>> call, Response<List<Toko>> response) {
                 if(response.isSuccessful()){
+                    Log.e(TAG, "onResponse: " + new Gson().toJson(response.body()));
                     tokos.setValue(response.body());
                     Log.i(TAG, "onResponse: getToko called() size " + tokos.getValue().size());
                 }
@@ -82,13 +84,13 @@ public class Toko_repository {
     }
     
     public void updateToko(Toko t){
-        Log.i(TAG, "updateToko: ID Toko " + t.getId_toko());
+        Log.i(TAG, "updateToko: ID Toko " + t.getIdToko());
         Call<Toko> call = mToko_service.updateToko(t);
         call.enqueue(new Callback<Toko>() {
             @Override
             public void onResponse(Call<Toko> call, Response<Toko> response) {
                 if(response.isSuccessful()){
-                    Log.i(TAG, "onResponse: Telah terupdate Id " + t.getId_toko());
+                    Log.i(TAG, "onResponse: Telah terupdate Id " + t.getIdToko());
                 }
             }
 
