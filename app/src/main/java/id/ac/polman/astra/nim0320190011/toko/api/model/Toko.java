@@ -1,4 +1,4 @@
-package id.ac.polman.astra.nim0320190011.toko.model;
+package id.ac.polman.astra.nim0320190011.toko.api.model;
 
 import android.os.Build;
 
@@ -17,6 +17,7 @@ public class Toko {
     @NonNull
     private UUID mId_toko;
     private String mUsername;
+    private String mPassword;
     private String mNama_pemilik;
     private String mEmail;
     private String mJenis_kelamin;
@@ -38,6 +39,7 @@ public class Toko {
     public Toko(){
         mId_toko = UUID.randomUUID();
         mUsername = "";
+        mPassword = "";
         mNama_pemilik  = "";
         mEmail = "";
         mJenis_kelamin = "";
@@ -199,5 +201,13 @@ public class Toko {
 
     public void setStatus(int status) {
         mStatus = status;
+    }
+
+    public String getPassword() {
+        return mPassword;
+    }
+
+    public void setPassword(String password) {
+        mPassword = password;
     }
 }

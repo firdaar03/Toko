@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLoginButtonClicked() {
+    public void onLoginButtonClicked(int id) {
         Fragment fragment = Fragment_tambah_produk.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
