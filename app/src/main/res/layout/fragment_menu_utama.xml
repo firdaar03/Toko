@@ -21,7 +21,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_header">
+                android:background="@drawable/ic_bg_header">
 
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/foto_diri"
@@ -43,7 +43,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="4dp"
-                    android:src="@drawable/button_setting" />
+                    android:src="@drawable/ic_button_setting" />
 
                 <TextView
                     android:layout_width="wrap_content"
