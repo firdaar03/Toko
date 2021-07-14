@@ -22,7 +22,7 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="149dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/image_logo" />
 
         <EditText
             android:id="@+id/username"

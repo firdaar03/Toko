@@ -30,7 +30,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="38dp"
                     android:layout_marginTop="37dp"
-                    android:src="@drawable/foto_profile"
+                    android:src="@drawable/image_foto_profile"
                     app:civ_border_color="@color/white"
                     app:civ_border_width="6dp"
                     app:civ_shadow="true"

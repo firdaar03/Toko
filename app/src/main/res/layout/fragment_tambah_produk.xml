@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20px">
+            android:paddingHorizontal="20px"
+            android:background="@color/utama_muda">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -42,7 +43,8 @@
                     android:layout_height="200dp"
                     android:background="@android:color/darker_gray"
                     android:cropToPadding="true"
-                    android:scaleType="centerInside" />
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="8dp"/>
 
                 <ImageButton
                     android:id="@+id/produk_camera"
@@ -55,7 +57,10 @@
                 android:id="@+id/nama_produk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nama_produk"/>
+                android:hint="@string/nama_produk"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/radius_input"
+                android:padding="5dp"/>
 
             <EditText
                 android:id="@+id/merk_produk"
@@ -74,12 +79,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/jumlah_produk"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/simpan_produk"
-                android:layout_gravity="end" />
         </LinearLayout>
+    <Button
+        android:layout_width="92dp"
+        android:layout_height="31dp"
+        android:text="@string/simpan_produk"
+        android:background="@drawable/radius_button_biru"
+        android:textColor="@color/white"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/Poppins_Regular"
+        android:textSize="14dp"/>
 
 </LinearLayout>
