@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/dialog_holo_light_frame"
+    android:id="@+id/fragment_item_produk"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:layout_width="99dp"
+            android:layout_height="65dp"
+            android:src="@drawable/image_mie"
+            android:background="@drawable/radius_input"
+            android:scaleType="fitXY"
+            android:layout_marginVertical="7dp"
+            android:layout_marginLeft="6dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mie Sedaap Goreng"
+            android:id="@+id/nama_produk"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="114dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="11dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 3.500,-"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="114dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginLeft="114dp"
+            android:text="stok : 43"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:textSize="11dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/nama_produk"
+            android:fontFamily="@font/poppins_regular"
+            android:text="(Wingsfood)"
+            android:textColor="@color/secondary"
+            android:textSize="10dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/ic_edit_produk"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_produk"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

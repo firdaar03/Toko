@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_secondary">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/utama">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/utama_tua"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:text="JOKO'S STORE"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/utama_muda"
+        android:gravity="center_horizontal"
+        android:paddingVertical="13dp">
+        
+        <Button
+            android:layout_width="155dp"
+            android:layout_height="32dp"
+            android:text="@string/tambah_produk"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:background="@drawable/radius_button_hijau"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:layout_width="155dp"
+            android:layout_height="32dp"
+            android:text="@string/kurang_produk"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:background="@drawable/radius_button_kuning"
+            android:layout_marginLeft="15dp"/>
+        
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/black"
+            android:text="@string/judul_produk"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@color/white">
+
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:hint="@string/cari_produk"
+                android:textSize="12dp"
+                android:background="@drawable/radius_input"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:textColor="@color/bg_secondary"
+                android:fontFamily="@font/poppins_light"/>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_cari" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

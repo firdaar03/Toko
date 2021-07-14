@@ -44,4 +44,10 @@
     <string name="total_dompet">DALAM DOMPET</string>
     <string name="aktifitas_produk">Aktivitas terakhir produk</string>
     <string name="aktifitas_dompet">Aktivitas terakhir dompet</string>
+
+<!--    Produk -->
+    <string name="tambah_produk">+ PRODUK</string>
+    <string name="kurang_produk">- PRODUK</string>
+    <string name="judul_produk">PRODUK SAYA</string>
+    <string name="cari_produk">cari produk ...</string>
 </resources>
