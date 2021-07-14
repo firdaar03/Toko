@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
+import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLoginButtonClicked(int id) {
-        Fragment fragment = Fragment_menu_utama.newInstance();
+    public void onLoginButtonClicked(Toko user) {
+        Fragment fragment = Fragment_menu_utama.newInstance(user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)

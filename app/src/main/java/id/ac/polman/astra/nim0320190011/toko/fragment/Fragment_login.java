@@ -1,7 +1,5 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment;
 
-import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,17 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
-import id.ac.polman.astra.nim0320190011.toko.api.repository.Toko_repository;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
-import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_one;
 
 public class Fragment_login extends Fragment {
     private static final String TAG = "Fragment_login";
@@ -36,18 +28,7 @@ public class Fragment_login extends Fragment {
     private EditText mUsername;
     private EditText mPassword;
 
-    private Toko_view_model_one mTokoViewModel;
     private Toko_view_model_list mTokoViewModelList;
-
-    private Toko_repository mTokoRepository;
-
-    public Toko_view_model_one getTokoViewModel(){
-        if(mTokoViewModel == null){
-            mTokoViewModel = new ViewModelProvider(this)
-                    .get(Toko_view_model_one.class);
-        }
-        return mTokoViewModel;
-    }
 
     public Toko_view_model_list getTokoViewModelList(){
         Log.i(TAG, "getTokoViewModelList: called");
@@ -96,9 +77,9 @@ public class Fragment_login extends Fragment {
             public void onClick(View v) {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
-                int id = mTokoViewModelList.checklogin(username, password);
-                if(id != -1){
-                    mCallbacks.onLoginButtonClicked(id);
+                Toko user = mTokoViewModelList.checklogin(username, password);
+                if(user != null){
+                    mCallbacks.onLoginButtonClicked(user);
                 }else {
                     Toast.makeText(getContext(), "Username atau password tidak ditemukan",
                             Toast.LENGTH_SHORT).show();
@@ -111,7 +92,7 @@ public class Fragment_login extends Fragment {
 
     public interface Callbacks{
         public void onCreateAkunClicked();
-        public void onLoginButtonClicked(int id);
+        public void onLoginButtonClicked(Toko user);
     }
 
     private Callbacks mCallbacks = null;
@@ -127,7 +108,4 @@ public class Fragment_login extends Fragment {
         super.onDetach();
         mCallbacks = null;
     }
-
-//    ================================================= FUNGSI FUNGSI
-
 }

@@ -31,14 +31,15 @@ public class Toko_view_model_list extends ViewModel {
     }
 
 //     ========================= fungsi-fungsi
-public int checklogin(String username, String password){
-    Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
-    for ( Toko tk : mTokoListMutableLiveData.getValue()) {
-        if(tk.getUsername().equals(username) && tk.getPassword().equals(password)){
-            return tk.getIdToko();
+
+    public Toko checklogin(String username, String password){
+        Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
+        for ( Toko tk : mTokoListMutableLiveData.getValue()) {
+            if(tk.getUsername().equals(username) && tk.getPassword().equals(password)){
+                return tk;
+            }
+            Log.i(TAG, "== : " + tk.getPassword());
         }
-        Log.i(TAG, "== : " + tk.getPassword());
+        return null;
     }
-    return -1;
-}
 }
