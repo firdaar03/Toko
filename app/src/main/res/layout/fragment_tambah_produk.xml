@@ -88,7 +88,7 @@
         android:textColor="@color/white"
         android:layout_gravity="end"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/Poppins_Regular"
+        android:fontFamily="@font/poppins_regular"
         android:textSize="14dp"/>
 
 </LinearLayout>

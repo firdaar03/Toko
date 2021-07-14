@@ -72,8 +72,9 @@ public class Fragment_menu_utama extends Fragment {
         mButtonProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Produk button clicked", Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(getContext(),"Produk button clicked", Toast.LENGTH_SHORT)
+//                        .show();
+                mCallbacks.onProdukButtonClicked();
             }
         });
 

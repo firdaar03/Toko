@@ -10,6 +10,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_tambah_produk;
 
 public class MainActivity extends AppCompatActivity
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProdukButtonClicked() {
-        Fragment fragment = Fragment_tambah_produk.newInstance();
+        Fragment fragment = Fragment_produk.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
