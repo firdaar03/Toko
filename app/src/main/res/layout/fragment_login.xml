@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background=""
     android:orientation="vertical">
 
     <LinearLayout
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:text="LOGIN"
         android:textAlignment="center"
-        android:typeface="serif"
+        android:fontFamily="@font/poppins_bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/buat_akun"
+        android:fontFamily="@font/poppins_regular"
         android:textColor="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +72,9 @@
         android:layout_width="197dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:background="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:textAllCaps="false"
+        android:background="@android:drawable/dialog_holo_light_frame"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
