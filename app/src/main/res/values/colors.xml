@@ -15,4 +15,7 @@
     <color name="bg_secondary">#dfdfdf</color>
     <color name="biru_tua">#4200FF</color>
     <color name="kuning">#FFEB33</color>
+    <color name="hijau_tua">#128809</color>
+    <color name="ungu_muda">#A687FF</color>
+    <color name="merah_muda">#F47F7F</color>
 </resources>

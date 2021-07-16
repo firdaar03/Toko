@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_secondary">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/kuning">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/utama_tua"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:text="Put Products"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="285dp"
+        android:background="@color/utama_muda"
+        android:paddingVertical="13dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/nama_produk"
+                android:layout_width="237dp"
+                android:layout_height="25dp"
+                android:hint="@string/nama_produk"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/radius_input"
+                android:paddingLeft="5dp"
+                android:textSize="12dp"
+                android:paddingTop="10dp"
+                android:fontFamily="@font/poppins_light"
+                tools:ignore="DuplicateIds" />
+
+            <Button
+                android:layout_width="92dp"
+                android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/radius_button_hijau_tua"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/button_cari"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="63dp">
+
+                <ImageView
+                    android:layout_width="99dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/image_mie"
+                    android:background="@drawable/radius_input"
+                    android:scaleType="fitXY"
+                    android:layout_marginVertical="7dp"
+                    android:layout_marginLeft="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mie Sedaap Goreng"
+                    android:id="@+id/nama_produk"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="114dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp 3.500,-"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="114dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="114dp"
+                    android:text="stok : 43"
+                    android:layout_marginBottom="7dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/nama_produk"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="(Wingsfood)"
+                    android:textColor="@color/secondary"
+                    android:textSize="10dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="51dp"
+                    android:layout_marginEnd="31dp"
+                    android:src="@drawable/ic_edit_produk"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete_produk"
+                    android:layout_marginTop="51dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+            <EditText
+                android:id="@+id/jumlah_produk"
+                android:layout_marginHorizontal="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:hint="@string/jumlah_produk"
+                android:layout_marginTop="187dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/radius_input"
+                android:paddingLeft="5dp"
+                android:textSize="12dp"
+                android:paddingTop="10dp"
+                android:fontFamily="@font/poppins_light"
+                tools:ignore="DuplicateIds" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1,2,3,4">
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="@string/produk_nama"
+                android:padding="5dip" />
+            <TextView
+                android:layout_column="2"
+                android:text="@string/jumlah_produk"
+                android:padding="3dip" />
+            <TextView
+                android:layout_column="1"
+                android:text="Open..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-O"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Save..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-S"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Save As..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-Shift-S"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="X"
+                android:padding="3dip" />
+            <TextView
+                android:text="Import..."
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="X"
+                android:padding="3dip" />
+            <TextView
+                android:text="Export..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-E"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Quit"
+                android:padding="3dip" />
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

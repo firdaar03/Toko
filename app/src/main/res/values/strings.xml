@@ -50,8 +50,10 @@
     <string name="kurang_produk">- PRODUK</string>
     <string name="judul_produk">PRODUK SAYA</string>
     <string name="cari_produk">cari produk ...</string>
+    <string name="produk_nama">Nama Produk</string>
 
-<!--    DOMPET  -->
+
+    <!--    DOMPET  -->
     <string name="dompet_saya">DOMPET SAYA</string>
     <string name="dalam_kasir">DALAM KASIR</string>
     <string name="asset_dalam_produk">Asset dalam produk</string>
@@ -59,4 +61,7 @@
     <string name="uang_masuk">Uang masuk</string>
     <string name="uang_keluar">Uang keluar</string>
     <string name="aktifitas_dompet">Aktifitas dompet</string>
+
+<!--    PUT PRODUK-->
+    <string name="button_cari">Cari</string>
 </resources>
