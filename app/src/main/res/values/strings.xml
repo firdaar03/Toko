@@ -64,5 +64,6 @@
 
 <!--    PUT PRODUK-->
     <string name="button_cari">Cari</string>
+    <string name="produk_nama">Nama Produk</string>
 
 </resources>
