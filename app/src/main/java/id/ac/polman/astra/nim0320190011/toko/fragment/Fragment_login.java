@@ -57,7 +57,7 @@ public class Fragment_login extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: called");
-        View view = inflater.inflate(R.layout.login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         mUsername = (EditText) view.findViewById(R.id.username);
         mPassword = (EditText) view.findViewById(R.id.password);

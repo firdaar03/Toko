@@ -59,4 +59,6 @@
     <string name="uang_masuk">Uang masuk</string>
     <string name="uang_keluar">Uang keluar</string>
     <string name="aktifitas_dompet">Aktifitas dompet</string>
+
+    <string name="nominal">Nominal</string>
 </resources>
