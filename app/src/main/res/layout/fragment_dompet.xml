@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_secondary">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/utama">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/utama_tua"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:text="JOKO'S STORE"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/utama_muda"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dompet_saya"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="48dp"
+            android:layout_gravity="center_horizontal">
+
+            <RelativeLayout
+                android:layout_width="208dp"
+                android:layout_height="115dp"
+                android:background="@drawable/radius_total_aset">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="53dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Rp 25.000.000,-"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="66dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/dalam_kasir"
+                    android:textColor="@color/secondary"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="11dp">
+
+                <RelativeLayout
+                    android:layout_width="137dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/radius_total_aset"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 25.000.000,-"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="14dp"
+                        android:textColor="@color/black"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/asset_dalam_produk"
+                        android:textColor="@color/secondary"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="8sp"
+                        android:layout_marginTop="19dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="137dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/radius_total_aset"
+                    android:layout_marginTop="4dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 25.000.000,-"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="14dp"
+                        android:textColor="@color/black"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/asset_dalam_produk"
+                        android:textColor="@color/secondary"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="8sp"
+                        android:layout_marginTop="19dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="137dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/radius_total_aset"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 25.000.000,-"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="14dp"
+                        android:textColor="@color/black"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/asset_dalam_produk"
+                        android:textColor="@color/secondary"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="8sp"
+                        android:layout_marginTop="19dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:layout_width="111dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button_menu_dompet"
+                android:text="@string/aktifitas"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"
+                android:textColor="@drawable/color_button_menu_dompet"
+                android:layout_marginHorizontal="5dp" />
+
+            <Button
+                android:layout_width="111dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button_menu_dompet"
+                android:text="@string/uang_masuk"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"
+                android:textColor="@drawable/color_button_menu_dompet"
+                android:layout_marginHorizontal="5dp"/>
+
+            <Button
+                android:layout_width="111dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button_menu_dompet"
+                android:text="@string/uang_keluar"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"
+                android:textColor="@drawable/color_button_menu_dompet"
+                android:layout_marginHorizontal="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/radius_menu_dompet"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="9dp"
+        android:paddingTop="6dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginStart="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="11dp"
+                android:textColor="@color/black"
+                android:text="@string/aktifitas_dompet"/>
+            
+            <View
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="236dp"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/radius_input"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="8sp"
+                    android:textColor="@color/black"
+                    android:text="16/07/2021"
+                    android:layout_marginStart="3dp"
+                    />
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:background="@drawable/ic_calendar_green"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="3dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="7dp"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginHorizontal="3dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/radius_input"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="8sp"
+                    android:textColor="@color/black"
+                    android:text="16/07/2021"
+                    android:layout_marginStart="3dp"
+                    />
+
+                <ImageView
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:background="@drawable/ic_calendar_green"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="3dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+<!--        <androidx.fragment.app.FragmentContainerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            >-->
+
+<!--        </androidx.fragment.app.FragmentContainerView>-->
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Keluar"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 300.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Masuk"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 450.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Keluar"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 300.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Masuk"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 450.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Keluar"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 300.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Masuk"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 450.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Keluar"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 300.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Masuk"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 450.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Keluar"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 300.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uang Masuk"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp 450.000,-"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="11dp"
+                        android:textColor="@color/secondary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="17dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="13:25 WIB"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8dp"
+                            android:text="31/05/2021"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>
