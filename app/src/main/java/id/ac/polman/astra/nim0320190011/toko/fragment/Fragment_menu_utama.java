@@ -82,8 +82,7 @@ public class Fragment_menu_utama extends Fragment {
         mButtonDompet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Dompet button clicked", Toast.LENGTH_SHORT)
-                        .show();
+                mCallbacks.onDompetButtonClicked();
             }
         });
         return v;
@@ -91,6 +90,7 @@ public class Fragment_menu_utama extends Fragment {
 
     public interface Callbacks{
         public void onProdukButtonClicked();
+        public void onDompetButtonClicked();
     }
 
     private Fragment_menu_utama.Callbacks mCallbacks = null;
