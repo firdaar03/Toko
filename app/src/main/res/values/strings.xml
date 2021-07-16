@@ -50,6 +50,7 @@
     <string name="kurang_produk">- PRODUK</string>
     <string name="judul_produk">PRODUK SAYA</string>
     <string name="cari_produk">cari produk ...</string>
+    <string name="aktifitas_produk">Aktifitas produk</string>
 
     <!--    DOMPET  -->
     <string name="dompet_saya">DOMPET SAYA</string>
@@ -65,5 +66,6 @@
 <!--    PUT PRODUK-->
     <string name="button_cari">Cari</string>
     <string name="produk_nama">Nama Produk</string>
-
+    <string name="button_diambil">Diambil</string>
+    <string name="button_terjual">Terjual</string>
 </resources>

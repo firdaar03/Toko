@@ -51,7 +51,8 @@
             android:textSize="14dp"
             android:textColor="@color/black"
             android:background="@drawable/radius_button_hijau"
-            android:layout_marginRight="15dp"/>
+            android:layout_marginRight="15dp"
+            android:id="@+id/button_add"/>
 
         <Button
             android:layout_width="155dp"
@@ -61,7 +62,8 @@
             android:textSize="14dp"
             android:textColor="@color/black"
             android:background="@drawable/radius_button_kuning"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:id="@+id/button_put"/>
         
     </LinearLayout>
 
@@ -74,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="15dp"
             android:textColor="@color/black"
             android:text="@string/judul_produk"
             android:fontFamily="@font/poppins_light"
@@ -82,7 +84,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="6dp"

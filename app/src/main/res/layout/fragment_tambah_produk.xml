@@ -10,23 +10,36 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="vertical"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:background="@color/utama">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="TAMBAH PRODUK"
             android:textColor="@color/utama_tua"
-            android:textStyle="bold" />
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:text="Add Products"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
     </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="430dp"
             android:orientation="vertical"
             android:paddingHorizontal="20px"
             android:background="@color/utama_muda">
@@ -56,35 +69,52 @@
             <EditText
                 android:id="@+id/nama_produk"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:hint="@string/nama_produk"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/radius_input"
-                android:padding="5dp"/>
+                android:padding="5dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins_light"/>
 
             <EditText
                 android:id="@+id/merk_produk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/merk_produk"/>
+                android:hint="@string/merk_produk"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/radius_input"
+                android:padding="5dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins_light"/>
 
             <EditText
                 android:id="@+id/harga_produk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/harga_produk"/>
+                android:hint="@string/harga_produk"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/radius_input"
+                android:padding="5dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins_light"/>
 
             <EditText
                 android:id="@+id/jumlah_produk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/jumlah_produk"/>
+                android:hint="@string/jumlah_produk"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/radius_input"
+                android:padding="5dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins_light"/>
         </LinearLayout>
     <Button
         android:layout_width="92dp"
         android:layout_height="31dp"
         android:text="@string/simpan_produk"
-        android:background="@drawable/radius_button_biru"
+        android:background="@drawable/radius_button_ungu"
         android:textColor="@color/white"
         android:layout_gravity="end"
         android:layout_marginTop="5dp"

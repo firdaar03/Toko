@@ -39,7 +39,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_height="240dp"
         android:background="@color/utama_muda"
         android:paddingVertical="13dp">
 
@@ -100,7 +100,8 @@
                     android:layout_marginLeft="114dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
-                    android:textSize="11dp"/>
+                    android:textSize="11dp"
+                    tools:ignore="DuplicateIds" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -175,53 +176,441 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_marginTop="5dp">
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:stretchColumns="0,1,2,3,4">
+                android:stretchColumns="1,2,3,4">
 
                 <TableRow>
                     <TextView
+                        android:layout_width="166dp"
                         android:layout_column="1"
+                        android:padding="5dip"
                         android:text="@string/produk_nama"
-                        android:padding="5dip" />
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                     <TextView
                         android:layout_column="2"
                         android:text="@string/jumlah_produk"
-                        android:padding="3dip" />
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                     <TextView
                         android:layout_column="3"
                         android:text="Harga"
-                        android:padding="3dip" />
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                     <TextView
                         android:layout_column="4"
                         android:text="Total"
-                        android:padding="3dip" />
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                 </TableRow>
                 <View
                     android:layout_height="2dip"
                     android:background="#FF909090" />
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
                     <TextView
                         android:layout_column="1"
                         android:text="Mie Goreng"
-                        android:padding="5dip" />
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                     <TextView
                         android:layout_column="2"
                         android:text="10"
-                        android:padding="3dip" />
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                     <TextView
                         android:layout_column="3"
                         android:text="Rp 3.500"
-                        android:padding="3dip" />
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
                     <TextView
                         android:layout_column="4"
-                        android:text="Total"
-                        android:padding="3dip" />
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Mie Goreng"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="10"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:text="Rp 3.500"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Mie Goreng"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="10"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:text="Rp 3.500"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Mie Goreng"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="10"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:text="Rp 3.500"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Mie Goreng"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="10"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:text="Rp 3.500"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Mie Goreng"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="10"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:text="Rp 3.500"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:text="Mie Goreng"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="10"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:text="Rp 3.500"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 35.000"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="5dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:padding="3dip"
+                        android:textAlignment="textEnd"
+                        android:layout_marginRight="10dp"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <View
+                    android:layout_height="2dip"
+                    android:background="#FF909090" />
+                <TableRow>
+                    <TextView
+                        android:layout_width="166dp"
+                        android:layout_column="1"
+                        android:padding="5dip"
+                        android:text="Jumlah Produk"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:text="70"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="3"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_column="4"
+                        android:text="Rp 245.000"
+                        android:padding="3dip"
+                        android:textSize="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textAlignment="textEnd"
+                        android:layout_marginEnd="5dp"/>
                 </TableRow>
             </TableLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:layout_width="92dp"
+            android:layout_height="31.31dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="111dp"
+            android:background="@drawable/radius_button_merah_muda"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/button_diambil"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+        <Button
+            android:layout_width="92dp"
+            android:layout_height="31.31dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/radius_button_ungu"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/button_terjual"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
 
 </LinearLayout>

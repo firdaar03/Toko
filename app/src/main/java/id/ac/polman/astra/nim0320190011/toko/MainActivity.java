@@ -12,9 +12,11 @@ import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
 import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
 
 public class MainActivity extends AppCompatActivity
-    implements Fragment_login.Callbacks, Fragment_menu_utama.Callbacks{
+    implements Fragment_login.Callbacks, Fragment_menu_utama.Callbacks, Fragment_produk.Callbacks{
     private static final String TAG = "MainActivity";
 
     @Override
@@ -62,6 +64,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDompetButtonClicked() {
         Fragment fragment = Fragment_dompet.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onPutProdukButtonClicked() {
+        Fragment fragment = Fragment_put_produk.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onAddProdukButtonClicked() {
+        Fragment fragment = Fragment_tambah_produk.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
