@@ -8,18 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
-import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_one;
 
 public class Fragment_menu_utama extends Fragment {
     private static final String TAG = "Fragment_menu_utama";

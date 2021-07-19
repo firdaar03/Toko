@@ -57,6 +57,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/field_email"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
+
+            <EditText
+                android:id="@+id/telpon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_hp"
+                android:inputType="number"
                 android:imeOptions="actionNext"
                 android:singleLine="true"/>
 
@@ -117,6 +127,7 @@
                 android:layout_height="100dp"
                 android:inputType="text|textMultiLine"
                 android:hint="@string/field_alamat"
+                android:imeOptions="actionNext"
                 android:layout_gravity="top"/>
 
             <EditText
@@ -124,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:inputType="text|textMultiLine"
+                android:imeOptions="actionNext"
                 android:hint="@string/field_alamat_toko"
                 android:layout_gravity="top"/>
 
@@ -132,6 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/field_NIK"
+                android:inputType="number"
                 android:imeOptions="actionNext"
                 android:singleLine="true"/>
 
@@ -260,6 +273,7 @@
 
 
             <Button
+                android:id="@+id/button_daftar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_daftar"

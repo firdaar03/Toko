@@ -6,12 +6,14 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,17 +22,24 @@ import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
 
 import static androidx.core.view.ViewCompat.jumpDrawablesToCurrentState;
 
@@ -45,14 +54,19 @@ public class Fragment_daftar_toko extends Fragment
     private static final int REQUEST_PHOTO_KTP = 2;
     private static final int REQUEST_PHOTO_TOKO = 3;
 
+    private Toko mToko;
+    private Toko_view_model mTokoViewModel;
+
     private EditText mNama;
     private EditText mEmail;
+    private EditText mTelefon;
     private RadioGroup mJenisKelamin;
     private RadioButton mJenisKelaminSelected;
     private EditText mTempatLahir;
     private EditText mTanggalLahir;
     private EditText mAlamat;
     private EditText mAlamatToko;
+    private EditText mNIK;
 
     private ImageView mFotoDiriView;
     private ImageView mFotoKTPView;
@@ -74,13 +88,26 @@ public class Fragment_daftar_toko extends Fragment
     private EditText mPassword;
     private EditText mPasswordVer;
 
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    private Button mLoginButton;
+
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat detil = new SimpleDateFormat("yyyyMMddHHmm");
 
     @Override
     public void onDateSelected(Date date) {
         String newDate = formatter.format(date);
 
         updateUI(newDate);
+    }
+
+    public Toko_view_model getTokoViewModel(){
+        Log.i(TAG, "getTokoViewModel: called");
+        if(mTokoViewModel == null){
+            mTokoViewModel = new ViewModelProvider(this)
+                    .get(Toko_view_model.class);
+        }
+        Log.i(TAG, "getTokoViewModel: called 2");
+        return mTokoViewModel;
     }
 
     private void updateUI(String newDate){
@@ -92,12 +119,23 @@ public class Fragment_daftar_toko extends Fragment
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mToko = new Toko();
+        Log.i(TAG, "onCreate: ");
+        mTokoViewModel = getTokoViewModel();
+        Log.i(TAG, "onCreate:  2");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pendaftaran_toko, container, false);
 
         mNama = (EditText) view.findViewById(R.id.nama_pemilik);
         mEmail = (EditText) view.findViewById(R.id.email);
+        mTelefon = (EditText) view.findViewById(R.id.telpon);
+        mNIK = (EditText) view.findViewById(R.id.NIK);
 
         mJenisKelamin = (RadioGroup) view.findViewById(R.id.jenis_kelamin);
         int selectedId = mJenisKelamin.getCheckedRadioButtonId();
@@ -187,25 +225,48 @@ public class Fragment_daftar_toko extends Fragment
         mPassword = (EditText) view.findViewById(R.id.password);
         mPasswordVer = (EditText) view.findViewById(R.id.password_verif);
 
+        mLoginButton = (Button) view.findViewById(R.id.button_daftar);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                mToko.setUsername(mUsername.getText().toString());
+                mToko.setPassword(mPassword.getText().toString());
+                mToko.setNama_pemilik(mNama.getText().toString());
+                mToko.setNo_telfon(mTelefon.getText().toString());
+                mToko.setEmail(mEmail.getText().toString());
+                mToko.setJenis_kelamin(mJenisKelaminSelected.getText().toString());
+                mToko.setTempat_lahir(mTempatLahir.getText().toString());
+                mToko.setTanggal_lahir(mTanggalLahir.getText().toString());
+                mToko.setAlamat(mAlamat.getText().toString());
+                mToko.setAlamatToko(mAlamatToko.getText().toString());
+                mToko.setNIK(mNIK.getText().toString());
+                mToko.setFoto_KTP(mFotoKTPFile.toString());
+                mToko.setFoto_diri(mFotoDiriFile.toString());
+                mToko.setFoto_toko(mFotoTokoFile.toString());
+                mTokoViewModel.save(mToko);
+            }
+        });
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFotoDiriFile = new File(getContext().getApplicationContext().getFilesDir(), "foto_diri");
+        mFotoDiriFile = new File(getContext().getApplicationContext().getFilesDir(), "diri_" + detil.format(new Date()));
         mFotoDiriUri = FileProvider.getUriForFile(requireActivity(),
                 "id.ac.polman.astra.nim0320190011.toko.fileprovider",
                 mFotoDiriFile
         );
 
-        mFotoKTPFile = new File(getContext().getApplicationContext().getFilesDir(), "foto_ktp");
+        mFotoKTPFile = new File(getContext().getApplicationContext().getFilesDir(), "ktp_" + detil.format(new Date()));
         mFotoKTPUri = FileProvider.getUriForFile(requireActivity(),
                 "id.ac.polman.astra.nim0320190011.toko.fileprovider",
                 mFotoKTPFile
         );
 
-        mFotoTokoFile = new File(getContext().getApplicationContext().getFilesDir(), "foto_toko");
+        mFotoTokoFile = new File(getContext().getApplicationContext().getFilesDir(), "toko_" + detil.format(new Date()));
         mFotoTokoUri = FileProvider.getUriForFile(requireActivity(),
                 "id.ac.polman.astra.nim0320190011.toko.fileprovider",
                 mFotoTokoFile
@@ -273,6 +334,8 @@ public class Fragment_daftar_toko extends Fragment
         }catch (Exception e){
             Log.e(TAG, "onDetach: ", e);
         }
-
+        mFotoDiriFile = null;
+        mFotoTokoFile = null;
+        mFotoKTPFile = null;
     }
 }

@@ -10,14 +10,14 @@ import androidx.lifecycle.ViewModel;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.repository.Toko_repository;
 
-public class Toko_view_model_one extends ViewModel {
+public class Toko_view_model extends ViewModel {
     private static final String TAG = "Toko_view_model";
 
     private LiveData<Toko> mTokoLiveData;
     private Toko_repository mToko_repository;
     private MutableLiveData<String> mIdMutableLiveData;
 
-    public Toko_view_model_one(){
+    public Toko_view_model(){
         mToko_repository = Toko_repository.get();
         mIdMutableLiveData = new MutableLiveData<>();
         mTokoLiveData = Transformations.switchMap(mIdMutableLiveData,
@@ -34,7 +34,7 @@ public class Toko_view_model_one extends ViewModel {
         return mTokoLiveData;
     }
 
-    public void savetoko(Toko t){
-        mToko_repository.updateToko(t);
+    public void save(Toko t){
+        mToko_repository.addToko(t);
     }
 }

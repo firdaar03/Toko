@@ -30,9 +30,11 @@ public class Toko {
     @SerializedName("tempat_lahir")
     private String mTempat_lahir;
     @SerializedName("tanggal_lahir")
-    private Date mTanggal_lahir;
+    private String mTanggal_lahir;
     @SerializedName("alamat")
     private String mAlamat;
+    @SerializedName("alamat_toko")
+    private String mAlamatToko;
     @SerializedName("nik")
     private String mNIK;
     @SerializedName("foto_KTP")
@@ -49,12 +51,14 @@ public class Toko {
     private String mModiby;
     @SerializedName("modidate")
     private String mModidate;
-    @SerializedName("last_login")
-    private String mLast_login;
     @SerializedName("status")
     private int mStatus;
 
-    public Toko(int idToko, String username, String password, String nama_pemilik, String no_telfon, String email, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat, String NIK, String foto_KTP, String foto_diri, String foto_toko, String creaby, String creadate, String modiby, String modidate, String last_login, int status) {
+    public Toko(){
+
+    }
+
+    public Toko(int idToko, String username, String password, String nama_pemilik, String no_telfon, String email, String jenis_kelamin, String tempat_lahir, String tanggal_lahir, String alamat, String alamatToko, String NIK, String foto_KTP, String foto_diri, String foto_toko, String creaby, String creadate, String modiby, String modidate, int status) {
         this.idToko = idToko;
         mUsername = username;
         mPassword = password;
@@ -65,6 +69,7 @@ public class Toko {
         mTempat_lahir = tempat_lahir;
         mTanggal_lahir = tanggal_lahir;
         mAlamat = alamat;
+        mAlamatToko = alamatToko;
         mNIK = NIK;
         mFoto_KTP = foto_KTP;
         mFoto_diri = foto_diri;
@@ -73,11 +78,8 @@ public class Toko {
         mCreadate = creadate;
         mModiby = modiby;
         mModidate = modidate;
-        mLast_login = last_login;
         mStatus = status;
     }
-
-    public Toko(){}
 
     public int getIdToko() {
         return idToko;
@@ -143,11 +145,11 @@ public class Toko {
         mTempat_lahir = tempat_lahir;
     }
 
-    public Date getTanggal_lahir() {
+    public String getTanggal_lahir() {
         return mTanggal_lahir;
     }
 
-    public void setTanggal_lahir(Date tanggal_lahir) {
+    public void setTanggal_lahir(String tanggal_lahir) {
         mTanggal_lahir = tanggal_lahir;
     }
 
@@ -157,6 +159,14 @@ public class Toko {
 
     public void setAlamat(String alamat) {
         mAlamat = alamat;
+    }
+
+    public String getAlamatToko() {
+        return mAlamatToko;
+    }
+
+    public void setAlamatToko(String alamatToko) {
+        mAlamatToko = alamatToko;
     }
 
     public String getNIK() {
@@ -221,14 +231,6 @@ public class Toko {
 
     public void setModidate(String modidate) {
         mModidate = modidate;
-    }
-
-    public String getLast_login() {
-        return mLast_login;
-    }
-
-    public void setLast_login(String last_login) {
-        mLast_login = last_login;
     }
 
     public int getStatus() {

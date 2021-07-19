@@ -12,6 +12,7 @@
     <string name="field_verif_password">Verifikasi kata sandi</string>
     <string name="field_nama">Nama</string>
     <string name="field_email">Email</string>
+    <string name="field_hp">No telepon</string>
     <string name="field_jeniskelamin">Jenis kelamin</string>
     <string name="option_lakilaki">Laki-laki</string>
     <string name="option_perempuan">Perempuan</string>
