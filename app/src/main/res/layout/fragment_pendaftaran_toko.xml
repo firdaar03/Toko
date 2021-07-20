@@ -261,7 +261,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/field_password"
                 android:imeOptions="actionNext"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/password_verif"
@@ -269,7 +270,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/field_verif_password"
                 android:imeOptions="actionGo"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:inputType="textPassword" />
 
 
             <Button

@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -61,7 +62,8 @@ public class Fragment_daftar_toko extends Fragment
     private EditText mEmail;
     private EditText mTelefon;
     private RadioGroup mJenisKelamin;
-    private RadioButton mJenisKelaminSelected;
+    private RadioButton mMale;
+    private RadioButton mFemale;
     private EditText mTempatLahir;
     private EditText mTanggalLahir;
     private EditText mAlamat;
@@ -138,8 +140,8 @@ public class Fragment_daftar_toko extends Fragment
         mNIK = (EditText) view.findViewById(R.id.NIK);
 
         mJenisKelamin = (RadioGroup) view.findViewById(R.id.jenis_kelamin);
-        int selectedId = mJenisKelamin.getCheckedRadioButtonId();
-        mJenisKelaminSelected = (RadioButton) view.findViewById(selectedId);
+        mMale = (RadioButton) view.findViewById(R.id.radioMale);
+        mFemale = (RadioButton) view.findViewById(R.id.radioFemale);
 
         mTempatLahir = (EditText) view.findViewById(R.id.tempat_lahir);
 
@@ -231,23 +233,84 @@ public class Fragment_daftar_toko extends Fragment
             @Override
             public void onClick(View v) {
 
-                mToko.setUsername(mUsername.getText().toString());
-                mToko.setPassword(mPassword.getText().toString());
-                mToko.setNama_pemilik(mNama.getText().toString());
-                mToko.setNo_telfon(mTelefon.getText().toString());
-                mToko.setEmail(mEmail.getText().toString());
-                mToko.setJenis_kelamin(mJenisKelaminSelected.getText().toString());
-                mToko.setTempat_lahir(mTempatLahir.getText().toString());
-                mToko.setTanggal_lahir(mTanggalLahir.getText().toString());
-                mToko.setAlamat(mAlamat.getText().toString());
-                mToko.setAlamatToko(mAlamatToko.getText().toString());
-                mToko.setNIK(mNIK.getText().toString());
-                mToko.setFoto_KTP(mFotoKTPFile.toString());
-                mToko.setFoto_diri(mFotoDiriFile.toString());
-                mToko.setFoto_toko(mFotoTokoFile.toString());
-                mTokoViewModel.save(mToko);
+                if(mUsername.getText().toString().length() == 0){
+                    mUsername.setError("Username Harus Diisi");
+                }
+                if (mPassword.getText().toString().length() == 0){
+                    mPassword.setError("Password Harus Diisi");
+                }
+                if (mNama.getText().toString().length() == 0){
+                    mNama.setError("Nama Harus Diisi");
+                }
+                if (mTelefon.getText().toString().length() == 0){
+                    mTelefon.setError("No.Telepon Harus Diisi");
+                }
+                if (mEmail.getText().toString().length() == 0){
+                    mEmail.setError("Email Harus Diisi");
+                }
+                if (mTempatLahir.getText().toString().length() == 0){
+                    mTempatLahir.setError("Tempat lahir Harus Diisi");
+                }
+                if (mTanggalLahir.getText().toString().length() == 0){
+                    mTanggalLahir.setError("Tanggal lahir Harus Diisi");
+                }
+                if (mAlamat.getText().toString().length() == 0){
+                    mAlamat.setError("Alamat Harus Diisi");
+                }
+                if (mAlamatToko.getText().toString().length() == 0){
+                    mAlamatToko.setError("Alamat Toko Harus Diisi");
+                } if (mNIK.getText().toString().length() == 0){
+                    mNIK.setError("NIK Harus Diisi");
+                } if (mPasswordVer.getText().toString().length() == 0){
+                    mPasswordVer.setError("Verifikasi Password Harus Diisi");
+                } else if (mNIK.getText().toString().length() != 0 && mAlamatToko.getText().toString().length() != 0 &&
+                            mAlamat.getText().toString().length() != 0 && mTanggalLahir.getText().toString().length() != 0 &&
+                            mTanggalLahir.getText().toString().length() != 0 && mEmail.getText().toString().length() != 0 &&
+                            mTelefon.getText().toString().length() != 0 && mNama.getText().toString().length() != 0 &&
+                            mPassword.getText().toString().length() != 0 && mUsername.getText().toString().length() != 0) {
+                    mToko.setUsername(mUsername.getText().toString());
+                    mToko.setPassword(mPassword.getText().toString());
+                    mToko.setNama_pemilik(mNama.getText().toString());
+                    mToko.setNo_telfon(mTelefon.getText().toString());
+                    mToko.setEmail(mEmail.getText().toString());
+                    int id = mJenisKelamin.getCheckedRadioButtonId();
+                    switch (id) {
+                        case R.id.radioMale :
+                            mToko.setJenis_kelamin("1");
+                            break;
+                        case R.id.radioFemale :
+                            mToko.setJenis_kelamin("0");
+                            break;
+                    }
+                    mToko.setTempat_lahir(mTempatLahir.getText().toString());
+                    mToko.setTanggal_lahir(mTanggalLahir.getText().toString());
+                    mToko.setAlamat(mAlamat.getText().toString());
+                    mToko.setAlamatToko(mAlamatToko.getText().toString());
+                    mToko.setNIK(mNIK.getText().toString());
+                    mToko.setFoto_KTP(mFotoKTPFile.toString());
+                    mToko.setFoto_diri(mFotoDiriFile.toString());
+                    mToko.setFoto_toko(mFotoTokoFile.toString());
+                    mTokoViewModel.save(mToko);
+                    Toast.makeText(getContext(), "Registrasi Berhasil!",
+                            Toast.LENGTH_SHORT).show();
+                    clearToko();
+                }
+            }
+
+            public void clearToko(){
+                mPasswordVer.getText().clear();
+                mPassword.getText().clear();
+                mNIK.getText().clear();
+                mAlamatToko.getText().clear();
+                mAlamat.getText().clear();
+                mTempatLahir.getText().clear();
+                mEmail.getText().clear();
+                mTelefon.getText().clear();
+                mNama.getText().clear();
+                mUsername.getText().clear();
             }
         });
+
         return view;
     }
 
@@ -338,4 +401,6 @@ public class Fragment_daftar_toko extends Fragment
         mFotoTokoFile = null;
         mFotoKTPFile = null;
     }
+
+
 }

@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:hint="password"
             android:imeOptions="actionGo"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:inputType="textPassword" />
 
     </LinearLayout>
 
