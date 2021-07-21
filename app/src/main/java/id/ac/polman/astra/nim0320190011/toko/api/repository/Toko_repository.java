@@ -71,7 +71,7 @@ public class Toko_repository {
             public void onResponse(Call<Toko> call, Response<Toko> response) {
                 if(response.isSuccessful()){
                     toko.setValue(response.body());
-                    Log.i(TAG, "onResponse: getToko()");
+                    Log.i(TAG, "onResponse: getToko() " + new Gson().toJson(response.body()));
                 }
             }
 

@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
 
 public class Fragment_login extends Fragment {
@@ -28,16 +29,16 @@ public class Fragment_login extends Fragment {
     private EditText mUsername;
     private EditText mPassword;
 
-    private Toko_view_model_list mTokoViewModelList;
+    private Toko_view_model mTokoViewModel;
 
-    public Toko_view_model_list getTokoViewModelList(){
+    public Toko_view_model getTokoViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
-        if(mTokoViewModelList == null){
-            mTokoViewModelList = new ViewModelProvider(this)
-                    .get(Toko_view_model_list.class);
+        if(mTokoViewModel == null){
+            mTokoViewModel = new ViewModelProvider(this)
+                    .get(Toko_view_model.class);
         }
         Log.i(TAG, "getTokoViewModelList: called 2");
-        return mTokoViewModelList;
+        return mTokoViewModel;
     }
 
     public static Fragment_login newInstance(){
@@ -50,7 +51,7 @@ public class Fragment_login extends Fragment {
         super.onCreate(savedInstanceState);
 
 //        mTokoViewModel = getTokoViewModel();
-        mTokoViewModelList = getTokoViewModelList();
+        mTokoViewModel = getTokoViewModel();
     }
 
     @Override
@@ -77,7 +78,7 @@ public class Fragment_login extends Fragment {
             public void onClick(View v) {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
-                Toko user = mTokoViewModelList.checklogin(username, password);
+                Toko user = mTokoViewModel.checklogin(username, password);
                 if(user != null){
                     mCallbacks.onLoginButtonClicked(user);
                 }else {

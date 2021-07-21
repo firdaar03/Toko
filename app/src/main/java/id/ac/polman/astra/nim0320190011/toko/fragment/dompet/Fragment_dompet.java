@@ -30,6 +30,7 @@ public class Fragment_dompet extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadFragment(new Fragment_dompet_aktivitas());
     }
 
     @Nullable
@@ -39,9 +40,13 @@ public class Fragment_dompet extends Fragment {
         View v = inflater.inflate(R.layout.fragment_dompet, container, false);
 
         btnAktvitas = (Button) v.findViewById(R.id.button_aktifitas);
+        btnAktvitas.setActivated(true);
         btnAktvitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnUangMasuk.setActivated(false);
+                btnUangKeluar.setActivated(false);
+                btnAktvitas.setActivated(true);
                 loadFragment(new Fragment_dompet_aktivitas());
             }
         });
@@ -50,6 +55,9 @@ public class Fragment_dompet extends Fragment {
         btnUangMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnUangMasuk.setActivated(true);
+                btnUangKeluar.setActivated(false);
+                btnAktvitas.setActivated(false);
                 loadFragment(new Fragment_dompet_uang_masuk());
             }
         });
@@ -58,6 +66,9 @@ public class Fragment_dompet extends Fragment {
         btnUangKeluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnUangMasuk.setActivated(false);
+                btnUangKeluar.setActivated(true);
+                btnAktvitas.setActivated(false);
                 loadFragment(new Fragment_dompet_uang_keluar());
             }
         });
