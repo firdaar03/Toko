@@ -268,32 +268,39 @@ public class Fragment_daftar_toko extends Fragment
                             mTanggalLahir.getText().toString().length() != 0 && mEmail.getText().toString().length() != 0 &&
                             mTelefon.getText().toString().length() != 0 && mNama.getText().toString().length() != 0 &&
                             mPassword.getText().toString().length() != 0 && mUsername.getText().toString().length() != 0) {
-                    mToko.setUsername(mUsername.getText().toString());
-                    mToko.setPassword(mPassword.getText().toString());
-                    mToko.setNama_pemilik(mNama.getText().toString());
-                    mToko.setNo_telfon(mTelefon.getText().toString());
-                    mToko.setEmail(mEmail.getText().toString());
-                    int id = mJenisKelamin.getCheckedRadioButtonId();
-                    switch (id) {
-                        case R.id.radioMale :
-                            mToko.setJenis_kelamin("1");
-                            break;
-                        case R.id.radioFemale :
-                            mToko.setJenis_kelamin("0");
-                            break;
+
+                    if(mPassword.getText().toString() == mPasswordVer.getText().toString()){
+                        mToko.setUsername(mUsername.getText().toString());
+                        mToko.setPassword(mPassword.getText().toString());
+                        mToko.setNama_pemilik(mNama.getText().toString());
+                        mToko.setNo_telfon(mTelefon.getText().toString());
+                        mToko.setEmail(mEmail.getText().toString());
+                        int id = mJenisKelamin.getCheckedRadioButtonId();
+                        switch (id) {
+                            case R.id.radioMale :
+                                mToko.setJenis_kelamin("1");
+                                break;
+                            case R.id.radioFemale :
+                                mToko.setJenis_kelamin("0");
+                                break;
+                        }
+                        mToko.setTempat_lahir(mTempatLahir.getText().toString());
+                        mToko.setTanggal_lahir(mTanggalLahir.getText().toString());
+                        mToko.setAlamat(mAlamat.getText().toString());
+                        mToko.setAlamatToko(mAlamatToko.getText().toString());
+                        mToko.setNIK(mNIK.getText().toString());
+                        mToko.setFoto_KTP(mFotoKTPFile.toString());
+                        mToko.setFoto_diri(mFotoDiriFile.toString());
+                        mToko.setFoto_toko(mFotoTokoFile.toString());
+                        mTokoViewModel.save(mToko);
+                        Toast.makeText(getContext(), "Registrasi Berhasil!",
+                                Toast.LENGTH_SHORT).show();
+                        clearToko();
+                    } else {
+                        Toast.makeText(getContext(), "Password dan Verifikasi harus sama",
+                                Toast.LENGTH_SHORT).show();
                     }
-                    mToko.setTempat_lahir(mTempatLahir.getText().toString());
-                    mToko.setTanggal_lahir(mTanggalLahir.getText().toString());
-                    mToko.setAlamat(mAlamat.getText().toString());
-                    mToko.setAlamatToko(mAlamatToko.getText().toString());
-                    mToko.setNIK(mNIK.getText().toString());
-                    mToko.setFoto_KTP(mFotoKTPFile.toString());
-                    mToko.setFoto_diri(mFotoDiriFile.toString());
-                    mToko.setFoto_toko(mFotoTokoFile.toString());
-                    mTokoViewModel.save(mToko);
-                    Toast.makeText(getContext(), "Registrasi Berhasil!",
-                            Toast.LENGTH_SHORT).show();
-                    clearToko();
+
                 }
             }
 

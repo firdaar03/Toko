@@ -6,12 +6,18 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -35,7 +41,9 @@ import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 
 public class Fragment_tambah_produk extends Fragment {
@@ -45,6 +53,9 @@ public class Fragment_tambah_produk extends Fragment {
 
     private Toko_view_model mTokoViewModel;
     private Toko dataToko;
+
+    private Produk_view_model mProdukViewModel;
+    private Produk mProduk;
 
     private ImageView mFotoProdukView;
     private Uri mFotoProdukURI;
@@ -59,27 +70,59 @@ public class Fragment_tambah_produk extends Fragment {
 
     private Button mInput_button;
 
+    private String mIdToko;
+
     SimpleDateFormat detil = new SimpleDateFormat("yyyyMMddHHmm");
 
-//    public static Fragment_tambah_produk newInstance(Toko model) {
-//        return new Fragment_tambah_produk(model);
-//    }
-//
-//    private Fragment_tambah_produk(Toko model){
-//        dataToko = model;
-//    }
-
-    public static Fragment_tambah_produk newInstance() {
-        return new Fragment_tambah_produk();
+    public static Fragment_tambah_produk newInstance(String mTokoId) {
+        return new Fragment_tambah_produk(mTokoId);
     }
 
-    private Fragment_tambah_produk(){
+    private Fragment_tambah_produk(String mTokoId){
+        mIdToko = mTokoId;
+    }
+
+    public Toko_view_model getTokoViewModel(){
+        Log.i(TAG, "getTokoViewModelList: called");
+        if(mTokoViewModel == null){
+            mTokoViewModel = new ViewModelProvider(this)
+                    .get(Toko_view_model.class);
+        }
+        Log.i(TAG, "getTokoViewModelList : called idtoko: " + mIdToko);
+        return mTokoViewModel;
+    }
+
+    public Produk_view_model getProdukViewModel(){
+        Log.i(TAG, "getProdukViewModelList: called");
+        if(mProdukViewModel == null){
+            mProdukViewModel = new ViewModelProvider(this)
+                    .get(Produk_view_model.class);
+        }
+        Log.i(TAG, "getProdukViewModelList: called 2");
+        return mProdukViewModel;
+    }
+
+//    public static Fragment_tambah_produk newInstance() {
+//        return new Fragment_tambah_produk();
+//    }
+
+//    private Fragment_tambah_produk(){
 //        dataToko = model;
+//    }
+
+    private void updateUI(){
+        Log.i(TAG, "update UI () called");
+        mNama_produk.setText(mProduk.getNama());
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mTokoViewModel = getTokoViewModel();
+        Log.i(TAG, "onCreate: ");
+        mProduk = new Produk();
+        Log.i(TAG, "onCreate: 2");
+        mProdukViewModel = getProdukViewModel();
     }
 
     @Nullable
@@ -88,10 +131,10 @@ public class Fragment_tambah_produk extends Fragment {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_tambah_produk, container, false);
 
-        mNama_produk = v.findViewById(R.id.nama_produk);
-        mMerk_pruduk = v.findViewById(R.id.merk_produk);
-        mHarga_produk = v.findViewById(R.id.harga_produk);
-        mJumlah_produk = v.findViewById(R.id.jumlah_produk);
+        mNama_produk = (EditText) v.findViewById(R.id.nama_produk);
+        mMerk_pruduk = (EditText) v.findViewById(R.id.merk_produk);
+        mHarga_produk = (EditText) v.findViewById(R.id.harga_produk);
+        mJumlah_produk = (EditText) v.findViewById(R.id.jumlah_produk);
 
         mFotoProdukView = v.findViewById(R.id.foto_produk_view);
 
@@ -120,18 +163,44 @@ public class Fragment_tambah_produk extends Fragment {
         });
 
 
-
         mInput_button = v.findViewById(R.id.input_button);
         mInput_button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+                if (mHarga_produk.getText().toString().length() == 0){
+                    mHarga_produk.setError("Harga Harus Diisi");
+                }
+                if(mJumlah_produk.getText().toString().length() == 0){
+                    mJumlah_produk.setError("Jumlah Harus Diisi");
+                }
+                if(mMerk_pruduk.getText().toString().length() == 0){
+                    mMerk_pruduk.setError("Merk Harus Diisi");
+                }
+                if(mNama_produk.getText().toString().length() == 0){
+                    mNama_produk.setError("Nama Harus Diisi");
+                } else if(mHarga_produk.getText().toString().length() != 0 && mJumlah_produk.getText().toString().length() != 0
+                            && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
+                    mProduk.setIdToko(Integer.parseInt(mIdToko));
+                    mProduk.setFoto(mFotoProdukFile.toString());
+                    mProduk.setHarga(Integer.parseInt(mHarga_produk.getText().toString()));
+                    mProduk.setJumlah(Integer.parseInt(mJumlah_produk.getText().toString()));
+                    mProduk.setMerk(mMerk_pruduk.getText().toString());
+                    mProduk.setNama(mNama_produk.getText().toString());
+                    mProdukViewModel.save(mProduk);
+                    Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT)
+                            .show();
+                    getFragmentManager().popBackStack();
+                }
 
-                Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT)
-                        .show();
             }
         });
         return v;
     }
+
+
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -142,6 +211,17 @@ public class Fragment_tambah_produk extends Fragment {
                 mFotoProdukFile
         );
 
+        Log.i(TAG, "onViewCreated: Called ");
+        mProdukViewModel.getProdukLiveData().observe(
+                getViewLifecycleOwner(), new Observer<Produk>() {
+                    @Override
+                    public void onChanged(Produk produk) {
+                        mProduk = produk;
+                        updateUI();
+                    }
+                }
+        );
+//        mProdukViewModel.loadProduk(mProdukId);
     }
 
     @Override

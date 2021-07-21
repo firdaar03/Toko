@@ -98,7 +98,8 @@ public class Fragment_menu_utama extends Fragment {
             public void onClick(View v) {
 //                Toast.makeText(getContext(),"Produk button clicked", Toast.LENGTH_SHORT)
 //                        .show();
-                mCallbacks.onProdukButtonClicked();
+                Toko t = dataToko;
+                mCallbacks.onProdukButtonClicked(t);
             }
         });
 
@@ -113,7 +114,7 @@ public class Fragment_menu_utama extends Fragment {
     }
 
     public interface Callbacks{
-        public void onProdukButtonClicked();
+        public void onProdukButtonClicked(Toko t);
         public void onDompetButtonClicked();
     }
 

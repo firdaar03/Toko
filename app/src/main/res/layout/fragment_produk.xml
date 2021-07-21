@@ -100,7 +100,8 @@
                 android:paddingTop="10dp"
                 android:paddingLeft="5dp"
                 android:textColor="@color/bg_secondary"
-                android:fontFamily="@font/poppins_light"/>
+                android:fontFamily="@font/poppins_light"
+                android:id="@+id/cari_produk"/>
 
             <ImageView
                 android:layout_width="15dp"
