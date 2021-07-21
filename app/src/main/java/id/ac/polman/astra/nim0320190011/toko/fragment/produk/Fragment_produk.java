@@ -8,13 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Collections;
+import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
@@ -28,7 +37,10 @@ public class Fragment_produk extends Fragment {
     private static final String TAG = "Fragment_produk";
 
     Toko_view_model mTokoViewModel;
+    Produk_view_model mProdukViewModel;
     Toko dataToko;
+    private RecyclerView mProdukRecyclerView;
+    private ProdukAdapter mAdapter;
 
     private String mProdukId;
 
@@ -59,11 +71,19 @@ public class Fragment_produk extends Fragment {
         return mTokoViewModel;
     }
 
+    private void updateUI(List<Produk> produks){
+        Log.i(TAG, "updateUI called");
+        mAdapter = new ProdukAdapter(produks);
+        mProdukRecyclerView.setAdapter(mAdapter);
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTokoViewModel = getTokoViewModel();
-
+        Log.i(TAG, "Fragment_Produk.onCreate() called");
+        mProdukViewModel = new ViewModelProvider(this)
+                .get(Produk_view_model.class);
+        mAdapter = new  ProdukAdapter(Collections.<Produk>emptyList());
     }
 
     @Nullable
@@ -71,8 +91,6 @@ public class Fragment_produk extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_produk, container, false);
-
-
 
         mAddProdukButton = (Button) v.findViewById(R.id.button_add);
         mAddProdukButton.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +117,94 @@ public class Fragment_produk extends Fragment {
                 fragmentTransaction.commit(); // save the changes
             }
         });
+
+        mProdukRecyclerView = (RecyclerView) v.findViewById(R.id.produk_recycler_view);
+        mProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mProdukRecyclerView.setAdapter(mAdapter);
         return v;
 
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        try {
+            Thread.sleep(100);
+        }catch (InterruptedException ie){
+            Thread.currentThread().interrupt();
+        }
+        Log.i(TAG, "Fragment_Produk.onViewCreated() called");
+        mProdukViewModel.getProduks().observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Produk>>() {
+                    @Override
+                    public void onChanged(List<Produk> produks) {
+                        updateUI(produks);
+                        Log.i(TAG, "Got Produk: " + produks.size());
+                    }
+                }
+        );
+    }
+
+    private class ProdukHolder extends RecyclerView.ViewHolder{
+
+        private ImageView mFotoProduk;
+        private TextView mNamaProduk;
+        private TextView mHargaProduk;
+        private TextView mJumlahProduk;
+        private TextView mMerkProduk;
+        private ImageView mEditProduk;
+        private ImageView mDeleteProduk;
+        private ConstraintLayout mItemProdukLayout;
+        private Produk mProduk;
+
+        public ProdukHolder (LayoutInflater inflater, ViewGroup parent){
+            super(inflater.inflate(R.layout.fragment_item_produk, parent, false));
+
+            mFotoProduk = (ImageView) itemView.findViewById(R.id.foto_produk);
+            mNamaProduk = (TextView) itemView.findViewById(R.id.text_nama_produk);
+            mHargaProduk = (TextView) itemView.findViewById(R.id.text_harga_produk);
+            mJumlahProduk = (TextView) itemView.findViewById(R.id.text_jumlah_produk);
+            mMerkProduk = (TextView) itemView.findViewById(R.id.text_merk_produk);
+            mEditProduk = (ImageView) itemView.findViewById(R.id.edit_produk);
+            mDeleteProduk = (ImageView) itemView.findViewById(R.id.delete_produk);
+            mItemProdukLayout = itemView.findViewById(R.id.fragment_item_produk);
+        }
+
+        public void bind(Produk produk){
+            mProduk = produk;
+            mNamaProduk.setText(mProduk.getNama());
+            mHargaProduk.setText("Rp. " + mProduk.getHarga() + ",-");
+            mJumlahProduk.setText("stok : " + mProduk.getJumlah());
+            mMerkProduk.setText("(" + mProduk.getMerk() + ")");
+        }
+
+    }
+
+    private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
+
+        private List<Produk> mProdukList;
+
+        public ProdukAdapter(List<Produk> produks){
+            mProdukList = produks;
+        }
+
+        @Override
+        public ProdukHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            return new ProdukHolder(layoutInflater, parent);
+        }
+
+        @Override
+        public void onBindViewHolder(ProdukHolder holder, int position){
+            Produk produk = mProdukList.get(position);
+            holder.bind(produk);
+        }
+
+        @Override
+        public int getItemCount(){
+            return mProdukList.size();
+        }
     }
 
     @Override

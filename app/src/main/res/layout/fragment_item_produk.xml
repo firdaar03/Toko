@@ -17,17 +17,16 @@
         <ImageView
             android:layout_width="99dp"
             android:layout_height="65dp"
-            android:src="@drawable/image_mie"
             android:background="@drawable/radius_input"
             android:scaleType="fitXY"
             android:layout_marginVertical="7dp"
-            android:layout_marginLeft="6dp"/>
+            android:layout_marginLeft="6dp"
+            android:id="@+id/foto_produk"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mie Sedaap Goreng"
-            android:id="@+id/nama_produk"
+            android:id="@+id/text_nama_produk"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="114dp"
             android:fontFamily="@font/poppins_semibold"
@@ -37,33 +36,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp 3.500,-"
             android:layout_marginTop="24dp"
             android:layout_marginLeft="114dp"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/black"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:id="@+id/text_harga_produk"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             android:layout_marginLeft="114dp"
-            android:text="stok : 43"
             android:layout_marginBottom="7dp"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
-            android:textSize="11dp"/>
+            android:textSize="11dp"
+            android:id="@+id/text_jumlah_produk"/>
 
         <TextView
+            android:id="@+id/text_merk_produk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
-            android:layout_toEndOf="@+id/nama_produk"
+            android:layout_toEndOf="@+id/text_nama_produk"
             android:fontFamily="@font/poppins_regular"
-            android:text="(Wingsfood)"
             android:textColor="@color/secondary"
             android:textSize="10dp" />
 
@@ -73,7 +71,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="51dp"
             android:layout_marginEnd="31dp"
-            android:src="@drawable/ic_edit_produk"/>
+            android:src="@drawable/ic_edit_produk"
+            android:id="@+id/edit_produk"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -81,7 +80,8 @@
             android:src="@drawable/ic_delete_produk"
             android:layout_marginTop="51dp"
             android:layout_marginEnd="8dp"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:id="@+id/delete_produk"/>
 
     </RelativeLayout>
 
