@@ -78,14 +78,20 @@ public class Fragment_login extends Fragment {
             public void onClick(View v) {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
-                Toko user = mTokoViewModel.checklogin(username, password);
-                if(user != null){
-                    mCallbacks.onLoginButtonClicked(user);
-                }else {
-                    Toast.makeText(getContext(), "Username atau password tidak ditemukan",
+                try {
+                    Toko user = mTokoViewModel.checklogin(username, password);
+                    if(user != null){
+                        mCallbacks.onLoginButtonClicked(user);
+                    }else {
+                        Toast.makeText(getContext(), "Username atau password tidak ditemukan",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    Log.i(TAG, "onClick: Login");
+                }catch (Exception e){
+                    Toast.makeText(getContext(), "Mohon tunggu!",
                             Toast.LENGTH_SHORT).show();
                 }
-                Log.i(TAG, "onClick: Login");
+
             }
         });
         return view;

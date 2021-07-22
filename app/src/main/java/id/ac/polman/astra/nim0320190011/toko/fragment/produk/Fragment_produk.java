@@ -171,6 +171,7 @@ public class Fragment_produk extends Fragment {
             mJumlahProduk = (TextView) itemView.findViewById(R.id.text_jumlah_produk);
             mMerkProduk = (TextView) itemView.findViewById(R.id.text_merk_produk);
             mEditProduk = (ImageView) itemView.findViewById(R.id.edit_produk);
+
             mDeleteProduk = (ImageView) itemView.findViewById(R.id.delete_produk);
             mItemProdukLayout = itemView.findViewById(R.id.fragment_item_produk);
         }
@@ -185,6 +186,17 @@ public class Fragment_produk extends Fragment {
             mHargaProduk.setText("Rp. " + mProduk.getHarga() + ",-");
             mJumlahProduk.setText("stok : " + mProduk.getJumlah());
             mMerkProduk.setText("(" + mProduk.getMerk() + ")");
+            mEditProduk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment fragment = Fragment_edit_produk.newInstance(produk);
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit(); // save the changes
+                }
+            });
         }
 
     }

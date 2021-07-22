@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/utama">
+        <ImageView
+            android:id="@+id/button_kembali"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Edit Products"
+            android:textAlignment="textEnd"
+            android:textColor="@color/utama_tua"
+            android:textSize="24dp" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="20px"
+        android:background="@color/utama_muda">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/foto_produk_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@android:color/darker_gray"
+                android:cropToPadding="true"
+                android:scaleType="centerInside"
+                android:layout_marginTop="8dp"/>
+
+            <ImageButton
+                android:id="@+id/produk_camera_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/nama_produk"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:hint="@string/nama_produk"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radius_input"
+            android:padding="5dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins_light"
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/merk_produk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/merk_produk"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/radius_input"
+            android:padding="5dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins_light"
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/harga_produk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/harga_produk"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/radius_input"
+            android:padding="5dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins_light"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/jumlah_produk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/jumlah_produk"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/radius_input"
+            android:padding="5dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins_light"
+            android:inputType="number"
+            android:imeOptions="actionSend"
+            android:singleLine="true"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/input_button"
+        android:layout_width="92dp"
+        android:layout_height="31dp"
+        android:text="@string/simpan_produk"
+        android:background="@drawable/radius_button_ungu"
+        android:textColor="@color/white"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginEnd="5dp"
+        android:textSize="14dp"/>
+
+</LinearLayout>
