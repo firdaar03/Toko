@@ -79,6 +79,7 @@ public class Fragment_produk extends Fragment {
         mAdapter = new ProdukAdapter(produks);
         mProdukRecyclerView.setAdapter(mAdapter);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,13 +126,6 @@ public class Fragment_produk extends Fragment {
         mProdukRecyclerView = (RecyclerView) v.findViewById(R.id.produk_recycler_view);
         mProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mProdukRecyclerView.setAdapter(mAdapter);
-        return v;
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         try {
             Thread.sleep(100);
         }catch (InterruptedException ie){
@@ -148,6 +142,15 @@ public class Fragment_produk extends Fragment {
                     }
                 }
         );
+
+        return v;
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     private class ProdukHolder extends RecyclerView.ViewHolder{
@@ -189,12 +192,18 @@ public class Fragment_produk extends Fragment {
             mEditProduk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment fragment = Fragment_edit_produk.newInstance(produk);
+                    Fragment fragment = Fragment_edit_produk.newInstance(mProduk);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fm.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit(); // save the changes
+                }
+            });
+            mDeleteProduk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
                 }
             });
         }

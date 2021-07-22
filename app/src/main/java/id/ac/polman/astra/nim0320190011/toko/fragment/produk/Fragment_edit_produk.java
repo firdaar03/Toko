@@ -89,16 +89,18 @@ public class Fragment_edit_produk extends Fragment {
         super.onCreate(savedInstanceState);
         mProdukId = String.valueOf(mProduk.getIdProduk());
         Log.i(TAG, "UserFragment.onCreate() called idProduk " + mProdukId);
-        mProduk = new Produk();
+//        mProduk = new Produk();
         mProdukViewModel = getProdukViewModel();
+        mPictureUtils = new PictureUtils();
     }
 
     private void updateUI(){
         Log.i(TAG, "update UI () called");
         mNama_produk.setText(mProduk.getNama());
         mMerk_pruduk.setText(mProduk.getMerk());
-        mHarga_produk.setText(mProduk.getHarga());
-        mJumlah_produk.setText(mProduk.getJumlah());
+        mHarga_produk.setText(mProduk.getHarga() + "");
+        mJumlah_produk.setText(mProduk.getJumlah() + "");
+        mFotoProdukView.setImageBitmap(mPictureUtils.convertToImage(mProduk.getFoto()));
     }
 
     @Nullable
@@ -108,76 +110,10 @@ public class Fragment_edit_produk extends Fragment {
         View v = inflater.inflate(R.layout.fragment_edit_produk, container, false);
 
         mNama_produk = (EditText) v.findViewById(R.id.nama_produk);
-        mNama_produk.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProduk.setNama(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         mMerk_pruduk = (EditText) v.findViewById(R.id.merk_produk);
-        mMerk_pruduk.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProduk.setMerk(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        mHarga_produk = (EditText) v.findViewById(R.id.harga_produk);
-        mHarga_produk.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProduk.setHarga(Integer.parseInt(s.toString()));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        mHarga_produk = (EditText) v.findViewById(R.id.harga_produk_edit);
 
         mJumlah_produk = (EditText) v.findViewById(R.id.jumlah_produk);
-        mJumlah_produk.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProduk.setJumlah(Integer.parseInt(s.toString()));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
         mFotoProdukView = v.findViewById(R.id.foto_produk_view);
 
         PackageManager packageManager = getActivity().getPackageManager();
@@ -206,7 +142,43 @@ public class Fragment_edit_produk extends Fragment {
 
 
         mInput_button = v.findViewById(R.id.input_button);
+        mInput_button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                if (mHarga_produk.getText().toString().length() == 0){
+                    mHarga_produk.setError("Harga Harus Diisi");
+                }
+                if(mJumlah_produk.getText().toString().length() == 0){
+                    mJumlah_produk.setError("Jumlah Harus Diisi");
+                }
+                if(mMerk_pruduk.getText().toString().length() == 0){
+                    mMerk_pruduk.setError("Merk Harus Diisi");
+                }
+                if(mNama_produk.getText().toString().length() == 0){
+                    mNama_produk.setError("Nama Harus Diisi");
+                } else if(mHarga_produk.getText().toString().length() != 0 && mJumlah_produk.getText().toString().length() != 0
+                        && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
 
+                    try {
+                        mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
+                    }catch (Exception e){
+
+                    }
+
+                    mProduk.setHarga(Integer.parseInt(mHarga_produk.getText().toString()));
+                    mProduk.setJumlah(Integer.parseInt(mJumlah_produk.getText().toString()));
+                    mProduk.setMerk(mMerk_pruduk.getText().toString());
+                    mProduk.setNama(mNama_produk.getText().toString());
+                    mProdukViewModel.update(mProduk);
+                    Toast.makeText(getContext(), "Update", Toast.LENGTH_SHORT)
+                            .show();
+                    getFragmentManager().popBackStack();
+                }
+
+            }
+        });
+        updateUI();
         return v;
     }
 
@@ -219,17 +191,18 @@ public class Fragment_edit_produk extends Fragment {
                 mFotoProdukFile
         );
 
+//        mProdukViewModel.loadProduk(mProdukId);
         Log.i(TAG, "onViewCreated: Called ");
-        mProdukViewModel.getProdukLiveData().observe(
-                getViewLifecycleOwner(), new Observer<Produk>() {
-                    @Override
-                    public void onChanged(Produk produk) {
-                        mProduk = produk;
-                        updateUI();
-                    }
-                }
-        );
-        mProdukViewModel.loadProduk(mProdukId);
+//        mProdukViewModel.getProdukLiveData().observe(
+//                getViewLifecycleOwner(), new Observer<Produk>() {
+//                    @Override
+//                    public void onChanged(Produk produk) {
+//                        mProduk = produk;
+//                        updateUI();
+//                    }
+//                }
+//        );
+
     }
 
     @Override

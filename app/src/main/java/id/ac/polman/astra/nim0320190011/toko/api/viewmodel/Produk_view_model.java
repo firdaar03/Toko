@@ -40,12 +40,16 @@ public class Produk_view_model extends ViewModel {
 
     public MutableLiveData<List<Produk>> getProduks(){
         mProduk_repository = Produk_repository.get();
-        mProdukListMutableLiveData = mProduk_repository.getProduks();
-        return mProdukListMutableLiveData;
+//        mProdukListMutableLiveData = mProduk_repository.getProduks();
+        return mProduk_repository.getProduks();
     }
 
     public void save(Produk p){
         mProduk_repository.addProduk(p);
+    }
+
+    public void update(Produk p){
+        mProduk_repository.updateProduk(p);
     }
     public void addProduk(Produk p){
         mProduk_repository.addProduk(p);

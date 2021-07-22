@@ -95,7 +95,7 @@
             android:singleLine="true"/>
 
         <EditText
-            android:id="@+id/harga_produk"
+            android:id="@+id/harga_produk_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/harga_produk"
