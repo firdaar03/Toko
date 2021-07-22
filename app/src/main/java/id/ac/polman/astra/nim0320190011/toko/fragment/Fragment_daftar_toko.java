@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -57,6 +60,7 @@ public class Fragment_daftar_toko extends Fragment
 
     private Toko mToko;
     private Toko_view_model mTokoViewModel;
+    private PictureUtils mPictureUtils;
 
     private EditText mNama;
     private EditText mEmail;
@@ -127,6 +131,7 @@ public class Fragment_daftar_toko extends Fragment
         Log.i(TAG, "onCreate: ");
         mTokoViewModel = getTokoViewModel();
         Log.i(TAG, "onCreate:  2");
+        mPictureUtils = new PictureUtils();
     }
 
     @Override
@@ -269,7 +274,7 @@ public class Fragment_daftar_toko extends Fragment
                             mTelefon.getText().toString().length() != 0 && mNama.getText().toString().length() != 0 &&
                             mPassword.getText().toString().length() != 0 && mUsername.getText().toString().length() != 0) {
 
-                    if(mPassword.getText().toString() == mPasswordVer.getText().toString()){
+                    if(mPassword.getText().toString().equals(mPasswordVer.getText().toString())){
                         mToko.setUsername(mUsername.getText().toString());
                         mToko.setPassword(mPassword.getText().toString());
                         mToko.setNama_pemilik(mNama.getText().toString());
@@ -289,9 +294,11 @@ public class Fragment_daftar_toko extends Fragment
                         mToko.setAlamat(mAlamat.getText().toString());
                         mToko.setAlamatToko(mAlamatToko.getText().toString());
                         mToko.setNIK(mNIK.getText().toString());
-                        mToko.setFoto_KTP(mFotoKTPFile.toString());
-                        mToko.setFoto_diri(mFotoDiriFile.toString());
-                        mToko.setFoto_toko(mFotoTokoFile.toString());
+
+                        mToko.setFoto_diri(mPictureUtils.convertToString(mFotoDiriFile.getPath()));
+                        mToko.setFoto_KTP(mPictureUtils.convertToString(mFotoKTPFile.getPath()));
+                        mToko.setFoto_toko(mPictureUtils.convertToString(mFotoTokoFile.getPath()));
+
                         mTokoViewModel.save(mToko);
                         Toast.makeText(getContext(), "Registrasi Berhasil!",
                                 Toast.LENGTH_SHORT).show();
@@ -315,6 +322,7 @@ public class Fragment_daftar_toko extends Fragment
                 mTelefon.getText().clear();
                 mNama.getText().clear();
                 mUsername.getText().clear();
+                getFragmentManager().popBackStack();
             }
         });
 

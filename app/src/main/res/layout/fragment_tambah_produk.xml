@@ -76,7 +76,9 @@
                 android:background="@drawable/radius_input"
                 android:padding="5dp"
                 android:textSize="12dp"
-                android:fontFamily="@font/poppins_light"/>
+                android:fontFamily="@font/poppins_light"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
             <EditText
                 android:id="@+id/merk_produk"
@@ -87,7 +89,9 @@
                 android:background="@drawable/radius_input"
                 android:padding="5dp"
                 android:textSize="12dp"
-                android:fontFamily="@font/poppins_light"/>
+                android:fontFamily="@font/poppins_light"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
             <EditText
                 android:id="@+id/harga_produk"
@@ -99,7 +103,9 @@
                 android:padding="5dp"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins_light"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
             <EditText
                 android:id="@+id/jumlah_produk"
@@ -111,7 +117,9 @@
                 android:padding="5dp"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins_light"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:imeOptions="actionSend"
+                android:singleLine="true"/>
         </LinearLayout>
     <Button
         android:id="@+id/input_button"

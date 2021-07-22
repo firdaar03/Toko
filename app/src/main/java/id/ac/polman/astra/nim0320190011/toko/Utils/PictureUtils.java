@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 
 public class PictureUtils {
     public static Bitmap getScaleBitmap(String path, Activity activity){
@@ -32,5 +35,20 @@ public class PictureUtils {
         options.inSampleSize = inSampleSize;
 
         return BitmapFactory.decodeFile(path, options);
+    }
+    public String convertToString(String imagePath){
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return imageString;
+    }
+    public Bitmap convertToImage(String bitmap){
+        //decode base64 string to image
+        byte[] imageBytes = Base64.decode(bitmap, Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        return decodedImage;
     }
 }

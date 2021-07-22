@@ -26,6 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
+import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
@@ -39,6 +40,8 @@ public class Fragment_produk extends Fragment {
     Toko_view_model mTokoViewModel;
     Produk_view_model mProdukViewModel;
     Toko dataToko;
+    PictureUtils mPictureUtils;
+
     private RecyclerView mProdukRecyclerView;
     private ProdukAdapter mAdapter;
 
@@ -84,6 +87,7 @@ public class Fragment_produk extends Fragment {
         mProdukViewModel = new ViewModelProvider(this)
                 .get(Produk_view_model.class);
         mAdapter = new  ProdukAdapter(Collections.<Produk>emptyList());
+        mPictureUtils = new PictureUtils();
     }
 
     @Nullable
@@ -174,6 +178,10 @@ public class Fragment_produk extends Fragment {
         public void bind(Produk produk){
             mProduk = produk;
             mNamaProduk.setText(mProduk.getNama());
+            try{
+                mFotoProduk.setImageBitmap(mPictureUtils.convertToImage(produk.getFoto()));
+            }catch (Exception e){
+            }
             mHargaProduk.setText("Rp. " + mProduk.getHarga() + ",-");
             mJumlahProduk.setText("stok : " + mProduk.getJumlah());
             mMerkProduk.setText("(" + mProduk.getMerk() + ")");

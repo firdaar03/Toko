@@ -53,6 +53,7 @@ public class Fragment_tambah_produk extends Fragment {
 
     private Toko_view_model mTokoViewModel;
     private Toko dataToko;
+    private PictureUtils mPictureUtils;
 
     private Produk_view_model mProdukViewModel;
     private Produk mProduk;
@@ -123,6 +124,7 @@ public class Fragment_tambah_produk extends Fragment {
         mProduk = new Produk();
         Log.i(TAG, "onCreate: 2");
         mProdukViewModel = getProdukViewModel();
+        mPictureUtils = new PictureUtils();
     }
 
     @Nullable
@@ -182,7 +184,9 @@ public class Fragment_tambah_produk extends Fragment {
                 } else if(mHarga_produk.getText().toString().length() != 0 && mJumlah_produk.getText().toString().length() != 0
                             && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
                     mProduk.setIdToko(Integer.parseInt(mIdToko));
-                    mProduk.setFoto(mFotoProdukFile.toString());
+
+                    mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
+
                     mProduk.setHarga(Integer.parseInt(mHarga_produk.getText().toString()));
                     mProduk.setJumlah(Integer.parseInt(mJumlah_produk.getText().toString()));
                     mProduk.setMerk(mMerk_pruduk.getText().toString());
@@ -197,10 +201,6 @@ public class Fragment_tambah_produk extends Fragment {
         });
         return v;
     }
-
-
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

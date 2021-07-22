@@ -1,7 +1,10 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
+import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
@@ -27,19 +31,20 @@ public class Fragment_menu_utama extends Fragment {
     private static final String TAG = "Fragment_menu_utama";
     private static int id = -1;
 
-    Toko dataToko;
+    private Toko dataToko;
+    private PictureUtils mPictureUtils;
 
-    RelativeLayout mButtonProduk;
-    RelativeLayout mButtonDompet;
+    private RelativeLayout mButtonProduk;
+    private RelativeLayout mButtonDompet;
 
-    TextView mNamaPemilik;
-    com.mikhaellopez.circularimageview.CircularImageView mFotoDiri;
-    ImageView mSettingButton;
-    TextView mJumlahProduk;
-    TextView mJumlahUang;
-    TextView mTotalDompet;
-    TextView mPemasukkan;
-    TextView mPengeluaran;
+    private TextView mNamaPemilik;
+    private com.mikhaellopez.circularimageview.CircularImageView mFotoDiri;
+    private ImageView mSettingButton;
+    private TextView mJumlahProduk;
+    private TextView mJumlahUang;
+    private TextView mTotalDompet;
+    private TextView mPemasukkan;
+    private TextView mPengeluaran;
 
 
     private Toko_view_model mTokoViewModel;
@@ -67,6 +72,7 @@ public class Fragment_menu_utama extends Fragment {
         super.onCreate(savedInstanceState);
         mTokoViewModel = getTokoViewModel();
 //        dataToko = mTokoViewModel.getTokoLiveData().getValue();
+        mPictureUtils = new PictureUtils();
     }
 
     @Nullable
@@ -81,6 +87,9 @@ public class Fragment_menu_utama extends Fragment {
         mTotalDompet = v.findViewById(R.id.total_dompet);
         mPemasukkan = v.findViewById(R.id.pemasukkan);
         mPengeluaran = v.findViewById(R.id.pengeluaran);
+
+        mFotoDiri = v.findViewById(R.id.foto_diri);
+        mFotoDiri.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
 
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
