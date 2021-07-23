@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
@@ -26,10 +28,11 @@ import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
 
-public class Fragment_menu_utama extends Fragment {
+public class Fragment_menu_utama extends Fragment
+    {
     private static final String TAG = "Fragment_menu_utama";
-    private static int id = -1;
 
     private Toko dataToko;
     private PictureUtils mPictureUtils;
@@ -89,8 +92,11 @@ public class Fragment_menu_utama extends Fragment {
         mPengeluaran = v.findViewById(R.id.pengeluaran);
 
         mFotoDiri = v.findViewById(R.id.foto_diri);
-        mFotoDiri.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
-
+        try{
+            mFotoDiri.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
+        }catch (Exception e){
+            Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
+        }
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
         mSettingButton = v.findViewById(R.id.setting);
@@ -99,6 +105,10 @@ public class Fragment_menu_utama extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Setting clicked", Toast.LENGTH_SHORT)
                         .show();
+
+                Fragment_setting fragment = Fragment_setting.newInstance(dataToko);
+                FragmentManager fm = getFragmentManager();
+                fragment.show(fm,"Fragment Setting");
             }
         });
         mButtonProduk = v.findViewById(R.id.button_produk);

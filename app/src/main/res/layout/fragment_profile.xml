@@ -55,6 +55,7 @@
             android:paddingBottom="10dp">
 
             <TextView
+                android:id="@+id/nama_pemilik"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -296,6 +297,38 @@
                         android:textSize="9dp"/>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="5dp">
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/field_NIK"
+                        android:textColor="@color/black"
+                        android:textSize="9dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="3dp"
+
+                        android:textColor="@color/black"
+                        android:text=":"
+                        android:textSize="9dp" />
+                    <TextView
+                        android:id="@+id/NIK"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:textColor="@color/black"
+                        android:text="dummy"
+                        android:textSize="9dp"/>
+
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -450,7 +483,7 @@
             android:layout_height="120dp"
 
             android:layout_centerHorizontal="true"
-            android:src="@drawable/image_foto_profile"
+
             app:civ_border_color="@color/white"
             app:civ_border_width="6dp"
             app:civ_shadow="true"
