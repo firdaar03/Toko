@@ -82,6 +82,9 @@
     
 <!--    EDIT PROFILE -->
     <string name="edit_profile">Edit profile</string>
+    <string name="kata_sandi_baru">Kata sandi baru</string>
+    <string name="kata_ver_sandi_baru">Verifikasi kata sandi baru</string>
+    <string name="kata_sandi_lama">Kata sandi lama</string>
     
 <!--    HAPUS AKUN -->
     <string name="perhaikan">Perhatikan!</string>

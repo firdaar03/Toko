@@ -1,7 +1,5 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
-import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.profil.Fragment_profile;
 
 public class Fragment_setting extends DialogFragment {
     private static final String TAG = "Fragment_setting";

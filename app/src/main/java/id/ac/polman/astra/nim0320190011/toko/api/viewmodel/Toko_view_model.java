@@ -52,4 +52,7 @@ public class Toko_view_model extends ViewModel {
     public void save(Toko t){
         mToko_repository.addToko(t);
     }
+    public void update(Toko t){
+        mToko_repository.updateToko(t);
+    }
 }

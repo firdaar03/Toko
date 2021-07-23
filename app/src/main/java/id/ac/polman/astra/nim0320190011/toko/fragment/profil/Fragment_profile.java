@@ -1,19 +1,18 @@
-package id.ac.polman.astra.nim0320190011.toko.fragment;
+package id.ac.polman.astra.nim0320190011.toko.fragment.profil;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,7 +44,10 @@ public class Fragment_profile extends Fragment {
     private ImageView mFotoKTPView;
     private ImageView mFotoTokoView;
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private TextView mEditButton;
+    private TextView mHapusButton;
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public static Fragment_profile newInstance(Toko toko){
         return new Fragment_profile(toko);
@@ -82,6 +84,27 @@ public class Fragment_profile extends Fragment {
         mFotoKTPView = v.findViewById(R.id.foto_ktp);
         mFotoTokoView = v.findViewById(R.id.foto_toko);
 
+        mEditButton = v.findViewById(R.id.edit_button);
+        mEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = Fragment_profile_edit.newInstance(mToko);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
+            }
+        });
+        mHapusButton = v.findViewById(R.id.hapus_button);
+        mHapusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
         updateUI();
         return v;
     }
@@ -107,8 +130,7 @@ public class Fragment_profile extends Fragment {
         }catch (Exception e){
 
         }
-        String tanggal = sdf.format(mToko.getTanggal_lahir());
-        Log.i(TAG, "updateUI: " + tanggal);
+        String tanggal = sdf.format(tanggallahir);
         mTempatLahir.setText(mToko.getTempat_lahir());
         mTanggalLahir.setText(tanggal);
         mAlamat.setText(mToko.getAlamat());

@@ -18,7 +18,7 @@ public class DatePickerFragment extends DialogFragment {
 
     private Callbacks callbacks;
 
-    interface Callbacks{
+    public interface Callbacks{
         public void onDateSelected(Date date);
     }
 
