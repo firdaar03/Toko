@@ -74,8 +74,11 @@ public class Fragment_produk extends Fragment {
         return mTokoViewModel;
     }
 
-    private void updateUI(List<Produk> produks){
+//    private void updateUI(List<Produk> produks)
+    private void updateUI(){
         Log.i(TAG, "updateUI called");
+        List<Produk> produks = mProdukViewModel.getProduksByIdToko(dataToko.getIdToko());
+        Log.i(TAG, "updateUI: " + produks.size());
         mAdapter = new ProdukAdapter(produks);
         mProdukRecyclerView.setAdapter(mAdapter);
     }
@@ -126,6 +129,15 @@ public class Fragment_produk extends Fragment {
         mProdukRecyclerView = (RecyclerView) v.findViewById(R.id.produk_recycler_view);
         mProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mProdukRecyclerView.setAdapter(mAdapter);
+
+        return v;
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         try {
             Thread.sleep(100);
         }catch (InterruptedException ie){
@@ -137,19 +149,12 @@ public class Fragment_produk extends Fragment {
                 new Observer<List<Produk>>() {
                     @Override
                     public void onChanged(List<Produk> produks) {
-                        updateUI(produks);
+//                        updateUI(produks);
+                        updateUI();
                         Log.i(TAG, "Got Produk: " + produks.size());
                     }
                 }
         );
-
-        return v;
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
     }
 

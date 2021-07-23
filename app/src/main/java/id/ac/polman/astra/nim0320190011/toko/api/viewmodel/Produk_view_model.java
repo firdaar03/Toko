@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
@@ -25,7 +26,7 @@ public class Produk_view_model extends ViewModel {
         mIdMutableLiveData = new MutableLiveData<>();
         mProdukLiveData = Transformations.switchMap(mIdMutableLiveData,
                 idProduk -> mProduk_repository.getProduk(idProduk));
-//        mProdukListMutableLiveData = mProduk_repository.getProduks();
+        mProdukListMutableLiveData = mProduk_repository.getProduks();
     }
 
     public void loadProduk(String idProduk){
@@ -39,9 +40,19 @@ public class Produk_view_model extends ViewModel {
     }
 
     public MutableLiveData<List<Produk>> getProduks(){
-        mProduk_repository = Produk_repository.get();
+        mProdukListMutableLiveData = mProduk_repository.getProduks();
 //        mProdukListMutableLiveData = mProduk_repository.getProduks();
-        return mProduk_repository.getProduks();
+        return mProdukListMutableLiveData;
+    }
+
+    public List<Produk> getProduksByIdToko(int idToko){
+        List<Produk> produks = new ArrayList<>();
+        for(Produk a : mProdukListMutableLiveData.getValue()){
+            if(a.getIdToko() == idToko){
+                produks.add(a);
+            }
+        }
+        return produks;
     }
 
     public void save(Produk p){

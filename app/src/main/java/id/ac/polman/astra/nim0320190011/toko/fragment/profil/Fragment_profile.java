@@ -21,6 +21,7 @@ import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 
 public class Fragment_profile extends Fragment {
     private static final String TAG = "Fragment_profile";
@@ -100,7 +101,9 @@ public class Fragment_profile extends Fragment {
         mHapusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Fragment_profile_hapus fragment = Fragment_profile_hapus.newInstance(mToko);
+                FragmentManager fm = getFragmentManager();
+                fragment.show(fm,"Fragment Setting");
             }
         });
 
@@ -138,8 +141,13 @@ public class Fragment_profile extends Fragment {
         mNIK.setText(mToko.getNIK());
         mUsername.setText(mToko.getUsername());
 
-        mFotoDiriView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_diri()));
-        mFotoKTPView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_KTP()));
-        mFotoTokoView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_toko()));
+        try{
+            mFotoDiriView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_diri()));
+            mFotoKTPView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_KTP()));
+            mFotoTokoView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_toko()));
+        }catch (Exception e){
+
+        }
+
     }
 }

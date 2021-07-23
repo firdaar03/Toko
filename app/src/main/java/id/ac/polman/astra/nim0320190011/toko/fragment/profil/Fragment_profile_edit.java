@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -37,7 +36,6 @@ import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.fragment.DatePickerFragment;
-import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 
 public class Fragment_profile_edit extends Fragment
         implements DatePickerFragment.Callbacks{
@@ -93,11 +91,11 @@ public class Fragment_profile_edit extends Fragment
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat detil = new SimpleDateFormat("yyyyMMddHHmm");
 
-    public static final Fragment_profile_edit newInstance(Toko toko){
+    public static Fragment_profile_edit newInstance(Toko toko){
         return new Fragment_profile_edit(toko);
     }
 
-    private Fragment_profile_edit(Toko toko){
+    public Fragment_profile_edit(Toko toko){
         mToko = toko;
     }
 
@@ -113,6 +111,7 @@ public class Fragment_profile_edit extends Fragment
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         mTokoViewModel = getTokoViewModel();
         mPictureUtils = new PictureUtils();
@@ -121,8 +120,8 @@ public class Fragment_profile_edit extends Fragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-
+        View v = inflater.inflate(R.layout.fragment_profile_edit, container, false);
+        Log.i(TAG, "onCreateView: ");
         mNama = v.findViewById(R.id.nama_pemilik);
         mEmail = v.findViewById(R.id.email);
         mTelefon = v.findViewById(R.id.telepon);
@@ -334,6 +333,7 @@ public class Fragment_profile_edit extends Fragment
     }
 
     private void updateUI() {
+        Log.i(TAG, "updateUI: ");
         mNama.setText(mToko.getNama_pemilik());
         mEmail.setText(mToko.getEmail());
         mTelefon.setText(mToko.getNo_telfon());
@@ -359,13 +359,18 @@ public class Fragment_profile_edit extends Fragment
         mPassword.setText(mToko.getPassword());
         mPasswordVer.setText(mToko.getPassword());
 
-        mFotoDiriView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_diri()));
-        mFotoKTPView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_KTP()));
-        mFotoTokoView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_toko()));
+        try{
+            mFotoDiriView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_diri()));
+            mFotoKTPView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_KTP()));
+            mFotoTokoView.setImageBitmap(mPictureUtils.convertToImage(mToko.getFoto_toko()));
+        }catch (Exception e){
+
+        }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
         mFotoDiriFile = new File(getContext().getApplicationContext().getFilesDir(), "diri_" + detil.format(new Date()));
         mFotoDiriUri = FileProvider.getUriForFile(requireActivity(),
@@ -388,6 +393,7 @@ public class Fragment_profile_edit extends Fragment
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.i(TAG, "onActivityResult: ");
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode != Activity.RESULT_OK){
             return;
@@ -395,21 +401,31 @@ public class Fragment_profile_edit extends Fragment
         if(requestCode == REQUEST_PHOTO_DIRI){
             requireActivity().revokeUriPermission(mFotoDiriUri,
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            updatePhotoView();
+            Bitmap bitmap = PictureUtils.getScaleBitmap(
+                    mFotoDiriFile.getPath(), requireActivity()
+            );
+            mFotoDiriView.setImageBitmap(bitmap);
         }
         if(requestCode == REQUEST_PHOTO_KTP){
             requireActivity().revokeUriPermission(mFotoKTPUri,
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            updatePhotoView();
+            Bitmap bitmap = PictureUtils.getScaleBitmap(
+                    mFotoKTPFile.getPath(), requireActivity()
+            );
+            mFotoKTPView.setImageBitmap(bitmap);
         }
         if(requestCode == REQUEST_PHOTO_TOKO){
             requireActivity().revokeUriPermission(mFotoTokoUri,
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            updatePhotoView();
+            Bitmap bitmap = PictureUtils.getScaleBitmap(
+                    mFotoTokoFile.getPath(), requireActivity()
+            );
+            mFotoTokoView.setImageBitmap(bitmap);
         }
     }
 
     private void updatePhotoView(){
+        Log.i(TAG, "updatePhotoView: ");
         if(mFotoDiriFile == null || !mFotoDiriFile.exists()){
             mFotoDiriView.setImageDrawable(null);
         }else{
@@ -437,7 +453,21 @@ public class Fragment_profile_edit extends Fragment
             mFotoTokoView.setImageBitmap(bitmap);
         }
     }
-
+    @Override
+    public void onDetach() {
+        Log.i(TAG, "onDetach: ");
+        super.onDetach();
+        try{
+            requireActivity().revokeUriPermission(mFotoDiriUri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            requireActivity().revokeUriPermission(mFotoKTPUri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            requireActivity().revokeUriPermission(mFotoTokoUri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }catch (Exception e){
+            Log.e(TAG, "onDetach: ", e);
+        }
+    }
     @Override
     public void onDateSelected(Date date) {
         String newDate = formatter.format(date);

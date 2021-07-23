@@ -64,8 +64,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="175dp"
                     android:layout_marginTop="85dp"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="JOKO'S STORE"
+                    android:text="JOKO'S STORE store st"
+                    android:maxLength="18"
+                    android:maxLines="1"
                     android:textSize="24dp" />
 
                 <TextView

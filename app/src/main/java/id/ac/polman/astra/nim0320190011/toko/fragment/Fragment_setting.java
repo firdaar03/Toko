@@ -30,7 +30,6 @@ public class Fragment_setting extends DialogFragment {
     TextView mLaporkanError;
     TextView mKeluar;
 
-    LinearLayout mBackground;
     
     
     public static Fragment_setting newInstance(Toko toko) {
@@ -101,15 +100,6 @@ public class Fragment_setting extends DialogFragment {
 
             }
         });
-
-        mBackground = v.findViewById(R.id.background);
-        mBackground.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().popBackStack();
-            }
-        });
-
         return v;
     }
 }

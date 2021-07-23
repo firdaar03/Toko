@@ -25,7 +25,6 @@ public class Toko_view_model extends ViewModel {
         mIdMutableLiveData = new MutableLiveData<>();
         mTokoLiveData = Transformations.switchMap(mIdMutableLiveData,
                 idToko -> mToko_repository.getToko(idToko));
-        mTokoListMutableLiveData = mToko_repository.getTokos();
     }
 
     public void loadToko(String idToko){
@@ -38,6 +37,9 @@ public class Toko_view_model extends ViewModel {
         return mTokoLiveData;
     }
 
+    public MutableLiveData<List<Toko>> getTokos(){
+        return mToko_repository.getTokos();
+    }
 //    ================================================
     public Toko checklogin(String username, String password){
         Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
@@ -55,4 +57,5 @@ public class Toko_view_model extends ViewModel {
     public void update(Toko t){
         mToko_repository.updateToko(t);
     }
+    public void delete(Toko t){ mToko_repository.deleteToko(t.getIdToko() + "");}
 }

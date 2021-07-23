@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Login_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
 
@@ -29,16 +30,16 @@ public class Fragment_login extends Fragment {
     private EditText mUsername;
     private EditText mPassword;
 
-    private Toko_view_model mTokoViewModel;
+    private Login_view_model mLoginViewModel;
 
-    public Toko_view_model getTokoViewModel(){
+    public Login_view_model getLoginViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
-        if(mTokoViewModel == null){
-            mTokoViewModel = new ViewModelProvider(this)
-                    .get(Toko_view_model.class);
+        if(mLoginViewModel == null){
+            mLoginViewModel = new ViewModelProvider(this)
+                    .get(Login_view_model.class);
         }
         Log.i(TAG, "getTokoViewModelList: called 2");
-        return mTokoViewModel;
+        return mLoginViewModel;
     }
 
     public static Fragment_login newInstance(){
@@ -51,7 +52,7 @@ public class Fragment_login extends Fragment {
         super.onCreate(savedInstanceState);
 
 //        mTokoViewModel = getTokoViewModel();
-        mTokoViewModel = getTokoViewModel();
+        mLoginViewModel = getLoginViewModel();
     }
 
     @Override
@@ -79,7 +80,12 @@ public class Fragment_login extends Fragment {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
                 try {
-                    Toko user = mTokoViewModel.checklogin(username, password);
+                    try {
+                        Thread.sleep(100);
+                    }catch (InterruptedException ie){
+                        Thread.currentThread().interrupt();
+                    }
+                    Toko user = mLoginViewModel.checklogin(username, password);
                     if(user != null){
                         mCallbacks.onLoginButtonClicked(user);
                     }else {
@@ -90,6 +96,7 @@ public class Fragment_login extends Fragment {
                 }catch (Exception e){
                     Toast.makeText(getContext(), "Mohon tunggu!",
                             Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onClick: error", e);
                 }
 
             }
