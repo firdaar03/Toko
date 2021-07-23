@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/background">
+
+    <LinearLayout
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/radius_input"
+
+        android:paddingVertical="3dp"
+        android:paddingHorizontal="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/setting"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="13dp"
+            android:textColor="@color/biru_tua"
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/biru_tua"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/profil_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/radius_button_ungu"
+            android:textColor="@color/white"
+            android:text="@string/profil"
+
+            android:paddingStart="7dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/about_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/radius_button_ungu"
+            android:textColor="@color/white"
+            android:text="@string/about"
+
+            android:paddingStart="7dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/help_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/radius_button_ungu"
+            android:textColor="@color/white"
+            android:text="@string/help"
+
+            android:paddingStart="7dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/report_error_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/radius_button_ungu"
+            android:textColor="@color/white"
+            android:text="@string/report_error"
+
+            android:paddingStart="7dp"
+            android:layout_marginBottom="8dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/biru_tua"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/radius_button_merah_muda"
+            android:textColor="@color/white"
+            android:text="@string/logout"
+
+            android:paddingStart="7dp"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+</LinearLayout>

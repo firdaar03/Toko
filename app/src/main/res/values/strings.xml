@@ -69,4 +69,21 @@
     <string name="produk_nama">Nama Produk</string>
     <string name="button_diambil">Diambil</string>
     <string name="button_terjual">Terjual</string>
+
+<!--    PROFILE-->
+    <string name="profil">Profil</string>
+    <string name="setting">Pengaturan</string>
+    <string name="about">Tentang</string>
+    <string name="help">Bantuan</string>
+    <string name="report_error">Laporkan error</string>
+    <string name="logout">Keluar</string>
+    <string name="hapus_akun">Hapus akun</string>
+    <string name="edit">Edit</string>
+    
+<!--    EDIT PROFILE -->
+    <string name="edit_profile">Edit profile</string>
+    
+<!--    HAPUS AKUN -->
+    <string name="perhaikan">Perhatikan!</string>
+    <string name="info_hapus">Setelah akun dihapus, pemilik akun tidak dapat lagi mengakses akun secara permanen. Tolong jangan sembarangan menghapus akun</string>
 </resources>
