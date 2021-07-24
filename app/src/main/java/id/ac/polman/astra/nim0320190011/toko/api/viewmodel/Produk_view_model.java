@@ -62,6 +62,10 @@ public class Produk_view_model extends ViewModel {
     public void update(Produk p){
         mProduk_repository.updateProduk(p);
     }
+
+    public void delete(String id){
+        mProduk_repository.deleteProduk(id);
+    }
     public void addProduk(Produk p){
         mProduk_repository.addProduk(p);
     }

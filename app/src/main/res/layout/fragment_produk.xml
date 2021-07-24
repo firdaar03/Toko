@@ -26,7 +26,6 @@
             android:textColor="@color/utama_tua"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="24dp"
-            android:text="JOKO'S STORE"
             android:layout_weight="1"
             android:textAlignment="textEnd"/>
         <View

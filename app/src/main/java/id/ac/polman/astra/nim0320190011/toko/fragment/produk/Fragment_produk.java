@@ -1,5 +1,6 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,7 @@ public class Fragment_produk extends Fragment {
 
     private Button mAddProdukButton;
     private Button mPutProdukButton;
+    private TextView mNamaPemilik;
 
     public static Fragment_produk newInstance(Toko in) {
         return new Fragment_produk(in);
@@ -99,6 +101,10 @@ public class Fragment_produk extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_produk, container, false);
+
+
+        mNamaPemilik = (TextView) v.findViewById(R.id.textView3);
+        mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
         mAddProdukButton = (Button) v.findViewById(R.id.button_add);
         mAddProdukButton.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +214,15 @@ public class Fragment_produk extends Fragment {
             mDeleteProduk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    new AlertDialog
+                            .Builder(getContext())
+                            .setTitle("Hapus data")
+                            .setMessage("Apakah anda yakin untuk menghapus data ini?")
+                            .setPositiveButton("Ya", (dialogInterface, i) -> {
+                                mProdukViewModel.delete(String.valueOf(mProduk.getIdProduk()));
+                            })
+                            .setNegativeButton("Tidak", null)
+                            .show();
 
                 }
             });
