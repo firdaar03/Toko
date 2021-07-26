@@ -63,6 +63,7 @@
     <string name="aktifitas_dompet">Aktifitas dompet</string>
 
     <string name="nominal">Nominal</string>
+    <string name="keteragan">Keterangan</string>
 
 <!--    PUT PRODUK-->
     <string name="button_cari">Cari</string>

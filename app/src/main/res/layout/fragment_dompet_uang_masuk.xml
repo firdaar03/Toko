@@ -34,16 +34,20 @@
         android:layout_marginTop="41dp">
 
         <EditText
+            android:id="@+id/nominal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/radius_input"
             android:hint="@string/nominal"
+            android:inputType="number"
+            android:maxLines="1"
             android:fontFamily="@font/poppins_light"
             android:textSize="11dp"
             android:padding="3dp" />
 
         <EditText
+            android:id="@+id/keterangan_uang_masuk"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:inputType="text|textMultiLine"
@@ -52,12 +56,13 @@
             android:layout_marginBottom="40dp"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/radius_input"
-            android:hint="@string/nominal"
+            android:hint="@string/keteragan"
             android:fontFamily="@font/poppins_light"
             android:textSize="11dp"
             android:padding="3dp" />
 
         <Button
+            android:id="@+id/button_simpan"
             android:layout_width="110dp"
             android:layout_height="23dp"
             android:background="@drawable/radius_button_ungu"

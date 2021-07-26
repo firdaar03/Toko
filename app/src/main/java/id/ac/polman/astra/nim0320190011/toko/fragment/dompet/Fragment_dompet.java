@@ -14,17 +14,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 
 
 public class Fragment_dompet extends Fragment {
     private static final String TAG = "Fragment_dompet";
 
+    Toko dataToko;
+
     private Button btnAktvitas;
     private Button btnUangMasuk;
     private Button btnUangKeluar;
 
-    public static Fragment_dompet newInstance() {
-        return new Fragment_dompet();
+    public static Fragment_dompet newInstance(Toko t) {
+        return new Fragment_dompet(t);
+    }
+
+    private Fragment_dompet(Toko t){
+        dataToko = t;
     }
 
     @Override
@@ -58,7 +65,7 @@ public class Fragment_dompet extends Fragment {
                 btnUangMasuk.setActivated(true);
                 btnUangKeluar.setActivated(false);
                 btnAktvitas.setActivated(false);
-                loadFragment(new Fragment_dompet_uang_masuk());
+                loadFragment(Fragment_dompet_uang_masuk.newInstance(dataToko));
             }
         });
 

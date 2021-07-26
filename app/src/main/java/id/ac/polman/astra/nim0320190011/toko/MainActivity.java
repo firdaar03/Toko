@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDompetButtonClicked() {
-        Fragment fragment = Fragment_dompet.newInstance();
+        Fragment fragment = Fragment_dompet.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
