@@ -63,10 +63,6 @@ public class Fragment_produk extends Fragment {
         return new Fragment_produk(in);
     }
 
-//    public Fragment_produk(){
-//
-//    }
-
     private Fragment_produk(Toko t){
         dataToko = t;
     }
@@ -87,13 +83,6 @@ public class Fragment_produk extends Fragment {
     private void updateUI()
     {
         Log.i(TAG, "updateUI called");
-//        List<Produk> b = new ArrayList<>();
-//        for(Produk a : produks){
-//            if(a.getIdToko() == dataToko.getIdToko()){
-//                Log.e(TAG, "updateUI: : " + a.getNama() );
-//                b.add(a);
-//            }
-//        }
         mAdapter = new ProdukAdapter(mProdukList);
         mProdukRecyclerView.setAdapter(mAdapter);
     }
@@ -272,7 +261,7 @@ public class Fragment_produk extends Fragment {
         }
 
     }
-  private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
+    private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
 
         private List<Produk> mProdukList;
 

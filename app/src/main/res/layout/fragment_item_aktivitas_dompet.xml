@@ -11,7 +11,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:id="@+id/item_aktivitas">
 
         <ImageView
             android:layout_width="25dp"
@@ -21,6 +22,7 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
+            android:id="@+id/keterangan_aktivitas_dompet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Uang Masuk"
@@ -31,6 +33,7 @@
             android:layout_marginTop="3dp"/>
 
         <TextView
+            android:id="@+id/nominal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rp 450.000,-"
@@ -49,17 +52,21 @@
             android:layout_marginRight="6dp"
             >
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/jam_aktivitas_dompet"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="8dp"
+                android:textAlignment="textEnd"
                 android:text="13:25 WIB"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tanggal_aktivitas_dompet"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
                 android:textSize="8dp"
                 android:text="31/05/2021"/>
         </LinearLayout>

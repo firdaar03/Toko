@@ -149,7 +149,7 @@ public class Fragment_menu_utama extends Fragment
             Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
         }
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
-        mTotalDompet.setText("Rp " + dataDompet.getUang());
+        mTotalDompet.setText("Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
     }
 
     @Override

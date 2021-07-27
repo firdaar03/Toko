@@ -1,6 +1,7 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.dompet;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,23 +10,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.MyCallBack;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 
 
 public class Fragment_dompet extends Fragment{
@@ -64,7 +72,7 @@ public class Fragment_dompet extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadFragment(new Fragment_dompet_aktivitas());
+        loadFragment(Fragment_dompet_aktivitas.newInstance(dataToko));
         mDompetViewModel = getDompetViewModel();
         mDompetViewModel.loadDompet(dataToko.getIdToko() + "");
         dataDompet = new Dompet();
@@ -86,7 +94,7 @@ public class Fragment_dompet extends Fragment{
                 btnUangMasuk.setActivated(false);
                 btnUangKeluar.setActivated(false);
                 btnAktvitas.setActivated(true);
-                loadFragment(new Fragment_dompet_aktivitas());
+                loadFragment(Fragment_dompet_aktivitas.newInstance(dataToko));
             }
         });
 
@@ -122,7 +130,7 @@ public class Fragment_dompet extends Fragment{
 
     public void updateUI(){
         Log.i(TAG, "NGUPDATE UI NIH ");
-        mTotalDompet.setText( "Rp " + dataDompet.getUang());
+        mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
     }
     private void loadFragment(Fragment fragment) {
             FragmentManager fm = getFragmentManager();
@@ -152,3 +160,4 @@ public class Fragment_dompet extends Fragment{
         refresh();
     }
 }
+
