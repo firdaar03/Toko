@@ -38,460 +38,466 @@
         </View>
     </LinearLayout>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="16dp"
-        android:paddingHorizontal="22dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/radius_profile"
-            android:layout_marginTop="60dp"
-            android:paddingHorizontal="10dp"
-            android:paddingTop="60dp"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:id="@+id/nama_pemilik"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-
-                android:text="Dummy"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:gravity="center"/>
+            android:layout_height="match_parent"
+            android:paddingTop="16dp"
+            android:paddingHorizontal="22dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
+                android:background="@drawable/radius_profile"
+                android:layout_marginTop="60dp"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="10dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/nama_pemilik"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
 
-                    android:textColor="@color/black"
-                    android:text="@string/field_alamat"
+                    android:text="Dummy"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="9dp"/>
-
-                <TextView
-                    android:id="@+id/alamat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
+                    android:textSize="24sp"
                     android:textColor="@color/black"
-                    android:text="dummy"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/black"
-                    android:text="@string/field_alamat_toko"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9dp"/>
-
-                <TextView
-                    android:id="@+id/alamat_toko"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/black"
-                    android:text="dummy"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/black"
-                    android:text="@string/data_diri"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9dp"/>
+                    android:gravity="center"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_email"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_hp"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/telepon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_jeniskelamin"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/jenis_kelamin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_tempat_lahir"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/tempat_lahir"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_tanggal_lahir"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/tanggal_lahir"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_NIK"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/NIK"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/black"
-                    android:text="@string/data_akun"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="5dp">
-
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/field_username"
-                        android:textColor="@color/black"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="3dp"
-
-                        android:textColor="@color/black"
-                        android:text=":"
-                        android:textSize="9dp" />
-                    <TextView
-                        android:id="@+id/username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:textColor="@color/black"
-                        android:text="dummy"
-                        android:textSize="9dp"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
-                    android:layout_marginRight="10dp">
-
-                    <ImageView
-                        android:id="@+id/foto_ktp"
-                        android:layout_width="120dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/radius_input"
-                        android:scaleType="fitXY"
-                        />
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:text="@string/field_foto_KTP"
                         android:textColor="@color/black"
+                        android:text="@string/field_alamat"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="9dp"/>
 
+                    <TextView
+                        android:id="@+id/alamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/black"
+                        android:text="dummy"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="9dp"/>
                 </LinearLayout>
-
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
-                    android:layout_marginLeft="10dp">
-
-                    <ImageView
-                        android:id="@+id/foto_toko"
-                        android:layout_width="120dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/radius_input"
-                        android:scaleType="fitXY"
-                        />
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:text="@string/field_foto_toko"
                         android:textColor="@color/black"
+                        android:text="@string/field_alamat_toko"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="9dp"/>
 
+                    <TextView
+                        android:id="@+id/alamat_toko"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/black"
+                        android:text="dummy"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="9dp"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/black"
+                        android:text="@string/data_diri"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="9dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_email"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_hp"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/telepon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_jeniskelamin"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/jenis_kelamin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_tempat_lahir"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/tempat_lahir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_tanggal_lahir"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/tanggal_lahir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_NIK"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/NIK"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/black"
+                        android:text="@string/data_akun"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="9dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_username"
+                            android:textColor="@color/black"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="3dp"
+
+                            android:textColor="@color/black"
+                            android:text=":"
+                            android:textSize="9dp" />
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:textColor="@color/black"
+                            android:text="dummy"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_marginRight="10dp">
+
+                        <ImageView
+                            android:id="@+id/foto_ktp"
+                            android:layout_width="120dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/radius_input"
+                            android:scaleType="fitXY"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_foto_KTP"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/foto_toko"
+                            android:layout_width="120dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/radius_input"
+                            android:scaleType="fitXY"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/field_foto_toko"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="9dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right">
+
+                    <Button
+                        android:id="@+id/hapus_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23sp"
+                        android:background="@drawable/radius_button_merah_muda"
+                        android:layout_marginRight="3dp"
+
+                        android:text="@string/hapus_akun"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="9sp"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"/>
+
+                    <Button
+                        android:id="@+id/edit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23sp"
+                        android:background="@drawable/radius_button_ungu"
+                        android:layout_marginLeft="3dp"
+
+                        android:text="@string/edit"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="9sp"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"/>
+                </LinearLayout>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:gravity="right">
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/foto_diri"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
 
-                <Button
-                    android:id="@+id/hapus_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23sp"
-                    android:background="@drawable/radius_button_merah_muda"
-                    android:layout_marginRight="3dp"
+                android:layout_centerHorizontal="true"
 
-                    android:text="@string/hapus_akun"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9sp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"/>
+                app:civ_border_color="@color/white"
+                app:civ_border_width="6dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@color/utama"
+                app:civ_shadow_radius="10" />
 
-                <Button
-                    android:id="@+id/edit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23sp"
-                    android:background="@drawable/radius_button_ungu"
-                    android:layout_marginLeft="3dp"
+        </RelativeLayout>
+    </ScrollView>
 
-                    android:text="@string/edit"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="9sp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/foto_diri"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-
-            android:layout_centerHorizontal="true"
-
-            app:civ_border_color="@color/white"
-            app:civ_border_width="6dp"
-            app:civ_shadow="true"
-            app:civ_shadow_color="@color/utama"
-            app:civ_shadow_radius="10" />
-
-    </RelativeLayout>
 
 </LinearLayout>

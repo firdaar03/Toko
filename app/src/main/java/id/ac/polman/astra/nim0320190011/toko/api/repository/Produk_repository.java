@@ -39,7 +39,7 @@ public class Produk_repository {
     }
 
     public MutableLiveData<List<Produk>> getProduks(){
-        Log.i(TAG, "getProduks: ini masuk get tokos");
+        Log.i(TAG, "getProduks: ini masuk get produks");
         MutableLiveData<List<Produk>> produks = new MutableLiveData<>();
 
         Call<List<Produk>> call = mProduk_service.getProduks();
