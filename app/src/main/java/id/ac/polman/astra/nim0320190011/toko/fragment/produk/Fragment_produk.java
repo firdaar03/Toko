@@ -45,6 +45,7 @@ public class Fragment_produk extends Fragment {
 
     Toko_view_model mTokoViewModel;
     Produk_view_model mProdukViewModel;
+    private ArrayList<Produk> mProdukList;
     Toko dataToko;
     PictureUtils mPictureUtils;
 
@@ -97,6 +98,16 @@ public class Fragment_produk extends Fragment {
         mProdukRecyclerView.setAdapter(mAdapter);
     }
 
+    private void filter(String text) {
+        ArrayList<Produk> filteredList = new ArrayList<>();
+        for (Produk item : mProdukList) {
+            if (item.getNama().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        mAdapter.filterList(filteredList);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,14 +135,16 @@ public class Fragment_produk extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mAdapter.getFilter().filter(s.toString());
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                filter(s.toString());
             }
         });
+
+
         mNamaPemilik = (TextView) v.findViewById(R.id.textView3);
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
@@ -169,14 +182,16 @@ public class Fragment_produk extends Fragment {
 
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        try {
-//            Thread.sleep(100);
-//        }catch (InterruptedException ie){
-//            Thread.currentThread().interrupt();
-//        }
+        try {
+            Thread.sleep(100);
+        }catch (InterruptedException ie){
+            Thread.currentThread().interrupt();
+        }
         Log.i(TAG, "Fragment_Produk.onViewCreated() called");
         mProdukViewModel.getProduks().observe(
                 getViewLifecycleOwner(),
@@ -255,15 +270,12 @@ public class Fragment_produk extends Fragment {
         }
 
     }
-
-    private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder> implements Filterable {
+  private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
 
         private List<Produk> mProdukList;
-        private List<Produk> mProdukListFull;
 
         public ProdukAdapter(List<Produk> produks){
             mProdukList = produks;
-            mProdukListFull = new ArrayList<>(produks);
         }
 
         @Override
@@ -283,42 +295,12 @@ public class Fragment_produk extends Fragment {
             return mProdukList.size();
         }
 
-        @Override
-        public Filter getFilter() {
-            return produkFilter;
+        public void filterList(ArrayList<Produk> filteredList) {
+            mProdukList = filteredList;
+            notifyDataSetChanged();
         }
-
-        private Filter produkFilter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-               List<Produk> filteredList = new ArrayList<>();
-
-               if (constraint == null || constraint.length() == 0) {
-                   filteredList.addAll(mProdukListFull);
-               } else {
-                   String filterPattern = constraint.toString().toLowerCase().trim();
-
-                   for (Produk item : mProdukListFull) {
-                       if (item.getNama().toLowerCase().contains(filterPattern)) {
-                           filteredList.add(item);
-                       }
-                   }
-               }
-
-               FilterResults results = new FilterResults();
-               results.values = filteredList;
-
-               return results;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                mProdukList.clear();
-                mProdukList.addAll((List) results.values);
-                notifyDataSetChanged();
-            }
-        };
     }
+
 
     @Override
     public void onAttach(@NonNull Context context) {
