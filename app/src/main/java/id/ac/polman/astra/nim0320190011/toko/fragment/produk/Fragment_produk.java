@@ -3,12 +3,16 @@ package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +56,7 @@ public class Fragment_produk extends Fragment {
     private Button mAddProdukButton;
     private Button mPutProdukButton;
     private TextView mNamaPemilik;
+    private EditText mCariProduk;
 
     public static Fragment_produk newInstance(Toko in) {
         return new Fragment_produk(in);
@@ -103,6 +109,23 @@ public class Fragment_produk extends Fragment {
         View v = inflater.inflate(R.layout.fragment_produk, container, false);
 
 
+        mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
+        mCariProduk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         mNamaPemilik = (TextView) v.findViewById(R.id.textView3);
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
@@ -230,12 +253,14 @@ public class Fragment_produk extends Fragment {
 
     }
 
-    private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
+    private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder> implements Filterable {
 
         private List<Produk> mProdukList;
+        private List<Produk> mProdukListFull;
 
         public ProdukAdapter(List<Produk> produks){
             mProdukList = produks;
+            mProdukListFull = new ArrayList<>(produks);
         }
 
         @Override
@@ -254,6 +279,42 @@ public class Fragment_produk extends Fragment {
         public int getItemCount(){
             return mProdukList.size();
         }
+
+        @Override
+        public Filter getFilter() {
+            return produkFilter;
+        }
+
+        private Filter produkFilter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+               List<Produk> filteredList = new ArrayList<>();
+
+               if (constraint == null || constraint.length() == 0) {
+                   filteredList.addAll(mProdukListFull);
+               } else {
+                   String filterPattern = constraint.toString().toLowerCase().trim();
+
+                   for (Produk item : mProdukListFull) {
+                       if (item.getNama().toLowerCase().contains(filterPattern)) {
+                           filteredList.add(item);
+                       }
+                   }
+               }
+
+               FilterResults results = new FilterResults();
+               results.values = filteredList;
+
+               return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mProdukList.clear();
+                mProdukList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
+        };
     }
 
     @Override
