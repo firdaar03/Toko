@@ -37,6 +37,7 @@ import java.util.List;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 
@@ -49,6 +50,7 @@ public class Fragment_edit_produk extends Fragment {
     private Produk_view_model mProdukViewModel;
     private PictureUtils mPictureUtils;
     private String mProdukId;
+    Toko dataToko;
 
     private ImageView mFotoProdukView;
     private Uri mFotoProdukURI;
@@ -66,8 +68,9 @@ public class Fragment_edit_produk extends Fragment {
 
     SimpleDateFormat detil = new SimpleDateFormat("yyyyMMddHHmm");
 
-    public Fragment_edit_produk(Produk model) {
+    public Fragment_edit_produk(Produk model, Toko t) {
         mProduk = model;
+        dataToko = t;
     }
 
     public Produk_view_model getProdukViewModel(){
@@ -80,8 +83,8 @@ public class Fragment_edit_produk extends Fragment {
         return mProdukViewModel;
     }
 
-    public static Fragment_edit_produk newInstance(Produk model) {
-        return new Fragment_edit_produk(model);
+    public static Fragment_edit_produk newInstance(Produk model, Toko t) {
+        return new Fragment_edit_produk(model, t);
     }
 
     @Override
@@ -170,6 +173,7 @@ public class Fragment_edit_produk extends Fragment {
                     mProduk.setJumlah(Integer.parseInt(mJumlah_produk.getText().toString()));
                     mProduk.setMerk(mMerk_pruduk.getText().toString());
                     mProduk.setNama(mNama_produk.getText().toString());
+                    mProduk.setModiby(dataToko.getEmail());
                     mProdukViewModel.update(mProduk);
                     Toast.makeText(getContext(), "Update", Toast.LENGTH_SHORT)
                             .show();

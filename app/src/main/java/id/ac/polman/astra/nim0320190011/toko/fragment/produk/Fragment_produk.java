@@ -153,7 +153,7 @@ public class Fragment_produk extends Fragment {
         mAddProdukButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = Fragment_tambah_produk.newInstance(String.valueOf(dataToko.getIdToko()));
+                Fragment fragment = Fragment_tambah_produk.newInstance(dataToko);
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
@@ -247,7 +247,7 @@ public class Fragment_produk extends Fragment {
             mEditProduk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment fragment = Fragment_edit_produk.newInstance(mProduk);
+                    Fragment fragment = Fragment_edit_produk.newInstance(mProduk, dataToko);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fm.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, fragment);

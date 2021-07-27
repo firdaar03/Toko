@@ -75,12 +75,12 @@ public class Fragment_tambah_produk extends Fragment {
 
     SimpleDateFormat detil = new SimpleDateFormat("yyyyMMddHHmm");
 
-    public static Fragment_tambah_produk newInstance(String mTokoId) {
-        return new Fragment_tambah_produk(mTokoId);
+    public static Fragment_tambah_produk newInstance(Toko t) {
+        return new Fragment_tambah_produk(t);
     }
 
-    private Fragment_tambah_produk(String mTokoId){
-        mIdToko = mTokoId;
+    private Fragment_tambah_produk(Toko t){
+        dataToko = t;
     }
 
     public Toko_view_model getTokoViewModel(){
@@ -89,7 +89,7 @@ public class Fragment_tambah_produk extends Fragment {
             mTokoViewModel = new ViewModelProvider(this)
                     .get(Toko_view_model.class);
         }
-        Log.i(TAG, "getTokoViewModelList : called idtoko: " + mIdToko);
+        Log.i(TAG, "getTokoViewModelList : called idtoko: " + dataToko.getIdToko());
         return mTokoViewModel;
     }
 
@@ -183,7 +183,7 @@ public class Fragment_tambah_produk extends Fragment {
                     mNama_produk.setError("Nama Harus Diisi");
                 } else if(mHarga_produk.getText().toString().length() != 0 && mJumlah_produk.getText().toString().length() != 0
                             && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
-                    mProduk.setIdToko(Integer.parseInt(mIdToko));
+                    mProduk.setIdToko(dataToko.getIdToko());
 
                     mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
 
@@ -191,6 +191,7 @@ public class Fragment_tambah_produk extends Fragment {
                     mProduk.setJumlah(Integer.parseInt(mJumlah_produk.getText().toString()));
                     mProduk.setMerk(mMerk_pruduk.getText().toString());
                     mProduk.setNama(mNama_produk.getText().toString());
+                    mProduk.setCreaby(dataToko.getEmail());
                     mProdukViewModel.save(mProduk);
                     Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT)
                             .show();

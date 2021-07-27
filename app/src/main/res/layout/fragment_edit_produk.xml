@@ -41,7 +41,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="440dp"
         android:orientation="vertical"
         android:paddingHorizontal="20px"
         android:background="@color/utama_muda">
@@ -71,7 +71,7 @@
         <EditText
             android:id="@+id/nama_produk"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:hint="@string/nama_produk"
             android:layout_marginTop="10dp"
             android:background="@drawable/radius_input"
@@ -84,7 +84,7 @@
         <EditText
             android:id="@+id/merk_produk"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="@string/merk_produk"
             android:layout_marginTop="12dp"
             android:background="@drawable/radius_input"
@@ -97,7 +97,7 @@
         <EditText
             android:id="@+id/harga_produk_edit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="@string/harga_produk"
             android:layout_marginTop="12dp"
             android:background="@drawable/radius_input"
@@ -111,7 +111,7 @@
         <EditText
             android:id="@+id/jumlah_produk"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="@string/jumlah_produk"
             android:layout_marginTop="12dp"
             android:background="@drawable/radius_input"

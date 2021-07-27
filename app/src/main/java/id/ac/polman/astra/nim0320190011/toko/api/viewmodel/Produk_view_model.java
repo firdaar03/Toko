@@ -66,6 +66,11 @@ public class Produk_view_model extends ViewModel {
     public void delete(String id){
         mProduk_repository.deleteProduk(id);
     }
+
+//    public Produk searchProduk(String namaProduk) {
+//        Log.i(TAG, "searchProduk: Ini loh masuk size data : " + mProdukListMutableLiveData.getValue().size());
+//        for (Produk p)
+//    }
     public void addProduk(Produk p){
         mProduk_repository.addProduk(p);
     }
