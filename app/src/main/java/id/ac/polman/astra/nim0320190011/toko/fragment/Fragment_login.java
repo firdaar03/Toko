@@ -1,6 +1,8 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,8 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Login_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Fragment_login extends Fragment {
     private static final String TAG = "Fragment_login";
@@ -51,8 +55,11 @@ public class Fragment_login extends Fragment {
         Log.i(TAG, "onCreate: called");
         super.onCreate(savedInstanceState);
 
-//        mTokoViewModel = getTokoViewModel();
         mLoginViewModel = getLoginViewModel();
+
+
+//        mTokoViewModel = getTokoViewModel();
+
     }
 
     @Override
@@ -60,6 +67,9 @@ public class Fragment_login extends Fragment {
                              Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: called");
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+//        context = getActivity();
+//        mSharedPreferences = context.getSharedPreferences(NAME_APP, MODE_PRIVATE);
 
         mUsername = (EditText) view.findViewById(R.id.username);
         mPassword = (EditText) view.findViewById(R.id.password);
@@ -91,6 +101,7 @@ public class Fragment_login extends Fragment {
                     }else {
                         Toast.makeText(getContext(), "Username atau password tidak ditemukan",
                                 Toast.LENGTH_SHORT).show();
+
                     }
                     Log.i(TAG, "onClick: Login");
                 }catch (Exception e){

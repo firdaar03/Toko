@@ -72,6 +72,8 @@ public class Toko_repository {
                 if(response.isSuccessful()){
                     toko.setValue(response.body());
                     Log.i(TAG, "onResponse: getToko() " + new Gson().toJson(response.body()));
+                } else {
+                    Log.e(TAG, "ini gabisa lo" );
                 }
             }
 

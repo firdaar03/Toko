@@ -23,13 +23,12 @@ public class Toko_view_model extends ViewModel {
     public Toko_view_model(){
         mToko_repository = Toko_repository.get();
         mIdMutableLiveData = new MutableLiveData<>();
-        mTokoLiveData = Transformations.switchMap(mIdMutableLiveData,
-                idToko -> mToko_repository.getToko(idToko));
     }
 
-    public void loadToko(String idToko){
+    public LiveData<Toko> loadToko(String idToko){
         Log.i(TAG, "loadToko: called");
-        mIdMutableLiveData.setValue(idToko);
+        mTokoLiveData = mToko_repository.getToko(idToko);
+        return mToko_repository.getToko(idToko);
     }
 
     public LiveData<Toko> getTokoLiveData(){
@@ -40,17 +39,10 @@ public class Toko_view_model extends ViewModel {
     public MutableLiveData<List<Toko>> getTokos(){
         return mToko_repository.getTokos();
     }
-//    ================================================
-    public Toko checklogin(String username, String password){
-        Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
-        for ( Toko tk : mTokoListMutableLiveData.getValue()) {
-            if(tk.getUsername().equals(username) && tk.getPassword().equals(password)){
-                return tk;
-            }
-            Log.i(TAG, "== : " + tk.getPassword());
-        }
-        return null;
-    }
+
+
+
+
     public void save(Toko t){
         mToko_repository.addToko(t);
     }

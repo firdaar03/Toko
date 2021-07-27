@@ -15,6 +15,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.repository.Toko_repository;
 public class Login_view_model extends ViewModel {
     private static final String TAG = "Login_view_model";
 
+    private LiveData<Toko> mTokoLiveData;
     private Toko_repository mToko_repository;
     private MutableLiveData<List<Toko>> mTokoListMutableLiveData;
 
@@ -31,5 +32,27 @@ public class Login_view_model extends ViewModel {
             }
         }
         return null;
+    }
+
+    public Toko checkPreferences(String id){
+        Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
+        for ( Toko tk : mTokoListMutableLiveData.getValue()) {
+            if(tk.getIdToko() == Integer.parseInt(id)){
+                return tk;
+            }
+            Log.i(TAG, "== : " + tk.getIdToko());
+        }
+        return null;
+    }
+
+    public MutableLiveData<List<Toko>> getTokos(){
+        mTokoListMutableLiveData = mToko_repository.getTokos();
+        return mTokoListMutableLiveData;
+    }
+
+    public LiveData<Toko> loadToko(String idToko){
+        Log.i(TAG, "loadToko: called");
+        mTokoLiveData = mToko_repository.getToko(idToko);
+        return mTokoLiveData;
     }
 }

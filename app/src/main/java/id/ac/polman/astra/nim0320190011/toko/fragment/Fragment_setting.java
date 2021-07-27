@@ -1,6 +1,11 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +34,7 @@ public class Fragment_setting extends DialogFragment {
     TextView mBantuan;
     TextView mLaporkanError;
     TextView mKeluar;
+    Activity context;
 
     
     
@@ -97,6 +103,23 @@ public class Fragment_setting extends DialogFragment {
         mKeluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new AlertDialog
+                        .Builder(getContext())
+                        .setTitle("Keluar")
+                        .setMessage("Apakah anda yakin untuk keluar?")
+                        .setPositiveButton("Ya", (dialogInterface, i) -> {
+                            getDialog().dismiss();
+                            context=getActivity();
+                            PreferenceManager.getDefaultSharedPreferences(context.getBaseContext()).edit().clear().apply();
+                            Fragment fragment = Fragment_login.newInstance();
+                            FragmentManager fm = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment_container, fragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit(); // save the changes
+                        })
+                        .setNegativeButton("Tidak", null)
+                        .show();
 
             }
         });
