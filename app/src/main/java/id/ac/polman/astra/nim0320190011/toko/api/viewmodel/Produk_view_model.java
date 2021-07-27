@@ -19,7 +19,7 @@ public class Produk_view_model extends ViewModel {
     private LiveData<Produk> mProdukLiveData;
     private Produk_repository mProduk_repository;
     private MutableLiveData<String> mIdMutableLiveData;
-    private MutableLiveData<List<Produk>> mProdukListMutableLiveData;
+    private LiveData<List<Produk>> mProdukListMutableLiveData;
 
     public Produk_view_model(){
         mProduk_repository = Produk_repository.get();
@@ -39,8 +39,8 @@ public class Produk_view_model extends ViewModel {
         return mProdukLiveData;
     }
 
-    public MutableLiveData<List<Produk>> getProduks(){
-        mProdukListMutableLiveData = mProduk_repository.getProduks();
+    public LiveData<List<Produk>> getProduks(){
+//        mProdukListMutableLiveData = mProduk_repository.getProduks();
 //        mProdukListMutableLiveData = mProduk_repository.getProduks();
         return mProdukListMutableLiveData;
     }

@@ -82,12 +82,18 @@ public class Fragment_produk extends Fragment {
         return mTokoViewModel;
     }
 
-//    private void updateUI(List<Produk> produks)
-    private void updateUI(){
+    private void updateUI(List<Produk> produks)
+//    private void updateUI()
+    {
         Log.i(TAG, "updateUI called");
-        List<Produk> produks = mProdukViewModel.getProduksByIdToko(dataToko.getIdToko());
-        Log.i(TAG, "updateUI: " + produks.size());
-        mAdapter = new ProdukAdapter(produks);
+        List<Produk> b = new ArrayList<>();
+        for(Produk a : produks){
+            if(a.getIdToko() == dataToko.getIdToko()){
+                Log.e(TAG, "updateUI: : " + a.getNama() );
+                b.add(a);
+            }
+        }
+        mAdapter = new ProdukAdapter(b);
         mProdukRecyclerView.setAdapter(mAdapter);
     }
 
@@ -166,25 +172,23 @@ public class Fragment_produk extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        try {
-            Thread.sleep(100);
-        }catch (InterruptedException ie){
-            Thread.currentThread().interrupt();
-        }
+//        try {
+//            Thread.sleep(100);
+//        }catch (InterruptedException ie){
+//            Thread.currentThread().interrupt();
+//        }
         Log.i(TAG, "Fragment_Produk.onViewCreated() called");
         mProdukViewModel.getProduks().observe(
                 getViewLifecycleOwner(),
                 new Observer<List<Produk>>() {
                     @Override
                     public void onChanged(List<Produk> produks) {
-//                        updateUI(produks);
-                        updateUI();
+                        updateUI(produks);
+//                        updateUI();
                         Log.i(TAG, "Got Produk: " + produks.size());
                     }
                 }
         );
-
     }
 
     private class ProdukHolder extends RecyclerView.ViewHolder{
@@ -246,7 +250,6 @@ public class Fragment_produk extends Fragment {
                             })
                             .setNegativeButton("Tidak", null)
                             .show();
-
                 }
             });
         }
