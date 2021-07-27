@@ -89,7 +89,6 @@ public class Fragment_menu_utama extends Fragment
         super.onCreate(savedInstanceState);
         mTokoViewModel = getTokoViewModel();
         mDompetViewModel = getDompetViewModel();
-//        dataToko = mTokoViewModel.getTokoLiveData().getValue();
         mPictureUtils = new PictureUtils();
         dataDompet = new Dompet();
     }
@@ -127,8 +126,7 @@ public class Fragment_menu_utama extends Fragment
             public void onClick(View v) {
 //                Toast.makeText(getContext(),"Produk button clicked", Toast.LENGTH_SHORT)
 //                        .show();
-                Toko t = dataToko;
-                mCallbacks.onProdukButtonClicked(t);
+                mCallbacks.onProdukButtonClicked();
             }
         });
 
@@ -159,22 +157,20 @@ public class Fragment_menu_utama extends Fragment
         super.onViewCreated(view, savedInstanceState);
 
 //        UPDATE DATA DOMPET
-        mDompetViewModel.getDompets().observe(
+        mDompetViewModel.loadDompet(dataToko.getIdToko() + "").observe(
                 getViewLifecycleOwner(),
-                new Observer<List<Dompet>>() {
+                new Observer<Dompet>() {
                     @Override
-                    public void onChanged(List<Dompet> dompets) {
-                        dataDompet = mDompetViewModel.getDompetsByIdToko(dataToko.getIdToko());
-                        Log.e(TAG, "onChanged: Data Dompe uang " + dataDompet.getUang() );
+                    public void onChanged(Dompet dompet) {
+                        dataDompet = dompet;
                         updateUI();
-                        Log.i(TAG, "onChanged: Updae UI");
                     }
                 }
         );
     }
 
     public interface Callbacks{
-        public void onProdukButtonClicked(Toko t);
+        public void onProdukButtonClicked();
         public void onDompetButtonClicked();
     }
 

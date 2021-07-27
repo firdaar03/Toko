@@ -81,6 +81,11 @@ public class Fragment_dompet_uang_masuk extends Fragment {
                     dompet.setModiby(mKeterangan.getText().toString());
                     mDompetViewModel.save(dompet);
 
+                    Fragment fragment = Fragment_dompet.newInstance(dataToko);
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .commit();
+
                     mNominal.setText("");
                     mKeterangan.setText("");
                 }

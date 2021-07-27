@@ -13,10 +13,10 @@ import retrofit2.http.Query;
 
 public interface Dompet_service {
     @GET("dompet")
-    Call<Dompet> getDompetById(@Query("id") String id);
+    Call<Dompet> getDompet(@Query("id") String id);
 
-    @GET("dompet-toko")
-    Call<Dompet> getDompetByIdToko(@Query("id") String id);
+    @GET("dompet_toko")
+    Call<Dompet> getDompetToko(@Query("id") String id);
 
     @GET("dompets")
     Call<List<Dompet>> getDompets();
