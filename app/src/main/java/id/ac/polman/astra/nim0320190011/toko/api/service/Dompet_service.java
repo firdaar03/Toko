@@ -13,10 +13,10 @@ import retrofit2.http.Query;
 
 public interface Dompet_service {
     @GET("dompet")
-    Call<Dompet> getDompetById(@Query("id") String id);
+    Call<Dompet> getDompet(@Query("id") String id);
 
-    @GET("dompet-toko")
-    Call<Dompet> getDompetByIdToko(@Query("id") String id);
+    @GET("dompet_toko")
+    Call<Dompet> getDompetToko(@Query("id") String id);
 
     @GET("dompets")
     Call<List<Dompet>> getDompets();
@@ -24,9 +24,9 @@ public interface Dompet_service {
     @POST("dompet")
     Call<Dompet> addDompet(@Body Dompet p);
 
-    @PUT("Dompet")
-    Call<Dompet> updateDompet(@Body Dompet p );
+    @PUT("dompet")
+    Call<Dompet> updateDompet(@Body Dompet p);
 
-    @DELETE("Dompet")
-    Call<Dompet> deleteDompetById(@Query("id") String id);
+    @PUT("dompet_")
+    Call<Dompet> deleteDompetById(@Body Dompet p);
 }

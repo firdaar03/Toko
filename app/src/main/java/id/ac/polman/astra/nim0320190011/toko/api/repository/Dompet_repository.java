@@ -38,7 +38,7 @@ public class Dompet_repository {
     }
 
     public MutableLiveData<List<Dompet>> getDompets(){
-        Log.i(TAG, "getDompets: ini masuk get tokos");
+        Log.i(TAG, "getDompets: ini masuk get ");
         MutableLiveData<List<Dompet>> Dompets = new MutableLiveData<>();
 
         Call<List<Dompet>> call = mDompet_service.getDompets();
@@ -46,7 +46,7 @@ public class Dompet_repository {
             @Override
             public void onResponse(Call<List<Dompet>> call, Response<List<Dompet>> response) {
                 if(response.isSuccessful()){
-                    Log.e(TAG, "onResponse: " + new Gson().toJson(response.body()));
+                    Log.e(TAG, "onResponse: ini " + new Gson().toJson(response.body()));
                     Dompets.setValue(response.body());
                     Log.i(TAG, "onResponse: getDompet called() size " + Dompets.getValue().size());
                 }
@@ -64,7 +64,7 @@ public class Dompet_repository {
     public MutableLiveData<Dompet> getDompet(String idDompet){
         MutableLiveData<Dompet> Dompet = new MutableLiveData<>();
 
-        Call<Dompet> call = mDompet_service.getDompetById(idDompet);
+        Call<Dompet> call = mDompet_service.getDompet(idDompet);
         call.enqueue(new Callback<Dompet>() {
             @Override
             public void onResponse(Call<Dompet> call, Response<Dompet> response) {
@@ -83,15 +83,18 @@ public class Dompet_repository {
     }
 
     public MutableLiveData<Dompet> getDompetToko(String idToko){
+        Log.i(TAG, "getDompetToko: ");
         MutableLiveData<Dompet> Dompet = new MutableLiveData<>();
 
-        Call<Dompet> call = mDompet_service.getDompetByIdToko(idToko);
+        Call<Dompet> call = mDompet_service.getDompetToko(idToko);
         call.enqueue(new Callback<Dompet>() {
             @Override
             public void onResponse(Call<Dompet> call, Response<Dompet> response) {
                 if(response.isSuccessful()){
                     Dompet.setValue(response.body());
-                    Log.i(TAG, "onResponse: getDompet() " + new Gson().toJson(response.body()));
+                    Log.e(TAG, "onResponse: getDompet () " + new Gson().toJson(response.body()));
+                }else{
+                    Log.e(TAG, "onResponse: gagal () " + new Gson().toJson(response.body()));
                 }
             }
 
@@ -103,7 +106,7 @@ public class Dompet_repository {
         return Dompet;
     }
 
-    public void updateDompet(Dompet p){
+    public void uang_masuk(Dompet p){
         Log.i(TAG, "updateDompet: ID Dompet " + p.getIdDompet());
         Call<Dompet> call = mDompet_service.updateDompet(p);
         call.enqueue(new Callback<Dompet>() {
@@ -139,20 +142,20 @@ public class Dompet_repository {
         });
     }
 
-    public void deleteDompet(String idDompet){
-        Log.i(TAG, "deleteDompet: call");
-        Call<Dompet> call = mDompet_service.deleteDompetById(idDompet);
+    public void uang_keluar(Dompet dompet){
+        Log.i(TAG, "updateDompet: ID Dompet " + dompet.getIdDompet());
+        Call<Dompet> call = mDompet_service.deleteDompetById(dompet);
         call.enqueue(new Callback<Dompet>() {
             @Override
             public void onResponse(Call<Dompet> call, Response<Dompet> response) {
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onResponse: delete Dompet");
+                    Log.i(TAG, "onResponse: Telah terupdate Id " + dompet.getIdDompet());
                 }
             }
 
             @Override
             public void onFailure(Call<Dompet> call, Throwable t) {
-                Log.e(TAG, "onFailure: delete Dompet failed",t );
+                Log.e(TAG, "onFailure: updateDompet",t );
             }
         });
     }

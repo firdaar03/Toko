@@ -24,14 +24,12 @@ public class Dompet_view_model extends ViewModel {
     public Dompet_view_model(){
         mDompet_repository = Dompet_repository.get();
         mIdMutableLiveData = new MutableLiveData<>();
-        mDompetLiveData = Transformations.switchMap(mIdMutableLiveData,
-                idDompet -> mDompet_repository.getDompetToko(idDompet));
-        mDompetListMutableLiveData = mDompet_repository.getDompets();
     }
 
-    public void loadDompet(String idDompet){
+    public LiveData<Dompet> loadDompet(String idDompet){
         Log.i(TAG, "loadDompet: called ");
-        mIdMutableLiveData.setValue(idDompet);
+        mDompetLiveData = mDompet_repository.getDompetToko(idDompet);
+        return mDompetLiveData;
     }
 
 
@@ -41,14 +39,19 @@ public class Dompet_view_model extends ViewModel {
     }
 
     public LiveData<List<Dompet>> getDompets(){
-//        mDompetListMutableLiveData = mDompet_repository.getDompets();
+        mDompetListMutableLiveData = mDompet_repository.getDompets();
 //        mDompetListMutableLiveData = mDompet_repository.getDompets();
         return mDompetListMutableLiveData;
+    }
+
+    public LiveData<Dompet> getDompetToko(int idToko){
+        return mDompet_repository.getDompetToko(idToko + "");
     }
 
     public Dompet getDompetsByIdToko(int idToko){
         for(Dompet a : mDompetListMutableLiveData.getValue()){
             if(a.getIdToko() == idToko){
+                loadDompet(idToko + "");
                 return a;
             }
         }
@@ -59,11 +62,11 @@ public class Dompet_view_model extends ViewModel {
         mDompet_repository.addDompet(p);
     }
 
-    public void update(Dompet p){
-        mDompet_repository.updateDompet(p);
+    public void uang_masuk(Dompet p){
+        mDompet_repository.uang_masuk(p);
     }
 
-    public void delete(String id){
-        mDompet_repository.deleteDompet(id);
+    public void uang_keluar(Dompet p){
+        mDompet_repository.uang_keluar(p);
     }
 }

@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onProdukButtonClicked(Toko t) {
-        toko_user = t;
+    public void onProdukButtonClicked() {
         Fragment fragment = Fragment_produk.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)

@@ -66,6 +66,8 @@ public class Fragment_dompet extends Fragment{
         super.onCreate(savedInstanceState);
         loadFragment(new Fragment_dompet_aktivitas());
         mDompetViewModel = getDompetViewModel();
+        mDompetViewModel.loadDompet(dataToko.getIdToko() + "");
+        dataDompet = new Dompet();
     }
 
     @Nullable
@@ -106,17 +108,16 @@ public class Fragment_dompet extends Fragment{
                 btnUangMasuk.setActivated(false);
                 btnUangKeluar.setActivated(true);
                 btnAktvitas.setActivated(false);
-                loadFragment(new Fragment_dompet_uang_keluar());
+                loadFragment(Fragment_dompet_uang_keluar.newInstance(dataToko));
             }
         });
-
+        refresh();
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        refresh();
     }
 
     public void updateUI(){
@@ -131,12 +132,13 @@ public class Fragment_dompet extends Fragment{
     }
 
     public void refresh(){
-        mDompetViewModel.getDompets().observe(
+        mDompetViewModel.loadDompet(dataToko.getIdToko() + "").observe(
                 getViewLifecycleOwner(),
-                new Observer<List<Dompet>>() {
+                new Observer<Dompet>() {
                     @Override
-                    public void onChanged(List<Dompet> dompets) {
-                        dataDompet = mDompetViewModel.getDompetsByIdToko(dataToko.getIdToko());
+                    public void onChanged(Dompet dompet) {
+                        Log.i(TAG, "onChanged: 'refresggg");
+                        dataDompet = dompet;
                         updateUI();
                     }
                 }

@@ -79,7 +79,14 @@ public class Fragment_dompet_uang_masuk extends Fragment {
                     dompet.setIdToko(dataToko.getIdToko());
                     dompet.setUang(Integer.valueOf(mNominal.getText().toString()));
                     dompet.setModiby(mKeterangan.getText().toString());
-                    mDompetViewModel.save(dompet);
+                    mDompetViewModel.uang_masuk(dompet);
+
+                    getFragmentManager().popBackStack();
+                    Fragment fragment = Fragment_dompet.newInstance(dataToko);
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .addToBackStack(null)
+                            .commit();
 
                     mNominal.setText("");
                     mKeterangan.setText("");
