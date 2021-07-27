@@ -98,7 +98,7 @@
                 android:textSize="12dp"
                 android:paddingTop="10dp"
                 android:paddingLeft="5dp"
-                android:textColor="@color/bg_secondary"
+                android:textColor="@color/black"
                 android:fontFamily="@font/poppins_light"
                 android:id="@+id/cari_produk"/>
 

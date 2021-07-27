@@ -3,12 +3,16 @@ package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +45,7 @@ public class Fragment_produk extends Fragment {
 
     Toko_view_model mTokoViewModel;
     Produk_view_model mProdukViewModel;
+    private ArrayList<Produk> mProdukList;
     Toko dataToko;
     PictureUtils mPictureUtils;
 
@@ -52,6 +57,7 @@ public class Fragment_produk extends Fragment {
     private Button mAddProdukButton;
     private Button mPutProdukButton;
     private TextView mNamaPemilik;
+    private EditText mCariProduk;
 
     public static Fragment_produk newInstance(Toko in) {
         return new Fragment_produk(in);
@@ -92,6 +98,16 @@ public class Fragment_produk extends Fragment {
         mProdukRecyclerView.setAdapter(mAdapter);
     }
 
+    private void filter(String text) {
+        ArrayList<Produk> filteredList = new ArrayList<>();
+        for (Produk item : mProdukList) {
+            if (item.getNama().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        mAdapter.filterList(filteredList);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +124,25 @@ public class Fragment_produk extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_produk, container, false);
+
+
+        mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
+        mCariProduk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
 
         mNamaPemilik = (TextView) v.findViewById(R.id.textView3);
@@ -147,14 +182,16 @@ public class Fragment_produk extends Fragment {
 
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        try {
-//            Thread.sleep(100);
-//        }catch (InterruptedException ie){
-//            Thread.currentThread().interrupt();
-//        }
+        try {
+            Thread.sleep(100);
+        }catch (InterruptedException ie){
+            Thread.currentThread().interrupt();
+        }
         Log.i(TAG, "Fragment_Produk.onViewCreated() called");
         mProdukViewModel.getProduks().observe(
                 getViewLifecycleOwner(),
@@ -233,8 +270,7 @@ public class Fragment_produk extends Fragment {
         }
 
     }
-
-    private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
+  private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
 
         private List<Produk> mProdukList;
 
@@ -258,7 +294,13 @@ public class Fragment_produk extends Fragment {
         public int getItemCount(){
             return mProdukList.size();
         }
+
+        public void filterList(ArrayList<Produk> filteredList) {
+            mProdukList = filteredList;
+            notifyDataSetChanged();
+        }
     }
+
 
     @Override
     public void onAttach(@NonNull Context context) {
