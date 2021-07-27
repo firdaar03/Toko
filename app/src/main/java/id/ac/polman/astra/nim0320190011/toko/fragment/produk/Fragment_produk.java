@@ -45,7 +45,7 @@ public class Fragment_produk extends Fragment {
 
     Toko_view_model mTokoViewModel;
     Produk_view_model mProdukViewModel;
-    private ArrayList<Produk> mProdukList;
+    private List<Produk> mProdukList;
     Toko dataToko;
     PictureUtils mPictureUtils;
 
@@ -83,18 +83,18 @@ public class Fragment_produk extends Fragment {
         return mTokoViewModel;
     }
 
-    private void updateUI(List<Produk> produks)
-//    private void updateUI()
+//    private void updateUI(List<Produk> produks)
+    private void updateUI()
     {
         Log.i(TAG, "updateUI called");
-        List<Produk> b = new ArrayList<>();
-        for(Produk a : produks){
-            if(a.getIdToko() == dataToko.getIdToko()){
-                Log.e(TAG, "updateUI: : " + a.getNama() );
-                b.add(a);
-            }
-        }
-        mAdapter = new ProdukAdapter(b);
+//        List<Produk> b = new ArrayList<>();
+//        for(Produk a : produks){
+//            if(a.getIdToko() == dataToko.getIdToko()){
+//                Log.e(TAG, "updateUI: : " + a.getNama() );
+//                b.add(a);
+//            }
+//        }
+        mAdapter = new ProdukAdapter(mProdukList);
         mProdukRecyclerView.setAdapter(mAdapter);
     }
 
@@ -117,6 +117,7 @@ public class Fragment_produk extends Fragment {
                 .get(Produk_view_model.class);
         mAdapter = new  ProdukAdapter(Collections.<Produk>emptyList());
         mPictureUtils = new PictureUtils();
+        mProdukList = new ArrayList<>();
     }
 
     @Nullable
@@ -198,8 +199,9 @@ public class Fragment_produk extends Fragment {
                 new Observer<List<Produk>>() {
                     @Override
                     public void onChanged(List<Produk> produks) {
-                        updateUI(produks);
-//                        updateUI();
+//                        updateUI(produks);
+                        mProdukList = mProdukViewModel.getProduksByIdToko(dataToko.getIdToko());
+                        updateUI();
                         Log.i(TAG, "Got Produk: " + produks.size());
                     }
                 }
