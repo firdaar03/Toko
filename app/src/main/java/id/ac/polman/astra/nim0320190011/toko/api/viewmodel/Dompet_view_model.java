@@ -19,40 +19,40 @@ public class Dompet_view_model extends ViewModel {
     private LiveData<Dompet> mDompetLiveData;
     private Dompet_repository mDompet_repository;
     private MutableLiveData<String> mIdMutableLiveData;
-    private MutableLiveData<List<Dompet>> mDompetListMutableLiveData;
+    private LiveData<List<Dompet>> mDompetListMutableLiveData;
 
     public Dompet_view_model(){
         mDompet_repository = Dompet_repository.get();
         mIdMutableLiveData = new MutableLiveData<>();
         mDompetLiveData = Transformations.switchMap(mIdMutableLiveData,
-                idDompet -> mDompet_repository.getDompet(idDompet));
+                idDompet -> mDompet_repository.getDompetToko(idDompet));
         mDompetListMutableLiveData = mDompet_repository.getDompets();
     }
 
     public void loadDompet(String idDompet){
-        Log.i(TAG, "loadDompet: called");
+        Log.i(TAG, "loadDompet: called ");
         mIdMutableLiveData.setValue(idDompet);
     }
+
 
     public LiveData<Dompet> getDompetLiveData(){
         Log.i(TAG, "getDompetLiveData: called");
         return mDompetLiveData;
     }
 
-    public MutableLiveData<List<Dompet>> getDompets(){
-        mDompetListMutableLiveData = mDompet_repository.getDompets();
+    public LiveData<List<Dompet>> getDompets(){
+//        mDompetListMutableLiveData = mDompet_repository.getDompets();
 //        mDompetListMutableLiveData = mDompet_repository.getDompets();
         return mDompetListMutableLiveData;
     }
 
-    public List<Dompet> getDompetsByIdToko(int idToko){
-        List<Dompet> Dompets = new ArrayList<>();
+    public Dompet getDompetsByIdToko(int idToko){
         for(Dompet a : mDompetListMutableLiveData.getValue()){
             if(a.getIdToko() == idToko){
-                Dompets.add(a);
+                return a;
             }
         }
-        return Dompets;
+        return null;
     }
 
     public void save(Dompet p){

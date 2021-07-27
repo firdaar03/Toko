@@ -1,7 +1,9 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.dompet;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,6 +22,8 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 
 public class Fragment_dompet_uang_masuk extends Fragment {
@@ -31,8 +36,8 @@ public class Fragment_dompet_uang_masuk extends Fragment {
     EditText mKeterangan;
     Button mButtonSimpan;
 
-    private Dompet_view_model getDompetViewModel(){
-        if(mDompetViewModel == null){
+    private Dompet_view_model getDompetViewModel() {
+        if (mDompetViewModel == null) {
             mDompetViewModel = new ViewModelProvider(this)
                     .get(Dompet_view_model.class);
         }
@@ -42,12 +47,15 @@ public class Fragment_dompet_uang_masuk extends Fragment {
     public static Fragment_dompet_uang_masuk newInstance(Toko in) {
         return new Fragment_dompet_uang_masuk(in);
     }
-    private Fragment_dompet_uang_masuk(Toko t){
+
+    private Fragment_dompet_uang_masuk(Toko t) {
         dataToko = t;
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         mDompetViewModel = getDompetViewModel();
     }
@@ -63,9 +71,9 @@ public class Fragment_dompet_uang_masuk extends Fragment {
             @SuppressLint("LongLogTag")
             @Override
             public void onClick(View v) {
-                if(mNominal.getText().equals("")){
+                if (mNominal.getText().toString().equals("")) {
                     mNominal.setError("Mohon isi field nominal dengan benar");
-                }else{
+                } else {
                     Dompet dompet = new Dompet();
                     dompet.setCreaby(dataToko.getEmail());
                     dompet.setIdToko(dataToko.getIdToko());
@@ -78,8 +86,7 @@ public class Fragment_dompet_uang_masuk extends Fragment {
                 }
             }
         });
-
         return v;
-
     }
 }
+

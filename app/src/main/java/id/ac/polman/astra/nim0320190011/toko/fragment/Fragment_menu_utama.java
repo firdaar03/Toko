@@ -19,13 +19,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
@@ -35,6 +38,7 @@ public class Fragment_menu_utama extends Fragment
     private static final String TAG = "Fragment_menu_utama";
 
     private Toko dataToko;
+    private Dompet dataDompet;
     private PictureUtils mPictureUtils;
 
     private RelativeLayout mButtonProduk;
@@ -51,6 +55,7 @@ public class Fragment_menu_utama extends Fragment
 
 
     private Toko_view_model mTokoViewModel;
+    private Dompet_view_model mDompetViewModel;
 
     public Toko_view_model getTokoViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
@@ -60,6 +65,15 @@ public class Fragment_menu_utama extends Fragment
         }
         Log.i(TAG, "getTokoViewModelList: called 2");
         return mTokoViewModel;
+    }
+    public Dompet_view_model getDompetViewModel(){
+        Log.i(TAG, "getTokoViewModelList: called");
+        if(mDompetViewModel == null){
+            mDompetViewModel = new ViewModelProvider(this)
+                    .get(Dompet_view_model.class);
+        }
+        Log.i(TAG, "getTokoViewModelList: called 2");
+        return mDompetViewModel;
     }
 
     public static Fragment_menu_utama newInstance(Toko model) {
@@ -74,8 +88,10 @@ public class Fragment_menu_utama extends Fragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTokoViewModel = getTokoViewModel();
+        mDompetViewModel = getDompetViewModel();
 //        dataToko = mTokoViewModel.getTokoLiveData().getValue();
         mPictureUtils = new PictureUtils();
+        dataDompet = new Dompet();
     }
 
     @Nullable
@@ -84,7 +100,7 @@ public class Fragment_menu_utama extends Fragment
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_menu_utama, container, false);
 
-        mNamaPemilik = (TextView) v.findViewById(R.id.nama_pemilik);
+        mNamaPemilik = v.findViewById(R.id.nama_pemilik);
         mJumlahProduk = v.findViewById(R.id.jumlah_produk);
         mJumlahUang = v.findViewById(R.id.jumlah_uang);
         mTotalDompet = v.findViewById(R.id.total_dompet);
@@ -92,12 +108,6 @@ public class Fragment_menu_utama extends Fragment
         mPengeluaran = v.findViewById(R.id.pengeluaran);
 
         mFotoDiri = v.findViewById(R.id.foto_diri);
-        try{
-            mFotoDiri.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
-        }catch (Exception e){
-            Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
-        }
-        mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
         mSettingButton = v.findViewById(R.id.setting);
         mSettingButton.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +139,38 @@ public class Fragment_menu_utama extends Fragment
                 mCallbacks.onDompetButtonClicked();
             }
         });
+
+        updateUI();
         return v;
+    }
+
+    private void updateUI(){
+        try{
+            mFotoDiri.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
+        }catch (Exception e){
+            Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
+        }
+        mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
+        mTotalDompet.setText("Rp " + dataDompet.getUang());
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+//        UPDATE DATA DOMPET
+        mDompetViewModel.getDompets().observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Dompet>>() {
+                    @Override
+                    public void onChanged(List<Dompet> dompets) {
+                        dataDompet = mDompetViewModel.getDompetsByIdToko(dataToko.getIdToko());
+                        Log.e(TAG, "onChanged: Data Dompe uang " + dataDompet.getUang() );
+                        updateUI();
+                        Log.i(TAG, "onChanged: Updae UI");
+                    }
+                }
+        );
     }
 
     public interface Callbacks{
