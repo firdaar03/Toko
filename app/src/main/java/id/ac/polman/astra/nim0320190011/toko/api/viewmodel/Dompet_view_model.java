@@ -62,11 +62,11 @@ public class Dompet_view_model extends ViewModel {
         mDompet_repository.addDompet(p);
     }
 
-    public void update(Dompet p){
-        mDompet_repository.updateDompet(p);
+    public void uang_masuk(Dompet p){
+        mDompet_repository.uang_masuk(p);
     }
 
-    public void delete(String id){
-        mDompet_repository.deleteDompet(id);
+    public void uang_keluar(Dompet p){
+        mDompet_repository.uang_keluar(p);
     }
 }

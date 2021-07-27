@@ -24,9 +24,9 @@ public interface Dompet_service {
     @POST("dompet")
     Call<Dompet> addDompet(@Body Dompet p);
 
-    @PUT("Dompet")
-    Call<Dompet> updateDompet(@Body Dompet p );
+    @PUT("dompet")
+    Call<Dompet> updateDompet(@Body Dompet p);
 
-    @DELETE("Dompet")
-    Call<Dompet> deleteDompetById(@Query("id") String id);
+    @PUT("dompet_")
+    Call<Dompet> deleteDompetById(@Body Dompet p);
 }

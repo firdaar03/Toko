@@ -106,7 +106,7 @@ public class Dompet_repository {
         return Dompet;
     }
 
-    public void updateDompet(Dompet p){
+    public void uang_masuk(Dompet p){
         Log.i(TAG, "updateDompet: ID Dompet " + p.getIdDompet());
         Call<Dompet> call = mDompet_service.updateDompet(p);
         call.enqueue(new Callback<Dompet>() {
@@ -142,20 +142,20 @@ public class Dompet_repository {
         });
     }
 
-    public void deleteDompet(String idDompet){
-        Log.i(TAG, "deleteDompet: call");
-        Call<Dompet> call = mDompet_service.deleteDompetById(idDompet);
+    public void uang_keluar(Dompet dompet){
+        Log.i(TAG, "updateDompet: ID Dompet " + dompet.getIdDompet());
+        Call<Dompet> call = mDompet_service.deleteDompetById(dompet);
         call.enqueue(new Callback<Dompet>() {
             @Override
             public void onResponse(Call<Dompet> call, Response<Dompet> response) {
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onResponse: delete Dompet");
+                    Log.i(TAG, "onResponse: Telah terupdate Id " + dompet.getIdDompet());
                 }
             }
 
             @Override
             public void onFailure(Call<Dompet> call, Throwable t) {
-                Log.e(TAG, "onFailure: delete Dompet failed",t );
+                Log.e(TAG, "onFailure: updateDompet",t );
             }
         });
     }

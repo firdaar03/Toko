@@ -108,7 +108,7 @@ public class Fragment_dompet extends Fragment{
                 btnUangMasuk.setActivated(false);
                 btnUangKeluar.setActivated(true);
                 btnAktvitas.setActivated(false);
-                loadFragment(new Fragment_dompet_uang_keluar());
+                loadFragment(Fragment_dompet_uang_keluar.newInstance(dataToko));
             }
         });
         refresh();
