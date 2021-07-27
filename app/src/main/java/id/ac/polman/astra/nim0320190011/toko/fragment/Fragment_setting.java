@@ -115,7 +115,6 @@ public class Fragment_setting extends DialogFragment {
                             FragmentManager fm = getFragmentManager();
                             FragmentTransaction fragmentTransaction = fm.beginTransaction();
                             fragmentTransaction.replace(R.id.fragment_container, fragment);
-                            fragmentTransaction.addToBackStack(null);
                             fragmentTransaction.commit(); // save the changes
                         })
                         .setNegativeButton("Tidak", null)
