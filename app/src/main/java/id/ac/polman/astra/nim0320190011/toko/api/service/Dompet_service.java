@@ -15,6 +15,9 @@ public interface Dompet_service {
     @GET("dompet")
     Call<Dompet> getDompetById(@Query("id") String id);
 
+    @GET("dompet-toko")
+    Call<Dompet> getDompetByIdToko(@Query("id") String id);
+
     @GET("dompets")
     Call<List<Dompet>> getDompets();
 

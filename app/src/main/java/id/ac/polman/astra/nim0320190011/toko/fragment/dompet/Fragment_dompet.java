@@ -1,30 +1,46 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.dompet;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import java.util.List;
+
+import id.ac.polman.astra.nim0320190011.toko.MyCallBack;
 import id.ac.polman.astra.nim0320190011.toko.R;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 
 
-public class Fragment_dompet extends Fragment {
+public class Fragment_dompet extends Fragment{
     private static final String TAG = "Fragment_dompet";
 
     Toko dataToko;
+    Dompet dataDompet;
+
+    private TextView mTotalDompet;
 
     private Button btnAktvitas;
     private Button btnUangMasuk;
     private Button btnUangKeluar;
+
+    private Dompet_view_model mDompetViewModel;
 
     public static Fragment_dompet newInstance(Toko t) {
         return new Fragment_dompet(t);
@@ -34,10 +50,22 @@ public class Fragment_dompet extends Fragment {
         dataToko = t;
     }
 
+    public Dompet_view_model getDompetViewModel(){
+        Log.i(TAG, "getTokoViewModelList: called");
+        if(mDompetViewModel == null){
+            mDompetViewModel = new ViewModelProvider(this)
+                    .get(Dompet_view_model.class);
+            mDompetViewModel.loadDompet(dataToko.getIdToko() + "");
+        }
+        Log.i(TAG, "getTokoViewModelList: called 2");
+        return mDompetViewModel;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFragment(new Fragment_dompet_aktivitas());
+        mDompetViewModel = getDompetViewModel();
     }
 
     @Nullable
@@ -45,6 +73,8 @@ public class Fragment_dompet extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_dompet, container, false);
+
+        mTotalDompet = v.findViewById(R.id.total_dompet);
 
         btnAktvitas = (Button) v.findViewById(R.id.button_aktifitas);
         btnAktvitas.setActivated(true);
@@ -83,11 +113,40 @@ public class Fragment_dompet extends Fragment {
         return v;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        refresh();
+    }
+
+    public void updateUI(){
+        Log.i(TAG, "NGUPDATE UI NIH ");
+        mTotalDompet.setText( "Rp " + dataDompet.getUang());
+    }
     private void loadFragment(Fragment fragment) {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.menus, fragment);
             fragmentTransaction.commit(); // save the changes
+    }
 
+    public void refresh(){
+        mDompetViewModel.getDompets().observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Dompet>>() {
+                    @Override
+                    public void onChanged(List<Dompet> dompets) {
+                        dataDompet = mDompetViewModel.getDompetsByIdToko(dataToko.getIdToko());
+                        updateUI();
+                    }
+                }
+        );
+    }
+
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        refresh();
     }
 }

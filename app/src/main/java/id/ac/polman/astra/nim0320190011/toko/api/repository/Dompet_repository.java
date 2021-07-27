@@ -82,6 +82,27 @@ public class Dompet_repository {
         return Dompet;
     }
 
+    public MutableLiveData<Dompet> getDompetToko(String idToko){
+        MutableLiveData<Dompet> Dompet = new MutableLiveData<>();
+
+        Call<Dompet> call = mDompet_service.getDompetByIdToko(idToko);
+        call.enqueue(new Callback<Dompet>() {
+            @Override
+            public void onResponse(Call<Dompet> call, Response<Dompet> response) {
+                if(response.isSuccessful()){
+                    Dompet.setValue(response.body());
+                    Log.i(TAG, "onResponse: getDompet() " + new Gson().toJson(response.body()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Dompet> call, Throwable t) {
+                Log.e(TAG, "onFailure: getDompet()", t );
+            }
+        });
+        return Dompet;
+    }
+
     public void updateDompet(Dompet p){
         Log.i(TAG, "updateDompet: ID Dompet " + p.getIdDompet());
         Call<Dompet> call = mDompet_service.updateDompet(p);
