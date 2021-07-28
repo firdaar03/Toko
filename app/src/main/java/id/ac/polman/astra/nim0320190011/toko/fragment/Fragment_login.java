@@ -97,11 +97,12 @@ public class Fragment_login extends Fragment {
                     }
                     Toko user = mLoginViewModel.checklogin(username, password);
                     if(user != null){
+                        Log.i(TAG, "onClick: Login Tercallback");
                         mCallbacks.onLoginButtonClicked(user);
                     }else {
                         Toast.makeText(getContext(), "Username atau password tidak ditemukan",
                                 Toast.LENGTH_SHORT).show();
-
+                        Log.i(TAG, "onClick: Login TeError");
                     }
                     Log.i(TAG, "onClick: Login");
                 }catch (Exception e){

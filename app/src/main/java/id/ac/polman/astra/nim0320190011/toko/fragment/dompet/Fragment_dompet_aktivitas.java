@@ -167,7 +167,7 @@ public class Fragment_dompet_aktivitas extends Fragment {
 
         @SuppressLint("LongLogTag")
         public void bind(Dompet_aktivitas aktivitas){
-            if(aktivitas.getIdAkt() == 1) {
+            if(aktivitas.getKode_akt() == 1) {
                 mKeterangan.setText(R.string.uang_masuk);
             }else {
                 mKeterangan.setText(R.string.uang_keluar);
