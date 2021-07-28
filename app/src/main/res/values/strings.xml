@@ -90,4 +90,13 @@
 <!--    HAPUS AKUN -->
     <string name="perhaikan">Perhatikan!</string>
     <string name="info_hapus">Setelah akun dihapus, pemilik akun tidak dapat lagi mengakses akun secara permanen. Tolong jangan sembarangan menghapus akun</string>
+
+
+<!--    KASIR-->
+    <string name="kosong_kasir">Kosongkan Kasir</string>
+    <string name="perbarui_kasir">Perbarui Kasir</string>
+    <string name="note">Catatan:</string>
+    <string name="note_1">1. Tekan ‘Kosongkan Kasir’ untuk mengubah data dalam kasir menjadi 0</string>
+    <string name="note_2">2. Tekan ‘Perbarui Kasir’ untuk memperbarui data dalam kasir sesuai dengan kolom nomial</string>
+    <string name="note_3">3. Kolom nominal harus diisi ketika akan menekan tombol ‘Perbarui Kasir’</string>
 </resources>

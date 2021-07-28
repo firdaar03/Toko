@@ -78,7 +78,6 @@
                     android:layout_marginLeft="205dp"
                     android:layout_marginTop="120dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="40"
                     android:textColor="@color/utama_tua"
                     android:textSize="9dp" />
 

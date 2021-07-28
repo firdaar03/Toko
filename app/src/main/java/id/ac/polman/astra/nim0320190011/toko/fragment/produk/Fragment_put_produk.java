@@ -171,14 +171,14 @@ public class Fragment_put_produk extends Fragment {
                 if (!mJumlah.getText().toString().equals("") ){
                     mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-//                    Produk p = new Produk();
-//                    p.setNama(mProduk.getNama());
-//                    p.setHarga(mProduk.getHarga());
-//                    p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                    Produk p = new Produk();
+                    p.setNama(mProduk.getNama());
+                    p.setHarga(mProduk.getHarga());
+                    p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                    mPutProdukList.add(mProduk);
+//                    mPutProdukList.add(mProduk);
 
-//                    mPutProdukList.add(p);
+                    mPutProdukList.add(p);
                     for(Produk x : mPutProdukList){
                         Log.i(TAG, "onClick: " + x.getJumlah());
                     }

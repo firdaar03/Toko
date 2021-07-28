@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/radius_input"
+    android:id="@+id/fragment_kasir">
+
+    <LinearLayout
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/radius_button_hijau_muda"
+        android:paddingVertical="3dp"
+        android:paddingHorizontal="3dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="DALAM KASIR"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="14dp"
+            android:textColor="@color/secondary"
+            android:gravity="center"/>
+
+        <RelativeLayout
+            android:layout_width="223dp"
+            android:layout_height="81dp"
+            android:layout_marginLeft="47dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radius_total_aset">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingVertical="18dp"
+                android:text="Rp 25.542.000,-"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/nama_produk"
+            android:layout_width="262dp"
+            android:layout_height="26dp"
+            android:hint="@string/nominal"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/radius_input"
+            android:padding="5dp"
+            android:textSize="11dp"
+            android:fontFamily="@font/poppins_light"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:layout_marginLeft="28dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="28dp">
+
+            <Button
+                android:layout_width="123dp"
+                android:layout_height="28dp"
+                android:background="@drawable/rectangle_button_merah_muda"
+                android:text="@string/kosong_kasir"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="11dp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="5dp" />
+
+            <Button
+                android:layout_width="123dp"
+                android:layout_height="28dp"
+                android:background="@drawable/rectangle_button_ungu"
+                android:text="@string/perbarui_kasir"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="11dp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="5dp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="273dp"
+            android:layout_height="98dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="23dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extralight"
+                android:text="@string/note"
+                android:textColor="@color/black"
+                android:textSize="9dp" />
+
+            <TextView
+                android:id="@+id/note_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extralight"
+                android:text="@string/note_1"
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:paddingTop="10dp"/>
+
+            <TextView
+                android:id="@id/note_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/note_1"
+                android:fontFamily="@font/poppins_extralight"
+                android:text="@string/note_2"
+                android:textColor="@color/black"
+                android:textSize="9dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/note_2"
+                android:fontFamily="@font/poppins_extralight"
+                android:text="@string/note_3"
+                android:textColor="@color/black"
+                android:textSize="9dp" />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

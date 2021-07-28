@@ -22,13 +22,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
@@ -39,6 +42,7 @@ public class Fragment_menu_utama extends Fragment
 
     private Toko dataToko;
     private Dompet dataDompet;
+    private List<Produk> dataProduk;
     private PictureUtils mPictureUtils;
 
     private RelativeLayout mButtonProduk;
@@ -56,6 +60,7 @@ public class Fragment_menu_utama extends Fragment
 
     private Toko_view_model mTokoViewModel;
     private Dompet_view_model mDompetViewModel;
+    private Produk_view_model mProdukViewModel;
 
     public Toko_view_model getTokoViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
@@ -76,6 +81,16 @@ public class Fragment_menu_utama extends Fragment
         return mDompetViewModel;
     }
 
+    public Produk_view_model getProdukViewModel(){
+        Log.i(TAG, "getProdukViewModelList: called");
+        if(mProdukViewModel == null){
+            mProdukViewModel = new ViewModelProvider(this)
+                    .get(Produk_view_model.class);
+        }
+        Log.i(TAG, "getProdukViewModelList: called 2");
+        return mProdukViewModel;
+    }
+
     public static Fragment_menu_utama newInstance(Toko model) {
         return new Fragment_menu_utama(model);
     }
@@ -89,8 +104,10 @@ public class Fragment_menu_utama extends Fragment
         super.onCreate(savedInstanceState);
         mTokoViewModel = getTokoViewModel();
         mDompetViewModel = getDompetViewModel();
+        mProdukViewModel = getProdukViewModel();
         mPictureUtils = new PictureUtils();
         dataDompet = new Dompet();
+        dataProduk = new ArrayList<>();
     }
 
     @Nullable
@@ -150,6 +167,7 @@ public class Fragment_menu_utama extends Fragment
         }
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
         mTotalDompet.setText("Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
+        mJumlahProduk.setText(dataProduk.size() + "");
     }
 
     @Override
@@ -164,6 +182,20 @@ public class Fragment_menu_utama extends Fragment
                     public void onChanged(Dompet dompet) {
                         dataDompet = dompet;
                         updateUI();
+                    }
+                }
+        );
+
+//        UPDATE DATA PRODUK
+        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Produk>>() {
+                    @Override
+                    public void onChanged(List<Produk> produks) {
+                        dataProduk = produks;
+                        Log.i(TAG, "Got Produk: " + produks.size());
+                        updateUI();
+
                     }
                 }
         );
