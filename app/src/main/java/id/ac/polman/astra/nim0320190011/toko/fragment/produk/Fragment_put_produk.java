@@ -1,11 +1,14 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,7 +39,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 public class Fragment_put_produk extends Fragment {
     private static final String TAG = "Fragment_put_produk";
 
-    private EditText mCariProduk;
+    private AutoCompleteTextView mCariProduk;
     private Button mButtonCariProduk;
     PictureUtils mPictureUtils;
     private ImageView mFotoProduk;
@@ -112,13 +115,14 @@ public class Fragment_put_produk extends Fragment {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_put_produk, container, false);
 
-        mCariProduk = (EditText) v.findViewById(R.id.cari_nama_produk);
+        mCariProduk = v.findViewById(R.id.cari_nama_produk);
 
         mButtonCariProduk = (Button) v.findViewById(R.id.btn_cari);
         mButtonCariProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nama = mCariProduk.getText() + "";
+
                 if (!nama.equals("")){
                     filter(nama);
                 } else {
@@ -133,7 +137,18 @@ public class Fragment_put_produk extends Fragment {
                 new Observer<List<Produk>>() {
                     @Override
                     public void onChanged(List<Produk> produks) {
+
+                        ArrayList<String> nama_nama = new ArrayList<>();
                         mProdukList = produks;
+                        for(Produk p : produks){
+                            nama_nama.add(p.getNama());
+                        }
+
+                        ArrayAdapter<String> adapterNama = new ArrayAdapter<String>
+                                (getContext(), android.R.layout.select_dialog_item, nama_nama);
+                        mCariProduk.setAdapter(adapterNama);
+                        mCariProduk.setThreshold(1);//will start working from first character
+
                         Log.i(TAG, "Got Produk: " + produks.size());
                     }
                 }
@@ -155,9 +170,21 @@ public class Fragment_put_produk extends Fragment {
             public void onClick(View v) {
                 if (!mJumlah.getText().toString().equals("") ){
                     mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+
+//                    Produk p = new Produk();
+//                    p.setNama(mProduk.getNama());
+//                    p.setHarga(mProduk.getHarga());
+//                    p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+
                     mPutProdukList.add(mProduk);
+
+//                    mPutProdukList.add(p);
+                    for(Produk x : mPutProdukList){
+                        Log.i(TAG, "onClick: " + x.getJumlah());
+                    }
                     mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
                     mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
+
                 } else {
                     mJumlah.setError("Jumlah harus diisi");
                 }
@@ -167,16 +194,13 @@ public class Fragment_put_produk extends Fragment {
 
         mPutProdukRecyclerView = (RecyclerView) v.findViewById(R.id.put_produk_recycler_view);
         mPutProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
-
-
 
         return v;
     }
 
     private void filter(String text) {
         for (Produk p : mProdukList){
-            if (p.getNama().toLowerCase().equals(text)){
+            if (p.getNama().toLowerCase().equals(text.toLowerCase())){
                 updateSearch(p);
                 break;
             }

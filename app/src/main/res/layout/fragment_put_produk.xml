@@ -47,10 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/cari_nama_produk"
                 android:layout_width="237dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:hint="@string/nama_produk"
                 android:layout_marginTop="28dp"
                 android:layout_marginLeft="13dp"
@@ -59,7 +59,8 @@
                 android:textSize="12dp"
                 android:paddingTop="10dp"
                 android:fontFamily="@font/poppins_light"
-                tools:ignore="DuplicateIds" />
+                tools:ignore="DuplicateIds"
+                />
 
             <Button
                 android:layout_width="92dp"
@@ -175,93 +176,102 @@
         android:background="@color/white"
         android:layout_marginTop="5dp"
         android:orientation="vertical">
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:stretchColumns="1,2,3,4">
 
-                <TableRow>
-                    <TextView
-                        android:layout_width="166dp"
-                        android:layout_column="1"
-                        android:padding="5dip"
-                        android:text="@string/produk_nama"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_column="2"
-                        android:text="@string/jumlah_produk"
-                        android:padding="2dip"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_column="3"
-                        android:text="Harga"
-                        android:padding="3dip"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_column="4"
-                        android:text="Total"
-                        android:padding="3dip"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"/>
-                </TableRow>
-                <View
-                    android:layout_height="2dip"
-                    android:background="#FF909090" />
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1,2,3,4">
 
+            <TableRow>
+                <TextView
+                    android:layout_width="166dp"
+                    android:layout_column="1"
+                    android:padding="5dip"
+                    android:text="@string/produk_nama"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="2"
+                    android:text="@string/jumlah_produk"
+                    android:padding="2dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="3"
+                    android:text="Harga"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="4"
+                    android:text="Total"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+        </TableLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/put_produk_recycler_view"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/put_produk_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
-                <View
-                    android:layout_height="2dip"
-                    android:background="#FF909090" />
-                <TableRow>
-                    <TextView
-                        android:layout_width="166dp"
-                        android:layout_column="1"
-                        android:padding="5dip"
-                        android:text="Jumlah Produk"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_column="2"
-                        android:padding="3dip"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"
-                        android:id="@+id/jumlah_total"/>
-                    <TextView
-                        android:layout_column="3"
-                        android:padding="3dip"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:layout_column="4"
-                        android:padding="3dip"
-                        android:textSize="11dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/black"
-                        android:textAlignment="textEnd"
-                        android:layout_marginEnd="5dp"
-                        android:id="@+id/harga_total"/>
-                </TableRow>
-            </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+            <TableRow>
+                <TextView
+                    android:layout_width="166dp"
+                    android:layout_column="1"
+                    android:padding="5dip"
+                    android:text="Jumlah Produk"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="2"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:id="@+id/jumlah_total"/>
+                <TextView
+                    android:layout_column="3"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="4"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/harga_total"/>
+            </TableRow>
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+        </TableLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginVertical="10dp">
 
             <Button
                 android:layout_width="92dp"
@@ -286,8 +296,5 @@
                 android:textSize="14dp" />
         </RelativeLayout>
     </LinearLayout>
-
-
-
 
 </LinearLayout>
