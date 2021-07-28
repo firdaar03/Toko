@@ -34,16 +34,6 @@ public class Login_view_model extends ViewModel {
         return null;
     }
 
-    public Toko checkPreferences(String id){
-        Log.i(TAG, "checklogin: Ini loh masuk size data : " + mTokoListMutableLiveData.getValue().size());
-        for ( Toko tk : mTokoListMutableLiveData.getValue()) {
-            if(tk.getIdToko() == Integer.parseInt(id)){
-                return tk;
-            }
-            Log.i(TAG, "== : " + tk.getIdToko());
-        }
-        return null;
-    }
 
     public MutableLiveData<List<Toko>> getTokos(){
         mTokoListMutableLiveData = mToko_repository.getTokos();

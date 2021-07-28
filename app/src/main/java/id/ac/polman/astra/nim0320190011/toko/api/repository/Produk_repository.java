@@ -62,6 +62,34 @@ public class Produk_repository {
         return produks;
     }
 
+    public MutableLiveData<List<Produk>> getProdukByIdToko(int id){
+        Log.i(TAG, "getProdukByIdToko: ini masuk get produks");
+        MutableLiveData<List<Produk>> produks = new MutableLiveData<>();
+
+        Call<List<Produk>> call = mProduk_service.getProdukByIdToko(id);
+        call.enqueue(new Callback<List<Produk>>() {
+            @Override
+            public void onResponse(Call<List<Produk>> call, Response<List<Produk>> response) {
+
+                if(response.isSuccessful()){
+                    Log.e(TAG, "onResponse: " + new Gson().toJson(response.body()));
+                    produks.setValue(response.body());
+                    Log.i(TAG, "onResponse: getProduk called() size " + produks.getValue().size());
+                } else {
+                    Log.e(TAG, "onResponse: Produk tidak ditemukan");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Produk>> call, Throwable t) {
+                Log.e(TAG, "onFailure: getProduk called failed", t );
+            }
+        });
+
+        return produks;
+    }
+
     public MutableLiveData<Produk> getProduk(String idProduk){
         MutableLiveData<Produk> produk = new MutableLiveData<>();
 

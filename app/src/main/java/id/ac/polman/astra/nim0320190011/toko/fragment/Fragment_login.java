@@ -57,9 +57,6 @@ public class Fragment_login extends Fragment {
 
         mLoginViewModel = getLoginViewModel();
 
-
-//        mTokoViewModel = getTokoViewModel();
-
     }
 
     @Override
@@ -68,8 +65,6 @@ public class Fragment_login extends Fragment {
         Log.i(TAG, "onCreateView: called");
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-//        context = getActivity();
-//        mSharedPreferences = context.getSharedPreferences(NAME_APP, MODE_PRIVATE);
 
         mUsername = (EditText) view.findViewById(R.id.username);
         mPassword = (EditText) view.findViewById(R.id.password);

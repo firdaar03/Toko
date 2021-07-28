@@ -155,7 +155,7 @@ public class Fragment_produk extends Fragment {
         mPutProdukButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = Fragment_put_produk.newInstance();
+                Fragment fragment = Fragment_put_produk.newInstance(dataToko);
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
@@ -183,13 +183,12 @@ public class Fragment_produk extends Fragment {
             Thread.currentThread().interrupt();
         }
         Log.i(TAG, "Fragment_Produk.onViewCreated() called");
-        mProdukViewModel.getProduks().observe(
+        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
                 getViewLifecycleOwner(),
                 new Observer<List<Produk>>() {
                     @Override
                     public void onChanged(List<Produk> produks) {
-//                        updateUI(produks);
-                        mProdukList = mProdukViewModel.getProduksByIdToko(dataToko.getIdToko());
+                        mProdukList = produks;
                         updateUI();
                         Log.i(TAG, "Got Produk: " + produks.size());
                     }
@@ -230,7 +229,7 @@ public class Fragment_produk extends Fragment {
                 mFotoProduk.setImageBitmap(mPictureUtils.convertToImage(produk.getFoto()));
             }catch (Exception e){
             }
-            mHargaProduk.setText("Rp. " + mProduk.getHarga() + ",-");
+            mHargaProduk.setText("Rp. " + String.format("%,d", mProduk.getHarga()).replace(',', '.') + ",-");
             mJumlahProduk.setText("stok : " + mProduk.getJumlah());
             mMerkProduk.setText("(" + mProduk.getMerk() + ")");
             mEditProduk.setOnClickListener(new View.OnClickListener() {
@@ -253,6 +252,7 @@ public class Fragment_produk extends Fragment {
                             .setMessage("Apakah anda yakin untuk menghapus data ini?")
                             .setPositiveButton("Ya", (dialogInterface, i) -> {
                                 mProdukViewModel.delete(String.valueOf(mProduk.getIdProduk()));
+                                loadFragment(Fragment_produk.newInstance(dataToko));
                             })
                             .setNegativeButton("Tidak", null)
                             .show();
@@ -261,6 +261,7 @@ public class Fragment_produk extends Fragment {
         }
 
     }
+
     private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
 
         private List<Produk> mProdukList;
@@ -292,6 +293,12 @@ public class Fragment_produk extends Fragment {
         }
     }
 
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit(); // save the changes
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {

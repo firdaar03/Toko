@@ -20,6 +20,9 @@ public interface Produk_service {
     @GET("produks")
     Call<List<Produk>> getProduks();
 
+    @GET("produkbytoko")
+    Call<List<Produk>> getProdukByIdToko(@Query("id") int id);
+
     @POST("produk")
     Call<Produk> addProduk(@Body Produk p);
 

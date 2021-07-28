@@ -71,7 +71,6 @@ public class Fragment_tambah_produk extends Fragment {
 
     private Button mInput_button;
 
-    private String mIdToko;
 
     SimpleDateFormat detil = new SimpleDateFormat("yyyyMMddHHmm");
 
@@ -114,6 +113,10 @@ public class Fragment_tambah_produk extends Fragment {
     private void updateUI(){
         Log.i(TAG, "update UI () called");
         mNama_produk.setText(mProduk.getNama());
+        mMerk_pruduk.setText(mProduk.getMerk());
+        mHarga_produk.setText(mProduk.getHarga() + "");
+        mJumlah_produk.setText(mProduk.getJumlah() + "");
+        mFotoProdukView.setImageBitmap(mPictureUtils.convertToImage(mProduk.getFoto()));
     }
 
     @Override
@@ -196,6 +199,7 @@ public class Fragment_tambah_produk extends Fragment {
                     Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT)
                             .show();
                     getFragmentManager().popBackStack();
+//
                 }
 
             }
@@ -212,7 +216,7 @@ public class Fragment_tambah_produk extends Fragment {
                 mFotoProdukFile
         );
 
-        Log.i(TAG, "onViewCreated: Called ");
+        Log.i(TAG, "Fragment_Tambah_Produk.onViewCreated: Called ");
         mProdukViewModel.getProdukLiveData().observe(
                 getViewLifecycleOwner(), new Observer<Produk>() {
                     @Override
@@ -259,5 +263,12 @@ public class Fragment_tambah_produk extends Fragment {
         }catch (Exception e){
             Log.e(TAG, "onDetach: ", e);
         }
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit(); // save the changes
     }
 }

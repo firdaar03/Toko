@@ -24,9 +24,7 @@ public class Produk_view_model extends ViewModel {
     public Produk_view_model(){
         mProduk_repository = Produk_repository.get();
         mIdMutableLiveData = new MutableLiveData<>();
-        mProdukLiveData = Transformations.switchMap(mIdMutableLiveData,
-                idProduk -> mProduk_repository.getProduk(idProduk));
-        mProdukListMutableLiveData = mProduk_repository.getProduks();
+
     }
 
     public void loadProduk(String idProduk){
@@ -41,19 +39,16 @@ public class Produk_view_model extends ViewModel {
 
     public LiveData<List<Produk>> getProduks(){
 //        mProdukListMutableLiveData = mProduk_repository.getProduks();
-//        mProdukListMutableLiveData = mProduk_repository.getProduks();
+        mProdukListMutableLiveData = mProduk_repository.getProduks();
         return mProdukListMutableLiveData;
     }
 
-    public List<Produk> getProduksByIdToko(int idToko){
-        List<Produk> produks = new ArrayList<>();
-        for(Produk a : mProdukListMutableLiveData.getValue()){
-            if(a.getIdToko() == idToko){
-                produks.add(a);
-            }
-        }
-        return produks;
+    public LiveData<List<Produk>> getProduksByIdToko(int idToko){
+//        mProdukListMutableLiveData = mProduk_repository.getProdukByIdToko(idToko);
+        return mProduk_repository.getProdukByIdToko(idToko);
     }
+
+
 
     public void save(Produk p){
         mProduk_repository.addProduk(p);
@@ -67,11 +62,13 @@ public class Produk_view_model extends ViewModel {
         mProduk_repository.deleteProduk(id);
     }
 
-//    public Produk searchProduk(String namaProduk) {
-//        Log.i(TAG, "searchProduk: Ini loh masuk size data : " + mProdukListMutableLiveData.getValue().size());
-//        for (Produk p)
-//    }
-    public void addProduk(Produk p){
-        mProduk_repository.addProduk(p);
+    public Produk searchProduk(String namaProduk) {
+        Log.i(TAG, "searchProduk: Ini loh masuk size data : " + mProdukListMutableLiveData.getValue().size());
+        for (Produk pd : mProdukListMutableLiveData.getValue()) {
+            if (pd.getNama().equals(namaProduk)){
+                return pd;
+            }
+        }
+        return null;
     }
 }
