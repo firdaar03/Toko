@@ -62,13 +62,11 @@ public class Produk_view_model extends ViewModel {
         mProduk_repository.deleteProduk(id);
     }
 
-    public Produk searchProduk(String namaProduk) {
-        Log.i(TAG, "searchProduk: Ini loh masuk size data : " + mProdukListMutableLiveData.getValue().size());
-        for (Produk pd : mProdukListMutableLiveData.getValue()) {
-            if (pd.getNama().equals(namaProduk)){
-                return pd;
-            }
-        }
-        return null;
+    public void ambil_produk(Produk p){
+        mProduk_repository.ambil_produk(p);
+    }
+
+    public void jual_produk(Produk p){
+        mProduk_repository.jual_produk(p);
     }
 }

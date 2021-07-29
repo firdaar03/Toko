@@ -28,6 +28,7 @@ public class Aktivitas_dompet_repository {
         mDompet_aktivitas_service = ApiUtils.getDompetAktivitasService();
     }
 
+    @SuppressLint("LongLogTag")
     public static void initialize(Context context){
         Log.i(TAG, "initialize: Called");
         if(INSTANCE == null){

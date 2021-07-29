@@ -37,6 +37,7 @@ import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 
 public class Fragment_put_produk extends Fragment {
@@ -54,8 +55,11 @@ public class Fragment_put_produk extends Fragment {
     private Button mTambahProduk;
     private TextView mJumlahTotal;
     private TextView mHargaTotal;
+    private Button mDiambil;
+    private Button mTerjual;
 
     private Produk_view_model mProdukViewModel;
+    private Aktivitas_produk_view_model mAktivitasProdukViewModel;
     private Produk mProduk;
     private Toko dataToko;
     private List<Produk> mProdukList;
@@ -66,7 +70,7 @@ public class Fragment_put_produk extends Fragment {
 
     private int jumlahTotal;
     private int hargaTotal;
-    private int hargaTotalParse;
+//    private int hargaTotalParse;
 
     public Produk_view_model getProdukViewModel(){
         Log.i(TAG, "getProdukViewModelList: called");
@@ -76,6 +80,16 @@ public class Fragment_put_produk extends Fragment {
         }
         Log.i(TAG, "getProdukViewModelList: called 2");
         return mProdukViewModel;
+    }
+
+    public Aktivitas_produk_view_model getAktivitasProdukViewModel(){
+        Log.i(TAG, "getAktivitasProdukViewModelList: called");
+        if(mAktivitasProdukViewModel == null){
+            mAktivitasProdukViewModel = new ViewModelProvider(this)
+                    .get(Aktivitas_produk_view_model.class);
+        }
+        Log.i(TAG, "getAktivitasProdukViewModelList: called 2");
+        return mAktivitasProdukViewModel;
     }
 
     public static Fragment_put_produk newInstance(Toko t) {
@@ -113,7 +127,7 @@ public class Fragment_put_produk extends Fragment {
         mPictureUtils = new PictureUtils();
         mPutProdukAdapter = new PutProdukAdapter(new ArrayList<>());
         mPutProdukList = new ArrayList<>();
-
+        mAktivitasProdukViewModel = getAktivitasProdukViewModel();
     }
 
     @Nullable
@@ -177,31 +191,36 @@ public class Fragment_put_produk extends Fragment {
             public void onClick(View v) {
                 try{
                     if (!mJumlah.getText().toString().equals("") ){
-                        mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                        if(Integer.parseInt(mJumlah.getText().toString()) > mProduk.getJumlah()){
+                            Toast.makeText(getContext(), "Jumlah tidak boleh melebihi stok !",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                        Produk p = new Produk();
-                        p.setNama(mProduk.getNama());
-                        p.setHarga(mProduk.getHarga());
-                        p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                            Produk p = new Produk();
+                            p.setIdProduk(mProduk.getIdProduk());
+                            p.setNama(mProduk.getNama());
+                            p.setHarga(mProduk.getHarga());
+                            p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                        for(Produk x : mPutProdukList){
-                            Log.i(TAG, "onClick: " + x.getJumlah());
-                            if(x.getNama().equals(p.getNama())){
-                                mPutProdukList.remove(x);
-                                break;
+                            for(Produk x : mPutProdukList){
+                                Log.i(TAG, "onClick: " + x.getJumlah());
+                                if(x.getNama().equals(p.getNama())){
+                                    mPutProdukList.remove(x);
+                                    break;
+                                }
                             }
-                        }
 
-                        mPutProdukList.add(p);
+                            mPutProdukList.add(p);
 
-                        hargaTotal = 0;
-                        jumlahTotal = 0;
-                        for(Produk asdw : mPutProdukList){
-                            hargaTotal += asdw.getHarga() * asdw.getJumlah();
-                            jumlahTotal += asdw.getJumlah();
-                        }
-                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
-                        mJumlahTotal.setText(jumlahTotal + "");
+                            hargaTotal = 0;
+                            jumlahTotal = 0;
+                            for(Produk asdw : mPutProdukList){
+                                hargaTotal += asdw.getHarga() * asdw.getJumlah();
+                                jumlahTotal += asdw.getJumlah();
+                            }
+                            mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+                            mJumlahTotal.setText(jumlahTotal + "");
 
 //                  JUMLAH TOTAL
 //                    if ( !mJumlahTotal.getText().toString().equals("")){
@@ -239,8 +258,10 @@ public class Fragment_put_produk extends Fragment {
 //                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
 //                    }
 
-                        mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
-                        mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
+                            mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
+                            mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
+                        }
+
 
                     } else {
                         mJumlah.setError("Jumlah harus diisi");
@@ -248,6 +269,33 @@ public class Fragment_put_produk extends Fragment {
                 }catch (Exception e){
 
                 }
+            }
+        });
+
+        mDiambil = (Button) v.findViewById(R.id.btn_diambil);
+        mDiambil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                for(Produk x : mPutProdukList){
+                    Log.i(TAG, "onClick: id " + x.getIdProduk());
+                    Produk produk = new Produk();
+                    produk.setIdProduk(x.getIdProduk());
+                    produk.setCreaby(dataToko.getEmail());
+                    produk.setJumlah(Integer.valueOf(x.getJumlah()));
+                    produk.setModiby(x.getNama().toString());
+                    mProdukViewModel.ambil_produk(produk);
+                }
+
+            }
+        });
+
+        mTerjual = (Button) v.findViewById(R.id.btn_terjual);
+        mTerjual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
