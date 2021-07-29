@@ -31,6 +31,8 @@ public class Fragment_dompet_kasir extends DialogFragment{
     private Button mKosongkan;
     private Button mPerbarui;
 
+    private Button mButtonKembali;
+
     Dompet_view_model mDompetViewModel;
 
     public static Fragment_dompet_kasir newInstance(Dompet d){
@@ -76,7 +78,7 @@ public class Fragment_dompet_kasir extends DialogFragment{
                                 .setMessage(getString(R.string.yakin_hapus))
                                 .setPositiveButton("Ya", (dialogInterface, i) -> {
                                     getDialog().dismiss();
-
+                                    getFragmentManager().popBackStack();
                                     Dompet dompet = new Dompet();
                                     dompet.setIdToko(mDompet.getIdToko());
                                     dompet.setCreaby(mDompet.getCreaby());
@@ -105,7 +107,7 @@ public class Fragment_dompet_kasir extends DialogFragment{
                                     .setMessage(getString(R.string.yakin_perbarui, "Rp " + String.format("%,d", nominal).replace(',', '.') + ",-"))
                                     .setPositiveButton("Ya", (dialogInterface, i) -> {
                                         getDialog().dismiss();
-
+                                        getFragmentManager().popBackStack();
 
                                         mDompet.setUang(nominal);
 
@@ -127,6 +129,16 @@ public class Fragment_dompet_kasir extends DialogFragment{
                 }
         );
 
+        mButtonKembali = v.findViewById(R.id.button_kembali);
+        mButtonKembali.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getDialog().dismiss();
+                    }
+                }
+        );
+
         return v;
     }
 
@@ -144,6 +156,5 @@ public class Fragment_dompet_kasir extends DialogFragment{
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        getFragmentManager().popBackStack();
     }
 }
