@@ -175,65 +175,79 @@ public class Fragment_put_produk extends Fragment {
         mTambahProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mJumlah.getText().toString().equals("") ){
-                    mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                try{
+                    if (!mJumlah.getText().toString().equals("") ){
+                        mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                    Produk p = new Produk();
-                    p.setNama(mProduk.getNama());
-                    p.setHarga(mProduk.getHarga());
-                    p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                        Produk p = new Produk();
+                        p.setNama(mProduk.getNama());
+                        p.setHarga(mProduk.getHarga());
+                        p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                    for(Produk x : mPutProdukList){
-                        Log.i(TAG, "onClick: " + x.getJumlah());
-                        if(x.getNama().equals(p.getNama())){
-                            mPutProdukList.remove(x);
-                            break;
+                        for(Produk x : mPutProdukList){
+                            Log.i(TAG, "onClick: " + x.getJumlah());
+                            if(x.getNama().equals(p.getNama())){
+                                mPutProdukList.remove(x);
+                                break;
+                            }
                         }
-                    }
 
-                    mPutProdukList.add(p);
+                        mPutProdukList.add(p);
+
+                        hargaTotal = 0;
+                        jumlahTotal = 0;
+                        for(Produk asdw : mPutProdukList){
+                            hargaTotal += asdw.getHarga() * asdw.getJumlah();
+                            jumlahTotal += asdw.getJumlah();
+                        }
+                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+                        mJumlahTotal.setText(jumlahTotal + "");
 
 //                  JUMLAH TOTAL
-                    if ( !mJumlahTotal.getText().toString().equals("")){
-                        jumlahTotal = p.getJumlah() + Integer.parseInt(mJumlahTotal.getText().toString());
-                        mJumlahTotal.setText(jumlahTotal + "");
-                    } else {
-                        jumlahTotal = p.getJumlah();
-                        mJumlahTotal.setText(jumlahTotal + "");
-                    }
+//                    if ( !mJumlahTotal.getText().toString().equals("")){
+//                        jumlahTotal = p.getJumlah() + Integer.parseInt(mJumlahTotal.getText().toString());
+//                        mJumlahTotal.setText(jumlahTotal + "");
+//                    } else {
+//                        jumlahTotal = p.getJumlah();
+//                        mJumlahTotal.setText(jumlahTotal + "");
+//                    }
 
 //                    HARGA TOTAL
-                    if (!mHargaTotal.getText().toString().equals("")){
-                        String str = mHargaTotal.getText().toString();
-                        Log.i(TAG, "substring " + str.substring(0,str.length() - 2));
-                        String str2 = str.substring(0,str.length() - 2);
-                        DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-                        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-                        formatRp.setCurrencySymbol("Rp. ");
-                        formatRp.setGroupingSeparator('.');
-                        format.setDecimalFormatSymbols(formatRp);
-                        try {
-                            Number number = format.parse(str2);
-                            hargaTotalParse = number.intValue();
-                            Log.i(TAG, "substring " + hargaTotalParse);
-                            hargaTotal = p.getHarga() * p.getJumlah() + hargaTotalParse;
-                            mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
-                        } catch (ParseException ex) {
-                            Log.i(TAG,"Kesalahan Parsing");
-                        }
+
+
+//                    if (!mHargaTotal.getText().toString().equals("")){
+//                        String str = mHargaTotal.getText().toString();
+//                        Log.i(TAG, "substring " + str.substring(0,str.length() - 2));
+//                        String str2 = str.substring(0,str.length() - 2);
+//                        DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+//                        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+//                        formatRp.setCurrencySymbol("Rp. ");
+//                        formatRp.setGroupingSeparator('.');
+//                        format.setDecimalFormatSymbols(formatRp);
+//                        try {
+//                            Number number = format.parse(str2);
+//                            hargaTotalParse = number.intValue();
+//                            Log.i(TAG, "substring " + hargaTotalParse);
+//                            hargaTotal = p.getHarga() * p.getJumlah() + hargaTotalParse;
+//
+//                        } catch (ParseException ex) {
+//                            Log.i(TAG,"Kesalahan Parsing");
+//                        }
+//
+//                    } else {
+//                        hargaTotal = p.getHarga() * p.getJumlah();
+//                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+//                    }
+
+                        mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
+                        mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
 
                     } else {
-                        hargaTotal = p.getHarga() * p.getJumlah();
-                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+                        mJumlah.setError("Jumlah harus diisi");
                     }
+                }catch (Exception e){
 
-                    mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
-                    mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
-
-                } else {
-                    mJumlah.setError("Jumlah harus diisi");
                 }
-
             }
         });
 
