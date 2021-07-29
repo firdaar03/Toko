@@ -99,4 +99,15 @@
     <string name="note_1">1. Tekan ‘Kosongkan Kasir’ untuk mengubah data dalam kasir menjadi 0</string>
     <string name="note_2">2. Tekan ‘Perbarui Kasir’ untuk memperbarui data dalam kasir sesuai dengan kolom nomial</string>
     <string name="note_3">3. Kolom nominal harus diisi ketika akan menekan tombol ‘Perbarui Kasir’</string>
+
+<!--    DETAIL AKTIVITAS-->
+    <string name="detail_aktivitas">Detail aktivitas</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="waktu">Waktu</string>
+    <string name="kembali">Kembali</string>
+    
+<!--    PEMBARUAN KASIR -->
+    <string name="perubahan_kasir">Perubahan Data Kasir</string>
+    <string name="yakin_perbarui">Apakah anda yakin ingin memperbarui data uang pada kasir menjadi <b>%1$s</b> ?</string>
+    <string name="yakin_hapus">Apakah anda yakin ingin mengosongkan data uang pada kasir menjadi Rp 0,-?</string>
 </resources>

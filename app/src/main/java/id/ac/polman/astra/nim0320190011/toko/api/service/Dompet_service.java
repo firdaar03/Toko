@@ -29,4 +29,10 @@ public interface Dompet_service {
 
     @PUT("dompet_")
     Call<Dompet> deleteDompetById(@Body Dompet p);
+
+    @PUT("dompet_perbarui")
+    Call<Dompet> perbaruiDompet(@Body Dompet p);
+
+    @PUT("dompet_kosongkan")
+    Call<Dompet> kosongkanDompet(@Body Dompet p);
 }

@@ -39,6 +39,8 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
+import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 
@@ -167,10 +169,19 @@ public class Fragment_dompet_aktivitas extends Fragment {
 
         @SuppressLint("LongLogTag")
         public void bind(Dompet_aktivitas aktivitas){
-            if(aktivitas.getKode_akt() == 1) {
-                mKeterangan.setText(R.string.uang_masuk);
-            }else {
-                mKeterangan.setText(R.string.uang_keluar);
+            switch (aktivitas.getKode_akt()){
+                case 1 :
+                    mKeterangan.setText(R.string.uang_masuk);
+                    break;
+                case 2 :
+                    mKeterangan.setText(R.string.uang_keluar);
+                    break;
+                case 3 :
+                    mKeterangan.setText(R.string.perubahan_kasir);
+                    break;
+                case 4 :
+                    mKeterangan.setText(R.string.kosong_kasir);
+                    break;
             }
             mNominal.setText("Rp " + String.format("%,d", aktivitas.getJumlah()).replace(',', '.') + ",-");
 
@@ -182,7 +193,9 @@ public class Fragment_dompet_aktivitas extends Fragment {
                         @SuppressLint("LongLogTag")
                         @Override
                         public void onClick(View v) {
-                            Log.i(TAG, "onClick: ini kalo diklik");
+                            Detail_aktivitas_dompet fragment = Detail_aktivitas_dompet.newInstance(aktivitas);
+                            FragmentManager fm = getFragmentManager();
+                            fragment.show(fm,"Fragment Setting");
                         }
                     }
             );

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 
@@ -47,6 +49,7 @@ public class Fragment_dompet extends Fragment{
     private Button btnAktvitas;
     private Button btnUangMasuk;
     private Button btnUangKeluar;
+    private RelativeLayout mDalamKasir;
 
     private Dompet_view_model mDompetViewModel;
 
@@ -85,6 +88,17 @@ public class Fragment_dompet extends Fragment{
         View v = inflater.inflate(R.layout.fragment_dompet, container, false);
 
         mTotalDompet = v.findViewById(R.id.total_dompet);
+        mDalamKasir = v.findViewById(R.id.dalam_kasir);
+        mDalamKasir.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment_dompet_kasir fragment = Fragment_dompet_kasir.newInstance(dataDompet);
+                        FragmentManager fm = getFragmentManager();
+                        fragment.show(fm,"Fragment Setting");
+                    }
+                }
+        );
 
         btnAktvitas = (Button) v.findViewById(R.id.button_aktifitas);
         btnAktvitas.setActivated(true);
@@ -119,27 +133,16 @@ public class Fragment_dompet extends Fragment{
                 loadFragment(Fragment_dompet_uang_keluar.newInstance(dataToko));
             }
         });
-        refresh();
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        refresh();
     }
 
-    public void updateUI(){
-        Log.i(TAG, "NGUPDATE UI NIH ");
-        mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
-    }
-    private void loadFragment(Fragment fragment) {
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.menus, fragment);
-            fragmentTransaction.commit(); // save the changes
-    }
-
-    public void refresh(){
+    private void refresh(){
         mDompetViewModel.loadDompet(dataToko.getIdToko() + "").observe(
                 getViewLifecycleOwner(),
                 new Observer<Dompet>() {
@@ -152,12 +155,38 @@ public class Fragment_dompet extends Fragment{
                 }
         );
     }
-
+    public void updateUI(){
+        Log.i(TAG, "NGUPDATE UI NIH ");
+        mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
+    }
+    private void loadFragment(Fragment fragment) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.menus, fragment);
+            fragmentTransaction.commit(); // save the changes
+    }
 
     @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        refresh();
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume: ");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause: ");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart: ");
+        try{
+            refresh();
+        }catch (Exception e){
+            
+        }
     }
 }
 
