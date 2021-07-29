@@ -31,4 +31,10 @@ public interface Produk_service {
 
     @DELETE("produk")
     Call<Produk> deleteProdukById(@Query("id") String id);
+
+    @PUT("ambil_produk")
+    Call<Produk> ambilProduk(@Body Produk p);
+
+    @PUT("jual_produk")
+    Call<Produk> jualProduk(@Body Produk p);
 }

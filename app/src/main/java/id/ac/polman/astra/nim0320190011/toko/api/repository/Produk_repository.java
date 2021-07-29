@@ -164,4 +164,41 @@ public class Produk_repository {
             }
         });
     }
+
+    public void ambil_produk(Produk p){
+        Log.i(TAG, "ambil_produk: call" + p.getIdProduk());
+        Call<Produk> call = mProduk_service.ambilProduk(p);
+        call.enqueue(new Callback<Produk>() {
+            @Override
+            public void onResponse(Call<Produk> call, Response<Produk> response) {
+                if(response.isSuccessful()){
+                    Log.i(TAG, "onResponse: Telah terupdate Id " + p.getIdProduk());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Produk> call, Throwable t) {
+                Log.e(TAG, "onFailure: updateProduk",t );
+            }
+        });
+    }
+
+    public void jual_produk(Produk p) {
+        Log.i(TAG, "jual_produk: call" + p.getIdProduk());
+        Call<Produk> call = mProduk_service.jualProduk(p);
+        call.enqueue(new Callback<Produk>() {
+            @Override
+            public void onResponse(Call<Produk> call, Response<Produk> response) {
+                if (response.isSuccessful()) {
+                    Log.i(TAG, "onResponse: Telah terupdate Id " + p.getIdProduk());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Produk> call, Throwable t) {
+                Log.e(TAG, "onFailure: updateProduk", t);
+            }
+        });
+    }
+
 }

@@ -63,18 +63,19 @@
                 />
 
             <Button
+                android:id="@+id/btn_cari"
                 android:layout_width="92dp"
                 android:layout_height="26dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginLeft="17dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@+id/cari_nama_produk"
                 android:background="@drawable/radius_button_hijau_tua"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/button_cari"
                 android:textColor="@color/white"
-                android:textSize="14dp"
-                android:id="@+id/btn_cari"/>
+                android:textSize="14dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -82,7 +83,8 @@
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="10dp"
-                android:layout_marginTop="63dp">
+                android:layout_marginTop="63dp"
+                android:id="@+id/item_produk">
 
                 <ImageView
                     android:layout_width="99dp"
@@ -139,21 +141,23 @@
 
 
             </RelativeLayout>
+
             <EditText
                 android:id="@+id/jml_produk"
-                android:layout_marginHorizontal="13dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:hint="@string/jumlah_produk"
-                android:layout_marginTop="187dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_produk"
+                android:layout_marginHorizontal="13dp"
                 android:layout_marginLeft="13dp"
+                android:layout_marginTop="13dp"
                 android:background="@drawable/radius_input"
-                android:paddingLeft="5dp"
-                android:textSize="12dp"
-                android:paddingTop="10dp"
                 android:fontFamily="@font/poppins_light"
-                tools:ignore="DuplicateIds"
-                android:inputType="number"/>
+                android:hint="@string/jumlah_produk"
+                android:inputType="number"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:textSize="12dp"
+                tools:ignore="DuplicateIds" />
 
             <Button
                 android:id="@+id/btn_add"
@@ -284,7 +288,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/button_diambil"
                 android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:id="@+id/btn_diambil"/>
 
             <Button
                 android:layout_width="92dp"
@@ -295,7 +300,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/button_terjual"
                 android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:id="@+id/btn_terjual"/>
         </RelativeLayout>
     </LinearLayout>
 
