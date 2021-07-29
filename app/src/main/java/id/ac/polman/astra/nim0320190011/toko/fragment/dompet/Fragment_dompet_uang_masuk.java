@@ -74,11 +74,13 @@ public class Fragment_dompet_uang_masuk extends Fragment {
                 if (mNominal.getText().toString().equals("")) {
                     mNominal.setError("Mohon isi field nominal dengan benar");
                 } else {
+
                     Dompet dompet = new Dompet();
                     dompet.setCreaby(dataToko.getEmail());
                     dompet.setIdToko(dataToko.getIdToko());
                     dompet.setUang(Integer.valueOf(mNominal.getText().toString()));
                     dompet.setModiby(mKeterangan.getText().toString());
+
                     mDompetViewModel.uang_masuk(dompet);
 
                     getFragmentManager().popBackStack();
