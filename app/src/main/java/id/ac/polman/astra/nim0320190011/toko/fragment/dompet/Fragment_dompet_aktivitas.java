@@ -169,10 +169,19 @@ public class Fragment_dompet_aktivitas extends Fragment {
 
         @SuppressLint("LongLogTag")
         public void bind(Dompet_aktivitas aktivitas){
-            if(aktivitas.getKode_akt() == 1) {
-                mKeterangan.setText(R.string.uang_masuk);
-            }else {
-                mKeterangan.setText(R.string.uang_keluar);
+            switch (aktivitas.getKode_akt()){
+                case 1 :
+                    mKeterangan.setText(R.string.uang_masuk);
+                    break;
+                case 2 :
+                    mKeterangan.setText(R.string.uang_keluar);
+                    break;
+                case 3 :
+                    mKeterangan.setText(R.string.perubahan_kasir);
+                    break;
+                case 4 :
+                    mKeterangan.setText(R.string.kosong_kasir);
+                    break;
             }
             mNominal.setText("Rp " + String.format("%,d", aktivitas.getJumlah()).replace(',', '.') + ",-");
 

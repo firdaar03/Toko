@@ -27,12 +27,12 @@
         <TextView
             android:id="@+id/total_dompet"
             android:background="@drawable/radius_total_aset"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
 
-            android:paddingVertical="18dp"
-            android:paddingHorizontal="30dp"
+            android:paddingVertical="25dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="20dp"
 
             android:text="Rp 25.542.000,-"
@@ -55,6 +55,7 @@
             android:fontFamily="@font/poppins_light"
             android:imeOptions="actionNext"
             android:singleLine="true"
+            android:inputType="number"
             />
 
         <LinearLayout
@@ -66,7 +67,7 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:id="@+id/button_ksoongkan"
+                android:id="@+id/button_kosongkan"
                 android:layout_width="123dp"
                 android:layout_height="28dp"
                 android:background="@drawable/rectangle_button_merah_muda"

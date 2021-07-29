@@ -29,7 +29,7 @@ public class Dompet_view_model extends ViewModel {
     public LiveData<Dompet> loadDompet(String idDompet){
         Log.i(TAG, "loadDompet: called ");
         mDompetLiveData = mDompet_repository.getDompetToko(idDompet);
-        return mDompetLiveData;
+        return mDompet_repository.getDompetToko(idDompet);
     }
 
 
@@ -68,5 +68,13 @@ public class Dompet_view_model extends ViewModel {
 
     public void uang_keluar(Dompet p){
         mDompet_repository.uang_keluar(p);
+    }
+
+    public void perbarui(Dompet p){
+        mDompet_repository.perbarui(p);
+    }
+
+    public void kosongkan(Dompet p){
+        mDompet_repository.kosongkan(p);
     }
 }

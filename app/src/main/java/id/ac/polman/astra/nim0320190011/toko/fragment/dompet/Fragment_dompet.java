@@ -93,7 +93,7 @@ public class Fragment_dompet extends Fragment{
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Fragment_setting fragment = Fragment_setting.newInstance(dataToko);
+                        Fragment_dompet_kasir fragment = Fragment_dompet_kasir.newInstance(dataDompet);
                         FragmentManager fm = getFragmentManager();
                         fragment.show(fm,"Fragment Setting");
                     }
@@ -133,27 +133,16 @@ public class Fragment_dompet extends Fragment{
                 loadFragment(Fragment_dompet_uang_keluar.newInstance(dataToko));
             }
         });
-        refresh();
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        refresh();
     }
 
-    public void updateUI(){
-        Log.i(TAG, "NGUPDATE UI NIH ");
-        mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
-    }
-    private void loadFragment(Fragment fragment) {
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.menus, fragment);
-            fragmentTransaction.commit(); // save the changes
-    }
-
-    public void refresh(){
+    private void refresh(){
         mDompetViewModel.loadDompet(dataToko.getIdToko() + "").observe(
                 getViewLifecycleOwner(),
                 new Observer<Dompet>() {
@@ -166,12 +155,38 @@ public class Fragment_dompet extends Fragment{
                 }
         );
     }
-
+    public void updateUI(){
+        Log.i(TAG, "NGUPDATE UI NIH ");
+        mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
+    }
+    private void loadFragment(Fragment fragment) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.menus, fragment);
+            fragmentTransaction.commit(); // save the changes
+    }
 
     @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        refresh();
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume: ");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause: ");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart: ");
+        try{
+            refresh();
+        }catch (Exception e){
+            
+        }
     }
 }
 
