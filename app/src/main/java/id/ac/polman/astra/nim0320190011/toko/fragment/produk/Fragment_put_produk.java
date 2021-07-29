@@ -26,6 +26,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,6 +63,10 @@ public class Fragment_put_produk extends Fragment {
 
     private PutProdukAdapter mPutProdukAdapter;
     private RecyclerView mPutProdukRecyclerView;
+
+    private int jumlahTotal;
+    private int hargaTotal;
+    private int hargaTotalParse;
 
     public Produk_view_model getProdukViewModel(){
         Log.i(TAG, "getProdukViewModelList: called");
@@ -176,12 +183,50 @@ public class Fragment_put_produk extends Fragment {
                     p.setHarga(mProduk.getHarga());
                     p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-//                    mPutProdukList.add(mProduk);
-
-                    mPutProdukList.add(p);
                     for(Produk x : mPutProdukList){
                         Log.i(TAG, "onClick: " + x.getJumlah());
+                        if(x.getNama().equals(p.getNama())){
+                            mPutProdukList.remove(x);
+                            break;
+                        }
                     }
+
+                    mPutProdukList.add(p);
+
+//                  JUMLAH TOTAL
+                    if ( !mJumlahTotal.getText().toString().equals("")){
+                        jumlahTotal = p.getJumlah() + Integer.parseInt(mJumlahTotal.getText().toString());
+                        mJumlahTotal.setText(jumlahTotal + "");
+                    } else {
+                        jumlahTotal = p.getJumlah();
+                        mJumlahTotal.setText(jumlahTotal + "");
+                    }
+
+//                    HARGA TOTAL
+                    if (!mHargaTotal.getText().toString().equals("")){
+                        String str = mHargaTotal.getText().toString();
+                        Log.i(TAG, "substring " + str.substring(0,str.length() - 2));
+                        String str2 = str.substring(0,str.length() - 2);
+                        DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+                        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+                        formatRp.setCurrencySymbol("Rp. ");
+                        formatRp.setGroupingSeparator('.');
+                        format.setDecimalFormatSymbols(formatRp);
+                        try {
+                            Number number = format.parse(str2);
+                            hargaTotalParse = number.intValue();
+                            Log.i(TAG, "substring " + hargaTotalParse);
+                            hargaTotal = p.getHarga() * p.getJumlah() + hargaTotalParse;
+                            mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+                        } catch (ParseException ex) {
+                            Log.i(TAG,"Kesalahan Parsing");
+                        }
+
+                    } else {
+                        hargaTotal = p.getHarga() * p.getJumlah();
+                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+                    }
+
                     mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
                     mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
 

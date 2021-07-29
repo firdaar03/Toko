@@ -152,7 +152,8 @@
                 android:textSize="12dp"
                 android:paddingTop="10dp"
                 android:fontFamily="@font/poppins_light"
-                tools:ignore="DuplicateIds" />
+                tools:ignore="DuplicateIds"
+                android:inputType="number"/>
 
             <Button
                 android:id="@+id/btn_add"
@@ -227,7 +228,8 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:stretchColumns="1,2,3,4">
             <View
                 android:layout_height="2dip"
                 android:background="#FF909090" />
