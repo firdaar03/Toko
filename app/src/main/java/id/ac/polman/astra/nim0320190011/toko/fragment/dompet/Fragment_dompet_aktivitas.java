@@ -39,6 +39,8 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
+import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 
@@ -182,7 +184,9 @@ public class Fragment_dompet_aktivitas extends Fragment {
                         @SuppressLint("LongLogTag")
                         @Override
                         public void onClick(View v) {
-                            Log.i(TAG, "onClick: ini kalo diklik");
+                            Detail_aktivitas_dompet fragment = Detail_aktivitas_dompet.newInstance(aktivitas);
+                            FragmentManager fm = getFragmentManager();
+                            fragment.show(fm,"Fragment Setting");
                         }
                     }
             );

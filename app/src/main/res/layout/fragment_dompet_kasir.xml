@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@drawable/radius_input"
     android:id="@+id/fragment_kasir">
 
     <LinearLayout
@@ -12,7 +11,8 @@
         android:orientation="vertical"
         android:background="@drawable/radius_button_hijau_muda"
         android:paddingVertical="3dp"
-        android:paddingHorizontal="3dp">
+        android:paddingHorizontal="3dp"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -22,49 +22,51 @@
             android:fontFamily="@font/poppins_bold"
             android:textSize="14dp"
             android:textColor="@color/secondary"
-            android:gravity="center"/>
+            android:textAlignment="center"/>
 
-        <RelativeLayout
-            android:layout_width="223dp"
-            android:layout_height="81dp"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/radius_total_aset">
+        <TextView
+            android:id="@+id/total_dompet"
+            android:background="@drawable/radius_total_aset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:paddingVertical="18dp"
-                android:text="Rp 25.542.000,-"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:textSize="18dp" />
+            android:paddingVertical="18dp"
+            android:paddingHorizontal="30dp"
+            android:layout_marginTop="20dp"
 
-        </RelativeLayout>
+            android:text="Rp 25.542.000,-"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
         <EditText
-            android:id="@+id/nama_produk"
-            android:layout_width="262dp"
-            android:layout_height="26dp"
+            android:id="@+id/nominal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
             android:hint="@string/nominal"
             android:layout_marginTop="26dp"
             android:background="@drawable/radius_input"
             android:padding="5dp"
+            android:layout_marginHorizontal="10dp"
+
             android:textSize="11dp"
             android:fontFamily="@font/poppins_light"
             android:imeOptions="actionNext"
             android:singleLine="true"
-            android:layout_marginLeft="28dp" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="28dp">
+            android:layout_marginHorizontal="10dp"
+            android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/button_ksoongkan"
                 android:layout_width="123dp"
                 android:layout_height="28dp"
                 android:background="@drawable/rectangle_button_merah_muda"
@@ -75,6 +77,7 @@
                 android:layout_marginHorizontal="5dp" />
 
             <Button
+                android:id="@+id/button_perbarui"
                 android:layout_width="123dp"
                 android:layout_height="28dp"
                 android:background="@drawable/rectangle_button_ungu"
@@ -87,9 +90,9 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="273dp"
-            android:layout_height="98dp"
-            android:layout_marginLeft="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="21dp"
             android:layout_marginBottom="23dp">
 

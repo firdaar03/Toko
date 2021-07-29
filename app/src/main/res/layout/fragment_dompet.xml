@@ -61,6 +61,7 @@
             android:layout_gravity="center_horizontal">
 
             <RelativeLayout
+                android:id="@+id/dalam_kasir"
                 android:layout_width="208dp"
                 android:layout_height="115dp"
                 android:background="@drawable/radius_total_aset">

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 
@@ -47,6 +49,7 @@ public class Fragment_dompet extends Fragment{
     private Button btnAktvitas;
     private Button btnUangMasuk;
     private Button btnUangKeluar;
+    private RelativeLayout mDalamKasir;
 
     private Dompet_view_model mDompetViewModel;
 
@@ -85,6 +88,17 @@ public class Fragment_dompet extends Fragment{
         View v = inflater.inflate(R.layout.fragment_dompet, container, false);
 
         mTotalDompet = v.findViewById(R.id.total_dompet);
+        mDalamKasir = v.findViewById(R.id.dalam_kasir);
+        mDalamKasir.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment_setting fragment = Fragment_setting.newInstance(dataToko);
+                        FragmentManager fm = getFragmentManager();
+                        fragment.show(fm,"Fragment Setting");
+                    }
+                }
+        );
 
         btnAktvitas = (Button) v.findViewById(R.id.button_aktifitas);
         btnAktvitas.setActivated(true);

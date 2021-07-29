@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/radius_button_hijau_muda"
+        android:paddingVertical="3dp"
+        android:paddingHorizontal="20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/detail_aktivitas"
+            android:textAllCaps="true"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textColor="@color/secondary"
+
+            android:layout_marginVertical="10dp"/>
+
+        <TextView
+            android:id="@+id/keterangan_aktivitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="dummy"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/tanggal"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tanggal"
+
+                    android:text="dummy"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/waktu"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/waktu"
+
+                    android:text="dummy"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/nominal"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nominal"
+
+                    android:text="dummy"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/keteragan"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"/>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/keterangan"
+
+                        android:text="dummy"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"/>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/button_kembali"
+            android:layout_width="123dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="right"
+            android:background="@drawable/radius_button_secondary"
+            android:layout_marginBottom="5dp"
+
+            android:text="@string/kembali"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="11sp"
+            android:textAllCaps="false"/>
+
+
+    </LinearLayout>
+</LinearLayout>
