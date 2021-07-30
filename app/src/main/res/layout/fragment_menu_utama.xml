@@ -98,7 +98,7 @@
                     android:layout_marginLeft="255dp"
                     android:layout_marginTop="120dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Rp 2.593.500,-"
+                    android:text="Rp 0,-"
                     android:textColor="@color/utama_tua"
                     android:textSize="9dp" />
 
@@ -130,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:paddingVertical="44dp"
-                        android:text="Rp 25.542.000,-"
+                        android:text="Rp 0,-"
                         android:textColor="@color/black"
                         android:textAlignment="center"
                         android:textSize="18dp" />
@@ -156,7 +156,7 @@
                     android:layout_marginLeft="253dp"
                     android:layout_marginTop="43dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Rp 30.542.000,-"
+                    android:text="Rp 0,-"
                     android:textColor="@color/black"
                     android:textSize="12dp" />
 
@@ -177,7 +177,7 @@
                     android:layout_marginLeft="253dp"
                     android:layout_marginTop="78dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Rp 30.542.000,-"
+                    android:text="Rp 0,-"
                     android:textColor="@color/black"
                     android:textSize="12dp" />
 
@@ -203,57 +203,73 @@
             android:background="@drawable/radius_aktifitas"
             android:gravity="center_horizontal">
 
-            <RelativeLayout
-                android:id="@+id/button_produk"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_marginRight="22dp">
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/button_produk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_produk"
-                    android:layout_marginHorizontal="19dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="25dp"/>
+                    android:background="@drawable/button_menu"
+                    >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textSize="9dp"
-                    android:text="@string/produk"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="72dp"
-                    android:layout_marginBottom="4dp"/>
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_produk"
+                        android:layout_marginHorizontal="19dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="25dp"/>
 
-            <RelativeLayout
-                android:id="@+id/button_dompet"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="9dp"
+                        android:text="@string/produk"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="72dp"
+                        android:layout_marginBottom="4dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_marginLeft="22dp">
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/button_dompet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_dompet"
-                    android:layout_marginHorizontal="19dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="25dp"/>
+                    android:background="@drawable/button_menu"
+                    >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textSize="9dp"
-                    android:text="@string/dompet"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="72dp"
-                    android:layout_marginBottom="4dp"/>
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_dompet"
+                        android:layout_marginHorizontal="19dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="25dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="9dp"
+                        android:text="@string/dompet"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="72dp"
+                        android:layout_marginBottom="4dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
