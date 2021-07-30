@@ -167,7 +167,7 @@ public class Fragment_put_produk extends Fragment {
                         }
 
                         ArrayAdapter<String> adapterNama = new ArrayAdapter<String>
-                                (getContext(), android.R.layout.select_dialog_item, nama_nama);
+                                (getContext(), R.layout.layout_item_autocomplete, R.id.search, nama_nama);
                         mCariProduk.setAdapter(adapterNama);
                         mCariProduk.setThreshold(1);//will start working from first character
 

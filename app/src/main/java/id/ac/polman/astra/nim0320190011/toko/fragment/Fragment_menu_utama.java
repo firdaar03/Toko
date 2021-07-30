@@ -28,8 +28,10 @@ import java.util.List;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
@@ -43,6 +45,7 @@ public class Fragment_menu_utama extends Fragment
     private Toko dataToko;
     private Dompet dataDompet;
     private List<Produk> dataProduk;
+    private List<Dompet_aktivitas> mDompetAktivitas;
     private PictureUtils mPictureUtils;
 
     private RelativeLayout mButtonProduk;
@@ -61,6 +64,7 @@ public class Fragment_menu_utama extends Fragment
     private Toko_view_model mTokoViewModel;
     private Dompet_view_model mDompetViewModel;
     private Produk_view_model mProdukViewModel;
+    private Aktivitas_dompet_view_model mAktivitasDompetViewModel;
 
     public Toko_view_model getTokoViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
@@ -80,7 +84,6 @@ public class Fragment_menu_utama extends Fragment
         Log.i(TAG, "getTokoViewModelList: called 2");
         return mDompetViewModel;
     }
-
     public Produk_view_model getProdukViewModel(){
         Log.i(TAG, "getProdukViewModelList: called");
         if(mProdukViewModel == null){
@@ -89,6 +92,15 @@ public class Fragment_menu_utama extends Fragment
         }
         Log.i(TAG, "getProdukViewModelList: called 2");
         return mProdukViewModel;
+    }
+    public Aktivitas_dompet_view_model getAktivitasDompetViewModel(){
+        Log.i(TAG, "getTokoViewModelList: called");
+        if(mAktivitasDompetViewModel == null){
+            mAktivitasDompetViewModel = new ViewModelProvider(this)
+                    .get(Aktivitas_dompet_view_model.class);
+        }
+        Log.i(TAG, "getTokoViewModelList: called 2");
+        return mAktivitasDompetViewModel;
     }
 
     public static Fragment_menu_utama newInstance(Toko model) {
@@ -105,9 +117,14 @@ public class Fragment_menu_utama extends Fragment
         mTokoViewModel = getTokoViewModel();
         mDompetViewModel = getDompetViewModel();
         mProdukViewModel = getProdukViewModel();
+        mAktivitasDompetViewModel = getAktivitasDompetViewModel();
+
         mPictureUtils = new PictureUtils();
+
+
         dataDompet = new Dompet();
         dataProduk = new ArrayList<>();
+        mDompetAktivitas = new ArrayList<>();
     }
 
     @Nullable
@@ -165,9 +182,33 @@ public class Fragment_menu_utama extends Fragment
         }catch (Exception e){
             Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
         }
+
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
         mTotalDompet.setText("Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
         mJumlahProduk.setText(dataProduk.size() + "");
+
+//        Hitung total aset
+        long uang = 0;
+        for(Produk p : dataProduk){
+            uang += p.getHarga() * p.getJumlah();
+        }
+        mJumlahUang.setText("Rp " + String.format("%,d", uang).replace(',', '.') + ",-");
+
+//        Hitung pemasukkan dan pengeluaran
+        long pemasukkan = 0;
+        long pengeluaran = 0;
+        for(Dompet_aktivitas d : mDompetAktivitas){
+            switch (d.getKode_akt()){
+                case 1 :
+                    pemasukkan += d.getJumlah();
+                    break;
+                case 2 :
+                    pengeluaran += d.getJumlah();
+                    break;
+            }
+        }
+        mPemasukkan.setText("Rp " + String.format("%,d", pemasukkan).replace(',', '.') + ",-");
+        mPengeluaran.setText("Rp " + String.format("%,d", pengeluaran).replace(',', '.') + ",-");
     }
 
     @Override
@@ -195,7 +236,18 @@ public class Fragment_menu_utama extends Fragment
                         dataProduk = produks;
                         Log.i(TAG, "Got Produk: " + produks.size());
                         updateUI();
+                    }
+                }
+        );
 
+//        UPDATE PEMASUKKAN
+        mAktivitasDompetViewModel.getAktivitasByIdToko(dataToko.getIdToko()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Dompet_aktivitas>>() {
+                    @Override
+                    public void onChanged(List<Dompet_aktivitas> aktivitas) {
+                        mDompetAktivitas = aktivitas;
+                        updateUI();
                     }
                 }
         );
