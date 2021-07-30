@@ -69,26 +69,27 @@
 
                 <RelativeLayout
                     android:id="@+id/dalam_kasir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_asset">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_asset"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/total_dompet"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/poppins_medium"
-                        android:paddingVertical="44dp"
                         android:text="Rp 0,-"
-                        android:textColor="@color/black"
                         android:textAlignment="center"
+                        android:textColor="@color/black"
                         android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="66dp"
+                        android:layout_below="@+id/total_dompet"
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/dalam_kasir"
                         android:textColor="@color/secondary"
