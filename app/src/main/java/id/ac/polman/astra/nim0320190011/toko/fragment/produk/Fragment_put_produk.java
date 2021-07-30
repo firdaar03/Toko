@@ -36,6 +36,7 @@ import java.util.List;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
@@ -276,26 +277,42 @@ public class Fragment_put_produk extends Fragment {
         mDiambil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
+                produk_aktivitas.setJumlah(hargaTotal);
+                produk_aktivitas.setCreaby(dataToko.getEmail());
+                produk_aktivitas.setKeterangan("karena rusak atau dicuri dan sebagainya");
+                mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 
                 for(Produk x : mPutProdukList){
                     Log.i(TAG, "onClick: id " + x.getIdProduk());
-                    Produk produk = new Produk();
-                    produk.setIdProduk(x.getIdProduk());
-                    produk.setCreaby(dataToko.getEmail());
-                    produk.setJumlah(Integer.valueOf(x.getJumlah()));
-                    produk.setModiby(x.getNama().toString());
-                    mProdukViewModel.ambil_produk(produk);
-                }
 
+                    mProdukViewModel.ambil_produk(x);
+                }
+                Toast.makeText(getContext(), "Add Ambil Produk !",
+                        Toast.LENGTH_SHORT).show();
+                getFragmentManager().popBackStack();
             }
+
         });
 
         mTerjual = (Button) v.findViewById(R.id.btn_terjual);
         mTerjual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
+                produk_aktivitas.setJumlah(hargaTotal);
+                produk_aktivitas.setCreaby(dataToko.getEmail());
+                produk_aktivitas.setKeterangan("produk_dijual");
+                mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 
+                for(Produk x : mPutProdukList){
+                    Log.i(TAG, "onClick: id " + x.getIdProduk());
+
+                    mProdukViewModel.ambil_produk(x);
+                }
+                Toast.makeText(getContext(), "Add Jual Produk !",
+                        Toast.LENGTH_SHORT).show();
+                getFragmentManager().popBackStack();
             }
         });
 

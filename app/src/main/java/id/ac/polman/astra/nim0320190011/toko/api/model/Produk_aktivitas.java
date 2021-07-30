@@ -7,7 +7,6 @@ public class Produk_aktivitas {
     @PrimaryKey
     @NonNull
     private int idAkt;
-    private int idProduk;
     private int kode_akt;
     private int jumlah;
     private String keterangan;
@@ -17,9 +16,8 @@ public class Produk_aktivitas {
     public Produk_aktivitas() {
     }
 
-    public Produk_aktivitas(int idAkt, int idProduk, int kode_akt, int jumlah, String keterangan, String creaby, String creadate) {
+    public Produk_aktivitas(int idAkt, int kode_akt, int jumlah, String keterangan, String creaby, String creadate) {
         this.idAkt = idAkt;
-        this.idProduk = idProduk;
         this.kode_akt = kode_akt;
         this.jumlah = jumlah;
         this.keterangan = keterangan;
@@ -33,14 +31,6 @@ public class Produk_aktivitas {
 
     public void setIdAkt(int idAkt) {
         this.idAkt = idAkt;
-    }
-
-    public int getIdProduk() {
-        return idProduk;
-    }
-
-    public void setIdProduk(int idProduk) {
-        this.idProduk = idProduk;
     }
 
     public int getKode_akt() {

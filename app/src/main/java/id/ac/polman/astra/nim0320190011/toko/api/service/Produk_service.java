@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -31,6 +32,9 @@ public interface Produk_service {
 
     @DELETE("produk")
     Call<Produk> deleteProdukById(@Query("id") String id);
+
+    @PUT("ambil_aktivitas_produk")
+    Call<Produk_aktivitas> trAmbilAktivitasProduk(@Body Produk_aktivitas p);
 
     @PUT("ambil_produk")
     Call<Produk> ambilProduk(@Body Produk p);

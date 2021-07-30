@@ -12,6 +12,7 @@ import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.api.ApiUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.service.Produk_service;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -165,8 +166,26 @@ public class Produk_repository {
         });
     }
 
+    public void aktivitas_ambil_produk(Produk_aktivitas p){
+        Log.i(TAG, "ambil_produk: call" + p.getIdAkt());
+        Call<Produk_aktivitas> call = mProduk_service.trAmbilAktivitasProduk(p);
+        call.enqueue(new Callback<Produk_aktivitas>() {
+            @Override
+            public void onResponse(Call<Produk_aktivitas> call, Response<Produk_aktivitas> response) {
+                if(response.isSuccessful()){
+                    Log.i(TAG, "onResponse: Telah masuk " + p.getIdAkt());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Produk_aktivitas> call, Throwable t) {
+                Log.e(TAG, "onFailure: aktivitasAmbilProduk",t );
+            }
+        });
+    }
+
     public void ambil_produk(Produk p){
-        Log.i(TAG, "ambil_produk: call" + p.getIdProduk());
+        Log.i(TAG, "ambil_produk: call " + p.getIdProduk());
         Call<Produk> call = mProduk_service.ambilProduk(p);
         call.enqueue(new Callback<Produk>() {
             @Override

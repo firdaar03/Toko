@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.repository.Produk_repository;
 
 public class Produk_view_model extends ViewModel {
@@ -60,6 +61,10 @@ public class Produk_view_model extends ViewModel {
 
     public void delete(String id){
         mProduk_repository.deleteProduk(id);
+    }
+
+    public void trAmbilAktivitasProduk(Produk_aktivitas p){
+        mProduk_repository.aktivitas_ambil_produk(p);
     }
 
     public void ambil_produk(Produk p){
