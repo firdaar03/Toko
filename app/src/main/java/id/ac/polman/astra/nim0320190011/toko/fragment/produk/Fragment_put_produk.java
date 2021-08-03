@@ -223,41 +223,6 @@ public class Fragment_put_produk extends Fragment {
                             mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
                             mJumlahTotal.setText(jumlahTotal + "");
 
-//                  JUMLAH TOTAL
-//                    if ( !mJumlahTotal.getText().toString().equals("")){
-//                        jumlahTotal = p.getJumlah() + Integer.parseInt(mJumlahTotal.getText().toString());
-//                        mJumlahTotal.setText(jumlahTotal + "");
-//                    } else {
-//                        jumlahTotal = p.getJumlah();
-//                        mJumlahTotal.setText(jumlahTotal + "");
-//                    }
-
-//                    HARGA TOTAL
-
-
-//                    if (!mHargaTotal.getText().toString().equals("")){
-//                        String str = mHargaTotal.getText().toString();
-//                        Log.i(TAG, "substring " + str.substring(0,str.length() - 2));
-//                        String str2 = str.substring(0,str.length() - 2);
-//                        DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-//                        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-//                        formatRp.setCurrencySymbol("Rp. ");
-//                        formatRp.setGroupingSeparator('.');
-//                        format.setDecimalFormatSymbols(formatRp);
-//                        try {
-//                            Number number = format.parse(str2);
-//                            hargaTotalParse = number.intValue();
-//                            Log.i(TAG, "substring " + hargaTotalParse);
-//                            hargaTotal = p.getHarga() * p.getJumlah() + hargaTotalParse;
-//
-//                        } catch (ParseException ex) {
-//                            Log.i(TAG,"Kesalahan Parsing");
-//                        }
-//
-//                    } else {
-//                        hargaTotal = p.getHarga() * p.getJumlah();
-//                        mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
-//                    }
 
                             mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
                             mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
@@ -280,6 +245,7 @@ public class Fragment_put_produk extends Fragment {
                 Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
+                produk_aktivitas.setKode_akt(0);
                 produk_aktivitas.setKeterangan("karena rusak atau dicuri dan sebagainya");
                 mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 
@@ -303,6 +269,7 @@ public class Fragment_put_produk extends Fragment {
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
                 produk_aktivitas.setKeterangan("produk_dijual");
+                produk_aktivitas.setKode_akt(1);
                 mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 
                 for(Produk x : mPutProdukList){

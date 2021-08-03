@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:id="@+id/item_aktivitas">
 
         <ImageView
             android:layout_width="25dp"
@@ -31,6 +32,16 @@
             android:textColor="@color/black"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="3dp"/>
+
+        <TextView
+            android:id="@+id/jumlah_nominal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="11dp"
+            android:textColor="@color/secondary"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="17dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

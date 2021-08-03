@@ -1,5 +1,8 @@
 package id.ac.polman.astra.nim0320190011.toko.api.viewmodel;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,7 +27,9 @@ public class Aktivitas_produk_view_model extends ViewModel {
         return mProdukAktivitasLiveData;
     }
 
+    @SuppressLint("LongLogTag")
     public LiveData<List<Produk_aktivitas>> getAktivitasByIdToko(int id){
+        Log.i(TAG, "onClick: id " + id);
         mAktivitasListData = mAktivitasProdukRepository.getAktivitasByIdToko(id);
         return mAktivitasListData;
     }

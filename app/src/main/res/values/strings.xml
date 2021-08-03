@@ -53,6 +53,10 @@
     <string name="cari_produk">cari produk ...</string>
     <string name="aktifitas_produk">Aktifitas produk</string>
 
+<!--    AKTIVITAS PRODUK-->
+    <string name="penjualan">Penjualan</string>
+    <string name="pengambilan">Pengambilan</string>
+
     <!--    DOMPET  -->
     <string name="dompet_saya">DOMPET SAYA</string>
     <string name="dalam_kasir">DALAM KASIR</string>

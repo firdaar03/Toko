@@ -36,6 +36,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
 
 public class Fragment_menu_utama extends Fragment
@@ -59,6 +60,7 @@ public class Fragment_menu_utama extends Fragment
     private TextView mTotalDompet;
     private TextView mPemasukkan;
     private TextView mPengeluaran;
+    private RelativeLayout mAktivitasProduk;
 
 
     private Toko_view_model mTokoViewModel;
@@ -169,6 +171,19 @@ public class Fragment_menu_utama extends Fragment
             @Override
             public void onClick(View v) {
                 mCallbacks.onDompetButtonClicked();
+            }
+        });
+
+        mAktivitasProduk = v.findViewById(R.id.aktivitas_produk);
+        mAktivitasProduk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment_produk_aktivitas fragment = Fragment_produk_aktivitas.newInstance(dataToko);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
             }
         });
 
