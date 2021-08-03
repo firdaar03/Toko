@@ -77,4 +77,8 @@ public class Dompet_view_model extends ViewModel {
     public void kosongkan(Dompet p){
         mDompet_repository.kosongkan(p);
     }
+
+    public void penjualan(Dompet p){
+        mDompet_repository.penjualan(p);
+    }
 }

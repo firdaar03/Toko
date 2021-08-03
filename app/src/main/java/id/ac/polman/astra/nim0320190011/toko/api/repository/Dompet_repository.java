@@ -199,4 +199,25 @@ public class Dompet_repository {
         });
     }
 
+    public void penjualan(Dompet dompet){
+        Log.i(TAG, "kosongkan: ");
+        Call<Dompet> call = mDompet_service.penjualanDompet(dompet);
+        call.enqueue(new Callback<Dompet>() {
+            @Override
+            public void onResponse(Call<Dompet> call, Response<Dompet> response) {
+                if(response.isSuccessful()){
+                    Log.i(TAG, "onResponse: Success perbarui");
+                }else{
+                    Log.e(TAG, "onResponse: Gagal perbarui");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Dompet> call, Throwable t) {
+                Log.e(TAG, "onFailure: gagal perbaruui", t);
+            }
+        });
+    }
+
+
 }

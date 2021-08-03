@@ -182,6 +182,9 @@ public class Fragment_dompet_aktivitas extends Fragment {
                 case 4 :
                     mKeterangan.setText(R.string.kosong_kasir);
                     break;
+                case 5 :
+                    mKeterangan.setText(R.string.penjualan);
+                    break;
             }
             mNominal.setText("Rp " + String.format("%,d", aktivitas.getJumlah()).replace(',', '.') + ",-");
 

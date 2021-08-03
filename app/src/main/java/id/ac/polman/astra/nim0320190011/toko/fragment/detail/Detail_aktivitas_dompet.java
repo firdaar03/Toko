@@ -74,10 +74,22 @@ public class Detail_aktivitas_dompet extends DialogFragment {
 
     private void updateUI(){
 
-        if(mAktivitas.getIdAkt() == 0){
-            mKeteranganAktivitas.setText(getText(R.string.uang_masuk));
-        }else{
-            mKeteranganAktivitas.setText(getText(R.string.uang_keluar));
+        switch (mAktivitas.getKode_akt()){
+            case 1 :
+                mKeteranganAktivitas.setText(R.string.uang_masuk);
+                break;
+            case 2 :
+                mKeteranganAktivitas.setText(R.string.uang_keluar);
+                break;
+            case 3 :
+                mKeteranganAktivitas.setText(R.string.perubahan_kasir);
+                break;
+            case 4 :
+                mKeteranganAktivitas.setText(R.string.kosong_kasir);
+                break;
+            case 5 :
+                mKeteranganAktivitas.setText(R.string.penjualan);
+                break;
         }
         mWaktu.setText(mAktivitas.getCreadate().substring(11,16) + " WIB");
         mTanggal.setText(mAktivitas.getCreadate().substring(0,10));

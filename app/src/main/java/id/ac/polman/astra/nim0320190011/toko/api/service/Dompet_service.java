@@ -35,4 +35,7 @@ public interface Dompet_service {
 
     @PUT("dompet_kosongkan")
     Call<Dompet> kosongkanDompet(@Body Dompet p);
+
+    @PUT("dompet_penjualan")
+    Call<Dompet> penjualanDompet(@Body Dompet p);
 }

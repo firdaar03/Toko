@@ -35,10 +35,12 @@ import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_produk_view_model;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 
 public class Fragment_put_produk extends Fragment {
@@ -61,6 +63,8 @@ public class Fragment_put_produk extends Fragment {
 
     private Produk_view_model mProdukViewModel;
     private Aktivitas_produk_view_model mAktivitasProdukViewModel;
+    private Dompet_view_model mDompetViewModel;
+
     private Produk mProduk;
     private Toko dataToko;
     private List<Produk> mProdukList;
@@ -81,6 +85,15 @@ public class Fragment_put_produk extends Fragment {
         }
         Log.i(TAG, "getProdukViewModelList: called 2");
         return mProdukViewModel;
+    }
+
+    public Dompet_view_model getDompetViewModel(){
+        Log.i(TAG, "getDompetViewModel: ");
+        if(mDompetViewModel == null){
+            mDompetViewModel = new ViewModelProvider(this)
+                    .get(Dompet_view_model.class);
+        }
+        return mDompetViewModel;
     }
 
     public Aktivitas_produk_view_model getAktivitasProdukViewModel(){
@@ -122,13 +135,15 @@ public class Fragment_put_produk extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreate: called");
         super.onCreate(savedInstanceState);
+        mProdukViewModel = getProdukViewModel();
+        mAktivitasProdukViewModel = getAktivitasProdukViewModel();
+        mDompetViewModel = getDompetViewModel();
 
         mProdukList = new ArrayList<>();
-        mProdukViewModel = getProdukViewModel();
-        mPictureUtils = new PictureUtils();
         mPutProdukAdapter = new PutProdukAdapter(new ArrayList<>());
         mPutProdukList = new ArrayList<>();
-        mAktivitasProdukViewModel = getAktivitasProdukViewModel();
+
+        mPictureUtils = new PictureUtils();
     }
 
     @Nullable
@@ -272,11 +287,25 @@ public class Fragment_put_produk extends Fragment {
                 produk_aktivitas.setKode_akt(1);
                 mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 
+                Dompet dompet = new Dompet();
+                dompet.setCreaby(dataToko.getEmail());
+                dompet.setIdToko(dataToko.getIdToko());
+                dompet.setUang(Integer.valueOf(hargaTotal));
+                String keterangan = "Penjualan produk : ";
+
                 for(Produk x : mPutProdukList){
                     Log.i(TAG, "onClick: id " + x.getIdProduk());
-
+                    if(keterangan.equals("Penjualan produk : ")){
+                        keterangan += x.getJumlah() + " x " + x.getNama();
+                    }else{
+                        keterangan += ", " + x.getJumlah() + " x " + x.getNama();
+                    }
                     mProdukViewModel.ambil_produk(x);
                 }
+                dompet.setModiby(keterangan);
+
+                mDompetViewModel.penjualan(dompet);
+
                 Toast.makeText(getContext(), "Add Jual Produk !",
                         Toast.LENGTH_SHORT).show();
                 getFragmentManager().popBackStack();
