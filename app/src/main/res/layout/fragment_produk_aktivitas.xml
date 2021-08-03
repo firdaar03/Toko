@@ -38,7 +38,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/utama_muda"
+        android:background="@drawable/bg_utama_hijau"
         android:paddingVertical="13dp">
 
         <RelativeLayout

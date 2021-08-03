@@ -85,7 +85,6 @@ public class Fragment_produk_aktivitas extends Fragment {
 
         mRecyclerView = v.findViewById(R.id.aktivitas_produk_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(mAktivitasProdukAdapter);
 
         mTanggal1View = v.findViewById(R.id.search_tanggal1_view);
         mTanggal2View = v.findViewById(R.id.search_tanggal2_view);
@@ -139,8 +138,8 @@ public class Fragment_produk_aktivitas extends Fragment {
 
             mKeterangan = itemView.findViewById(R.id.keterangan_aktivitas_produk);
             mJumlah = itemView.findViewById(R.id.jumlah_nominal);
-            mJam = itemView.findViewById(R.id.jam_aktivitas_dompet);
-            mTanggal = itemView.findViewById(R.id.tanggal_aktivitas_dompet);
+            mJam = itemView.findViewById(R.id.jam_aktivitas_produk);
+            mTanggal = itemView.findViewById(R.id.tanggal_aktivitas_produk);
             mItemAktivitas = itemView.findViewById(R.id.item_aktivitas);
         }
 
