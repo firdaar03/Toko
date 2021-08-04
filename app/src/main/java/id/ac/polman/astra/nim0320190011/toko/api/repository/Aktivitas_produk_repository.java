@@ -27,9 +27,6 @@ public class Aktivitas_produk_repository {
     public Aktivitas_produk_repository(Context context){
         Log.i(TAG, "initialize: Called");
         mProduk_aktivitas_service = ApiUtils.getProdukAktivitasService();
-//        if(INSTANCE == null){
-//            INSTANCE = new Aktivitas_produk_repository(context);
-//        }
     }
 
     @SuppressLint("LongLogTag")

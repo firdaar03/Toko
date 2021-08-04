@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,8 @@ import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_produk_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_dompet;
+import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_produk;
 
 public class Fragment_produk_aktivitas extends Fragment {
     private static final String TAG = "Fragment_produk_aktivitas";
@@ -165,6 +168,9 @@ public class Fragment_produk_aktivitas extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Log.i(TAG, "Detail: ");
+                            Detail_aktivitas_produk fragment = Detail_aktivitas_produk.newInstance(aktivitas);
+                            FragmentManager fm = getFragmentManager();
+                            fragment.show(fm,"Fragment Detail_aktivitas_produk");
                         }
                     }
             );
