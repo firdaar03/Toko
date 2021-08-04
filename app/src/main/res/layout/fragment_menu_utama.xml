@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
@@ -8,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 <!--        header -->
@@ -302,114 +303,24 @@
                     android:background="@color/black"/>
             </RelativeLayout>
 
-            <!--        <androidx.recyclerview.widget.RecyclerView-->
-            <!--            android:id="@+id/aktivitas_fragment_list"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content">-->
-            <!--        </androidx.recyclerview.widget.RecyclerView>-->
-            <RelativeLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/dialog_holo_light_frame"
-                android:paddingVertical="10dp"
-                android:paddingHorizontal="10dp">
+                android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_produk"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="5dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Penjualan"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="3dp"/>
+                    android:id="@+id/aktivitas_produk_recycler_view"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginRight="6dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="13:25 WIB"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="31/05/2021"/>
-                </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/dialog_holo_light_frame"
-                android:paddingVertical="10dp"
-                android:paddingHorizontal="10dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_produk"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="5dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Penjualan"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="3dp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginRight="6dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="13:25 WIB"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="31/05/2021"/>
-                </LinearLayout>
-            </RelativeLayout>
+            </ScrollView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/radius_aktifitas"
-            android:layout_marginTop="8dp"
+            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="7dp"
             android:orientation="vertical">
 
@@ -434,128 +345,18 @@
                     android:background="@color/black"/>
             </RelativeLayout>
 
-            <!--        <androidx.recyclerview.widget.RecyclerView-->
-            <!--            android:id="@+id/aktivitas_fragment_list"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content">-->
-            <!--        </androidx.recyclerview.widget.RecyclerView>-->
-            <RelativeLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/dialog_holo_light_frame"
-                android:paddingVertical="10dp"
-                android:paddingHorizontal="10dp">
+                android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_dompet"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="5dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Uang Keluar"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="3dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rp 300.000,-"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"
-                    android:textColor="@color/secondary"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="17dp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginRight="6dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="13:25 WIB"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="31/05/2021"/>
-                </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/dialog_holo_light_frame"
-                android:paddingVertical="10dp"
-                android:paddingHorizontal="10dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_dompet"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="5dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Uang Masuk"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="3dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rp 450.000,-"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"
-                    android:textColor="@color/secondary"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="17dp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginRight="6dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="13:25 WIB"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8dp"
-                        android:text="31/05/2021"/>
-                </LinearLayout>
-            </RelativeLayout>
+                    android:id="@+id/aktivitas_dompet_recycler_view"/>
+            </ScrollView>
         </LinearLayout>
+
     </LinearLayout>
 
 
