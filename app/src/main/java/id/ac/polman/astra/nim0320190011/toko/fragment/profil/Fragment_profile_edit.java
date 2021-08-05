@@ -473,4 +473,9 @@ public class Fragment_profile_edit extends Fragment
         String newDate = formatter.format(date);
         mTanggalLahir.setText(newDate);
     }
+
+    @Override
+    public void onDateSelected(Date date, int key) {
+
+    }
 }

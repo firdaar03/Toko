@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
@@ -39,13 +42,19 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_dompet_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.DatePickerFragment;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.profil.Fragment_profile_edit;
 
-public class Fragment_dompet_aktivitas extends Fragment {
+public class Fragment_dompet_aktivitas extends Fragment
+    implements DatePickerFragment.Callbacks {
     private static final String TAG = "Fragment_dompet_aktivitas";
+    private static final String DIALOG_DATE = "DialogDate";
+
+    private static final int REQUEST_DATE = 0;
 
     private RecyclerView mRecyclerView;
     private AktivitasDompetAdapter mAktivitasDompetAdapter;
@@ -58,6 +67,8 @@ public class Fragment_dompet_aktivitas extends Fragment {
     private TextView mTanggal2View;
 
     private Aktivitas_dompet_view_model mAktivitasDompetViewModel;
+
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public static Fragment_dompet_aktivitas newInstance(Toko in){
         return new Fragment_dompet_aktivitas(in);
@@ -104,15 +115,31 @@ public class Fragment_dompet_aktivitas extends Fragment {
         mRecyclerView = v.findViewById(R.id.aktivitas_dompet_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAktivitasDompetAdapter);
-        
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
         mTanggal1View = v.findViewById(R.id.search_tanggal1_view);
+        mTanggal1View.setText(formatter.format(cal.getTime()));
+
         mTanggal2View = v.findViewById(R.id.search_tanggal2_view);
+        mTanggal2View.setText(formatter.format(new Date()));
         
         mTanggal1Button = v.findViewById(R.id.search_tanggal1);
         mTanggal1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Apakakek");
+                Date date = new Date();
+                try {
+                    date = formatter.parse(mTanggal1View.getText().toString());
+                }catch (Exception e){
+
+                }
+                FragmentManager manager = getParentFragmentManager();
+                //DatePickerFragment dialog = new DatePickerFragment();
+                DatePickerFragment dialog =
+                        DatePickerFragment.newInstance(date, 1);
+                dialog.setTargetFragment(Fragment_dompet_aktivitas.this,REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
             }
         });
         
@@ -120,7 +147,18 @@ public class Fragment_dompet_aktivitas extends Fragment {
         mTanggal2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Apakek");
+                Date date = new Date();
+                try {
+                    date = formatter.parse(mTanggal2View.getText().toString());
+                }catch (Exception e){
+
+                }
+                FragmentManager manager = getParentFragmentManager();
+                //DatePickerFragment dialog = new DatePickerFragment();
+                DatePickerFragment dialog =
+                        DatePickerFragment.newInstance(date, 2);
+                dialog.setTargetFragment(Fragment_dompet_aktivitas.this,REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
             }
         });
 
@@ -133,15 +171,50 @@ public class Fragment_dompet_aktivitas extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated: ");
 
-        mAktivitasDompetViewModel.getAktivitasByIdToko(dataToko.getIdToko()).observe(
-                getViewLifecycleOwner(), new Observer<List<Dompet_aktivitas>>() {
-                    @Override
-                    public void onChanged(List<Dompet_aktivitas> aktivitas) {
-                        mDompetAktivitasList = aktivitas;
-                        updateUI();
-                    }
+        refresh();
+    }
+
+    public void refresh(){
+        mAktivitasDompetViewModel.getAktivitasByIdToko(dataToko.getIdToko(), mTanggal1View.getText().toString(), mTanggal2View.getText().toString())
+                .observe(
+                        getViewLifecycleOwner(), new Observer<List<Dompet_aktivitas>>() {
+                            @Override
+                            public void onChanged(List<Dompet_aktivitas> aktivitas) {
+                                mDompetAktivitasList = aktivitas;
+                                updateUI();
+                            }
+                        }
+                );
+    }
+
+    @Override
+    public void onDateSelected(Date date) {
+
+    }
+
+    @Override
+    public void onDateSelected(Date date, int key) {
+        try{
+            if(key == 1){
+                if(date.compareTo(formatter.parse(mTanggal2View.getText().toString())) <= 0){
+                    mTanggal1View.setText(formatter.format(date));
+                }else{
+                    Toast.makeText(getContext(), "Pengisian field tidak tepat", Toast.LENGTH_SHORT)
+                            .show();
                 }
-        );
+            }else{
+                if(date.compareTo(formatter.parse(mTanggal1View.getText().toString())) >= 0){
+                    mTanggal2View.setText(formatter.format(date));
+                }else {
+                    Toast.makeText(getContext(), "Pengisian field tidak tepat", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        }catch (Exception e){
+
+        }
+
+        refresh();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
