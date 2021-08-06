@@ -290,7 +290,7 @@ public class Fragment_put_produk extends Fragment {
                 Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
-                produk_aktivitas.setKeterangan("produk_dijual");
+                produk_aktivitas.setKeterangan("produk diijual");
                 produk_aktivitas.setKode_akt(1);
                 mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 

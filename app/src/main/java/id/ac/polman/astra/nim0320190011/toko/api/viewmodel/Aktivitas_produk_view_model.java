@@ -33,4 +33,11 @@ public class Aktivitas_produk_view_model extends ViewModel {
         mAktivitasListData = mAktivitasProdukRepository.getAktivitasByIdToko(id);
         return mAktivitasListData;
     }
+
+    @SuppressLint("LongLogTag")
+    public LiveData<List<Produk_aktivitas>> getAktivitasByIdTokoandTanggal(int id, String tanggal1, String tanggal2){
+        Log.i(TAG, "onClick: id " + id);
+        mAktivitasListData = mAktivitasProdukRepository.getAktByIdAndTanggal(id, tanggal1, tanggal2);
+        return mAktivitasListData;
+    }
 }

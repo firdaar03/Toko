@@ -13,4 +13,9 @@ public interface Produk_aktivitas_service {
 
     @GET("aktivitas_produks")
     Call<List<Produk_aktivitas>> getAkivitasByidToko(@Query("id") int id);
+
+    @GET("aktivitas_produks_filter")
+    Call<List<Produk_aktivitas>> getAkivitasByidAndTanggal(@Query("id") int id,
+                                                               @Query("tanggal1") String tanggal1,
+                                                               @Query("tanggal2") String tanggal2);
 }

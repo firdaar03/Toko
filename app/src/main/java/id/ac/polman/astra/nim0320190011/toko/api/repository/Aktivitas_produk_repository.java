@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
@@ -92,6 +93,31 @@ public class Aktivitas_produk_repository {
             }
         });
 
+        return output;
+    }
+
+    @SuppressLint("LongLogTag")
+    public LiveData<List<Produk_aktivitas>> getAktByIdAndTanggal(int id, String tanggal1, String tanggal2){
+        Log.i(TAG, "getAktivitasTgl: ");
+        MutableLiveData<List<Produk_aktivitas>> output = new MutableLiveData<>();
+
+        Call<List<Produk_aktivitas>> call = mProduk_aktivitas_service.getAkivitasByidAndTanggal(id, tanggal1, tanggal2);
+        call.enqueue(new Callback<List<Produk_aktivitas>>() {
+            @Override
+            public void onResponse(Call<List<Produk_aktivitas>> call, Response<List<Produk_aktivitas>> response) {
+                if(response.isSuccessful()){
+                    Log.e(TAG, "onResponse: " + new Gson().toJson(response.body()));
+                    output.setValue(response.body());
+                }else{
+                    Log.e(TAG, "onResponse: ERROR");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Produk_aktivitas>> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+            }
+        });
         return output;
     }
 }

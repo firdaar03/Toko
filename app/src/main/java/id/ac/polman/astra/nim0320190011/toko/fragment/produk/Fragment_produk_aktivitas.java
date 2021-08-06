@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,18 +21,28 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_produk_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.DatePickerFragment;
 import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet_aktivitas;
 
-public class Fragment_produk_aktivitas extends Fragment {
+public class Fragment_produk_aktivitas extends Fragment
+        implements DatePickerFragment.Callbacks {
     private static final String TAG = "Fragment_produk_aktivitas";
+    private static final String DIALOG_DATE = "DialogDate";
+
+    private static final int REQUEST_DATE = 0;
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     private RecyclerView mRecyclerView;
     private List<Produk_aktivitas> mProdukAktivitasList;
@@ -89,14 +100,29 @@ public class Fragment_produk_aktivitas extends Fragment {
         mRecyclerView = v.findViewById(R.id.aktivitas_produk_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
         mTanggal1View = v.findViewById(R.id.search_tanggal1_view);
+        mTanggal1View.setText(formatter.format(cal.getTime()));
+
         mTanggal2View = v.findViewById(R.id.search_tanggal2_view);
+        mTanggal2View.setText(formatter.format(new Date()));
 
         mTanggal1Button = v.findViewById(R.id.search_tanggal1);
         mTanggal1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Coba");
+                Date date = new Date();
+                try {
+                    date = formatter.parse(mTanggal1View.getText().toString());
+                }catch (Exception e){
+
+                }
+                FragmentManager manager = getParentFragmentManager();
+                DatePickerFragment dialog =
+                        DatePickerFragment.newInstance(date, 1);
+                dialog.setTargetFragment(Fragment_produk_aktivitas.this,REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
             }
         });
 
@@ -104,7 +130,17 @@ public class Fragment_produk_aktivitas extends Fragment {
         mTanggal2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Coba2");
+                Date date = new Date();
+                try {
+                    date = formatter.parse(mTanggal2View.getText().toString());
+                }catch (Exception e){
+
+                }
+                FragmentManager manager = getParentFragmentManager();
+                DatePickerFragment dialog =
+                        DatePickerFragment.newInstance(date, 2);
+                dialog.setTargetFragment(Fragment_produk_aktivitas.this,REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
             }
         });
 
@@ -118,15 +154,47 @@ public class Fragment_produk_aktivitas extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated: ");
 
-        mAktivitasProdukViewModel.getAktivitasByIdToko(dataToko.getIdToko()).observe(
-                getViewLifecycleOwner(), new Observer<List<Produk_aktivitas>>() {
+        refresh();
+    }
+
+    public void refresh(){
+        mAktivitasProdukViewModel.getAktivitasByIdTokoandTanggal(dataToko.getIdToko(), mTanggal1View.getText().toString(), mTanggal2View.getText().toString())
+                .observe(getViewLifecycleOwner(), new Observer<List<Produk_aktivitas>>() {
                     @Override
-                    public void onChanged(List<Produk_aktivitas> produk_aktivitas) {
-                        mProdukAktivitasList = produk_aktivitas;
+                    public void onChanged(List<Produk_aktivitas> aktivitas) {
+                        mProdukAktivitasList = aktivitas;
                         updateUI();
                     }
+                });
+    }
+
+    @Override
+    public void onDateSelected(Date date) {
+
+    }
+
+    @Override
+    public void onDateSelected(Date date, int key) {
+        try{
+            if(key == 1){
+                if(date.compareTo(formatter.parse(mTanggal2View.getText().toString())) <= 0){
+                    mTanggal1View.setText(formatter.format(date));
+                }else{
+                    Toast.makeText(getContext(), "Pengisian field tidak tepat", Toast.LENGTH_SHORT)
+                            .show();
                 }
-        );
+            }else{
+                if(date.compareTo(formatter.parse(mTanggal1View.getText().toString())) >= 0){
+                    mTanggal2View.setText(formatter.format(date));
+                }else {
+                    Toast.makeText(getContext(), "Pengisian field tidak tepat", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        }catch (Exception e){
+
+        }
+        refresh();
     }
 
     private class AktivitasProdukHolder extends RecyclerView.ViewHolder{
@@ -216,3 +284,4 @@ public class Fragment_produk_aktivitas extends Fragment {
     }
 
 }
+

@@ -93,6 +93,7 @@ public class Aktivitas_dompet_repository {
         return output;
     }
 
+    @SuppressLint("LongLogTag")
     public LiveData<List<Dompet_aktivitas>> getAktivitasByIdAndTanggalToko(int id, String tanggal1, String tanggal2) {
         Log.i(TAG, "getAktivitas: ");
         MutableLiveData<List<Dompet_aktivitas>> output = new MutableLiveData<>();
