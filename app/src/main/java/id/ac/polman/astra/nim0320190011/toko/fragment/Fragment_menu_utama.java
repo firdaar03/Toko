@@ -268,7 +268,7 @@ public class Fragment_menu_utama extends Fragment
 //        Update aktivitas dompet dengan 5 terbaru
             List<Dompet_aktivitas> limaAktivitasDompet = new ArrayList<>();
             for(int i = 0; i < mDompetAktivitas.size(); i++) {
-                if (i == 5) {
+                if (i == 3) {
                     break;
                 }
                 limaAktivitasDompet.add(mDompetAktivitas.get(i));
@@ -279,7 +279,7 @@ public class Fragment_menu_utama extends Fragment
 //      Update aktivitas produk dengan 5 terbaru
             List<Produk_aktivitas> limaAktiviasProduk = new ArrayList<>();
             for(int i = 0; i < mProdukAktivitas.size(); i++){
-                if(i==5){
+                if(i==3){
                     break;
                 }
                 Log.i(TAG, "updateUI: Perulangan ke " + i + "  " + mProdukAktivitas.get(i).getKeterangan());
