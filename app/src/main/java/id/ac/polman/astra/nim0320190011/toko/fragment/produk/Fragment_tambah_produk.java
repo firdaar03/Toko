@@ -217,15 +217,15 @@ public class Fragment_tambah_produk extends Fragment {
         );
 
         Log.i(TAG, "Fragment_Tambah_Produk.onViewCreated: Called ");
-        mProdukViewModel.getProdukLiveData().observe(
-                getViewLifecycleOwner(), new Observer<Produk>() {
-                    @Override
-                    public void onChanged(Produk produk) {
-                        mProduk = produk;
-                        updateUI();
-                    }
-                }
-        );
+//        mProdukViewModel.getProdukLiveData().observe(
+//                getViewLifecycleOwner(), new Observer<Produk>() {
+//                    @Override
+//                    public void onChanged(Produk produk) {
+//                        mProduk = produk;
+//                        updateUI();
+//                    }
+//                }
+//        );
 //        mProdukViewModel.loadProduk(mProdukId);
     }
 

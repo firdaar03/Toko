@@ -243,6 +243,13 @@ public class Fragment_put_produk extends Fragment {
                             mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
                         }
 
+                        mFotoProduk.setImageResource(0);
+                        mCariProduk.setText("");
+                        mNamaProduk.setText("");
+                        mJumlahProduk.setText("");
+                        mMerkProduk.setText("");
+                        mHargaProduk.setText("");
+                        mJumlah.setText("");
 
                     } else {
                         mJumlah.setError("Jumlah harus diisi");
