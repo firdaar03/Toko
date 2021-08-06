@@ -169,6 +169,7 @@ public class Detail_aktivitas_produk extends DialogFragment {
         private TextView mNamaProduk;
         private TextView mJumlahProduk;
         private TextView mHargaProduk;
+        private TextView mTotalProduk;
         private ConstraintLayout mItemPutProduk;
         private Dt_Produk_aktivitas mDt_produk_aktivitas;
 
@@ -179,6 +180,7 @@ public class Detail_aktivitas_produk extends DialogFragment {
             mJumlahProduk = itemView.findViewById(R.id.jumlah_produk);
             mHargaProduk =  itemView.findViewById(R.id.harga_produk);
             mItemPutProduk = itemView.findViewById(R.id.fragment_item_put_produk);
+            mTotalProduk = itemView.findViewById(R.id.total_produk);
         }
 
         public void bind(Dt_Produk_aktivitas dt){
@@ -189,6 +191,7 @@ public class Detail_aktivitas_produk extends DialogFragment {
             }
             mJumlahProduk.setText(dt.getJumlah() + "");
             mHargaProduk.setText("Rp. " + String.format("%,d", dt.getHarga()).replace(',', '.') + ",-");
+            mTotalProduk.setText("Rp. " + String.format("%,d", (dt.getHarga() * dt.getJumlah())).replace(',', '.') + ",-");
         }
     }
 
