@@ -28,4 +28,9 @@ public class Aktivitas_dompet_view_model extends ViewModel {
         mAktivitasListData = mAktivitasDompetRepository.getAktivitasByIdToko(id);
         return mAktivitasListData;
     }
+    public LiveData<List<Dompet_aktivitas>> getAktivitasByIdToko(
+            int id, String tanggal1, String tanggal2){
+        mAktivitasListData = mAktivitasDompetRepository.getAktivitasByIdAndTanggalToko(id, tanggal1, tanggal2);
+        return mAktivitasListData;
+    }
 }

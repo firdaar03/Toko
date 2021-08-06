@@ -18,4 +18,9 @@ public interface Dompet_aktivitas_service {
 
     @GET("aktivitas_dompets")
     Call<List<Dompet_aktivitas>> getAkivitasByidToko(@Query("id") int id);
+
+    @GET("aktivitas_dompets_tanggal")
+    Call<List<Dompet_aktivitas>> getAkivitasByidAndTanggalToko(@Query("id") int id,
+                                                               @Query("tanggal1") String tanggal1,
+                                                               @Query("tanggal2") String tanggal2);
 }

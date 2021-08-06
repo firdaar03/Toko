@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
@@ -72,6 +73,31 @@ public class Aktivitas_dompet_repository {
         MutableLiveData<List<Dompet_aktivitas>> output = new MutableLiveData<>();
 
         Call<List<Dompet_aktivitas>> call = mDompet_aktivitas_service.getAkivitasByidToko(id);
+        call.enqueue(new Callback<List<Dompet_aktivitas>>() {
+            @Override
+            public void onResponse(Call<List<Dompet_aktivitas>> call, Response<List<Dompet_aktivitas>> response) {
+                if(response.isSuccessful()){
+                    Log.e(TAG, "onResponse: " + new Gson().toJson(response.body()));
+                    output.setValue(response.body());
+                }else{
+                    Log.e(TAG, "onResponse: ERROR MAMANK");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Dompet_aktivitas>> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+            }
+        });
+
+        return output;
+    }
+
+    public LiveData<List<Dompet_aktivitas>> getAktivitasByIdAndTanggalToko(int id, String tanggal1, String tanggal2) {
+        Log.i(TAG, "getAktivitas: ");
+        MutableLiveData<List<Dompet_aktivitas>> output = new MutableLiveData<>();
+
+        Call<List<Dompet_aktivitas>> call = mDompet_aktivitas_service.getAkivitasByidAndTanggalToko(id, tanggal1, tanggal2);
         call.enqueue(new Callback<List<Dompet_aktivitas>>() {
             @Override
             public void onResponse(Call<List<Dompet_aktivitas>> call, Response<List<Dompet_aktivitas>> response) {

@@ -20,11 +20,20 @@ public class DatePickerFragment extends DialogFragment {
 
     public interface Callbacks{
         public void onDateSelected(Date date);
+        public void onDateSelected(Date date, int key);
     }
 
     public static DatePickerFragment newInstance(Date date){
         Bundle args = new Bundle();
         args.putSerializable(ARG_DATE,date);
+        DatePickerFragment fragment = new DatePickerFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+    public static DatePickerFragment newInstance(Date date, int key){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_DATE,date);
+        args.putSerializable("KEY", key);
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.setArguments(args);
         return fragment;
@@ -43,6 +52,12 @@ public class DatePickerFragment extends DialogFragment {
                         .getTime();
                 callbacks = (Callbacks) getTargetFragment();
                 callbacks.onDateSelected(resultDate);
+                try{
+                    int key = (int) getArguments().getSerializable("KEY");
+                    callbacks.onDateSelected(resultDate, key);
+                }catch (Exception e){
+
+                }
             }
         };
 

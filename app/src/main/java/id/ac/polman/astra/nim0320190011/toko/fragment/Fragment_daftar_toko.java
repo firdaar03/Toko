@@ -106,6 +106,11 @@ public class Fragment_daftar_toko extends Fragment
         updateUI(newDate);
     }
 
+    @Override
+    public void onDateSelected(Date date, int key) {
+
+    }
+
     public Toko_view_model getTokoViewModel(){
         Log.i(TAG, "getTokoViewModel: called");
         if(mTokoViewModel == null){
