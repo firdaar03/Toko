@@ -66,7 +66,6 @@ public class Detail_aktivitas_produk extends DialogFragment {
         Log.i(TAG, "getDtAktivitasProdukViewModelList: called 2");
         return mDtAktivitasProdukViewModel;
     }
-
     public Produk_view_model getProdukViewModel(){
         Log.i(TAG, "getProdukViewModelList: called");
         if(mProdukViewModel == null){
@@ -100,31 +99,8 @@ public class Detail_aktivitas_produk extends DialogFragment {
 
         mButtonKembali = v.findViewById(R.id.button_kembali);
 
-        mDtAktivitasProdukViewModel.getDtAktivitastByIdAkt(mProdukAktivitas.getIdAkt()).observe(
-                getViewLifecycleOwner(),
-                new Observer<List<Dt_Produk_aktivitas>>() {
-                    @Override
-                    public void onChanged(List<Dt_Produk_aktivitas> dt_produk_aktivitas) {
-                        mDtProdukAktivitas = dt_produk_aktivitas;
-                    }
-                }
-        );
-
-        mProdukViewModel.getProduks().observe(
-                getViewLifecycleOwner(),
-                new Observer<List<Produk>>() {
-                    @Override
-                    public void onChanged(List<Produk> produks) {
-                        mProdukList = produks;
-                        Log.i(TAG, "Got Produk: " + produks.size());
-                    }
-                }
-        );
-
         mRecyclerView = v.findViewById(R.id.dt_produk_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mDtAktivitasAdapter = new DtAktivitasAdapter(mDtProdukAktivitas);
-        mRecyclerView.setAdapter(mDtAktivitasAdapter);
 
         return v;
     }
@@ -141,12 +117,40 @@ public class Detail_aktivitas_produk extends DialogFragment {
                 }
         );
 
+        mProdukViewModel.getProduks().observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Produk>>() {
+                    @Override
+                    public void onChanged(List<Produk> produks) {
+                        mProdukList = produks;
+                        refresh();
+                    }
+                }
+        );
 
         updateUI();
     }
 
-    private void updateUI(){
+    private void refresh(){
+        mDtAktivitasProdukViewModel.getDtAktivitastByIdAkt(mProdukAktivitas.getIdAkt()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Dt_Produk_aktivitas>>() {
+                    @Override
+                    public void onChanged(List<Dt_Produk_aktivitas> dt_produk_aktivitas) {
+                        mDtProdukAktivitas = dt_produk_aktivitas;
+                        for(Dt_Produk_aktivitas a : mDtProdukAktivitas){
+                            Log.i(TAG, "onChanged: ID : " + a.getId());
+                            Log.i(TAG, "onChanged: Jumlah : " + a.getJumlah());
+                            Log.i(TAG, "onChanged: Harga : " + a.getHarga());
+                        }
+                        mDtAktivitasAdapter = new DtAktivitasAdapter(mDtProdukAktivitas);
+                        mRecyclerView.setAdapter(mDtAktivitasAdapter);
+                    }
+                }
+        );
 
+    }
+    private void updateUI(){
         switch (mProdukAktivitas.getKode_akt()){
             case 0 :
                 mKeteranganAktivitas.setText(R.string.pengambilan);
@@ -171,23 +175,20 @@ public class Detail_aktivitas_produk extends DialogFragment {
         public DtAktivitasHolder (LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.fragment_item_put_produk, parent, false));
 
-            mNamaProduk = (TextView) itemView.findViewById(R.id.nama_produk);
-            mJumlahProduk = (TextView) itemView.findViewById(R.id.jumlah_produk);
-            mHargaProduk = (TextView) itemView.findViewById(R.id.harga_produk);
+            mNamaProduk = itemView.findViewById(R.id.nama_produk);
+            mJumlahProduk = itemView.findViewById(R.id.jumlah_produk);
+            mHargaProduk =  itemView.findViewById(R.id.harga_produk);
             mItemPutProduk = itemView.findViewById(R.id.fragment_item_put_produk);
         }
 
         public void bind(Dt_Produk_aktivitas dt){
-            mDt_produk_aktivitas = dt;
             for (Produk p : mProdukList){
                 if (p.getIdProduk() == dt.getIdProduk()){
                     mNamaProduk.setText(p.getNama());
-                    Log.i(TAG, "Nama Produk" + p.getNama());
                 }
             }
-            mJumlahProduk.setText(mDt_produk_aktivitas.getJumlah());
-            mHargaProduk.setText("Rp. " + String.format("%,d", mDt_produk_aktivitas.getHarga()).replace(',', '.') + ",-");
-
+            mJumlahProduk.setText(dt.getJumlah() + "");
+            mHargaProduk.setText("Rp. " + String.format("%,d", dt.getHarga()).replace(',', '.') + ",-");
         }
     }
 

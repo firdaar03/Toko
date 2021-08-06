@@ -3,10 +3,12 @@ package id.ac.polman.astra.nim0320190011.toko;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -40,14 +42,32 @@ public class MainActivity extends AppCompatActivity
     private final static String PASSWORD = "password";
 
 
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            Log.i("MainActivity", "popping backstack");
+            fm.popBackStack();
+        } else {
+            new AlertDialog
+                    .Builder(this)
+                    .setTitle("Keluar")
+                    .setMessage("Apakah anda yakin menutup aplikasi?")
+                    .setPositiveButton("Ya", (dialogInterface, i) -> {
+                        context= this;
+                        super.onBackPressed();
+                    })
+                    .setNegativeButton("Tidak", null)
+                    .show();
+        }
+    }
+
     public Login_view_model getLoginViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
         if(mLoginViewModel == null){
             mLoginViewModel = new ViewModelProvider(this)
                     .get(Login_view_model.class);
         }
-//        Log.i(TAG, "getTokoViewModelList : called idtoko: " + dataToko.getIdToko());
-//        Log.i(TAG, "getTokoViewModelList: called 2");
 
         return mLoginViewModel;
     }
@@ -57,11 +77,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLoginViewModel = getLoginViewModel();
-//        try {
-//            Thread.sleep(100);
-//        }catch (InterruptedException ie){
-//            Thread.currentThread().interrupt();
-//        }
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
@@ -99,7 +114,6 @@ public class MainActivity extends AppCompatActivity
         fragment = Fragment_menu_utama.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 

@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,6 +74,7 @@ public class Fragment_menu_utama extends Fragment
         private TextView mPemasukkan;
         private TextView mPengeluaran;
         private RelativeLayout mAktivitasProduk;
+        private RelativeLayout mAktivitasDompet;
 
         private RecyclerView mRecyclerView;
         private RecyclerView mRecyclerView_1;
@@ -123,7 +125,6 @@ public class Fragment_menu_utama extends Fragment
             Log.i(TAG, "getTokoViewModelList: called 2");
             return mAktivitasDompetViewModel;
         }
-
         private Aktivitas_produk_view_model getAktivitasProdukViewModel(){
             Log.i(TAG, "getAktivitasProdukViewModel: ");
             if (mAktivitasProdukViewModel == null){
@@ -224,6 +225,14 @@ public class Fragment_menu_utama extends Fragment
                     fragmentTransaction.replace(R.id.fragment_container, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit(); // save the changes
+                }
+            });
+
+            mAktivitasDompet = v.findViewById(R.id.aktivitas_dompet);
+            mAktivitasDompet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCallbacks.onDompetButtonClicked();
                 }
             });
 
@@ -362,6 +371,7 @@ public class Fragment_menu_utama extends Fragment
             super.onDetach();
             mCallbacks = null;
         }
+
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         private class AktivitasDompetHolder extends RecyclerView.ViewHolder{

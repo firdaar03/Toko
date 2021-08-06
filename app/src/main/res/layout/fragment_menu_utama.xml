@@ -303,17 +303,11 @@
                     android:background="@color/black"/>
             </RelativeLayout>
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/aktivitas_produk_recycler_view"/>
-
-            </ScrollView>
+                android:layout_height="165dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/aktivitas_produk_recycler_view"/>
         </LinearLayout>
 
         <LinearLayout
@@ -328,7 +322,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginLeft="6dp">
+                android:layout_marginLeft="6dp"
+                android:id="@+id/aktivitas_dompet">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -345,16 +340,11 @@
                     android:background="@color/black"/>
             </RelativeLayout>
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/aktivitas_dompet_recycler_view"/>
-            </ScrollView>
+                android:layout_height="165dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/aktivitas_dompet_recycler_view"/>
         </LinearLayout>
 
     </LinearLayout>
