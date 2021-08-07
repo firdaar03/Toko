@@ -294,13 +294,14 @@
                     android:fontFamily="@font/poppins_light"
                     android:textSize="11dp"
                     android:text="@string/aktifitas_produk"
+                    android:textColor="@color/purple_700"
                     />
 
                 <View
                     android:layout_width="130dp"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="16dp"
-                    android:background="@color/black"/>
+                    android:background="@color/purple_700"/>
             </RelativeLayout>
 
             <ScrollView
@@ -336,13 +337,15 @@
                     android:fontFamily="@font/poppins_light"
                     android:textSize="11dp"
                     android:text="@string/aktifitas_dompet"
+                    android:textColor="@color/purple_700"
+                    android:id="@+id/aktivitas_dompet"
                     />
 
                 <View
                     android:layout_width="130dp"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="16dp"
-                    android:background="@color/black"/>
+                    android:background="@color/purple_700"/>
             </RelativeLayout>
 
             <ScrollView

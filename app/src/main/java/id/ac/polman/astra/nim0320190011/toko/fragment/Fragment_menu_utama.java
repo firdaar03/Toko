@@ -46,6 +46,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
 import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_dompet;
+import id.ac.polman.astra.nim0320190011.toko.fragment.detail.Detail_aktivitas_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
@@ -73,6 +74,7 @@ public class Fragment_menu_utama extends Fragment
         private TextView mPemasukkan;
         private TextView mPengeluaran;
         private RelativeLayout mAktivitasProduk;
+        private RelativeLayout mAktivitasDompet;
 
         private RecyclerView mRecyclerView;
         private RecyclerView mRecyclerView_1;
@@ -219,6 +221,19 @@ public class Fragment_menu_utama extends Fragment
                 @Override
                 public void onClick(View v) {
                     Fragment_produk_aktivitas fragment = Fragment_produk_aktivitas.newInstance(dataToko);
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit(); // save the changes
+                }
+            });
+
+            mAktivitasDompet = v.findViewById(R.id.aktivitas_dompet);
+            mAktivitasDompet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment_dompet_aktivitas fragment = Fragment_dompet_aktivitas.newInstance(dataToko);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fm.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, fragment);
@@ -491,7 +506,9 @@ public class Fragment_menu_utama extends Fragment
                             @SuppressLint("LongLogTag")
                             @Override
                             public void onClick(View v) {
-                                Log.i(TAG, "Detail: ");
+                                Detail_aktivitas_produk fragment = Detail_aktivitas_produk.newInstance(aktivitas);
+                                FragmentManager fm = getFragmentManager();
+                                fragment.show(fm,"Fragment Detail_aktivitas_produk");
                             }
                         }
                 );
