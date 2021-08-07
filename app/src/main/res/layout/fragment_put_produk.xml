@@ -139,7 +139,6 @@
                     android:textSize="10dp"
                     android:id="@+id/merk_produk"/>
 
-
             </RelativeLayout>
 
             <EditText

@@ -15,9 +15,8 @@
             android:background="#FF909090" />
 
         <TableRow>
-
             <TextView
-                android:layout_width="166dp"
+                android:layout_width="95dp"
                 android:layout_column="1"
                 android:padding="5dip"
                 android:textSize="11dp"
@@ -51,7 +50,6 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/black"
                 android:id="@+id/total_produk"/>
-
         </TableRow>
     </TableLayout>
 

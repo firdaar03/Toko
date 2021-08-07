@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -125,7 +126,6 @@ public class Fragment_menu_utama extends Fragment
             Log.i(TAG, "getTokoViewModelList: called 2");
             return mAktivitasDompetViewModel;
         }
-
         private Aktivitas_produk_view_model getAktivitasProdukViewModel(){
             Log.i(TAG, "getAktivitasProdukViewModel: ");
             if (mAktivitasProdukViewModel == null){
@@ -233,12 +233,16 @@ public class Fragment_menu_utama extends Fragment
             mAktivitasDompet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+<<<<<<< HEAD
                     Fragment_dompet_aktivitas fragment = Fragment_dompet_aktivitas.newInstance(dataToko);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fm.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit(); // save the changes
+=======
+                    mCallbacks.onDompetButtonClicked();
+>>>>>>> 82650a775afac63ea38855219a39b0d36b1db2f0
                 }
             });
 
@@ -283,7 +287,7 @@ public class Fragment_menu_utama extends Fragment
 //        Update aktivitas dompet dengan 5 terbaru
             List<Dompet_aktivitas> limaAktivitasDompet = new ArrayList<>();
             for(int i = 0; i < mDompetAktivitas.size(); i++) {
-                if (i == 5) {
+                if (i == 3) {
                     break;
                 }
                 limaAktivitasDompet.add(mDompetAktivitas.get(i));
@@ -294,7 +298,7 @@ public class Fragment_menu_utama extends Fragment
 //      Update aktivitas produk dengan 5 terbaru
             List<Produk_aktivitas> limaAktiviasProduk = new ArrayList<>();
             for(int i = 0; i < mProdukAktivitas.size(); i++){
-                if(i==5){
+                if(i==3){
                     break;
                 }
                 Log.i(TAG, "updateUI: Perulangan ke " + i + "  " + mProdukAktivitas.get(i).getKeterangan());
@@ -377,6 +381,7 @@ public class Fragment_menu_utama extends Fragment
             super.onDetach();
             mCallbacks = null;
         }
+
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         private class AktivitasDompetHolder extends RecyclerView.ViewHolder{
