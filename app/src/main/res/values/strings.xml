@@ -114,4 +114,8 @@
     <string name="perubahan_kasir">Perubahan Data Kasir</string>
     <string name="yakin_perbarui">Apakah anda yakin ingin memperbarui data uang pada kasir menjadi <b>%1$s</b> ?</string>
     <string name="yakin_hapus">Apakah anda yakin ingin mengosongkan data uang pada kasir menjadi Rp 0,-?</string>
+
+<!--    OPTION -->
+    <string name="penyetokan">Penyetokan</string>
+    <string name="produk_baru">Produk baru</string>
 </resources>

@@ -38,6 +38,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet;
 
 public class Fragment_produk extends Fragment {
@@ -142,12 +143,9 @@ public class Fragment_produk extends Fragment {
         mAddProdukButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = Fragment_tambah_produk.newInstance(dataToko);
+                Fragment_product_option fragment = Fragment_product_option.newInstance(dataToko);
                 FragmentManager fm = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit(); // save the changes
+                fragment.show(fm,"Fragment Setting");
             }
         });
 
