@@ -292,7 +292,6 @@ public class Fragment_menu_utama extends Fragment
                 if(i==3){
                     break;
                 }
-                Log.i(TAG, "updateUI: Perulangan ke " + i + "  " + mProdukAktivitas.get(i).getKeterangan());
                 limaAktiviasProduk.add(mProdukAktivitas.get(i));
             }
             mAktivitasProdukAdapter = new AktivitasProdukAdapter(limaAktiviasProduk);
@@ -374,7 +373,7 @@ public class Fragment_menu_utama extends Fragment
         }
 
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
+
         private class AktivitasDompetHolder extends RecyclerView.ViewHolder{
 
             private TextView mKeterangan;
@@ -383,9 +382,9 @@ public class Fragment_menu_utama extends Fragment
             private TextView mTanggal;
             private RelativeLayout mItemAktivitas;
 
-            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
-            SimpleDateFormat formatJam  = new SimpleDateFormat("HH:mm");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+//            SimpleDateFormat formatJam  = new SimpleDateFormat("HH:mm");
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             public AktivitasDompetHolder (LayoutInflater inflater, ViewGroup parent){
                 super(inflater.inflate(R.layout.fragment_item_aktivitas_dompet, parent, false));

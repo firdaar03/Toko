@@ -220,4 +220,22 @@ public class Dompet_repository {
     }
 
 
+    public void pembukuan(int idToko) {
+        Call<Dompet> call = mDompet_service.pembukuan(idToko);
+        call.enqueue(new Callback<Dompet>() {
+            @Override
+            public void onResponse(Call<Dompet> call, Response<Dompet> response) {
+                if(response.isSuccessful()){
+                    Log.i(TAG, "onResponse: Success perbarui");
+                }else{
+                    Log.e(TAG, "onResponse: Gagal");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Dompet> call, Throwable t) {
+                Log.e(TAG, "onFailure: gagal", t);
+            }
+        });
+    }
 }

@@ -217,7 +217,6 @@ public class Fragment_dompet_aktivitas extends Fragment
         refresh();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private class AktivitasDompetHolder extends RecyclerView.ViewHolder{
 
         private TextView mKeterangan;
@@ -226,9 +225,6 @@ public class Fragment_dompet_aktivitas extends Fragment
         private TextView mTanggal;
         private RelativeLayout mItemAktivitas;
 
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatJam  = new SimpleDateFormat("HH:mm");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         public AktivitasDompetHolder (LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.fragment_item_aktivitas_dompet, parent, false));

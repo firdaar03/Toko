@@ -120,4 +120,16 @@
 <!--    OPTION -->
     <string name="penyetokan">Penyetokan</string>
     <string name="produk_baru">Produk baru</string>
+    <string name="pembukuan_tahunan">Pembukuan tahunan</string>
+    <string name="pembukuan_tahunan_1">Pembukuan tahunan pemeriksaan ganda</string>
+
+<!--    PEMBUKUAN -->
+    <string name="pembukuan_message">Apakah anda yakin ingin melakukan pembukuan tahunan?
+        \n\nPembukuan tahunan akan menghapus seluruh data riwayat aktivitas produk dan dompet selama satu tahun ke belakang
+        \n\nRangkuman selama satu tahun dapat disimpan dalam bentuk text
+    </string>
+    <string name="pilih_simpan_text">Pilih aplikasi simpan data</string>
+    <string name="pembukuan_message_2">Tekan \'Ya\' untuk melakukan pembukuan!
+        \n\nSetelah menekan \'Ya\' seluruh data aktivitas akan hilang
+    </string>
 </resources>

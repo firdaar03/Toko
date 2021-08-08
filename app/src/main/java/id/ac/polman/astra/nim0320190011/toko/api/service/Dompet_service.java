@@ -38,4 +38,7 @@ public interface Dompet_service {
 
     @PUT("dompet_penjualan")
     Call<Dompet> penjualanDompet(@Body Dompet p);
+
+    @PUT("dompet_pembukuan")
+    Call<Dompet> pembukuan(@Query("id") int id);
 }

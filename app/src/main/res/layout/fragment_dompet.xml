@@ -22,13 +22,14 @@
             android:id="@+id/back"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/utama_tua"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="24dp"
-            android:text="JOKO'S STORE"
+            android:maxLength="18"
+            android:maxLines="1"
             android:layout_weight="1"
             android:textAlignment="textEnd"/>
         <View
@@ -162,6 +163,31 @@
                         android:layout_marginTop="19dp"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/radius_total_aset_shadow"
+                    android:layout_marginTop="4dp"
+                    android:paddingHorizontal="2dp"
+                    android:paddingVertical="2dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/pembukuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_asset"
+
+                        android:textAlignment="center"
+                        android:text="@string/pembukuan_tahunan"
+                        android:textSize="9sp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_medium"
+                        />
+                </LinearLayout>
+
+
             </LinearLayout>
 
         </LinearLayout>

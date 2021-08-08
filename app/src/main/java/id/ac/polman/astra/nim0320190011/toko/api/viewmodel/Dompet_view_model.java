@@ -81,4 +81,8 @@ public class Dompet_view_model extends ViewModel {
     public void penjualan(Dompet p){
         mDompet_repository.penjualan(p);
     }
+
+    public void pembukuan(int idToko) {
+        mDompet_repository.pembukuan(idToko);
+    }
 }
