@@ -60,6 +60,7 @@ public class Fragment_put_produk extends Fragment {
     private TextView mHargaTotal;
     private Button mDiambil;
     private Button mTerjual;
+    private ImageView mBack;
 
     private Produk_view_model mProdukViewModel;
     private Aktivitas_produk_view_model mAktivitasProdukViewModel;
@@ -151,6 +152,14 @@ public class Fragment_put_produk extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_put_produk, container, false);
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         mCariProduk = v.findViewById(R.id.cari_nama_produk);
 
@@ -290,7 +299,7 @@ public class Fragment_put_produk extends Fragment {
                 Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
-                produk_aktivitas.setKeterangan("produk diijual");
+                produk_aktivitas.setKeterangan("Produk Dijual");
                 produk_aktivitas.setKode_akt(1);
                 mProdukViewModel.trAmbilAktivitasProduk(produk_aktivitas);
 

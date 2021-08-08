@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:background="@color/utama">
         <ImageView
-            android:id="@+id/button_kembali"
+            android:id="@+id/back"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:scaleType="fitXY"

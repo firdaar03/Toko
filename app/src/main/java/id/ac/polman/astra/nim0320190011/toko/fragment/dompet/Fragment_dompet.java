@@ -50,6 +50,7 @@ public class Fragment_dompet extends Fragment{
     private Button btnUangMasuk;
     private Button btnUangKeluar;
     private RelativeLayout mDalamKasir;
+    private ImageView mBack;
 
     private Dompet_view_model mDompetViewModel;
 
@@ -99,6 +100,14 @@ public class Fragment_dompet extends Fragment{
                     }
                 }
         );
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         btnAktvitas = (Button) v.findViewById(R.id.button_aktifitas);
         btnAktvitas.setActivated(true);

@@ -68,6 +68,7 @@ public class Fragment_tambah_produk extends Fragment {
     private EditText mMerk_pruduk;
     private EditText mHarga_produk;
     private EditText mJumlah_produk;
+    private ImageView mBack;
 
     private Button mInput_button;
 
@@ -164,6 +165,14 @@ public class Fragment_tambah_produk extends Fragment {
                             mFotoProdukURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 }
                 startActivityForResult(captureImage, REQUEST_PHOTO_PRODUK);
+            }
+        });
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
             }
         });
 

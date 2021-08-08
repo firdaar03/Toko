@@ -62,6 +62,7 @@ public class Fragment_edit_produk extends Fragment {
     private EditText mMerk_pruduk;
     private EditText mHarga_produk;
     private EditText mJumlah_produk;
+    private ImageView mBack;
 
     private Button mInput_button;
 
@@ -111,6 +112,14 @@ public class Fragment_edit_produk extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_edit_produk, container, false);
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         mNama_produk = (EditText) v.findViewById(R.id.nama_produk);
         mMerk_pruduk = (EditText) v.findViewById(R.id.merk_produk);

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -53,6 +54,7 @@ public class Fragment_produk_aktivitas extends Fragment
     private LinearLayout mTanggal2Button;
     private TextView mTanggal1View;
     private TextView mTanggal2View;
+    private ImageView mBack;
 
     private Aktivitas_produk_view_model mAktivitasProdukViewModel;
 
@@ -99,6 +101,14 @@ public class Fragment_produk_aktivitas extends Fragment
 
         mRecyclerView = v.findViewById(R.id.aktivitas_produk_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, -1);

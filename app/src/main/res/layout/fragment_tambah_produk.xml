@@ -14,12 +14,12 @@
         android:orientation="horizontal"
         android:background="@color/utama">
         <ImageView
-            android:id="@+id/button_kembali"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_left_arrow"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:id="@+id/back"/>
 
         <TextView
             android:id="@+id/textView3"

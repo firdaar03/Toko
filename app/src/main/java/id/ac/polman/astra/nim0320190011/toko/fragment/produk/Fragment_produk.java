@@ -58,6 +58,7 @@ public class Fragment_produk extends Fragment {
     private Button mPutProdukButton;
     private TextView mNamaPemilik;
     private EditText mCariProduk;
+    private ImageView mBack;
 
     public static Fragment_produk newInstance(Toko in) {
         return new Fragment_produk(in);
@@ -134,6 +135,14 @@ public class Fragment_produk extends Fragment {
             }
         });
 
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         mNamaPemilik = (TextView) v.findViewById(R.id.textView3);
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
