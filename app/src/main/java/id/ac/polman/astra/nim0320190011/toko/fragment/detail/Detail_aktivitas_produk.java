@@ -158,6 +158,9 @@ public class Detail_aktivitas_produk extends DialogFragment {
             case 1 :
                 mKeteranganAktivitas.setText(R.string.penjualan);
                 break;
+            case 2 :
+                mKeteranganAktivitas.setText(R.string.tambah_stok);
+                break;
         }
         mWaktu.setText(mProdukAktivitas.getCreadate().substring(11,16) + " WIB");
         mTanggal.setText(mProdukAktivitas.getCreadate().substring(0,10));

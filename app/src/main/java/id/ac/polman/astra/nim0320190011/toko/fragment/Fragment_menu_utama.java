@@ -217,12 +217,9 @@ public class Fragment_menu_utama extends Fragment
             });
 
             mAktivitasProduk = v.findViewById(R.id.aktivitas_produk);
-            mAktivitasProduk.setActivated(true);
             mAktivitasProduk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mAktivitasDompet.setActivated(false);
-                    mAktivitasProduk.setActivated(true);
                     Fragment_produk_aktivitas fragment = Fragment_produk_aktivitas.newInstance(dataToko);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fm.beginTransaction();

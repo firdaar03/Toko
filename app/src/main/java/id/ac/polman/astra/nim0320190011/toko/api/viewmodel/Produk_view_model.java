@@ -74,4 +74,8 @@ public class Produk_view_model extends ViewModel {
     public void jual_produk(Produk p){
         mProduk_repository.jual_produk(p);
     }
+
+    public void tambah_stok(Produk p){
+        mProduk_repository.tambah_stok(p);
+    }
 }

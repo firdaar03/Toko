@@ -53,8 +53,6 @@ public class Fragment_produk extends Fragment {
     private RecyclerView mProdukRecyclerView;
     private ProdukAdapter mAdapter;
 
-    private String mProdukId;
-
     private Button mAddProdukButton;
     private Button mPutProdukButton;
     private TextView mNamaPemilik;

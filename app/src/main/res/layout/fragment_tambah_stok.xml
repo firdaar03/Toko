@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_secondary">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/kuning">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/back"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/utama_tua"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:text="Add Stock Products"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/utama_muda"
+        android:paddingVertical="13dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/cari_nama_produk"
+                android:layout_width="237dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/nama_produk"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/radius_input"
+                android:paddingLeft="5dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins_light"
+                android:paddingTop="10dp"
+                tools:ignore="DuplicateIds"
+                />
+
+            <Button
+                android:id="@+id/btn_cari"
+                android:layout_width="92dp"
+                android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@+id/cari_nama_produk"
+                android:background="@drawable/radius_button_hijau_tua"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/button_cari"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="63dp"
+                android:id="@+id/item_produk">
+
+                <ImageView
+                    android:layout_width="99dp"
+                    android:layout_height="65dp"
+                    android:background="@drawable/radius_input"
+                    android:scaleType="fitXY"
+                    android:layout_marginVertical="7dp"
+                    android:layout_marginLeft="6dp"
+                    android:id="@+id/foto_produk"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nama_produk"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="114dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
+                    tools:ignore="DuplicateIds" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="114dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:id="@+id/harga_produk"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="114dp"
+                    android:layout_marginBottom="7dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
+                    android:id="@+id/jumlah_produk"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/nama_produk"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/secondary"
+                    android:textSize="10dp"
+                    android:id="@+id/merk_produk"/>
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/jml_produk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_produk"
+                android:layout_marginHorizontal="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/radius_input"
+                android:fontFamily="@font/poppins_light"
+                android:hint="@string/jumlah_produk"
+                android:inputType="number"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:textSize="12dp"
+                tools:ignore="DuplicateIds" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@+id/jml_produk"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius_button_kuning"
+                android:text="@string/simpan_produk"
+                android:layout_marginHorizontal="13dp"/>
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1,2,3,4">
+
+            <TableRow>
+                <TextView
+                    android:layout_width="166dp"
+                    android:layout_column="1"
+                    android:padding="5dip"
+                    android:text="@string/produk_nama"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="2"
+                    android:text="@string/jumlah_produk"
+                    android:padding="2dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="3"
+                    android:text="Harga"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="4"
+                    android:text="Total"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+            </TableRow>
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+        </TableLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stok_produk_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1,2,3,4">
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+            <TableRow>
+                <TextView
+                    android:layout_width="166dp"
+                    android:layout_column="1"
+                    android:padding="5dip"
+                    android:text="Jumlah Produk"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="2"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:id="@+id/jumlah_total"/>
+                <TextView
+                    android:layout_column="3"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_column="4"
+                    android:padding="3dip"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/harga_total"/>
+            </TableRow>
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+        </TableLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <Button
+                android:layout_width="92dp"
+                android:layout_height="31.31dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="13dp"
+                android:background="@drawable/radius_button_ungu"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/button_tambah"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:id="@+id/btn_tambah"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

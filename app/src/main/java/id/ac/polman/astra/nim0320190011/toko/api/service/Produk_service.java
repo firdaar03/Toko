@@ -41,4 +41,7 @@ public interface Produk_service {
 
     @PUT("jual_produk")
     Call<Produk> jualProduk(@Body Produk p);
+
+    @PUT("tambah_stok")
+    Call<Produk> tambahStok(@Body Produk p);
 }

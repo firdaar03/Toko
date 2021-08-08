@@ -233,6 +233,9 @@ public class Fragment_produk_aktivitas extends Fragment
                 case 1:
                     mKeterangan.setText(R.string.penjualan);
                     break;
+                case 2 :
+                    mKeterangan.setText(R.string.tambah_stok);
+                    break;
             }
 
             mJumlah.setText("Rp " + String.format("%,d", aktivitas.getJumlah()).replace(',', '.') + ",-");

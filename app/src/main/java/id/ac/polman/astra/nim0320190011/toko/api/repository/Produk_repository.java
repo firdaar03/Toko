@@ -220,4 +220,22 @@ public class Produk_repository {
         });
     }
 
+    public void tambah_stok(Produk p) {
+        Log.i(TAG, "tambah_stok: call" + p.getIdProduk());
+        Call<Produk> call = mProduk_service.tambahStok(p);
+        call.enqueue(new Callback<Produk>() {
+            @Override
+            public void onResponse(Call<Produk> call, Response<Produk> response) {
+                if (response.isSuccessful()) {
+                    Log.i(TAG, "onResponse: Telah terupdate Id " + p.getIdProduk());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Produk> call, Throwable t) {
+                Log.e(TAG, "onFailure: updateProduk", t);
+            }
+        });
+    }
+
 }

@@ -61,8 +61,13 @@ public class Fragment_product_option extends DialogFragment {
         mButton_penyetokan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Apakek", Toast.LENGTH_SHORT)
-                        .show();
+                getDialog().dismiss();
+                Fragment fragment = Fragment_tambah_stok.newInstance(dataToko);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
             }
         });
         return v;
