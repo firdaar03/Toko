@@ -30,8 +30,10 @@ import java.util.List;
 import id.ac.polman.astra.nim0320190011.toko.MyCallBack;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet_aktivitas;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
@@ -45,6 +47,9 @@ public class Fragment_dompet extends Fragment{
     Dompet dataDompet;
 
     private TextView mTotalDompet;
+    private TextView mPemasukkan;
+    private TextView mPengeluaran;
+
 
     private Button btnAktvitas;
     private Button btnUangMasuk;
@@ -52,7 +57,20 @@ public class Fragment_dompet extends Fragment{
     private RelativeLayout mDalamKasir;
     private ImageView mBack;
 
+    private List<Dompet_aktivitas> mDompetAktivitas;
     private Dompet_view_model mDompetViewModel;
+
+    private Aktivitas_dompet_view_model mAktivitasDompetViewModel;
+
+    public Aktivitas_dompet_view_model getAktivitasDompetViewModel(){
+        Log.i(TAG, "getTokoViewModelList: called");
+        if(mAktivitasDompetViewModel == null){
+            mAktivitasDompetViewModel = new ViewModelProvider(this)
+                    .get(Aktivitas_dompet_view_model.class);
+        }
+        Log.i(TAG, "getTokoViewModelList: called 2");
+        return mAktivitasDompetViewModel;
+    }
 
     public static Fragment_dompet newInstance(Toko t) {
         return new Fragment_dompet(t);
@@ -77,9 +95,12 @@ public class Fragment_dompet extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFragment(Fragment_dompet_aktivitas.newInstance(dataToko));
+        mAktivitasDompetViewModel = getAktivitasDompetViewModel();
+
         mDompetViewModel = getDompetViewModel();
         mDompetViewModel.loadDompet(dataToko.getIdToko() + "");
         dataDompet = new Dompet();
+        mDompetAktivitas = new ArrayList<>();
     }
 
     @Nullable
@@ -87,6 +108,9 @@ public class Fragment_dompet extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_dompet, container, false);
+
+        mPemasukkan = v.findViewById(R.id.pemasukkan);
+        mPengeluaran = v.findViewById(R.id.pengeluaran);
 
         mTotalDompet = v.findViewById(R.id.total_dompet);
         mDalamKasir = v.findViewById(R.id.dalam_kasir);
@@ -148,6 +172,19 @@ public class Fragment_dompet extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //        UPDATE PEMASUKKAN
+        mAktivitasDompetViewModel.getAktivitasByIdToko(dataToko.getIdToko()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Dompet_aktivitas>>() {
+                    @Override
+                    public void onChanged(List<Dompet_aktivitas> aktivitas) {
+                        mDompetAktivitas = aktivitas;
+                        updateUI();
+                    }
+                }
+        );
+
         refresh();
     }
 
@@ -167,6 +204,22 @@ public class Fragment_dompet extends Fragment{
     public void updateUI(){
         Log.i(TAG, "NGUPDATE UI NIH ");
         mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
+
+        //        Hitung pemasukkan dan pengeluaran
+        long pemasukkan = 0;
+        long pengeluaran = 0;
+        for(Dompet_aktivitas d : mDompetAktivitas){
+            switch (d.getKode_akt()){
+                case 1 :
+                    pemasukkan += d.getJumlah();
+                    break;
+                case 2 :
+                    pengeluaran += d.getJumlah();
+                    break;
+            }
+        }
+        mPemasukkan.setText("Rp " + String.format("%,d", pemasukkan).replace(',', '.') + ",-");
+        mPengeluaran.setText("Rp " + String.format("%,d", pengeluaran).replace(',', '.') + ",-");
     }
     private void loadFragment(Fragment fragment) {
             FragmentManager fm = getFragmentManager();
