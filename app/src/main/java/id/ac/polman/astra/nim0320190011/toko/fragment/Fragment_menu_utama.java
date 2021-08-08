@@ -233,14 +233,7 @@ public class Fragment_menu_utama extends Fragment
             mAktivitasDompet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment_dompet_aktivitas fragment = Fragment_dompet_aktivitas.newInstance(dataToko);
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, fragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit(); // save the changes
                     mCallbacks.onDompetButtonClicked();
-
                 }
             });
 
