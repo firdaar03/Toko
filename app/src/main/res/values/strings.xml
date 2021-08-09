@@ -141,4 +141,9 @@
 
 <!--    USER-->
     <string name="kunjungi">Kunjungi</string>
+
+<!--    KERANJANG-->
+    <string name="judul_keranjang">KERANJANG SAYA</string>
+    <string name="button_simpan_keranjang">Simpan Keranjang</string>
+    <string name="button_hapus">Hapus</string>
 </resources>
