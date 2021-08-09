@@ -27,6 +27,7 @@ import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.user.Fragment_produk_user;
 
 public class MainActivity extends AppCompatActivity
     implements Fragment_login.Callbacks, Fragment_menu_utama.Callbacks{
@@ -104,14 +105,12 @@ public class MainActivity extends AppCompatActivity
                         .commit();
             }
         }
-
-
     }
 
     public void onSharedPreferences(){
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-        fragment = Fragment_menu_utama.newInstance(toko_user);
+        fragment = Fragment_produk_user.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();

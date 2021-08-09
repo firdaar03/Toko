@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -37,6 +38,116 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:id="@+id/fragment_item_list_toko"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_daftar_toko">
+
+
+            <ImageView
+                android:id="@+id/foto_toko"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="4dp"
+                android:src="@drawable/image_foto_profile"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_nama_toko"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="93dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="12dp"/>
+
+            <ImageView
+                android:layout_width="11dp"
+                android:layout_height="13.2dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="93dp"
+                android:src="@drawable/ic_address"
+                android:id="@+id/address"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="112dp"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:id="@+id/text_address"/>
+
+
+            <ImageView
+                android:layout_width="11dp"
+                android:layout_height="13.2dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="93dp"
+                android:src="@drawable/ic_phone"
+                android:id="@+id/phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="39dp"
+                android:layout_marginLeft="112dp"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:id="@+id/telepon"/>
+
+            <ImageView
+                android:id="@+id/produk"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_marginLeft="93dp"
+                android:layout_marginTop="58dp"
+                android:src="@drawable/ic_produk"
+                app:tint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:layout_marginLeft="112dp"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:id="@+id/jumlah_produk"/>
+
+            <TextView
+                android:id="@+id/premium"
+                android:layout_width="89dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/radius_premium_store_user"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Premium Store"
+                android:textColor="@color/hijau_tua"
+                android:textSize="9dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +162,7 @@
             android:textAllCaps="true"
             android:fontFamily="@font/poppins_light"
             android:textSize="14dp"
-            android:layout_marginLeft="6dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="3dp"
             android:layout_weight="1"
             android:textColor="@color/black"/>

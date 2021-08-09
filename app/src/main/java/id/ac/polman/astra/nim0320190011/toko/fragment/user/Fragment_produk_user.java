@@ -55,6 +55,13 @@ public class Fragment_produk_user extends Fragment {
     private ImageView mBack;
     private ImageView mButton_keranjang;
 
+//    ITEM TOKO
+    private ImageView foto_toko;
+    private TextView text_nama_toko;
+    private TextView text_address;
+    private TextView telepon;
+    private TextView jumlah_produk;
+
     public static Fragment_produk_user newInstance(Toko in) {
         return new Fragment_produk_user(in);
     }
@@ -69,6 +76,16 @@ public class Fragment_produk_user extends Fragment {
         Log.i(TAG, "updateUI called");
         mAdapter = new ProdukAdapter(mProdukList);
         mProdukRecyclerView.setAdapter(mAdapter);
+
+        try{
+            foto_toko.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
+        }catch (Exception e){
+            Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
+        }
+        text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase());
+        text_address.setText(dataToko.getAlamatToko());
+        telepon.setText(dataToko.getNo_telfon());
+        jumlah_produk.setText(mProdukList.size() + "");
     }
 
     private void filter(String text) {
@@ -97,7 +114,14 @@ public class Fragment_produk_user extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
         View v = inflater.inflate(R.layout.fragment_produk_user ,container, false);
-        
+
+        foto_toko = v.findViewById(R.id.foto_toko);
+        text_nama_toko = v.findViewById(R.id.text_nama_toko);
+        text_address= v.findViewById(R.id.text_address);
+        telepon= v.findViewById(R.id.telepon);
+        jumlah_produk= v.findViewById(R.id.jumlah_produk);
+
+
         mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
         mCariProduk.addTextChangedListener(new TextWatcher() {
             @Override
