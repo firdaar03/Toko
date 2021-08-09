@@ -1,6 +1,8 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.user;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
@@ -78,7 +82,15 @@ public class Fragment_keranjang extends DialogFragment {
         mSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Apakek eheheh");
+                new AlertDialog
+                        .Builder(getContext())
+                        .setTitle(getString(R.string.simpan_keranjang))
+                        .setMessage(getString(R.string.keranjang_message))
+                        .setPositiveButton("Ya, simpan", (dialogInterface, i) -> {
+                            simpanKeranjang();
+                        })
+                        .setNegativeButton("Tidak", null)
+                        .show();
             }
         });
 
@@ -109,6 +121,35 @@ public class Fragment_keranjang extends DialogFragment {
         }
         mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
         mJumlahTotal.setText(jumlahTotal + "");
+    }
+
+    public void simpanKeranjang() {
+        hargaTotal = 0;
+        jumlahTotal = 0;
+        int i = 0;
+        String tanggal = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String message =  "```-- LIST KERANJANG  --```\n\n"
+                + "Tanggal\t: " + tanggal + "\n\n";
+        String message2 = "";
+
+        Intent n = new Intent(Intent.ACTION_SEND);
+        for(Produk asdw : mProdukList){
+            i += 1;
+            message2 += i + ". " + asdw.getNama() + "\n"
+                        + "    Jumlah\t: " + asdw.getJumlah() + "\n"
+                        + "    Harga\t: " + "Rp "  + String.format("%,d", asdw.getHarga()).replace(',', '.') + ",-" + "\n";
+            hargaTotal += asdw.getHarga() * asdw.getJumlah();
+            jumlahTotal += asdw.getJumlah();
+        }
+
+        String message3 = "\nJumlah Total\t: " + jumlahTotal + "\n"
+                        + "Harga Total\t: " + "Rp " + String.format("%,d", hargaTotal).replace(',', '.') + ",-";
+
+        n.setType("text/plain");
+        n.putExtra(Intent.EXTRA_TEXT, message + message2 + message3);
+        n = Intent.createChooser(n, getString(R.string.pilih_simpan_text));
+        startActivity(n);
+
     }
 
     @Override

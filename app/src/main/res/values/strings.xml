@@ -146,4 +146,8 @@
     <string name="judul_keranjang">KERANJANG SAYA</string>
     <string name="button_simpan_keranjang">Simpan Keranjang</string>
     <string name="button_hapus">Hapus</string>
+    <string name="simpan_keranjang">Simpan Keranjang</string>
+    <string name="keranjang_message">Apakah anda yakin ingin menyimpan keranjang?
+        \n\nData Keranjang dapat disimpan dalam bentuk text
+    </string>
 </resources>
