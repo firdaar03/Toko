@@ -21,7 +21,7 @@
             android:id="@+id/back"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:text="@string/header_toko"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/utama_tua"
@@ -64,13 +64,13 @@
             <EditText
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:hint="@string/cari_produk"
+                android:hint="@string/cari_toko"
                 android:textSize="12dp"
                 android:paddingTop="10dp"
                 android:paddingLeft="5dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_light"
-                android:id="@+id/cari_produk"/>
+                android:id="@+id/cari_toko"/>
 
             <ImageView
                 android:layout_width="20dp"

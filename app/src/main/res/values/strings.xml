@@ -29,6 +29,8 @@
     <string name="data_diri">Data Pribadi</string>
     <string name="data_akun">Data Akun</string>
     <string name="judul_toko">Daftar Toko</string>
+    <string name="header_toko">TOKO</string>
+    <string name="cari_toko">Cari toko ...</string>
 
 
     <!-- Tambah Produk -->

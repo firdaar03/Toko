@@ -82,10 +82,10 @@ public class Fragment_produk_user extends Fragment {
         }catch (Exception e){
             Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
         }
-        text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase());
+        text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase() + "'S STORE");
         text_address.setText(dataToko.getAlamatToko());
         telepon.setText(dataToko.getNo_telfon());
-        jumlah_produk.setText(mProdukList.size() + "");
+        jumlah_produk.setText(mProdukList.size() + " PRODUK");
     }
 
     private void filter(String text) {

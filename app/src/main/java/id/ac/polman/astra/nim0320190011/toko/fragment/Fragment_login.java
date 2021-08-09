@@ -16,13 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Login_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model_list;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.user.Fragment_toko_user;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -36,6 +43,8 @@ public class Fragment_login extends Fragment {
     private EditText mPassword;
 
     private Login_view_model mLoginViewModel;
+    private Toko_view_model mTokoViewModel;
+    private List<Toko> dataToko;
 
     public Login_view_model getLoginViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
@@ -46,6 +55,7 @@ public class Fragment_login extends Fragment {
         Log.i(TAG, "getTokoViewModelList: called 2");
         return mLoginViewModel;
     }
+
 
     public static Fragment_login newInstance(){
         return new Fragment_login();
@@ -115,7 +125,12 @@ public class Fragment_login extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Fragment fragment = Fragment_toko_user.newInstance();
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit(); // save the changes
                     }
                 }
         );
