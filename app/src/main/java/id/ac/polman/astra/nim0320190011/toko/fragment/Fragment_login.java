@@ -30,7 +30,8 @@ public class Fragment_login extends Fragment {
     private static final String TAG = "Fragment_login";
 
     private TextView mCreate_akun;
-    private Button mLoginButton;
+    private TextView mLoginButton;
+    private TextView mGuest;
     private EditText mUsername;
     private EditText mPassword;
 
@@ -78,7 +79,7 @@ public class Fragment_login extends Fragment {
             }
         });
 
-        mLoginButton = (Button) view.findViewById(R.id.login_button);
+        mLoginButton = view.findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +109,16 @@ public class Fragment_login extends Fragment {
 
             }
         });
+
+        mGuest = view.findViewById(R.id.masuk_guest);
+        mGuest.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }
+        );
         return view;
     }
 

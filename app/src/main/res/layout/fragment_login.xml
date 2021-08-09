@@ -55,6 +55,33 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="LOGIN" />
 
+    <LinearLayout
+        android:id="@+id/masuk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius_total_aset_shadow"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" >
+
+        <TextView
+            android:id="@+id/masuk_guest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_asset"
+            android:text="@string/masuk_guest"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/text_create_akun"
         android:layout_width="wrap_content"
@@ -65,19 +92,32 @@
         android:textColor="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/masuk" />
 
-    <Button
-        android:id="@+id/login_button"
+    <LinearLayout
+        android:id="@+id/login"
         android:layout_width="197dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius_total_aset_shadow"
+        android:orientation="vertical"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins_regular"
-        android:textAllCaps="false"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:text="Login"
+        android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" >
+        <TextView
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+
+            android:fontFamily="@font/poppins_regular"
+            android:textAllCaps="false"
+            android:background="@drawable/button_asset"
+            android:text="Login"
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

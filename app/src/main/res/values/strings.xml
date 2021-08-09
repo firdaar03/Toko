@@ -5,6 +5,7 @@
 
     <!--    LOGIN -->
     <string name="buat_akun">Belum memiliki akun</string>
+    <string name="masuk_guest">Masuk sebagai pengunjung</string>
 
     <!--    PENDAFTARTAN TOKO-->
     <string name="field_username">Nama pengguna</string>
