@@ -1,7 +1,16 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.user;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +25,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,6 +34,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,14 +48,17 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 
-public class Fragment_toko_user extends Fragment {
+public class Fragment_toko_user extends Fragment implements LocationListener {
     private static final String TAG = "Fragment_toko_user";
 
     Toko_view_model mTokoViewModel;
     Produk_view_model mProdukViewModel;
     private List<Toko> mTokoList;
-    Toko dataToko;
     PictureUtils mPictureUtils;
+
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private LatLng mLatLng = null;
 
     private RecyclerView mTokoRecyclerview;
     private TokoAdapter mTokoAdapter;
@@ -55,13 +71,13 @@ public class Fragment_toko_user extends Fragment {
 
     }
 
-    public static Fragment_toko_user newInstance(){
-                return new Fragment_toko_user();
+    public static Fragment_toko_user newInstance() {
+        return new Fragment_toko_user();
     }
 
-    private void updateUI(){
+    private void updateUI(List<Toko> a) {
         Log.i(TAG, "updateUI called");
-        mTokoAdapter = new TokoAdapter(mTokoList);
+        mTokoAdapter = new TokoAdapter(a);
         mTokoRecyclerview.setAdapter(mTokoAdapter);
     }
 
@@ -75,9 +91,9 @@ public class Fragment_toko_user extends Fragment {
         mTokoAdapter.filterList(filteredList);
     }
 
-    public Toko_view_model getTokoViewModel(){
+    public Toko_view_model getTokoViewModel() {
         Log.i(TAG, "getTokoViewModelList: called");
-        if(mTokoViewModel == null){
+        if (mTokoViewModel == null) {
             mTokoViewModel = new ViewModelProvider(this)
                     .get(Toko_view_model.class);
         }
@@ -85,9 +101,9 @@ public class Fragment_toko_user extends Fragment {
         return mTokoViewModel;
     }
 
-    public Produk_view_model getProdukViewModel(){
+    public Produk_view_model getProdukViewModel() {
         Log.i(TAG, "getProdukViewModelList: called");
-        if(mProdukViewModel == null){
+        if (mProdukViewModel == null) {
             mProdukViewModel = new ViewModelProvider(this)
                     .get(Produk_view_model.class);
         }
@@ -104,8 +120,82 @@ public class Fragment_toko_user extends Fragment {
         mTokoList = new ArrayList<>();
         mPictureUtils = new PictureUtils();
         mTokoAdapter = new TokoAdapter(new ArrayList<>());
+
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            // ask permissions here using below code
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    1);
+        }
+        try{
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        }catch (Exception e){
+        }
     }
 
+    private void pengurutanTerdekat(List<Toko> in){
+//        Log.i(TAG, "pengurutanTerdekat Latitude:" + mLatLng.latitude + ", Longitude:" + mLatLng.longitude);
+        for(Toko t : in){
+            LatLng lat = new LatLng(0,0);
+            if(Geocoder.isPresent()){
+                try {
+                    String location = t.getAlamatToko();
+                    Geocoder gc = new Geocoder(getContext());
+                    List<Address> addresses= gc.getFromLocationName(location, 1); // get the found Address Objects
+
+                    List<LatLng> ll = new ArrayList<LatLng>(addresses.size()); // A list to save the coordinates if they are available
+                    for(Address a : addresses){
+                        if(a.hasLatitude() && a.hasLongitude()){
+                            lat = new LatLng(a.getLatitude(), a.getLongitude());
+                        }
+                    }
+                } catch (Exception e) {
+                    // handle the exception
+                }
+            }
+//            Log.i(TAG, "pengurutanTerdekat: x lat " + lat.latitude);
+//            Log.i(TAG, "pengurutanTerdekat: y lat " + lat.longitude);
+            long x = (long) Math.sqrt(Math.pow(lat.latitude - mLatLng.latitude, 2));
+            long y = (long) Math.sqrt(Math.pow(lat.longitude - mLatLng.longitude, 2));
+            long miring = (long) Math.sqrt(x+y);
+//            Log.i(TAG, "pengurutanTerdekat: x " + x);
+//            Log.i(TAG, "pengurutanTerdekat: y " + y);
+//            Log.i(TAG, "pengurutanTerdekat: Miringnya " + miring );
+//            Log.i(TAG, "pengurutanTerdekat: Toko alamat   " + t.getAlamatToko());
+            t.setStatus((int) miring);
+        }
+        Toko[] output = new Toko[in.size()];
+        Toko temp;
+//        Log.i(TAG, "pengurutanTerdekat: size " + in.size());
+//        Log.i(TAG, "pengurutanTerdekat: output size " + output.length);
+        int x = 0;
+        for(Toko t : in){
+            output[x] = t;
+            x++;
+        }
+
+        for(int i = 0; i < output.length; i++){
+//            Log.i(TAG, "pengurutanTerdekat: Perulangan i ke " + i);
+            for(int j = 0; j < output.length; j++){
+//                Log.i(TAG, "pengurutanTerdekat: perulangan j " + j);
+                if(output[i].getStatus() < output[j].getStatus()) {
+                    temp = output[j];
+                    output[j] = output[i];
+                    output[i] = temp;
+                }
+            }
+        }
+
+        mTokoList = new ArrayList<>();
+        for(int i = 0; i < output.length; i++){
+            Log.i(TAG, "pengurutanTerdekat: asd  i ke " + i + " : " + output[i].getStatus());
+            mTokoList.add(output[i]);
+        }
+        updateUI(mTokoList);
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -159,11 +249,38 @@ public class Fragment_toko_user extends Fragment {
                     @Override
                     public void onChanged(List<Toko> tokos) {
                         mTokoList = tokos;
-                        updateUI();
+                        if(mLatLng != null){
+                            pengurutanTerdekat(mTokoList);
+                        }
+//                        updateUI();
                         Log.i(TAG, "Got toko: " + tokos.size());
                     }
                 }
         );
+
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        if(mLatLng == null){
+           mLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+            pengurutanTerdekat(mTokoList);
+            Log.i(TAG, "Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
+        }
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
 
     }
 
@@ -204,15 +321,29 @@ public class Fragment_toko_user extends Fragment {
             try{
                 mFotoPemilik.setImageBitmap(mPictureUtils.convertToImage(toko.getFoto_diri()));
             }catch (Exception e){
-                Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
+                Log.e(TAG, "onCreateView: ERROR PASANG PP");
             }
             mNamaPemilik.setText(mToko.getNama_pemilik().toUpperCase() + "'S STORE");
-            mAlamat.setText(mToko.getAlamat());
+
+            mAlamat.setText(mToko.getAlamatToko());
+            mAlamat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                            Uri.parse("https://www.google.com/maps/place/" + mToko.getAlamatToko()));
+                    startActivity(intent);
+                }
+            });
+
             mTelepon.setText(mToko.getNo_telfon());
             mTelepon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "Telepon");
+                    Uri number = Uri.parse("tel:"+mToko.getNo_telfon());
+                    final Intent dial = new Intent(Intent.ACTION_DIAL,
+                            number);
+                    startActivity(dial);
                 }
             });
             mProdukViewModel.getProduksByIdToko(mToko.getIdToko()).observe(
@@ -278,6 +409,5 @@ public class Fragment_toko_user extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
 
 }
