@@ -35,11 +35,12 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_product_option;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
 
-public class Fragment_produk_user extends Fragment {
+public class Fragment_produk_user extends Fragment{
     private static final String TAG = "Fragment_produk_user";
 
     Produk_view_model mProdukViewModel;
@@ -156,7 +157,9 @@ public class Fragment_produk_user extends Fragment {
         mButton_keranjang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Apakek ini button");
+                Fragment_keranjang fragment = Fragment_keranjang.newInstance(mKeranjangs);
+                FragmentManager fm = getFragmentManager();
+                fragment.show(fm,"Fragment Keranjang");
             }
         });
 
@@ -254,6 +257,7 @@ public class Fragment_produk_user extends Fragment {
                         }
                     }
                     if(!ada){
+                        p.setNama(produk.getNama());
                         p.setIdProduk(produk.getIdProduk());
                         p.setJumlah(1);
                         p.setHarga(produk.getHarga());
@@ -331,13 +335,4 @@ public class Fragment_produk_user extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }

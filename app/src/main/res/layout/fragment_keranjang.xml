@@ -147,7 +147,7 @@
                 android:text="@string/button_hapus"
                 android:textColor="@color/white"
                 android:textSize="11dp"
-                android:id="@+id/btn_diambil"/>
+                android:id="@+id/btn_hapus"/>
         </RelativeLayout>
 
             <RelativeLayout
