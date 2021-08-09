@@ -78,6 +78,7 @@ public class Fragment_produk_user extends Fragment {
         Log.i(TAG, "updateUI called");
         mAdapter = new ProdukAdapter(mProdukList, mKeranjangs);
         mProdukRecyclerView.setAdapter(mAdapter);
+        jumlah_produk.setText(mProdukList.size() + " PRODUK");
     }
 
     private void filter(String text) {
@@ -123,7 +124,6 @@ public class Fragment_produk_user extends Fragment {
         text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase());
         text_address.setText(dataToko.getAlamatToko());
         telepon.setText(dataToko.getNo_telfon());
-        jumlah_produk.setText(mProdukList.size() + " PRODUK");
 
         mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
         mCariProduk.addTextChangedListener(new TextWatcher() {
