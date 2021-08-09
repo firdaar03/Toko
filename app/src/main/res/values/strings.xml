@@ -28,6 +28,7 @@
     <string name="text_daftar">Daftar</string>
     <string name="data_diri">Data Pribadi</string>
     <string name="data_akun">Data Akun</string>
+    <string name="judul_toko">Daftar Toko</string>
 
 
     <!-- Tambah Produk -->
@@ -133,4 +134,7 @@
     <string name="pembukuan_message_2">Tekan \'Ya\' untuk melakukan pembukuan!
         \n\nSetelah menekan \'Ya\' seluruh data aktivitas akan hilang
     </string>
+
+<!--    USER-->
+    <string name="kunjungi">Kunjungi</string>
 </resources>

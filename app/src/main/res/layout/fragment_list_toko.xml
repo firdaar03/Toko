@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_secondary">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/utama">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/back"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/utama_tua"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:text="@string/judul_toko"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/radius_input">
+
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:hint="@string/cari_produk"
+                android:textSize="12dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light"
+                android:id="@+id/cari_produk"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_cari"
+                android:layout_marginHorizontal="4dp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/toko_recycler_view"/>
+
+    </ScrollView>
+</LinearLayout>
