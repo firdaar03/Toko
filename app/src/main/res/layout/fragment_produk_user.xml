@@ -66,6 +66,7 @@
                 android:id="@+id/text_nama_toko"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="93dp"
+                android:maxLength="21"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
                 android:textSize="12dp"/>

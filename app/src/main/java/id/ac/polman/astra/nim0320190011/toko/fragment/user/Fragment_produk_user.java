@@ -44,6 +44,8 @@ public class Fragment_produk_user extends Fragment {
 
     Produk_view_model mProdukViewModel;
     private List<Produk> mProdukList;
+    private List<Produk> mKeranjangs;
+
     Toko dataToko;
     PictureUtils mPictureUtils;
 
@@ -74,18 +76,8 @@ public class Fragment_produk_user extends Fragment {
     private void updateUI()
     {
         Log.i(TAG, "updateUI called");
-        mAdapter = new ProdukAdapter(mProdukList);
+        mAdapter = new ProdukAdapter(mProdukList, mKeranjangs);
         mProdukRecyclerView.setAdapter(mAdapter);
-
-        try{
-            foto_toko.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
-        }catch (Exception e){
-            Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
-        }
-        text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase() + "'S STORE");
-        text_address.setText(dataToko.getAlamatToko());
-        telepon.setText(dataToko.getNo_telfon());
-        jumlah_produk.setText(mProdukList.size() + " PRODUK");
     }
 
     private void filter(String text) {
@@ -104,9 +96,10 @@ public class Fragment_produk_user extends Fragment {
 
         mProdukViewModel = new ViewModelProvider(this)
                 .get(Produk_view_model.class);
-        mAdapter = new ProdukAdapter(Collections.<Produk>emptyList());
+        mAdapter = new ProdukAdapter(Collections.<Produk>emptyList(), new ArrayList<>());
         mPictureUtils = new PictureUtils();
         mProdukList = new ArrayList<>();
+        mKeranjangs = new ArrayList<>();
     }
 
     @Nullable
@@ -121,6 +114,16 @@ public class Fragment_produk_user extends Fragment {
         telepon= v.findViewById(R.id.telepon);
         jumlah_produk= v.findViewById(R.id.jumlah_produk);
 
+//        UPDATE UI
+        try{
+            foto_toko.setImageBitmap(mPictureUtils.convertToImage(dataToko.getFoto_diri()));
+        }catch (Exception e){
+            Log.e(TAG, "onCreateView: ERROR PASANG PP", e);
+        }
+        text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase());
+        text_address.setText(dataToko.getAlamatToko());
+        telepon.setText(dataToko.getNo_telfon());
+        jumlah_produk.setText(mProdukList.size() + " PRODUK");
 
         mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
         mCariProduk.addTextChangedListener(new TextWatcher() {
@@ -217,11 +220,11 @@ public class Fragment_produk_user extends Fragment {
             mKeranjang = itemView.findViewById(R.id.jumlah_keranjang);
             mButton_kurang = itemView.findViewById(R.id.button_minus);
             mButton_tambah = itemView.findViewById(R.id.button_plus);
-
         }
 
-        public void bind(Produk produk){
+        public void bind(Produk produk, List<Produk> keranjang){
             mProduk = produk;
+            mKeranjang.setText(getText(R.string.keranjang) + " : 0");
             mNamaProduk.setText(mProduk.getNama());
             try{
                 mFotoProduk.setImageBitmap(mPictureUtils.convertToImage(produk.getFoto()));
@@ -230,30 +233,79 @@ public class Fragment_produk_user extends Fragment {
             mHargaProduk.setText("Rp. " + String.format("%,d", mProduk.getHarga()).replace(',', '.') + ",-");
             mJumlahProduk.setText("stok : " + mProduk.getJumlah());
             mMerkProduk.setText("(" + mProduk.getMerk() + ")");
-            
+
+            if(produk.getJumlah() == 0){
+                mButton_tambah.setEnabled(false);
+            }
             mButton_tambah.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "onClick: Apakaek ini ");
+                    Produk p = new Produk();
+                    boolean ada = false;
+                    for(Produk pr : keranjang){
+                        if(pr.getIdProduk() == produk.getIdProduk()){
+                            if(produk.getJumlah() != pr.getJumlah()){
+                                pr.setJumlah(pr.getJumlah()+1);
+                            }
+                            ada = true;
+                            p = pr;
+                            break;
+                        }
+                    }
+                    if(!ada){
+                        p.setIdProduk(produk.getIdProduk());
+                        p.setJumlah(1);
+                        p.setHarga(produk.getHarga());
+                        keranjang.add(p);
+                    }
+                    mKeranjang.setText(getText(R.string.keranjang) + " : " + p.getJumlah());
                 }
             });
-            
+
             mButton_kurang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i(TAG, "onClick: Apakek ini juga");
+                    Produk p = new Produk();
+                    boolean ada = false;
+                    for(Produk pr : keranjang){
+                        if(pr.getIdProduk() == produk.getIdProduk()){
+                            if(pr.getJumlah() > 0){
+                                pr.setJumlah(pr.getJumlah()-1);
+                            }
+                            ada = true;
+                            p = pr;
+                            break;
+                        }
+                    }
+                    if(!ada){
+                        p.setIdProduk(produk.getIdProduk());
+                        p.setJumlah(1);
+                        p.setHarga(produk.getHarga());
+                        keranjang.add(p);
+                    }
+                    mKeranjang.setText(getText(R.string.keranjang) + " : " + p.getJumlah());
                 }
             });
-        }
 
+            for(Produk pr : keranjang){
+                if(pr.getIdProduk() == produk.getIdProduk()){
+                    mKeranjang.setText(getText(R.string.keranjang) + " : " + pr.getJumlah());
+                    break;
+                }
+            }
+        }
     }
 
     private class ProdukAdapter extends RecyclerView.Adapter<ProdukHolder>{
 
         private List<Produk> mProdukList;
+        private List<Produk> keranjang;
 
-        public ProdukAdapter(List<Produk> produks){
+        public ProdukAdapter(List<Produk> produks, List<Produk> keranjang){
             mProdukList = produks;
+            this.keranjang = keranjang;
         }
 
         @Override
@@ -265,7 +317,7 @@ public class Fragment_produk_user extends Fragment {
         @Override
         public void onBindViewHolder(ProdukHolder holder, int position){
             Produk produk = mProdukList.get(position);
-            holder.bind(produk);
+            holder.bind(produk, keranjang);
         }
 
         @Override
