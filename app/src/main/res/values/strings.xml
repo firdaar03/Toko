@@ -28,6 +28,7 @@
     <string name="text_daftar">Daftar</string>
     <string name="data_diri">Data Pribadi</string>
     <string name="data_akun">Data Akun</string>
+    <string name="judul_toko">Daftar Toko</string>
 
 
     <!-- Tambah Produk -->
@@ -135,4 +136,7 @@
     </string>
     <string name="keranjang">Keranjang</string>
     <string name="daftar_produk">Daftar produk</string>
+
+<!--    USER-->
+    <string name="kunjungi">Kunjungi</string>
 </resources>
