@@ -133,4 +133,6 @@
     <string name="pembukuan_message_2">Tekan \'Ya\' untuk melakukan pembukuan!
         \n\nSetelah menekan \'Ya\' seluruh data aktivitas akan hilang
     </string>
+    <string name="keranjang">Keranjang</string>
+    <string name="daftar_produk">Daftar produk</string>
 </resources>

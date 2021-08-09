@@ -1,4 +1,4 @@
-package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
+package id.ac.polman.astra.nim0320190011.toko.fragment.user;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,12 +35,12 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
-import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
-import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
-import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_product_option;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
 
-public class Fragment_produk extends Fragment {
-    private static final String TAG = "Fragment_produk";
+public class Fragment_produk_user extends Fragment {
+    private static final String TAG = "Fragment_produk_user";
 
     Produk_view_model mProdukViewModel;
     private List<Produk> mProdukList;
@@ -52,22 +50,20 @@ public class Fragment_produk extends Fragment {
     private RecyclerView mProdukRecyclerView;
     private ProdukAdapter mAdapter;
 
-    private Button mAddProdukButton;
-    private Button mPutProdukButton;
     private TextView mNamaPemilik;
     private EditText mCariProduk;
     private ImageView mBack;
+    private ImageView mButton_keranjang;
 
-    public static Fragment_produk newInstance(Toko in) {
-        return new Fragment_produk(in);
+    public static Fragment_produk_user newInstance(Toko in) {
+        return new Fragment_produk_user(in);
     }
 
-    private Fragment_produk(Toko t){
+    private Fragment_produk_user (Toko t){
         dataToko = t;
     }
 
-
-//    private void updateUI(List<Produk> produks)
+    //    private void updateUI(List<Produk> produks)
     private void updateUI()
     {
         Log.i(TAG, "updateUI called");
@@ -88,10 +84,10 @@ public class Fragment_produk extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "Fragment_Produk.onCreate() called");
+
         mProdukViewModel = new ViewModelProvider(this)
                 .get(Produk_view_model.class);
-        mAdapter = new  ProdukAdapter(Collections.<Produk>emptyList());
+        mAdapter = new ProdukAdapter(Collections.<Produk>emptyList());
         mPictureUtils = new PictureUtils();
         mProdukList = new ArrayList<>();
     }
@@ -100,9 +96,8 @@ public class Fragment_produk extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
-        View v = inflater.inflate(R.layout.fragment_produk, container, false);
-
-
+        View v = inflater.inflate(R.layout.fragment_produk_user ,container, false);
+        
         mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
         mCariProduk.addTextChangedListener(new TextWatcher() {
             @Override
@@ -129,32 +124,17 @@ public class Fragment_produk extends Fragment {
                 getFragmentManager().popBackStack();
             }
         });
+        
+        mButton_keranjang = v.findViewById(R.id.button_keranjang);
+        mButton_keranjang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: Apakek ini button");
+            }
+        });
 
-        mNamaPemilik = (TextView) v.findViewById(R.id.textView3);
+        mNamaPemilik = (TextView) v.findViewById(R.id.header_title);
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
-
-        mAddProdukButton = (Button) v.findViewById(R.id.button_add);
-        mAddProdukButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment_product_option fragment = Fragment_product_option.newInstance(dataToko);
-                FragmentManager fm = getFragmentManager();
-                fragment.show(fm,"Fragment Setting");
-            }
-        });
-
-        mPutProdukButton = (Button) v.findViewById(R.id.button_put);
-        mPutProdukButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = Fragment_put_produk.newInstance(dataToko);
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit(); // save the changes
-            }
-        });
 
         mProdukRecyclerView = (RecyclerView) v.findViewById(R.id.produk_recycler_view);
         mProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -165,7 +145,6 @@ public class Fragment_produk extends Fragment {
     }
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -174,7 +153,7 @@ public class Fragment_produk extends Fragment {
         }catch (InterruptedException ie){
             Thread.currentThread().interrupt();
         }
-        Log.i(TAG, "Fragment_Produk.onViewCreated() called");
+        Log.i(TAG, "onViewCreated() called");
         mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
                 getViewLifecycleOwner(),
                 new Observer<List<Produk>>() {
@@ -195,23 +174,26 @@ public class Fragment_produk extends Fragment {
         private TextView mHargaProduk;
         private TextView mJumlahProduk;
         private TextView mMerkProduk;
-        private ImageView mEditProduk;
-        private ImageView mDeleteProduk;
-        private ConstraintLayout mItemProdukLayout;
+
+        private TextView mKeranjang;
+        private ImageView mButton_tambah;
+        private ImageView mButton_kurang;
+
         private Produk mProduk;
 
         public ProdukHolder (LayoutInflater inflater, ViewGroup parent){
-            super(inflater.inflate(R.layout.fragment_item_produk, parent, false));
+            super(inflater.inflate(R.layout.fragment_item_produk_user, parent, false));
 
             mFotoProduk = (ImageView) itemView.findViewById(R.id.foto_produk);
             mNamaProduk = (TextView) itemView.findViewById(R.id.text_nama_produk);
             mHargaProduk = (TextView) itemView.findViewById(R.id.text_harga_produk);
             mJumlahProduk = (TextView) itemView.findViewById(R.id.text_jumlah_produk);
             mMerkProduk = (TextView) itemView.findViewById(R.id.text_merk_produk);
-            mEditProduk = (ImageView) itemView.findViewById(R.id.edit_produk);
 
-            mDeleteProduk = (ImageView) itemView.findViewById(R.id.delete_produk);
-            mItemProdukLayout = itemView.findViewById(R.id.fragment_item_produk);
+            mKeranjang = itemView.findViewById(R.id.jumlah_keranjang);
+            mButton_kurang = itemView.findViewById(R.id.button_minus);
+            mButton_tambah = itemView.findViewById(R.id.button_plus);
+
         }
 
         public void bind(Produk produk){
@@ -224,30 +206,18 @@ public class Fragment_produk extends Fragment {
             mHargaProduk.setText("Rp. " + String.format("%,d", mProduk.getHarga()).replace(',', '.') + ",-");
             mJumlahProduk.setText("stok : " + mProduk.getJumlah());
             mMerkProduk.setText("(" + mProduk.getMerk() + ")");
-            mEditProduk.setOnClickListener(new View.OnClickListener() {
+            
+            mButton_tambah.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment fragment = Fragment_edit_produk.newInstance(mProduk, dataToko);
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, fragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit(); // save the changes
+                    Log.i(TAG, "onClick: Apakaek ini ");
                 }
             });
-            mDeleteProduk.setOnClickListener(new View.OnClickListener() {
+            
+            mButton_kurang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog
-                            .Builder(getContext())
-                            .setTitle("Hapus data")
-                            .setMessage("Apakah anda yakin untuk menghapus data ini?")
-                            .setPositiveButton("Ya", (dialogInterface, i) -> {
-                                mProdukViewModel.delete(String.valueOf(mProduk.getIdProduk()));
-                                loadFragment(Fragment_produk.newInstance(dataToko));
-                            })
-                            .setNegativeButton("Tidak", null)
-                            .show();
+                    Log.i(TAG, "onClick: Apakek ini juga");
                 }
             });
         }
@@ -283,13 +253,6 @@ public class Fragment_produk extends Fragment {
             mProdukList = filteredList;
             notifyDataSetChanged();
         }
-    }
-
-    private void loadFragment(Fragment fragment) {
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit(); // save the changes
     }
 
     @Override

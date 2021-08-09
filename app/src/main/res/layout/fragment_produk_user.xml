@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/utama">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/back"/>
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/utama_tua"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="24dp"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent">
+
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="5dp"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/daftar_produk"
+            android:textAllCaps="true"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/radius_input">
+
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:hint="@string/cari_produk"
+                android:textSize="12dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light"
+                android:id="@+id/cari_produk"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_cari"
+                android:layout_marginHorizontal="4dp"/>
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/button_keranjang"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_shopping_cart"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"
+
+            android:layout_marginVertical="2dp"
+            android:background="@drawable/radius_daftar_toko"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="10dp"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/produk_recycler_view"/>
+
+    </ScrollView>
+</LinearLayout>
