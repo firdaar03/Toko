@@ -36,50 +36,75 @@
         </View>
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
-            android:layout_marginTop="15dp"
+            android:layout_weight="1"
             android:textColor="@color/black"
             android:text="@string/judul_toko"
             android:fontFamily="@font/poppins_light"
             android:textSize="14dp"/>
 
         <LinearLayout
+            android:id="@+id/linearCari"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="6dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/radius_input"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="@drawable/radius_input">
+            android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/cari_toko"
                 android:layout_width="160dp"
-                android:layout_height="match_parent"
-                android:hint="@string/cari_toko"
-                android:textSize="12dp"
-                android:paddingTop="10dp"
-                android:paddingLeft="5dp"
-                android:textColor="@color/black"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
-                android:id="@+id/cari_toko"/>
+                android:hint="@string/cari_toko"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_cari"
-                android:layout_marginHorizontal="4dp"/>
+                android:layout_marginHorizontal="4dp"
+                android:src="@drawable/ic_cari" />
 
         </LinearLayout>
-    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <View
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/black"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_dialog_map"
+                android:background="@color/hijau_tua"
+                android:id="@+id/button_map"
+                android:padding="3dp"
+                android:layout_marginEnd="5dp"
+                android:clickable="true"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

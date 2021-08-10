@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import id.ac.polman.astra.nim0320190011.toko.MapsFragment;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.Utils.PictureUtils;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
@@ -48,12 +50,15 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 
-public class Fragment_toko_user extends Fragment implements LocationListener {
+public class Fragment_toko_user extends Fragment implements LocationListener{
     private static final String TAG = "Fragment_toko_user";
 
     Toko_view_model mTokoViewModel;
     Produk_view_model mProdukViewModel;
     private List<Toko> mTokoList;
+    private List<LatLng> mLatLngList;
+    private List<String> mTitle;
+
     PictureUtils mPictureUtils;
 
     private LocationManager locationManager;
@@ -65,6 +70,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
 
     private EditText mCariToko;
     private ImageView mBack;
+    private ImageView mButton_map;
 
 
     public Fragment_toko_user() {
@@ -115,6 +121,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.i(TAG, "onCreate: ");
         mTokoViewModel = getTokoViewModel();
         mProdukViewModel = getProdukViewModel();
         mTokoList = new ArrayList<>();
@@ -134,10 +141,14 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         }catch (Exception e){
         }
+        mLatLngList = new ArrayList<>();
+        mTitle = new ArrayList<>();
     }
 
     private void pengurutanTerdekat(List<Toko> in){
 //        Log.i(TAG, "pengurutanTerdekat Latitude:" + mLatLng.latitude + ", Longitude:" + mLatLng.longitude);
+        mLatLngList = new ArrayList<>();
+        mTitle = new ArrayList<>();
         for(Toko t : in){
             LatLng lat = new LatLng(0,0);
             if(Geocoder.isPresent()){
@@ -166,6 +177,9 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
 //            Log.i(TAG, "pengurutanTerdekat: Miringnya " + miring );
 //            Log.i(TAG, "pengurutanTerdekat: Toko alamat   " + t.getAlamatToko());
             t.setStatus((int) miring);
+
+            mLatLngList.add(lat);
+            mTitle.add(t.getNama_pemilik());
         }
         Toko[] output = new Toko[in.size()];
         Toko temp;
@@ -193,6 +207,10 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
         for(int i = 0; i < output.length; i++){
             Log.i(TAG, "pengurutanTerdekat: asd  i ke " + i + " : " + output[i].getStatus());
             mTokoList.add(output[i]);
+        }
+        if(mLatLng != null){
+            mLatLngList.add(mLatLng);
+            mButton_map.setEnabled(true);
         }
         updateUI(mTokoList);
     }
@@ -231,8 +249,27 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
         mTokoRecyclerview = v.findViewById(R.id.toko_recycler_view);
         mTokoRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         mTokoRecyclerview.setAdapter(mTokoAdapter);
+
+        mButton_map = v.findViewById(R.id.button_map);
+        mButton_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mLatLng == null || mLatLngList.size() == 0){
+                    Toast.makeText(getContext(), "Mohon tunggu", Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }
+                MapsFragment fragment = MapsFragment.newInstance(mLatLngList, mTitle);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
+            }
+        });
         return v;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -257,7 +294,6 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
                     }
                 }
         );
-
     }
 
     @Override
@@ -410,4 +446,15 @@ public class Fragment_toko_user extends Fragment implements LocationListener {
         super.onDetach();
     }
 
+    @Override
+    public void onPause() {
+        Log.i(TAG, "onPause: ");
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume: ");
+    }
 }
