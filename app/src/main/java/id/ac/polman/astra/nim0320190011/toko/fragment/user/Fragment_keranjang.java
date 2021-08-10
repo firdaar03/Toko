@@ -91,6 +91,7 @@ public class Fragment_keranjang extends DialogFragment {
                         })
                         .setNegativeButton("Tidak", null)
                         .show();
+                getDialog().dismiss();
             }
         });
 

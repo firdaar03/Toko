@@ -214,54 +214,67 @@ public class Fragment_put_produk extends Fragment {
             @Override
             public void onClick(View v) {
                 try{
-                    if (!mJumlah.getText().toString().equals("") ){
-                        if(Integer.parseInt(mJumlah.getText().toString()) > mProduk.getJumlah()){
-                            Toast.makeText(getContext(), "Jumlah tidak boleh melebihi stok !",
+                    if (mCariProduk.getText().toString().equals("")) {
+                        mCariProduk.setError("Harus diisi");
+                    } else {
+                        if (mNamaProduk.getText().toString().equals("")) {
+                            Toast.makeText(getContext(), "Harus diisi",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                            if (!mJumlah.getText().toString().equals("") ){
+                                if(Integer.parseInt(mJumlah.getText().toString()) > mProduk.getJumlah()){
+                                    Toast.makeText(getContext(), "Jumlah tidak boleh melebihi stok !",
+                                            Toast.LENGTH_SHORT).show();
+                                } else {
+                                    mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                            Produk p = new Produk();
-                            p.setIdProduk(mProduk.getIdProduk());
-                            p.setNama(mProduk.getNama());
-                            p.setHarga(mProduk.getHarga());
-                            p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
+                                    Produk p = new Produk();
+                                    p.setIdProduk(mProduk.getIdProduk());
+                                    p.setNama(mProduk.getNama());
+                                    p.setHarga(mProduk.getHarga());
+                                    p.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
 
-                            for(Produk x : mPutProdukList){
-                                Log.i(TAG, "onClick: " + x.getJumlah());
-                                if(x.getNama().equals(p.getNama())){
-                                    mPutProdukList.remove(x);
-                                    break;
+                                    for(Produk x : mPutProdukList){
+                                        Log.i(TAG, "onClick: " + x.getJumlah());
+                                        if(x.getNama().equals(p.getNama())){
+                                            mPutProdukList.remove(x);
+                                            break;
+                                        }
+                                    }
+
+                                    mPutProdukList.add(p);
+
+                                    hargaTotal = 0;
+                                    jumlahTotal = 0;
+                                    for(Produk asdw : mPutProdukList){
+                                        hargaTotal += asdw.getHarga() * asdw.getJumlah();
+                                        jumlahTotal += asdw.getJumlah();
+                                    }
+                                    mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
+                                    mJumlahTotal.setText(jumlahTotal + "");
+
+
+                                    mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
+                                    mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
+
+                                    mFotoProduk.setImageResource(0);
+                                    mCariProduk.setText("");
+                                    mNamaProduk.setText("");
+                                    mJumlahProduk.setText("");
+                                    mMerkProduk.setText("");
+                                    mHargaProduk.setText("");
+                                    mJumlah.setText("");
                                 }
+
+
+
+                            } else {
+                                mJumlah.setError("Jumlah harus diisi");
                             }
-
-                            mPutProdukList.add(p);
-
-                            hargaTotal = 0;
-                            jumlahTotal = 0;
-                            for(Produk asdw : mPutProdukList){
-                                hargaTotal += asdw.getHarga() * asdw.getJumlah();
-                                jumlahTotal += asdw.getJumlah();
-                            }
-                            mHargaTotal.setText("Rp. " + String.format("%,d", hargaTotal).replace(',', '.') + ",-");
-                            mJumlahTotal.setText(jumlahTotal + "");
-
-
-                            mPutProdukAdapter = new PutProdukAdapter(mPutProdukList);
-                            mPutProdukRecyclerView.setAdapter(mPutProdukAdapter);
                         }
 
-                        mFotoProduk.setImageResource(0);
-                        mCariProduk.setText("");
-                        mNamaProduk.setText("");
-                        mJumlahProduk.setText("");
-                        mMerkProduk.setText("");
-                        mHargaProduk.setText("");
-                        mJumlah.setText("");
-
-                    } else {
-                        mJumlah.setError("Jumlah harus diisi");
                     }
+
                 }catch (Exception e){
 
                 }

@@ -90,7 +90,7 @@
                 android:layout_marginTop="22dp"
                 android:layout_marginLeft="112dp"
                 android:fontFamily="@font/poppins_light"
-                android:textColor="@color/black"
+                android:textColor="@drawable/color_menu_aktivitas"
                 android:textSize="9dp"
                 android:id="@+id/text_address"/>
 

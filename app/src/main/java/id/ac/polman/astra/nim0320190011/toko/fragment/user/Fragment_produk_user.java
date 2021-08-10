@@ -2,6 +2,8 @@ package id.ac.polman.astra.nim0320190011.toko.fragment.user;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -124,7 +126,26 @@ public class Fragment_produk_user extends Fragment{
         }
         text_nama_toko.setText(dataToko.getNama_pemilik().toUpperCase());
         text_address.setText(dataToko.getAlamatToko());
+        text_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("https://www.google.com/maps/place/" + dataToko.getAlamatToko()));
+                startActivity(intent);
+            }
+        });
+
         telepon.setText(dataToko.getNo_telfon());
+        telepon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Telepon");
+                Uri number = Uri.parse("tel:"+dataToko.getNo_telfon());
+                final Intent dial = new Intent(Intent.ACTION_DIAL,
+                        number);
+                startActivity(dial);
+            }
+        });
 
         mCariProduk = (EditText) v.findViewById(R.id.cari_produk);
         mCariProduk.addTextChangedListener(new TextWatcher() {
