@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,6 +69,9 @@ public class Fragment_produk_user extends Fragment implements  Fragment_keranjan
     private TextView text_address;
     private TextView telepon;
     private TextView jumlah_produk;
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
+
+    DisplayMetrics displayMetrics;
 
     Fragment_keranjang fragment;
 
@@ -107,6 +112,9 @@ public class Fragment_produk_user extends Fragment implements  Fragment_keranjan
         mPictureUtils = new PictureUtils();
         mProdukList = new ArrayList<>();
         mKeranjangs = new ArrayList<>();
+
+        displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
     }
 
     @Override
@@ -188,6 +196,19 @@ public class Fragment_produk_user extends Fragment implements  Fragment_keranjan
             }
         });
 
+        mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+
+        if(mProdukList.size() == 0){
+            mRefreshLayout.setRefreshing(true);
+        }
+
         mNamaPemilik = (TextView) v.findViewById(R.id.header_title);
         mNamaPemilik.setText(dataToko.getNama_pemilik().toUpperCase());
 
@@ -214,6 +235,22 @@ public class Fragment_produk_user extends Fragment implements  Fragment_keranjan
                     public void onChanged(List<Produk> produks) {
                         mProdukList = produks;
                         updateUI();
+                        mRefreshLayout.setRefreshing(false);
+                        Log.i(TAG, "Got Produk: " + produks.size());
+                    }
+                }
+        );
+    }
+
+    private void refresh (){
+        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Produk>>() {
+                    @Override
+                    public void onChanged(List<Produk> produks) {
+                        mProdukList = produks;
+                        updateUI();
+                        mRefreshLayout.setRefreshing(false);
                         Log.i(TAG, "Got Produk: " + produks.size());
                     }
                 }

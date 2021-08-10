@@ -103,7 +103,6 @@ public class Fragment_keranjang extends DialogFragment {
                         })
                         .setNegativeButton("Tidak", null)
                         .show();
-                getDialog().dismiss();
             }
         });
 
@@ -139,6 +138,7 @@ public class Fragment_keranjang extends DialogFragment {
     public void simpanKeranjang() {
         hargaTotal = 0;
         jumlahTotal = 0;
+        int total = 0;
         int i = 0;
         String tanggal = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         String message =  "```-- LIST KERANJANG  --```\n\n"
@@ -148,9 +148,10 @@ public class Fragment_keranjang extends DialogFragment {
         Intent n = new Intent(Intent.ACTION_SEND);
         for(Produk asdw : mProdukList){
             i += 1;
+            total = asdw.getJumlah() * asdw.getHarga();
             message2 += i + ". " + asdw.getNama() + "\n"
-                        + "    Jumlah\t: " + asdw.getJumlah() + "\n"
-                        + "    Harga\t: " + "Rp "  + String.format("%,d", asdw.getHarga()).replace(',', '.') + ",-" + "\n";
+                        + "- "+ asdw.getJumlah() + " x " + "Rp "  + String.format("%,d", asdw.getHarga()).replace(',', '.') + ",-" + "\n"
+                        + "- "+ "Rp "  + String.format("%,d", total).replace(',', '.') + ",-" + "\n";;
             hargaTotal += asdw.getHarga() * asdw.getJumlah();
             jumlahTotal += asdw.getJumlah();
         }

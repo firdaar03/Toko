@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -76,6 +78,9 @@ public class Fragment_menu_utama extends Fragment
         private TextView mPengeluaran;
         private RelativeLayout mAktivitasProduk;
         private RelativeLayout mAktivitasDompet;
+        private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
+
+        DisplayMetrics displayMetrics;
 
         private RecyclerView mRecyclerView;
         private RecyclerView mRecyclerView_1;
@@ -162,6 +167,9 @@ public class Fragment_menu_utama extends Fragment
             mDompetAktivitas = new ArrayList<>();
             mProdukAktivitas = new ArrayList<>();
 
+            displayMetrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
         }
 
         @Nullable
@@ -236,6 +244,19 @@ public class Fragment_menu_utama extends Fragment
                     mCallbacks.onDompetButtonClicked();
                 }
             });
+
+            mRefreshLayout = v.findViewById(R.id.swiperefresh);
+            mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
+            mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refresh();
+                }
+            });
+
+            if (dataProduk.size() == 0 ){
+                mRefreshLayout.setRefreshing(true);
+            }
 
             updateUI();
             return v;
@@ -323,6 +344,60 @@ public class Fragment_menu_utama extends Fragment
                             dataProduk = produks;
                             Log.i(TAG, "Got Produk: " + produks.size());
                             updateUI();
+                            mRefreshLayout.setRefreshing(false);
+                        }
+                    }
+            );
+
+//        UPDATE PEMASUKKAN
+            mAktivitasDompetViewModel.getAktivitasByIdToko(dataToko.getIdToko()).observe(
+                    getViewLifecycleOwner(),
+                    new Observer<List<Dompet_aktivitas>>() {
+                        @Override
+                        public void onChanged(List<Dompet_aktivitas> aktivitas) {
+                            mDompetAktivitas = aktivitas;
+                            updateUI();
+                        }
+                    }
+            );
+
+//            UPDATE AKTIVITAS PRODUK
+            mAktivitasProdukViewModel.getAktivitasByIdToko(dataToko.getIdToko()).observe(
+                    getViewLifecycleOwner(),
+                    new Observer<List<Produk_aktivitas>>() {
+                        @Override
+                        public void onChanged(List<Produk_aktivitas> produk_aktivitas) {
+                            Log.i(TAG, "onChanged: berapa aktiivitas " + produk_aktivitas.size());
+                            mProdukAktivitas = produk_aktivitas;
+                            updateUI();
+                        }
+                    }
+            );
+        }
+
+        private void refresh(){
+            //        UPDATE DATA DOMPET
+            mDompetViewModel.loadDompet(dataToko.getIdToko() + "").observe(
+                    getViewLifecycleOwner(),
+                    new Observer<Dompet>() {
+                        @Override
+                        public void onChanged(Dompet dompet) {
+                            dataDompet = dompet;
+                            updateUI();
+                        }
+                    }
+            );
+
+//        UPDATE DATA PRODUK
+            mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
+                    getViewLifecycleOwner(),
+                    new Observer<List<Produk>>() {
+                        @Override
+                        public void onChanged(List<Produk> produks) {
+                            dataProduk = produks;
+                            Log.i(TAG, "Got Produk: " + produks.size());
+                            updateUI();
+                            mRefreshLayout.setRefreshing(false);
                         }
                     }
             );
