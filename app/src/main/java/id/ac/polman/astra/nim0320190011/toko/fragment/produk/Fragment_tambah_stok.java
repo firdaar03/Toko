@@ -1,5 +1,6 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -153,28 +154,6 @@ public class Fragment_tambah_stok extends Fragment {
             }
         });
 
-        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
-                getViewLifecycleOwner(),
-                new Observer<List<Produk>>() {
-                    @Override
-                    public void onChanged(List<Produk> produks) {
-
-                        ArrayList<String> nama_nama = new ArrayList<>();
-                        mProdukList = produks;
-                        for(Produk p : produks){
-                            nama_nama.add(p.getNama());
-                        }
-
-                        ArrayAdapter<String> adapterNama = new ArrayAdapter<String>
-                                (getContext(), R.layout.layout_item_autocomplete, R.id.search, nama_nama);
-                        mCariProduk.setAdapter(adapterNama);
-                        mCariProduk.setThreshold(1);//will start working from first character
-
-                        Log.i(TAG, "Got Produk: " + produks.size());
-                    }
-                }
-        );
-
         mFotoProduk = (ImageView) v.findViewById(R.id.foto_produk);
         mNamaProduk = (TextView) v.findViewById(R.id.nama_produk);
         mHargaProduk = (TextView) v.findViewById(R.id.harga_produk);
@@ -255,6 +234,12 @@ public class Fragment_tambah_stok extends Fragment {
         mTambahStok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mStokProdukList.size() == 0){
+                    Toast.makeText(getContext(), R.string.tidak_bisa_put, Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
                 Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
@@ -269,6 +254,8 @@ public class Fragment_tambah_stok extends Fragment {
                 }
                 Toast.makeText(getContext(), "Add Stok Produk !",
                         Toast.LENGTH_SHORT).show();
+
+                callbacks.onPenyetokan(mStokProdukList);
                 getFragmentManager().popBackStack();
             }
 
@@ -278,6 +265,44 @@ public class Fragment_tambah_stok extends Fragment {
         mStokProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return v;
+    }
+
+    private Callbacks callbacks;
+
+    public interface Callbacks{
+        public void onPenyetokan(List<Produk> pr);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        callbacks = (Callbacks) context;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Produk>>() {
+                    @Override
+                    public void onChanged(List<Produk> produks) {
+
+                        ArrayList<String> nama_nama = new ArrayList<>();
+                        mProdukList = produks;
+                        for(Produk p : produks){
+                            nama_nama.add(p.getNama());
+                        }
+
+                        ArrayAdapter<String> adapterNama = new ArrayAdapter<String>
+                                (getContext(), R.layout.layout_item_autocomplete, R.id.search, nama_nama);
+                        mCariProduk.setAdapter(adapterNama);
+                        mCariProduk.setThreshold(1);//will start working from first character
+
+                        Log.i(TAG, "Got Produk: " + produks.size());
+                    }
+                }
+        );
     }
 
     private void filter(String text) {

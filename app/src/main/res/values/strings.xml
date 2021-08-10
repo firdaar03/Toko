@@ -150,4 +150,5 @@
     <string name="keranjang_message">Apakah anda yakin ingin menyimpan keranjang?
         \n\nData Keranjang dapat disimpan dalam bentuk text
     </string>
+    <string name="tidak_bisa_put">Mohon masukkan setidaknya 1 produk</string>
 </resources>

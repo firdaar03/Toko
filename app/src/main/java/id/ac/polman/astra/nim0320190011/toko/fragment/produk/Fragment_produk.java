@@ -175,17 +175,46 @@ public class Fragment_produk extends Fragment {
             Thread.currentThread().interrupt();
         }
         Log.i(TAG, "Fragment_Produk.onViewCreated() called");
-        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
-                getViewLifecycleOwner(),
-                new Observer<List<Produk>>() {
-                    @Override
-                    public void onChanged(List<Produk> produks) {
-                        mProdukList = produks;
-                        updateUI();
-                        Log.i(TAG, "Got Produk: " + produks.size());
+        if(mProdukList.size() == 0){
+            mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
+                    getViewLifecycleOwner(),
+                    new Observer<List<Produk>>() {
+                        @Override
+                        public void onChanged(List<Produk> produks) {
+                            mProdukList = produks;
+                            updateUI();
+                            Log.i(TAG, "Got Produk: " + produks.size());
+                        }
                     }
+            );
+        }
+    }
+
+    public void produk_tambah(Produk p){
+        mProdukList.add(p);
+        updateUI();
+    }
+
+    public void penyetokan(List<Produk> pr) {
+        for(Produk a : mProdukList){
+            for(Produk b : pr){
+                if(a.getIdProduk() == b.getIdProduk()){
+                    a.setJumlah(a.getJumlah() + b.getJumlah());
                 }
-        );
+            }
+        }
+        updateUI();
+    }
+
+    public void putproduk(List<Produk> pr) {
+        for(Produk a : mProdukList){
+            for(Produk b : pr){
+                if(a.getIdProduk() == b.getIdProduk()){
+                    a.setJumlah(a.getJumlah() - b.getJumlah());
+                }
+            }
+        }
+        updateUI();
     }
 
     private class ProdukHolder extends RecyclerView.ViewHolder{
@@ -244,7 +273,8 @@ public class Fragment_produk extends Fragment {
                             .setMessage("Apakah anda yakin untuk menghapus data ini?")
                             .setPositiveButton("Ya", (dialogInterface, i) -> {
                                 mProdukViewModel.delete(String.valueOf(mProduk.getIdProduk()));
-                                loadFragment(Fragment_produk.newInstance(dataToko));
+                                mProdukList.remove(mProduk);
+                                updateUI();
                             })
                             .setNegativeButton("Tidak", null)
                             .show();

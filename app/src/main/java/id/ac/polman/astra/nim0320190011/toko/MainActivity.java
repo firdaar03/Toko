@@ -17,6 +17,7 @@ import android.util.Log;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Login_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
@@ -27,10 +28,15 @@ import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_tambah_stok;
 import id.ac.polman.astra.nim0320190011.toko.fragment.user.Fragment_produk_user;
 
 public class MainActivity extends AppCompatActivity
-    implements Fragment_login.Callbacks, Fragment_menu_utama.Callbacks{
+    implements Fragment_login.Callbacks, Fragment_menu_utama.Callbacks,
+    Fragment_tambah_produk.Callbacks, Fragment_tambah_stok.Callbacks,
+    Fragment_put_produk.Callbacks{
+
+    private Fragment_produk fragment_produk;
 
     private static final String TAG = "MainActivity";
     private Toko toko_user;
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         mLoginViewModel = getLoginViewModel();
 
@@ -143,9 +150,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProdukButtonClicked() {
-        Fragment fragment = Fragment_produk.newInstance(toko_user);
+        fragment_produk = Fragment_produk.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .replace(R.id.fragment_container, fragment_produk)
                 .addToBackStack(null)
                 .commit();
     }
@@ -157,5 +164,20 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onProdukBaru(Produk pr) {
+        fragment_produk.produk_tambah(pr);
+    }
+
+    @Override
+    public void onPenyetokan(List<Produk> pr) {
+        fragment_produk.penyetokan(pr);
+    }
+
+    @Override
+    public void onPutProduk(List<Produk> pr) {
+        fragment_produk.putproduk(pr);
     }
 }

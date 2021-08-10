@@ -1,6 +1,7 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -45,6 +46,7 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.dompet.Fragment_dompet_uang_keluar;
 
 public class Fragment_tambah_produk extends Fragment {
     private static final String TAG = "Fragment_tambah_produk";
@@ -197,7 +199,11 @@ public class Fragment_tambah_produk extends Fragment {
                             && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
                     mProduk.setIdToko(dataToko.getIdToko());
 
-                    mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
+                    try{
+                        mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
+                    }catch (Exception e){
+                        mProduk.setFoto("");
+                    }
 
                     mProduk.setHarga(Integer.parseInt(mHarga_produk.getText().toString()));
                     mProduk.setJumlah(Integer.parseInt(mJumlah_produk.getText().toString()));
@@ -207,8 +213,10 @@ public class Fragment_tambah_produk extends Fragment {
                     mProdukViewModel.save(mProduk);
                     Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT)
                             .show();
+
+                    callbacks.onProdukBaru(mProduk);
+
                     getFragmentManager().popBackStack();
-//
                 }
 
             }
@@ -274,10 +282,15 @@ public class Fragment_tambah_produk extends Fragment {
         }
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit(); // save the changes
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        callbacks = (Callbacks) context;
+    }
+
+    private Callbacks callbacks;
+
+    public interface Callbacks{
+        public void onProdukBaru(Produk pr);
     }
 }

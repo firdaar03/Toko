@@ -228,6 +228,8 @@ public class Produk_repository {
             public void onResponse(Call<Produk> call, Response<Produk> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse: Telah terupdate Id " + p.getIdProduk());
+                }else{
+                    Log.e(TAG, "onResponse: Error" + response.body().toString() );
                 }
             }
 

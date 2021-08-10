@@ -70,7 +70,8 @@
             <EditText
                 android:id="@+id/nama_produk"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:hint="@string/nama_produk"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/radius_input"
@@ -90,6 +91,7 @@
                 android:padding="5dp"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins_light"
+                android:gravity="center_vertical"
                 android:imeOptions="actionNext"
                 android:singleLine="true"/>
 
@@ -103,6 +105,7 @@
                 android:padding="5dp"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins_light"
+                android:gravity="center_vertical"
                 android:inputType="number"
                 android:imeOptions="actionNext"
                 android:singleLine="true"/>
@@ -117,6 +120,7 @@
                 android:padding="5dp"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins_light"
+                android:gravity="center_vertical"
                 android:inputType="number"
                 android:imeOptions="actionSend"
                 android:singleLine="true"/>

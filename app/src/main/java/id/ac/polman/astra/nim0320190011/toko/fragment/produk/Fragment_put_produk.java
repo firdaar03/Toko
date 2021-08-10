@@ -1,6 +1,7 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -265,9 +266,6 @@ public class Fragment_put_produk extends Fragment {
                                     mHargaProduk.setText("");
                                     mJumlah.setText("");
                                 }
-
-
-
                             } else {
                                 mJumlah.setError("Jumlah harus diisi");
                             }
@@ -285,6 +283,13 @@ public class Fragment_put_produk extends Fragment {
         mDiambil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(mPutProdukList.size() == 0){
+                    Toast.makeText(getContext(), R.string.tidak_bisa_put, Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
                 Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
@@ -299,6 +304,9 @@ public class Fragment_put_produk extends Fragment {
                 }
                 Toast.makeText(getContext(), "Add Ambil Produk !",
                         Toast.LENGTH_SHORT).show();
+
+                callbacks.onPutProduk(mPutProdukList);
+
                 getFragmentManager().popBackStack();
             }
 
@@ -308,6 +316,12 @@ public class Fragment_put_produk extends Fragment {
         mTerjual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mPutProdukList.size() == 0){
+                    Toast.makeText(getContext(), R.string.tidak_bisa_put, Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
                 Produk_aktivitas produk_aktivitas = new Produk_aktivitas();
                 produk_aktivitas.setJumlah(hargaTotal);
                 produk_aktivitas.setCreaby(dataToko.getEmail());
@@ -337,6 +351,9 @@ public class Fragment_put_produk extends Fragment {
 
                 Toast.makeText(getContext(), "Add Jual Produk !",
                         Toast.LENGTH_SHORT).show();
+
+                callbacks.onPutProduk(mPutProdukList);
+
                 getFragmentManager().popBackStack();
             }
         });
@@ -414,5 +431,15 @@ public class Fragment_put_produk extends Fragment {
         }
     }
 
+    private Callbacks callbacks;
 
+    public interface Callbacks{
+        public void onPutProduk(List<Produk> pr);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        callbacks = (Callbacks) context;
+    }
 }
