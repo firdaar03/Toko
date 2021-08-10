@@ -250,8 +250,11 @@ public class Fragment_menu_utama extends Fragment
                     refresh();
                 }
             });
-            
-            mRefreshLayout.setRefreshing(true);
+
+            if (dataProduk.size() == 0 ){
+                mRefreshLayout.setRefreshing(true);
+            }
+
             updateUI();
             return v;
         }
@@ -440,9 +443,7 @@ public class Fragment_menu_utama extends Fragment
             super.onDetach();
             mCallbacks = null;
         }
-
-
-
+        
         private class AktivitasDompetHolder extends RecyclerView.ViewHolder{
 
             private TextView mKeterangan;
