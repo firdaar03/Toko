@@ -17,14 +17,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.List;
+
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Dompet;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
+import id.ac.polman.astra.nim0320190011.toko.fragment.user.Fragment_keranjang;
 
 public class Fragment_dompet_uang_masuk extends Fragment {
     private static final String TAG = "Fragment_dompet_uang_masuk";
@@ -83,12 +87,8 @@ public class Fragment_dompet_uang_masuk extends Fragment {
 
                     mDompetViewModel.uang_masuk(dompet);
 
-                    getFragmentManager().popBackStack();
-                    Fragment fragment = Fragment_dompet.newInstance(dataToko);
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, fragment)
-                            .addToBackStack(null)
-                            .commit();
+                    callbacks = (Callbacks) getTargetFragment();
+                    callbacks.onSimpanMasuk(Integer.valueOf(mNominal.getText().toString()));
 
                     mNominal.setText("");
                     mKeterangan.setText("");
@@ -96,6 +96,12 @@ public class Fragment_dompet_uang_masuk extends Fragment {
             }
         });
         return v;
+    }
+
+    private Callbacks callbacks;
+
+    public interface Callbacks{
+        public void onSimpanMasuk(int masuk);
     }
 }
 

@@ -215,7 +215,6 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
 
         mTokoList = new ArrayList<>();
         for(int i = 0; i < output.length; i++){
-            Log.i(TAG, "pengurutanTerdekat: asd  i ke " + i + " : " + output[i].getStatus());
             mTokoList.add(output[i]);
         }
         if(mLatLng != null){
@@ -327,7 +326,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                     @Override
                     public void onChanged(List<Toko> tokos) {
                         mTokoList = tokos;
-                        if(mLatLng != null){
+                        if(mLatLng != null && mTokoList.size() != 0){
                             pengurutanTerdekat(mTokoList);
                         }
                         mRefreshLayout.setRefreshing(false);

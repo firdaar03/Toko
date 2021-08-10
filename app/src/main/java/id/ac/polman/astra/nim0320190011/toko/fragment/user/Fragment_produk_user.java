@@ -2,6 +2,7 @@ package id.ac.polman.astra.nim0320190011.toko.fragment.user;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
@@ -35,12 +37,14 @@ import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.DatePickerFragment;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_daftar_toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_setting;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_edit_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_product_option;
 import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_put_produk;
 
-public class Fragment_produk_user extends Fragment{
+public class Fragment_produk_user extends Fragment implements  Fragment_keranjang.Callbacks{
     private static final String TAG = "Fragment_produk_user";
 
     Produk_view_model mProdukViewModel;
@@ -64,6 +68,8 @@ public class Fragment_produk_user extends Fragment{
     private TextView text_address;
     private TextView telepon;
     private TextView jumlah_produk;
+
+    Fragment_keranjang fragment;
 
     public static Fragment_produk_user newInstance(Toko in) {
         return new Fragment_produk_user(in);
@@ -104,7 +110,6 @@ public class Fragment_produk_user extends Fragment{
         mKeranjangs = new ArrayList<>();
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
@@ -157,8 +162,10 @@ public class Fragment_produk_user extends Fragment{
         mButton_keranjang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment_keranjang fragment = Fragment_keranjang.newInstance(mKeranjangs);
+                fragment = Fragment_keranjang.newInstance(mKeranjangs, dataToko);
+                fragment.setTargetFragment(Fragment_produk_user.this, 1);
                 FragmentManager fm = getFragmentManager();
+
                 fragment.show(fm,"Fragment Keranjang");
             }
         });
@@ -171,9 +178,7 @@ public class Fragment_produk_user extends Fragment{
         mProdukRecyclerView.setAdapter(mAdapter);
 
         return v;
-
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -195,6 +200,13 @@ public class Fragment_produk_user extends Fragment{
                     }
                 }
         );
+    }
+
+    @Override
+    public void onDelete(List<Produk> a) {
+        mKeranjangs = a;
+        mAdapter = new ProdukAdapter(mProdukList, mKeranjangs);
+        mProdukRecyclerView.setAdapter(mAdapter);
     }
 
     private class ProdukHolder extends RecyclerView.ViewHolder{
@@ -277,17 +289,13 @@ public class Fragment_produk_user extends Fragment{
                         if(pr.getIdProduk() == produk.getIdProduk()){
                             if(pr.getJumlah() > 0){
                                 pr.setJumlah(pr.getJumlah()-1);
+                            }else{
+                                keranjang.remove(pr);
                             }
                             ada = true;
                             p = pr;
                             break;
                         }
-                    }
-                    if(!ada){
-                        p.setIdProduk(produk.getIdProduk());
-                        p.setJumlah(1);
-                        p.setHarga(produk.getHarga());
-                        keranjang.add(p);
                     }
                     mKeranjang.setText(getText(R.string.keranjang) + " : " + p.getJumlah());
                 }

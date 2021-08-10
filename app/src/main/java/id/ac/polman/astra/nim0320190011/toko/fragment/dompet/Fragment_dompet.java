@@ -35,9 +35,11 @@ import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_dompet_view
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Aktivitas_produk_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Dompet_view_model;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Produk_view_model;
+import id.ac.polman.astra.nim0320190011.toko.fragment.user.Fragment_produk_user;
 
 
-public class Fragment_dompet extends Fragment{
+public class Fragment_dompet extends Fragment
+    implements Fragment_dompet_uang_masuk.Callbacks, Fragment_dompet_uang_keluar.Callbacks{
     private static final String TAG = "Fragment_dompet";
 
     Toko dataToko;
@@ -67,6 +69,9 @@ public class Fragment_dompet extends Fragment{
 
     private Aktivitas_dompet_view_model mAktivitasDompetViewModel;
     private Aktivitas_produk_view_model mAktivitasProdukViewModel;
+
+    long pemasukkan;
+    long pengeluaran;
 
     public Aktivitas_dompet_view_model getAktivitasDompetViewModel(){
         Log.i(TAG, "getTokoViewModelList: called");
@@ -134,6 +139,9 @@ public class Fragment_dompet extends Fragment{
         mDompetViewModel.loadDompet(dataToko.getIdToko() + "");
         dataDompet = new Dompet();
         mDompetAktivitas = new ArrayList<>();
+
+        pemasukkan = 0;
+        pengeluaran = 0;
     }
 
     @Nullable
@@ -266,16 +274,16 @@ public class Fragment_dompet extends Fragment{
         mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
 
         //        Hitung pemasukkan dan pengeluaran
-        long pemasukkan = 0;
-        long pengeluaran = 0;
-        for(Dompet_aktivitas d : mDompetAktivitas){
-            switch (d.getKode_akt()){
-                case 1 :
-                    pemasukkan += d.getJumlah();
-                    break;
-                case 2 :
-                    pengeluaran += d.getJumlah();
-                    break;
+        if(pemasukkan == 0 && pengeluaran == 0){
+            for(Dompet_aktivitas d : mDompetAktivitas){
+                switch (d.getKode_akt()){
+                    case 1 :
+                        pemasukkan += d.getJumlah();
+                        break;
+                    case 2 :
+                        pengeluaran += d.getJumlah();
+                        break;
+                }
             }
         }
         mPemasukkan.setText("Rp " + String.format("%,d", pemasukkan).replace(',', '.') + ",-");
@@ -286,6 +294,7 @@ public class Fragment_dompet extends Fragment{
     private void loadFragment(Fragment fragment) {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragment.setTargetFragment(Fragment_dompet.this, 1);
             fragmentTransaction.replace(R.id.menus, fragment);
             fragmentTransaction.commit(); // save the changes
     }
@@ -380,6 +389,20 @@ public class Fragment_dompet extends Fragment{
         n = Intent.createChooser(n, getString(R.string.pilih_simpan_text));
         startActivity(n);
         pembukuan = true;
+    }
+
+    @Override
+    public void onSimpanMasuk(int masuk) {
+        dataDompet.setUang(dataDompet.getUang() + masuk);
+        pemasukkan += masuk;
+        updateUI();
+    }
+
+    @Override
+    public void onSimpanKeluar(int keluar) {
+        dataDompet.setUang(dataDompet.getUang() - keluar);
+        pengeluaran += keluar;
+        updateUI();
     }
 }
 

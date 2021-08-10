@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,11 +29,14 @@ import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Produk;
+import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
+import id.ac.polman.astra.nim0320190011.toko.fragment.DatePickerFragment;
 
 public class Fragment_keranjang extends DialogFragment {
     private static final String TAG = "Fragment_keranjang";
 
     private List<Produk> mProdukList;
+    private Toko dataToko;
     
     private Button mHapus;
     private Button mSimpan;
@@ -45,12 +50,15 @@ public class Fragment_keranjang extends DialogFragment {
     private int jumlahTotal;
     private int hargaTotal;
 
-    public static Fragment_keranjang newInstance(List<Produk> p){
-        return new Fragment_keranjang(p);
+    private boolean hapus;
+
+    public static Fragment_keranjang newInstance(List<Produk> p, Toko t){
+        return new Fragment_keranjang(p, t);
     }
     
-    private Fragment_keranjang(List<Produk> a){
+    private Fragment_keranjang(List<Produk> a, Toko t){
         mProdukList = a;
+        dataToko = t;
     }
 
     @Override
@@ -58,6 +66,7 @@ public class Fragment_keranjang extends DialogFragment {
         super.onCreate(savedInstanceState);
 
         mKeranjangAdapter = new KeranjangAdapter(new ArrayList<>());
+        hapus = false;
     }
 
     @Nullable
@@ -73,6 +82,9 @@ public class Fragment_keranjang extends DialogFragment {
                         mProdukList = new ArrayList<>();
                         mKeranjangAdapter = new KeranjangAdapter(mProdukList);
                         mProdukRecyclerView.setAdapter(mKeranjangAdapter);
+
+                        callbacks = (Callbacks) getTargetFragment();
+                        callbacks.onDelete(mProdukList);
                         updateUI();
                     }
                 }
@@ -155,6 +167,23 @@ public class Fragment_keranjang extends DialogFragment {
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
+        Log.i(TAG, "onDismiss: ");
+//        if(hapus){
+//            getFragmentManager().popBackStack();
+//
+//            Fragment fragment = Fragment_produk_user.newInstance(dataToko);
+//            FragmentManager fm = getFragmentManager();
+//            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit(); // save the changes
+//        }
+    }
+
+    private Callbacks callbacks;
+
+    public interface Callbacks{
+        public void onDelete(List<Produk> a);
     }
 
     private class KeranjangHolder extends RecyclerView.ViewHolder{

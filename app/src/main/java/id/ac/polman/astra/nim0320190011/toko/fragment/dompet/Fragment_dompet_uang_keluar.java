@@ -74,12 +74,8 @@ public class Fragment_dompet_uang_keluar extends Fragment {
                     dompet.setModiby(mKeterangan.getText().toString());
                     mDompetViewModel.uang_keluar(dompet);
 
-                    getFragmentManager().popBackStack();
-                    Fragment fragment = Fragment_dompet.newInstance(dataToko);
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, fragment)
-                            .addToBackStack(null)
-                            .commit();
+                    callbacks = (Callbacks) getTargetFragment();
+                    callbacks.onSimpanKeluar(Integer.valueOf(mNominal.getText().toString()));
 
                     mNominal.setText("");
                     mKeterangan.setText("");
@@ -87,5 +83,11 @@ public class Fragment_dompet_uang_keluar extends Fragment {
             }
         });
         return v;
+    }
+
+    private Callbacks callbacks;
+
+    public interface Callbacks{
+        public void onSimpanKeluar(int keluar);
     }
 }
