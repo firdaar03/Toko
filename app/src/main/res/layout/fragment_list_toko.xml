@@ -1,118 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_secondary">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/view"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@color/utama">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_left_arrow"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/back"/>
+        android:layout_height="match_parent"
+        android:background="@color/bg_secondary">
 
-        <TextView
-            android:text="@string/header_toko"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/utama_tua"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="24dp"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"/>
-        <View
-            android:layout_width="10dp"
-            android:layout_height="match_parent">
-
-        </View>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="@string/judul_toko"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="14dp"/>
 
         <LinearLayout
-            android:id="@+id/linearCari"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/radius_input"
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/cari_toko"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
-                android:hint="@string/cari_toko"
-                android:paddingLeft="5dp"
-                android:paddingTop="10dp"
-                android:textColor="@color/black"
-                android:textSize="12dp" />
-
+            android:orientation="horizontal"
+            android:background="@color/utama">
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginHorizontal="4dp"
-                android:src="@drawable/ic_cari" />
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_left_arrow"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/back"/>
 
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-            <View
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/black"/>
-            <ImageView
+            <TextView
+                android:text="@string/header_toko"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_map"
-                android:background="@color/hijau_tua"
-                android:id="@+id/button_map"
-                android:padding="3dp"
-                android:layout_marginEnd="5dp"
-                android:clickable="true"/>
-        </RelativeLayout>
+                android:textColor="@color/utama_tua"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"/>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent">
 
+            </View>
+        </LinearLayout>
 
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/toko_recycler_view"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-    </ScrollView>
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="@string/judul_toko"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="14dp"/>
+
+            <LinearLayout
+                android:id="@+id/linearCari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_input"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/cari_toko"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:hint="@string/cari_toko"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:src="@drawable/ic_cari" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <View
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/black"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_dialog_map"
+                    android:background="@color/hijau_tua"
+                    android:id="@+id/button_map"
+                    android:padding="3dp"
+                    android:layout_marginEnd="5dp"
+                    android:clickable="true"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/toko_recycler_view"/>
+
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

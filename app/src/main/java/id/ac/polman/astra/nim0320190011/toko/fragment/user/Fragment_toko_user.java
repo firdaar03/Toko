@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -14,8 +15,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -35,10 +38,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,7 +76,9 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
     private EditText mCariToko;
     private ImageView mBack;
     private ImageView mButton_map;
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
 
+    DisplayMetrics displayMetrics;
 
     public Fragment_toko_user() {
 
@@ -143,6 +150,9 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
         }
         mLatLngList = new ArrayList<>();
         mTitle = new ArrayList<>();
+
+        displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
     }
 
     private void pengurutanTerdekat(List<Toko> in){
@@ -214,6 +224,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
         }
         updateUI(mTokoList);
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -267,6 +278,17 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                 fragmentTransaction.commit(); // save the changes
             }
         });
+
+        mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refesh();
+            }
+        });
+
+        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
+        mRefreshLayout.setRefreshing(true);
         return v;
     }
 
@@ -290,6 +312,26 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                             pengurutanTerdekat(mTokoList);
                         }
 //                        updateUI();
+                        mRefreshLayout.setRefreshing(false);
+                        Log.i(TAG, "Got toko: " + tokos.size());
+                    }
+                }
+        );
+    }
+
+    private void refesh(){
+        mTokoViewModel.getTokos().observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Toko>>() {
+                    @Override
+                    public void onChanged(List<Toko> tokos) {
+                        mTokoList = tokos;
+                        if(mLatLng != null){
+                            pengurutanTerdekat(mTokoList);
+                        }
+                        mRefreshLayout.setRefreshing(false);
+                        Toast.makeText(getContext(), "Berhasil refresh!", Toast.LENGTH_SHORT)
+                                .show();
                         Log.i(TAG, "Got toko: " + tokos.size());
                     }
                 }
