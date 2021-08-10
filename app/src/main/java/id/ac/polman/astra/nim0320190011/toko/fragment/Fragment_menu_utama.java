@@ -139,15 +139,12 @@ public class Fragment_menu_utama extends Fragment
             }
             return mAktivitasProdukViewModel;
         }
-
         public static Fragment_menu_utama newInstance(Toko model) {
             return new Fragment_menu_utama(model);
         }
-
         private Fragment_menu_utama(Toko model){
             dataToko = model;
         }
-
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -171,7 +168,6 @@ public class Fragment_menu_utama extends Fragment
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         }
-
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -443,7 +439,7 @@ public class Fragment_menu_utama extends Fragment
             super.onDetach();
             mCallbacks = null;
         }
-        
+
         private class AktivitasDompetHolder extends RecyclerView.ViewHolder{
 
             private TextView mKeterangan;

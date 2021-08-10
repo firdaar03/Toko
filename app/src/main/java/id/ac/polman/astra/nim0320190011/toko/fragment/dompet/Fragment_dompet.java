@@ -3,6 +3,7 @@ package id.ac.polman.astra.nim0320190011.toko.fragment.dompet;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,11 +47,15 @@ public class Fragment_dompet extends Fragment
     Toko dataToko;
     Dompet dataDompet;
 
+
     private TextView mTotalDompet;
     private TextView mPemasukkan;
     private TextView mPengeluaran;
     private TextView mPembukuan;
     private TextView mHeader;
+
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
+    DisplayMetrics displayMetrics;
 
     private boolean pembukuan;
 
@@ -142,6 +148,9 @@ public class Fragment_dompet extends Fragment
 
         pemasukkan = 0;
         pengeluaran = 0;
+
+        displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
     }
 
     @Nullable
@@ -157,16 +166,14 @@ public class Fragment_dompet extends Fragment
 
         mTotalDompet = v.findViewById(R.id.total_dompet);
         mDalamKasir = v.findViewById(R.id.dalam_kasir);
-        mDalamKasir.setOnClickListener(
-                new View.OnClickListener() {
+        mDalamKasir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Fragment_dompet_kasir fragment = Fragment_dompet_kasir.newInstance(dataDompet);
                         FragmentManager fm = getFragmentManager();
                         fragment.show(fm,"Fragment Setting");
                     }
-                }
-        );
+                });
 
         mPembukuan = v.findViewById(R.id.pembukuan);
         mPembukuan.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +241,20 @@ public class Fragment_dompet extends Fragment
                 loadFragment(Fragment_dompet_uang_keluar.newInstance(dataToko));
             }
         });
+
+        mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+
+        if (mDompetAktivitas.size() == 0 ){
+            mRefreshLayout.setRefreshing(true);
+        }
+
         return v;
     }
 
@@ -265,10 +286,12 @@ public class Fragment_dompet extends Fragment
                         Log.i(TAG, "onChanged: 'refresggg");
                         dataDompet = dompet;
                         updateUI();
+                        mRefreshLayout.setRefreshing(false);
                     }
                 }
         );
     }
+
     public void updateUI(){
         Log.i(TAG, "NGUPDATE UI NIH ");
         mTotalDompet.setText( "Rp " + String.format("%,d", dataDompet.getUang()).replace(',', '.') + ",-");
@@ -291,6 +314,7 @@ public class Fragment_dompet extends Fragment
 
         mHeader.setText(dataToko.getNama_pemilik().toUpperCase());
     }
+
     private void loadFragment(Fragment fragment) {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -350,6 +374,7 @@ public class Fragment_dompet extends Fragment
                 }
         );
     }
+
     public void getPembukuan(){
         String tanggal_pembukuan = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         String pemasukkan_text = mPemasukkan.getText().toString();

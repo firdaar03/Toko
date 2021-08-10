@@ -78,7 +78,6 @@ public class Fragment_dompet_aktivitas extends Fragment
         dataToko = t;
     }
 
-
     @SuppressLint("LongLogTag")
     private Aktivitas_dompet_view_model getAktivitasDompetViewModel(){
         Log.i(TAG, "getAktivitasDompetViewModel: ");
@@ -165,6 +164,7 @@ public class Fragment_dompet_aktivitas extends Fragment
         return v;
 
     }
+
     @SuppressLint("LongLogTag")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -274,6 +274,7 @@ public class Fragment_dompet_aktivitas extends Fragment
         }
 
     }
+
     private class AktivitasDompetAdapter extends RecyclerView.Adapter<Fragment_dompet_aktivitas.AktivitasDompetHolder>{
 
         private List<Dompet_aktivitas> mAktivitas;

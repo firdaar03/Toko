@@ -1,247 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_secondary">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/view"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@color/utama">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_left_arrow"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/back"/>
+        android:layout_height="match_parent"
+        android:background="@color/bg_secondary">
 
-        <TextView
-            android:id="@+id/text_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/utama_tua"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="24dp"
-            android:maxLength="18"
-            android:maxLines="1"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"/>
-        <View
-            android:layout_width="10dp"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@color/utama">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_left_arrow"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/back"/>
 
-        </View>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/utama_tua"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="24dp"
+                android:maxLength="18"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"/>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_utama_hijau"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dompet_saya"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="14dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="3dp"
-            android:textColor="@color/black"/>
+            </View>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="48dp"
-            android:gravity="center_horizontal">
+            android:background="@drawable/bg_utama_hijau"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="208dp"
-                android:layout_height="115dp"
-                android:background="@drawable/radius_total_aset_shadow"
-                android:paddingHorizontal="3dp"
-                android:paddingVertical="3dp">
-
-                <RelativeLayout
-                    android:id="@+id/dalam_kasir"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_asset"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/total_dompet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Rp 0,-"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/total_dompet"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/dalam_kasir"
-                        android:textColor="@color/secondary"
-                        android:textSize="9dp" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="11dp"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:text="@string/dompet_saya"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="14dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/black"/>
 
-                <RelativeLayout
-                    android:layout_width="137dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/radius_total_aset"
-                    >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="48dp"
+                android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/pemasukkan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rp 0,-"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="11sp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="14dp"
-                        android:textColor="@color/black"
-                        android:layout_centerHorizontal="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pemasukkan"
-                        android:textColor="@color/secondary"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8sp"
-                        android:layout_marginTop="19dp"
-                        android:layout_centerHorizontal="true"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="137dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/radius_total_aset"
-                    android:layout_marginTop="4dp"
-                    >
-
-                    <TextView
-                        android:id="@+id/pengeluaran"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rp 0,-"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="11sp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="14dp"
-                        android:textColor="@color/black"
-                        android:layout_centerHorizontal="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pengeluaran"
-                        android:textColor="@color/secondary"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="8sp"
-                        android:layout_marginTop="19dp"
-                        android:layout_centerHorizontal="true"/>
-                </RelativeLayout>
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
+                    android:layout_width="208dp"
+                    android:layout_height="115dp"
                     android:background="@drawable/radius_total_aset_shadow"
-                    android:layout_marginTop="4dp"
-                    android:paddingHorizontal="2dp"
-                    android:paddingVertical="2dp"
-                    >
+                    android:paddingHorizontal="3dp"
+                    android:paddingVertical="3dp">
 
-                    <TextView
-                        android:id="@+id/pembukuan"
+                    <RelativeLayout
+                        android:id="@+id/dalam_kasir"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/button_asset"
+                        android:gravity="center">
 
-                        android:textAlignment="center"
-                        android:text="@string/pembukuan_tahunan"
-                        android:textSize="9sp"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_medium"
-                        />
+                        <TextView
+                            android:id="@+id/total_dompet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Rp 0,-"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/total_dompet"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/dalam_kasir"
+                            android:textColor="@color/secondary"
+                            android:textSize="9dp" />
+                    </RelativeLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="11dp"
+                    android:gravity="center_vertical">
 
+                    <RelativeLayout
+                        android:layout_width="137dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/radius_total_aset"
+                        >
+
+                        <TextView
+                            android:id="@+id/pemasukkan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 0,-"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="11sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="14dp"
+                            android:textColor="@color/black"
+                            android:layout_centerHorizontal="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pemasukkan"
+                            android:textColor="@color/secondary"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8sp"
+                            android:layout_marginTop="19dp"
+                            android:layout_centerHorizontal="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="137dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/radius_total_aset"
+                        android:layout_marginTop="4dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/pengeluaran"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 0,-"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="11sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="14dp"
+                            android:textColor="@color/black"
+                            android:layout_centerHorizontal="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pengeluaran"
+                            android:textColor="@color/secondary"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="8sp"
+                            android:layout_marginTop="19dp"
+                            android:layout_centerHorizontal="true"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:background="@drawable/radius_total_aset_shadow"
+                        android:layout_marginTop="4dp"
+                        android:paddingHorizontal="2dp"
+                        android:paddingVertical="2dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/pembukuan"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/button_asset"
+
+                            android:textAlignment="center"
+                            android:text="@string/pembukuan_tahunan"
+                            android:textSize="9sp"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_medium"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/button_aktifitas"
+                    android:layout_width="111dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_menu_dompet"
+                    android:text="@string/aktifitas"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="10dp"
+                    android:textColor="@drawable/color_button_menu_dompet"
+                    android:layout_marginHorizontal="5dp" />
+
+                <Button
+                    android:id="@+id/button_uang_masuk"
+                    android:layout_width="111dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_menu_dompet"
+                    android:text="@string/uang_masuk"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="10dp"
+                    android:textColor="@drawable/color_button_menu_dompet"
+                    android:layout_marginHorizontal="5dp"/>
+
+                <Button
+                    android:id="@+id/button_uang_keluar"
+                    android:layout_width="111dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_menu_dompet"
+                    android:text="@string/uang_keluar"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="10dp"
+                    android:textColor="@drawable/color_button_menu_dompet"
+                    android:layout_marginHorizontal="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/menus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent"
+            tools:ignore="InvalidId">
 
-            <Button
-                android:id="@+id/button_aktifitas"
-                android:layout_width="111dp"
-                android:layout_height="30dp"
-                android:background="@drawable/button_menu_dompet"
-                android:text="@string/aktifitas"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="10dp"
-                android:textColor="@drawable/color_button_menu_dompet"
-                android:layout_marginHorizontal="5dp" />
-
-            <Button
-                android:id="@+id/button_uang_masuk"
-                android:layout_width="111dp"
-                android:layout_height="30dp"
-                android:background="@drawable/button_menu_dompet"
-                android:text="@string/uang_masuk"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="10dp"
-                android:textColor="@drawable/color_button_menu_dompet"
-                android:layout_marginHorizontal="5dp"/>
-
-            <Button
-                android:id="@+id/button_uang_keluar"
-                android:layout_width="111dp"
-                android:layout_height="30dp"
-                android:background="@drawable/button_menu_dompet"
-                android:text="@string/uang_keluar"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="10dp"
-                android:textColor="@drawable/color_button_menu_dompet"
-                android:layout_marginHorizontal="5dp"/>
-        </LinearLayout>
+        </androidx.fragment.app.FragmentContainerView>
 
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/menus"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="InvalidId">
-
-    </androidx.fragment.app.FragmentContainerView>
-
-</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
