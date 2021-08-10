@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,6 +59,9 @@ public class Fragment_produk extends Fragment {
     private TextView mNamaPemilik;
     private EditText mCariProduk;
     private ImageView mBack;
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
+
+    DisplayMetrics displayMetrics;
 
     public static Fragment_produk newInstance(Toko in) {
         return new Fragment_produk(in);
@@ -94,6 +99,9 @@ public class Fragment_produk extends Fragment {
         mAdapter = new  ProdukAdapter(Collections.<Produk>emptyList());
         mPictureUtils = new PictureUtils();
         mProdukList = new ArrayList<>();
+
+        displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
     }
 
     @Nullable
@@ -156,6 +164,19 @@ public class Fragment_produk extends Fragment {
             }
         });
 
+        mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+
+        if (mProdukList.size() == 0){
+            mRefreshLayout.setRefreshing(true);
+        }
+
         mProdukRecyclerView = (RecyclerView) v.findViewById(R.id.produk_recycler_view);
         mProdukRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mProdukRecyclerView.setAdapter(mAdapter);
@@ -171,11 +192,11 @@ public class Fragment_produk extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         try {
             Thread.sleep(100);
-        }catch (InterruptedException ie){
+        } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
         Log.i(TAG, "Fragment_Produk.onViewCreated() called");
-        if(mProdukList.size() == 0){
+        if (mProdukList.size() == 0) {
             mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
                     getViewLifecycleOwner(),
                     new Observer<List<Produk>>() {
@@ -183,11 +204,26 @@ public class Fragment_produk extends Fragment {
                         public void onChanged(List<Produk> produks) {
                             mProdukList = produks;
                             updateUI();
+                            mRefreshLayout.setRefreshing(false);
                             Log.i(TAG, "Got Produk: " + produks.size());
                         }
                     }
             );
         }
+    }
+    private void refresh(){
+        Log.i(TAG, "Fragment_Produk.onViewCreated() called");
+        mProdukViewModel.getProduksByIdToko(dataToko.getIdToko()).observe(
+                getViewLifecycleOwner(),
+                new Observer<List<Produk>>() {
+                    @Override
+                    public void onChanged(List<Produk> produks) {
+                        mProdukList = produks;
+                        updateUI();
+                        mRefreshLayout.setRefreshing(false);
+                        Log.i(TAG, "Got Produk: " + produks.size());
+                    }
+             });
     }
 
     public void produk_tambah(Produk p){
