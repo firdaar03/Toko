@@ -286,9 +286,10 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                 refesh();
             }
         });
-
+        if(mLatLng == null && mLatLngList.size() == 0){
+            mRefreshLayout.setRefreshing(true);
+        }
         mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
-        mRefreshLayout.setRefreshing(true);
         return v;
     }
 
