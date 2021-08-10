@@ -280,6 +280,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
         });
 
         mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -289,7 +290,6 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
         if(mLatLng == null && mLatLngList.size() == 0){
             mRefreshLayout.setRefreshing(true);
         }
-        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
         return v;
     }
 
