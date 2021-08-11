@@ -216,18 +216,11 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/produk_recycler_view"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
-        >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/produk_recycler_view"/>
-
-    </ScrollView>
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

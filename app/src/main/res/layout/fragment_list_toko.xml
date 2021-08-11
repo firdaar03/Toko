@@ -112,16 +112,10 @@
 
 
         </LinearLayout>
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/toko_recycler_view"/>
-
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:id="@+id/toko_recycler_view"/>
     </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
