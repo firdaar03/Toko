@@ -115,9 +115,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onSharedPreferences(){
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-        fragment = Fragment_menu_utama.newInstance(toko_user);
+        Fragment fragment = Fragment_menu_utama.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();

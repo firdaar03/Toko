@@ -337,7 +337,9 @@ public class Fragment_dompet extends Fragment
     public void onPause() {
         super.onPause();
         Log.i(TAG, "onPause: ");
-        mDompetViewModel.pembukuan(dataToko.getIdToko());
+        if(pembukuan){
+            mDompetViewModel.pembukuan(dataToko.getIdToko());
+        }
     }
 
     @Override
@@ -429,5 +431,6 @@ public class Fragment_dompet extends Fragment
         pengeluaran += keluar;
         updateUI();
     }
+
 }
 

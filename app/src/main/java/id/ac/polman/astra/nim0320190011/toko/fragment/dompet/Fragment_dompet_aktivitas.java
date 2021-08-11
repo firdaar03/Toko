@@ -27,6 +27,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -50,7 +51,7 @@ import id.ac.polman.astra.nim0320190011.toko.fragment.produk.Fragment_produk;
 import id.ac.polman.astra.nim0320190011.toko.fragment.profil.Fragment_profile_edit;
 
 public class Fragment_dompet_aktivitas extends Fragment
-    implements DatePickerFragment.Callbacks {
+    implements DatePickerFragment.Callbacks{
     private static final String TAG = "Fragment_dompet_aktivitas";
     private static final String DIALOG_DATE = "DialogDate";
 
@@ -67,6 +68,8 @@ public class Fragment_dompet_aktivitas extends Fragment
     private TextView mTanggal2View;
 
     private Aktivitas_dompet_view_model mAktivitasDompetViewModel;
+
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
 
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -161,8 +164,15 @@ public class Fragment_dompet_aktivitas extends Fragment
             }
         });
 
+        mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mRefreshLayout.setRefreshing(false);
+                refresh();
+            }
+        });
         return v;
-
     }
 
     @SuppressLint("LongLogTag")
@@ -216,6 +226,7 @@ public class Fragment_dompet_aktivitas extends Fragment
 
         refresh();
     }
+
 
     private class AktivitasDompetHolder extends RecyclerView.ViewHolder{
 

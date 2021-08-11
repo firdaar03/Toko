@@ -279,9 +279,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
         });
 
         mRefreshLayout = v.findViewById(R.id.swiperefresh);
-
         mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
-
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
