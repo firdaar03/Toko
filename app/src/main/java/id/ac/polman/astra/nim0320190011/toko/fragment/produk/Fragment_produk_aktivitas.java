@@ -3,6 +3,7 @@ package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,7 +56,11 @@ public class Fragment_produk_aktivitas extends Fragment
     private LinearLayout mTanggal2Button;
     private TextView mTanggal1View;
     private TextView mTanggal2View;
+    private TextView mNamaToko;
     private ImageView mBack;
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout mRefreshLayout;
+
+    DisplayMetrics displayMetrics;
 
     private Aktivitas_produk_view_model mAktivitasProdukViewModel;
 
@@ -91,6 +97,8 @@ public class Fragment_produk_aktivitas extends Fragment
         mAktivitasProdukViewModel = getAktivitasProdukViewModel();
         mProdukAktivitasList = new ArrayList<>();
         mAktivitasProdukAdapter = new AktivitasProdukAdapter(new ArrayList<>());
+        displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
     }
 
     @SuppressLint("LongLogTag")
@@ -101,6 +109,9 @@ public class Fragment_produk_aktivitas extends Fragment
 
         mRecyclerView = v.findViewById(R.id.aktivitas_produk_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mNamaToko = v.findViewById(R.id.textView3);
+        mNamaToko.setText(dataToko.getNama_pemilik().toUpperCase());
 
         mBack = v.findViewById(R.id.back);
         mBack.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +165,18 @@ public class Fragment_produk_aktivitas extends Fragment
             }
         });
 
+        mRefreshLayout = v.findViewById(R.id.swiperefresh);
+        mRefreshLayout.setProgressViewOffset(false, 0, (displayMetrics.heightPixels/2) - (mRefreshLayout.getProgressCircleDiameter() / 2));
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+        if(mProdukAktivitasList.size() == 0){
+            mRefreshLayout.setRefreshing(true);
+        }
+
         return v;
 
     }
@@ -174,6 +197,7 @@ public class Fragment_produk_aktivitas extends Fragment
                     public void onChanged(List<Produk_aktivitas> aktivitas) {
                         mProdukAktivitasList = aktivitas;
                         updateUI();
+                        mRefreshLayout.setRefreshing(false);
                     }
                 });
     }
