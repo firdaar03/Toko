@@ -401,7 +401,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
             }catch (Exception e){
                 Log.e(TAG, "onCreateView: ERROR PASANG PP");
             }
-            mNamaPemilik.setText(mToko.getNama_pemilik().toUpperCase() + "'S STORE");
+            mNamaPemilik.setText(mToko.getNama_pemilik().toUpperCase());
 
             mAlamat.setText(mToko.getAlamatToko());
             mAlamat.setOnClickListener(new View.OnClickListener() {
@@ -428,7 +428,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                     getViewLifecycleOwner(), new Observer<List<Produk>>() {
                         @Override
                         public void onChanged(List<Produk> produks) {
-                            mProduk.setText(produks.size() + " PRODUK");
+                            mProduk.setText(produks.size() + " " + getText(R.string.produk).toString());
                         }
                     });
             mPremium.setText("PREMIUM STORE");

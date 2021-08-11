@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:background="@color/utama">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginTop="5dp"
+            android:id="@+id/back"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-140dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/help"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+
+            android:layout_marginBottom="17dp"/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="188dp"
+
+            android:src="@drawable/image_logo"
+
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="23dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-50dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/help_1"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginBottom="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Firda Riska Pratiwi ("
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/ig_firda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="\@_firdaar"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/biru_tua"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text=")"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Teddyanto Idrus Jamallulail ("
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/ig_teddy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="\@Teddyanto_ij"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/biru_tua"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text=")"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

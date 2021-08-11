@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Store</string>
+    <string name="app_name" translatable="false">My Store</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -151,4 +151,17 @@
         \n\nData Keranjang dapat disimpan dalam bentuk text
     </string>
     <string name="tidak_bisa_put">Mohon masukkan setidaknya 1 produk</string>
+    <string name="about_1">Aplikasi ini dibuat karena seringkali adanya kesalahan pengolahan data dari pemilik toko sembako sehingga menyebabkan ketidakakuratan dalam pencatatan data sehingga dapat merugikan toko. Mengolah data secara manual membuat pekerjaan selesai lebih lambat karena penyelesaian pekerjaan bergantung pada kehadiran manusia yang mengerjakan pekerjaan tersebut. Dengan adanya teknologi, proses olah data dapat selesai dengan lebih cepat dan tepat. Sehingga kami berinisiatif memberikan solusi yaitu berupa aplikasi yang memiliki fungsi untuk mengelola masalah tersebut.</string>
+    <string name="tujuan">Tujuan</string>
+    <string name="about_2">Mempermudah pemilik dalam pengolahan data toko yang terdiri dari data toko tersebut, data produk, data dompet (uang yang ada di toko).</string>
+    <string name="pengembang">Pengembang</string>
+    <string name="help_1">Silahkan hubungi pengembang untuk meminta bantuan</string>
+    <string name="report_error_1">Laporkan permasalah yang anda alami</string>
+    <string name="report_error_2">Laporkan permasalahan</string>
+    <string name="tidak_boleh_kosong">Field tidak boleh kosong</string>
+    <string name="behasil_mengirim">Berhasil mengirim</string>
+    <string name="logout_confirm">Apakah anda yakin untuk keluar?</string>
+    <string name="tidak">Tidak</string>
+    <string name="ya">Ya</string>
+    <string name="pendaftaran_toko">PENDAFTARAN TOKO</string>
 </resources>

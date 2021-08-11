@@ -1,0 +1,166 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- LOGIN -->
+    <string name="buat_akun">Don\'t have an account</string>
+    <string name="masuk_guest">Login as visitor</string>
+
+    <!-- STORE REGISTRATION-->
+    <string name="field_username">Username</string>
+    <string name="field_password">Password</string>
+    <string name="field_verif_password">Verify password</string>
+    <string name="field_nama">Name</string>
+    <string name="field_email">Email</string>
+    <string name="field_hp">Phone number</string>
+    <string name="field_jeniskelamin">Gender</string>
+    <string name="option_lakilaki">Male</string>
+    <string name="option_perempuan">Female</string>
+    <string name="field_tempat_lahir">Birthplace</string>
+    <string name="field_tanggal_lahir">Date of birth</string>
+    <string name="field_alamat">Address</string>
+    <string name="field_alamat_toko">Shop address</string>
+    <string name="field_NIK">NIK</string>
+    <string name="field_foto_diri">Self-photo</string>
+    <string name="field_foto_KTP">KTP photo</string>
+    <string name="field_foto_toko">Shop photo</string>
+    <string name="text_daftar">Register</string>
+    <string name="data_diri">Personal Data</string>
+    <string name="data_akun">Account Data</string>
+    <string name="judul_toko">Store List</string>
+    <string name="header_toko">SHOP</string>
+    <string name="cari_toko">Search for stores ...</string>
+
+
+    <!-- Add Product -->
+    <string name="nama_produk">Name</string>
+    <string name="merk_produk">Brand</string>
+    <string name="harga_produk">Price</string>
+    <string name="jumlah_produk">Amount</string>
+    <string name="simpan_produk">Save</string>
+
+    <!-- MAIN MENU -->
+    <string name="produk">Product</string>
+    <string name="dompet">Wallet</string>
+    <string name="asset">Total Money on Assets</string>
+    <string name="pemasukkan">Enter</string>
+    <string name="pengeluaran">Expenses</string>
+    <string name="total_dompet">IN WALLET</string>
+    <string name="aktifitas_terakhir_produk">>Last activity of product</string>
+    <string name="aktifitas_terakhir_dompet">Last activity of wallet</string>
+
+    <!-- Products -->
+    <string name="tambah_produk">+ PRODUCT</string>
+    <string name="kurang_produk">- PRODUCT</string>
+    <string name="judul_produk">MY PRODUCT</string>
+    <string name="cari_produk">search products ...</string>
+    <string name="aktifitas_produk">Product activity</string>
+    <string name="button_tambah">Add</string>
+
+    <!-- PRODUCT ACTIVITY-->
+    <string name="penjualan">Sales</string>
+    <string name="pengambilan">Fetch</string>
+    <string name="tambah_stok">Add Stock</string>
+
+    <!-- WALLET -->
+    <string name="dompet_saya">MY WALLET</string>
+    <string name="dalam_kasir">IN CASHIER</string>
+    <string name="asset_dalam_produk">">In-product assets</string>
+    <string name="aktifitas">Activity</string>
+    <string name="uang_masuk">Money in</string>
+    <string name="uang_keluar">Money out</string>
+    <string name="aktifitas_dompet">Wallet activity</string>
+
+    <string name="nominal">Nominal</string>
+    <string name="keteragan">Description</string>
+
+    <!-- PUT PRODUCT-->
+    <string name="button_cari">Search</string>
+    <string name="produk_nama">Product Name</string>
+    <string name="button_diambil">Fetch</string>
+    <string name="button_terjual">Sold</string>
+
+    <!-- PROFILE-->
+    <string name="profil">Profile</string>
+    <string name="setting">Settings</string>
+    <string name="about">About</string>
+    <string name="help">Help</string>
+    <string name="report_error">Report an error</string>
+    <string name="logout">Log out</string>
+    <string name="hapus_akun">Delete account</string>
+    <string name="edit">Edit</string>
+
+    <!-- EDIT PROFILE -->
+    <string name="edit_profile">Edit profile</string>
+    <string name="kata_sandi_baru">New password</string>
+    <string name="kata_ver_sandi_baru">Verify new password</string>
+    <string name="kata_sandi_lama">Old password</string>
+
+    <!-- DELETE ACCOUNT -->
+    <string name="perhaikan">>Pay attention!</string>
+    <string name="info_hapus">Once an account is deleted, the account owner can no longer permanently access the account. Please do not carelessly delete the account</string>
+
+
+    <!-- CASHIER-->
+    <string name="kosong_kasir">Empty Cashier</string>
+    <string name="perbarui_kasir">Update Cashier</string>
+    <string name="note">Note:</string>
+    <string name="note_1">1. Press \'Clear Cashier\' to change the data in the cash register to 0</string>
+    <string name="note_2">2. Press \'Update Cashier\' to update the data in the cashier according to the nominal column</string>
+    <string name="note_3">3. The nominal field must be filled in when pressing the \'Update Cashier\' button</string>
+
+    <!-- ACTIVITY DETAILS-->
+    <string name="detail_aktivitas">Activity details</string>
+    <string name="tanggal">Date</string>
+    <string name="waktu">Time</string>
+    <string name="kembali">Back</string>
+
+    <!-- CASHIET UPDATE -->
+    <string name="perubahan_kasir">Cashier Data Change</string>
+    <string name="yakin_perbarui">Are you sure you want to update the cash register to <b>%1$s</b> ?</string>
+    <string name="yakin_hapus">Are you sure you want to clear the cash at the cashier to IDR 0,-?</string>
+
+    <!-- OPTION -->
+    <string name="penyetokan">Repository</string>
+    <string name="produk_baru">New product</string>
+    <string name="pembukuan_tahunan">annual bookkeeping</string>
+    <string name="pembukuan_tahunan_1">Dual auditing bookkeeping</string>
+
+    <!-- BOOKINGS -->
+    <string name="pembukuan_message">Are you sure you want to do annual bookkeeping?
+        \n\nAnnual bookkeeping will erase all product and wallet activity history data for the past year
+        \n\nA summary for one year can be saved in text
+    </string>
+    <string name="pilih_simpan_text">Select app save data</string>
+    <string name="pembukuan_message_2">Press \'Yes\' to do the bookkeeping!
+        \n\nAfter pressing \'Yes\' all activity data will be lost
+    </string>
+    <string name="keranjang">Basket</string>
+    <string name="daftar_produk">Product list</string>
+
+    <!-- USER-->
+    <string name="kunjungi">Visit</string>
+
+    <!-- CART-->
+    <string name="judul_keranjang">MY CART</string>
+    <string name="button_simpan_keranjang">Save Basket</string>
+    <string name="button_hapus">Delete</string>
+    <string name="simpan_keranjang">Save Basket</string>
+    <string name="keranjang_message">Are you sure you want to save the basket?
+        \n\nBasket data can be saved as text
+    </string>
+    <string name="tidak_bisa_put">">Please enter at least 1 product</string>
+    <string name="about_1">This application was created because there are often errors in data processing from basic food shop owners, causing inaccuracies in data recording so that it can harm the store. Processing data manually makes the work done more slowly because the completion of the work depends on the presence of humans doing the work. With technology, the data processing process can be completed more quickly and precisely. So we took the initiative to provide a solution in the form of an application that has a function to manage the problem.</string>
+    <string name="tujuan">Goals</string>
+    <string name="about_2">Make it easy for owners to process store data consisting of store data, product data, wallet data (money in store).</string>
+    <string name="pengembang">Developer</string>
+    <string name="help_1">Please contact the developer for assistance</string>
+    <string name="report_error_1">Report a problem</string>
+    <string name="report_error_2">Report a problem</string>
+    <string name="tidak_boleh_kosong">Field cannot be empty</string>
+    <string name="behasil_mengirim">Successfully sent</string>
+    <string name="logout_confirm">Are you sure you want to log out?</string>
+    <string name="tidak">No</string>
+    <string name="ya">Yes</string>
+    <string name="pendaftaran_toko">STORE REGISTRATION</string>
+</resources>

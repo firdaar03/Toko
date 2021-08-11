@@ -2,15 +2,12 @@ package id.ac.polman.astra.nim0320190011.toko.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +20,9 @@ import androidx.fragment.app.FragmentTransaction;
 import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.fragment.profil.Fragment_profile;
+import id.ac.polman.astra.nim0320190011.toko.fragment.setting.Fragment_about;
+import id.ac.polman.astra.nim0320190011.toko.fragment.setting.Fragment_help;
+import id.ac.polman.astra.nim0320190011.toko.fragment.setting.Fragment_laporkan_error;
 
 public class Fragment_setting extends DialogFragment {
     private static final String TAG = "Fragment_setting";
@@ -79,7 +79,13 @@ public class Fragment_setting extends DialogFragment {
         mTentang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getDialog().dismiss();
+                Fragment fragment = Fragment_about.newInstance();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
             }
         });
 
@@ -87,7 +93,13 @@ public class Fragment_setting extends DialogFragment {
         mBantuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getDialog().dismiss();
+                Fragment fragment = Fragment_help.newInstance();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
             }
         });
 
@@ -95,7 +107,13 @@ public class Fragment_setting extends DialogFragment {
         mLaporkanError.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getDialog().dismiss();
+                Fragment fragment = Fragment_laporkan_error.newInstance();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit(); // save the changes
             }
         });
 
@@ -105,9 +123,9 @@ public class Fragment_setting extends DialogFragment {
             public void onClick(View v) {
                 new AlertDialog
                         .Builder(getContext())
-                        .setTitle("Keluar")
-                        .setMessage("Apakah anda yakin untuk keluar?")
-                        .setPositiveButton("Ya", (dialogInterface, i) -> {
+                        .setTitle(getText(R.string.logout))
+                        .setMessage(getText(R.string.logout_confirm))
+                        .setPositiveButton(getText(R.string.ya), (dialogInterface, i) -> {
                             getDialog().dismiss();
                             context=getActivity();
                             PreferenceManager.getDefaultSharedPreferences(context.getBaseContext()).edit().clear().apply();
@@ -117,7 +135,7 @@ public class Fragment_setting extends DialogFragment {
                             fragmentTransaction.replace(R.id.fragment_container, fragment);
                             fragmentTransaction.commit(); // save the changes
                         })
-                        .setNegativeButton("Tidak", null)
+                        .setNegativeButton(getText(R.string.tidak), null)
                         .show();
 
             }

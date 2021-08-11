@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:background="@color/utama">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginTop="5dp"
+            android:id="@+id/back"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-140dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/report_error"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+
+            android:layout_marginBottom="17dp"/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="188dp"
+
+            android:src="@drawable/image_logo"
+
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="23dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="33dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/report_error_1"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            />
+
+        <EditText
+            android:id="@+id/laporan_text"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+            android:background="@drawable/radius_input"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="12sp"
+            android:hint="@string/report_error_2"
+
+            android:gravity="left|top"
+            android:paddingHorizontal="4dp"
+            android:inputType="text|textMultiLine"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <View
+                android:layout_width="122dp"
+                android:layout_height="22dp"
+                android:background="@color/black"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentEnd="true"/>
+            <Button
+                android:layout_width="122dp"
+                android:layout_height="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/rectangle_button_ungu"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/button_simpan_keranjang"
+                android:textColor="@color/white"
+                android:textSize="11dp"
+                android:id="@+id/btn_kirim"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
