@@ -42,6 +42,7 @@
             android:hint="@string/nominal"
             android:fontFamily="@font/poppins_light"
             android:textSize="11dp"
+            android:inputType="number"
             android:padding="3dp" />
 
         <EditText
