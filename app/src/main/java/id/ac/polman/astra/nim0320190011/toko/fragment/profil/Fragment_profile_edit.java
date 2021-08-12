@@ -64,6 +64,7 @@ public class Fragment_profile_edit extends Fragment
     private EditText mAlamat;
     private EditText mAlamatToko;
     private EditText mNIK;
+    private ImageView mBack;
 
     private com.mikhaellopez.circularimageview.CircularImageView mFotoDiriView;
     private ImageView mFotoKTPView;
@@ -129,6 +130,14 @@ public class Fragment_profile_edit extends Fragment
         mJenisKelamin = v.findViewById(R.id.jenis_kelamin);
         mMale = v.findViewById(R.id.radioMale);
         mFemale = v.findViewById(R.id.radioFemale);
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         mTempatLahir = v.findViewById(R.id.tempat_lahir);
         mTanggalLahir = v.findViewById(R.id.tanggal_lahir);

@@ -40,6 +40,7 @@ public class Fragment_profile extends Fragment {
     private TextView mAlamatToko;
     private TextView mNIK;
     private TextView mUsername;
+    private ImageView mBack;
 
     private com.mikhaellopez.circularimageview.CircularImageView mFotoDiriView;
     private ImageView mFotoKTPView;
@@ -84,6 +85,14 @@ public class Fragment_profile extends Fragment {
         mFotoDiriView = v.findViewById(R.id.foto_diri);
         mFotoKTPView = v.findViewById(R.id.foto_ktp);
         mFotoTokoView = v.findViewById(R.id.foto_toko);
+
+        mBack = v.findViewById(R.id.back);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         mEditButton = v.findViewById(R.id.edit_button);
         mEditButton.setOnClickListener(new View.OnClickListener() {
