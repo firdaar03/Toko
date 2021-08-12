@@ -101,7 +101,7 @@
                 android:layout_marginEnd="2dp"
                 android:background="@drawable/rectangle_button_ungu"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/button_simpan_keranjang"
+                android:text="@string/report_error"
                 android:textColor="@color/white"
                 android:textSize="11dp"
                 android:id="@+id/btn_kirim"/>
