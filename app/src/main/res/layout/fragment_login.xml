@@ -27,7 +27,7 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="username"
+            android:hint="@string/field_username"
             android:imeOptions="actionNext"
             android:singleLine="true"/>
 
@@ -36,7 +36,7 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password"
+            android:hint="@string/field_password"
             android:imeOptions="actionGo"
             android:singleLine="true"
             android:inputType="textPassword" />
@@ -47,13 +47,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:text="@string/login"
+        android:textAllCaps="true"
         android:textAlignment="center"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="LOGIN" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/masuk"
@@ -115,7 +115,7 @@
             android:fontFamily="@font/poppins_regular"
             android:textAllCaps="false"
             android:background="@drawable/button_asset"
-            android:text="Login"
+            android:text="@string/login"
             />
     </LinearLayout>
 

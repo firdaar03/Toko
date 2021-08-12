@@ -27,4 +27,7 @@ public interface Toko_service {
 
     @DELETE("toko")
     Call<Toko> deleteUserById(@Query("id") String id);
+
+    @GET("login")
+    Call<Toko> login(@Query("username") String username, @Query("password") String password);
 }

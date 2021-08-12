@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -232,37 +233,37 @@ public class Fragment_profile_edit extends Fragment
             @Override
             public void onClick(View v) {
                 if(mUsername.getText().toString().length() == 0){
-                    mUsername.setError("Username Harus Diisi");
+                    mUsername.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mPassword.getText().toString().length() == 0){
-                    mPassword.setError("Password Harus Diisi");
+                    mPassword.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mNama.getText().toString().length() == 0){
-                    mNama.setError("Nama Harus Diisi");
+                    mNama.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mTelefon.getText().toString().length() == 0){
-                    mTelefon.setError("No.Telepon Harus Diisi");
+                    mTelefon.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mEmail.getText().toString().length() == 0){
-                    mEmail.setError("Email Harus Diisi");
+                    mEmail.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mTempatLahir.getText().toString().length() == 0){
-                    mTempatLahir.setError("Tempat lahir Harus Diisi");
+                    mTempatLahir.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mTanggalLahir.getText().toString().length() == 0){
-                    mTanggalLahir.setError("Tanggal lahir Harus Diisi");
+                    mTanggalLahir.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mAlamat.getText().toString().length() == 0){
-                    mAlamat.setError("Alamat Harus Diisi");
+                    mAlamat.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if (mAlamatToko.getText().toString().length() == 0){
-                    mAlamatToko.setError("Alamat Toko Harus Diisi");
+                    mAlamatToko.setError(getText(R.string.tidak_boleh_kosong));
                 } if (mNIK.getText().toString().length() == 0){
-                    mNIK.setError("NIK Harus Diisi");
+                    mNIK.setError(getText(R.string.tidak_boleh_kosong));
                 } if (mPasswordVer.getText().toString().length() == 0){
-                    mPasswordVer.setError("Verifikasi Password Harus Diisi");
+                    mPasswordVer.setError(getText(R.string.tidak_boleh_kosong));
                 } if (mPasswordLama.getText().toString().length() == 0){
-                    mPasswordLama.setError("Mohon isikan password lama dengan benar");
+                    mPasswordLama.setError(getText(R.string.field_verif_password_salah));
                 } else if (mNIK.getText().toString().length() != 0 && mAlamatToko.getText().toString().length() != 0 &&
                         mAlamat.getText().toString().length() != 0 && mTanggalLahir.getText().toString().length() != 0 &&
                         mTanggalLahir.getText().toString().length() != 0 && mEmail.getText().toString().length() != 0 &&
@@ -295,17 +296,20 @@ public class Fragment_profile_edit extends Fragment
                         mToko.setNIK(mNIK.getText().toString());
 
                         try{
-                            mToko.setFoto_diri(mPictureUtils.convertToString(mFotoDiriFile.getPath()));
+                            Bitmap bitmap = mPictureUtils.Compress(((BitmapDrawable)mFotoDiriView.getDrawable()).getBitmap(),50);
+                            mToko.setFoto_diri(mPictureUtils.convertToString(bitmap));
                         }catch (Exception e){
 
                         }
                         try{
-                            mToko.setFoto_KTP(mPictureUtils.convertToString(mFotoKTPFile.getPath()));
+                            Bitmap bitmap = mPictureUtils.Compress(((BitmapDrawable)mFotoKTPView.getDrawable()).getBitmap(),50);
+                            mToko.setFoto_KTP(mPictureUtils.convertToString(bitmap));
                         }catch (Exception e){
 
                         }
                         try{
-                            mToko.setFoto_toko(mPictureUtils.convertToString(mFotoTokoFile.getPath()));
+                            Bitmap bitmap = mPictureUtils.Compress(((BitmapDrawable)mFotoTokoView.getDrawable()).getBitmap(),50);
+                            mToko.setFoto_toko(mPictureUtils.convertToString(bitmap));
                         }catch (Exception e){
 
                         }
@@ -316,7 +320,7 @@ public class Fragment_profile_edit extends Fragment
                         clearToko();
                     }
                     else{
-                        Toast.makeText(getContext(), "Password dan Verifikasi harus sama",
+                        Toast.makeText(getContext(), getText(R.string.field_verif_password_salah),
                                 Toast.LENGTH_SHORT).show();
                     }
 

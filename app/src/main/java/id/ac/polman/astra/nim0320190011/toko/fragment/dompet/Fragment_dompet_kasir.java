@@ -76,7 +76,7 @@ public class Fragment_dompet_kasir extends DialogFragment{
                                 .Builder(getContext())
                                 .setTitle(getString(R.string.kosong_kasir))
                                 .setMessage(getString(R.string.yakin_hapus))
-                                .setPositiveButton("Ya", (dialogInterface, i) -> {
+                                .setPositiveButton(getString(R.string.ya), (dialogInterface, i) -> {
                                     getDialog().dismiss();
                                     getFragmentManager().popBackStack();
                                     Dompet dompet = new Dompet();
@@ -88,7 +88,7 @@ public class Fragment_dompet_kasir extends DialogFragment{
                                     mDompetViewModel.kosongkan(dompet);
                                     updateUI();
                                 })
-                                .setNegativeButton("Tidak", null)
+                                .setNegativeButton(getText(R.string.tidak), null)
                                 .show();
                     }
                 }
@@ -105,7 +105,7 @@ public class Fragment_dompet_kasir extends DialogFragment{
                                     .Builder(getContext())
                                     .setTitle(getString(R.string.perbarui_kasir))
                                     .setMessage(getString(R.string.yakin_perbarui, "Rp " + String.format("%,d", nominal).replace(',', '.') + ",-"))
-                                    .setPositiveButton("Ya", (dialogInterface, i) -> {
+                                    .setPositiveButton(getText(R.string.ya), (dialogInterface, i) -> {
                                         getDialog().dismiss();
                                         getFragmentManager().popBackStack();
 
@@ -120,10 +120,10 @@ public class Fragment_dompet_kasir extends DialogFragment{
                                         mDompetViewModel.perbarui(dompet);
                                         updateUI();
                                     })
-                                    .setNegativeButton("Tidak", null)
+                                    .setNegativeButton(getText(R.string.tidak), null)
                                     .show();
                         }else{
-                            mNominal.setError("Mohon isi nominal terlebih dahulu");
+                            mNominal.setError(getText(R.string.tidak_boleh_kosong));
                         }
                     }
                 }

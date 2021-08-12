@@ -164,4 +164,14 @@
     <string name="tidak">Tidak</string>
     <string name="ya">Ya</string>
     <string name="pendaftaran_toko">PENDAFTARAN TOKO</string>
+    <string name="sukses">Sukses</string>
+    <string name="produk_tidak_ada">Produk tidak ditemukan !</string>
+    <string name="tidak_boleh_lebih">Jumlah tidak boleh melebihi stok !</string>
+    <string name="hapus_data">Hapus data</string>
+    <string name="yakin_hapus_produk">Apakah anda yakin untuk menghapus data ini?</string>
+    <string name="ya_simpan">Ya, simpan</string>
+    <string name="field_verif_password_salah">Please enter the old password correctly</string>
+    <string name="yakin_keluar">Apakah anda yakin menutup aplikasi?</string>
+    <string name="keluar">Keluar</string>
+    <string name="login">Masuk</string>
 </resources>

@@ -121,7 +121,7 @@
     <string name="yakin_hapus">Are you sure you want to clear the cash at the cashier to IDR 0,-?</string>
 
     <!-- OPTION -->
-    <string name="penyetokan">Penyetokan</string>
+    <string name="penyetokan">Restok</string>
     <string name="produk_baru">New product</string>
     <string name="pembukuan_tahunan">Annual bookkeeping</string>
     <string name="pembukuan_tahunan_1">Dual auditing bookkeeping</string>
@@ -135,7 +135,7 @@
     <string name="pembukuan_message_2">Press \'Yes\' to do the bookkeeping!
         \n\nAfter pressing \'Yes\' all activity data will be lost
     </string>
-    <string name="keranjang">Basket</string>
+    <string name="keranjang">Cart</string>
     <string name="daftar_produk">Product list</string>
 
     <!-- USER-->
@@ -143,11 +143,11 @@
 
     <!-- CART-->
     <string name="judul_keranjang">MY CART</string>
-    <string name="button_simpan_keranjang">Save Basket</string>
+    <string name="button_simpan_keranjang">Save Cart</string>
     <string name="button_hapus">Delete</string>
-    <string name="simpan_keranjang">Save Basket</string>
-    <string name="keranjang_message">Are you sure you want to save the basket?
-        \n\nBasket data can be saved as text
+    <string name="simpan_keranjang">Save Cart</string>
+    <string name="keranjang_message">Are you sure you want to save the Cart?
+        \n\nCart data can be saved as text
     </string>
     <string name="tidak_bisa_put">">Please enter at least 1 product</string>
     <string name="about_1">This application was created because there are often errors in data processing from basic food shop owners, causing inaccuracies in data recording so that it can harm the store. Processing data manually makes the work done more slowly because the completion of the work depends on the presence of humans doing the work. With technology, the data processing process can be completed more quickly and precisely. So we took the initiative to provide a solution in the form of an application that has a function to manage the problem.</string>
@@ -163,4 +163,14 @@
     <string name="tidak">No</string>
     <string name="ya">Yes</string>
     <string name="pendaftaran_toko">STORE REGISTRATION</string>
+    <string name="sukses">Success</string>
+    <string name="produk_tidak_ada">Product not found !</string>
+    <string name="tidak_boleh_lebih">Quantity can\'t exceed stock !</string>
+    <string name="hapus_data">Delete data</string>
+    <string name="yakin_hapus_produk">Are you sure you want to delete this data?</string>
+    <string name="ya_simpan">Yes, keep it up</string>
+    <string name="field_verif_password_salah">Please enter the old password correctly</string>
+    <string name="yakin_keluar">Are you sure you close the app?</string>
+    <string name="keluar">Exit</string>
+    <string name="login">Login</string>
 </resources>

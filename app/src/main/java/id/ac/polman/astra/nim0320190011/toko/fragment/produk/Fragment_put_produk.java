@@ -1,8 +1,6 @@
 package id.ac.polman.astra.nim0320190011.toko.fragment.produk;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,18 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import id.ac.polman.astra.nim0320190011.toko.R;
@@ -151,7 +142,7 @@ public class Fragment_put_produk extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: Called ");
-        View v = inflater.inflate(R.layout.fragment_put_produk, container, false);
+        View v = inflater.inflate(R.layout.fragment_produk_put, container, false);
 
         mBack = v.findViewById(R.id.back);
         mBack.setOnClickListener(new View.OnClickListener() {
@@ -216,15 +207,15 @@ public class Fragment_put_produk extends Fragment {
             public void onClick(View v) {
                 try{
                     if (mCariProduk.getText().toString().equals("")) {
-                        mCariProduk.setError("Harus diisi");
+                        mCariProduk.setError(getText(R.string.tidak_boleh_kosong));
                     } else {
                         if (mNamaProduk.getText().toString().equals("")) {
-                            Toast.makeText(getContext(), "Harus diisi",
+                            Toast.makeText(getContext(), getText(R.string.tidak_boleh_kosong),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             if (!mJumlah.getText().toString().equals("") ){
                                 if(Integer.parseInt(mJumlah.getText().toString()) > mProduk.getJumlah()){
-                                    Toast.makeText(getContext(), "Jumlah tidak boleh melebihi stok !",
+                                    Toast.makeText(getContext(), getText(R.string.tidak_boleh_lebih),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     mProduk.setJumlah(Integer.parseInt(mJumlah.getText().toString()));
@@ -267,7 +258,7 @@ public class Fragment_put_produk extends Fragment {
                                     mJumlah.setText("");
                                 }
                             } else {
-                                mJumlah.setError("Jumlah harus diisi");
+                                mJumlah.setError(getText(R.string.tidak_boleh_kosong));
                             }
                         }
 

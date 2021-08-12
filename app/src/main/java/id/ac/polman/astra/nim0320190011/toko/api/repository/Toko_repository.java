@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
@@ -129,6 +130,8 @@ public class Toko_repository {
             public void onResponse(Call<Toko> call, Response<Toko> response) {
                 if(response.isSuccessful()){
                     Log.d(TAG, "onResponse: delete User");
+                }else{
+                    Log.e(TAG, "onResponse: error ajka" );
                 }
             }
 
@@ -137,5 +140,26 @@ public class Toko_repository {
                 Log.e(TAG, "onFailure: delete User failed",t );
             }
         });
+    }
+
+    public LiveData<Toko> login(String username, String password) {
+        Call<Toko> call = mToko_service.login(username, password);
+        MutableLiveData<Toko> toko = new MutableLiveData<>();
+        call.enqueue(new Callback<Toko>() {
+            @Override
+            public void onResponse(Call<Toko> call, Response<Toko> response) {
+                if(response.isSuccessful()){
+                    toko.setValue(response.body());
+                }else{
+                    Log.e(TAG, "onResponse: error " );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Toko> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+            }
+        });
+        return toko;
     }
 }

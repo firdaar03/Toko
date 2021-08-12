@@ -406,7 +406,7 @@
                             android:layout_width="120dp"
                             android:layout_height="70dp"
                             android:background="@drawable/radius_input"
-                            android:scaleType="fitXY"
+
                             />
 
                         <TextView
@@ -433,7 +433,7 @@
                             android:layout_width="120dp"
                             android:layout_height="70dp"
                             android:background="@drawable/radius_input"
-                            android:scaleType="fitXY"
+
                             />
 
                         <TextView

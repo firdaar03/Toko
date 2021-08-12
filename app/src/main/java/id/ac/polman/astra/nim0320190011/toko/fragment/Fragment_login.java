@@ -43,6 +43,8 @@ public class Fragment_login extends Fragment {
     private EditText mUsername;
     private EditText mPassword;
 
+    private Toko user;
+
     private Login_view_model mLoginViewModel;
     private Toko_view_model mTokoViewModel;
     private List<Toko> dataToko;
@@ -68,7 +70,7 @@ public class Fragment_login extends Fragment {
         super.onCreate(savedInstanceState);
 
         mLoginViewModel = getLoginViewModel();
-
+        user = new Toko();
     }
 
     @Override
@@ -102,16 +104,16 @@ public class Fragment_login extends Fragment {
                     }catch (InterruptedException ie){
                         Thread.currentThread().interrupt();
                     }
-                    Toko user = mLoginViewModel.checklogin(username, password);
-                    if(user != null){
-                        Log.i(TAG, "onClick: Login Tercallback");
-                        mCallbacks.onLoginButtonClicked(user);
-                    }else {
-                        Toast.makeText(getContext(), "Username atau password tidak ditemukan",
-                                Toast.LENGTH_SHORT).show();
-                        Log.i(TAG, "onClick: Login TeError");
-                    }
-                    Log.i(TAG, "onClick: Login");
+                    mLoginViewModel.login(username, password).observe(
+                            getViewLifecycleOwner(), new Observer<Toko>() {
+                                @Override
+                                public void onChanged(Toko toko) {
+                                    user = toko;
+                                    check();
+                                }
+                            }
+
+                    );
                 }catch (Exception e){
                     Toast.makeText(getContext(), "Mohon tunggu!",
                             Toast.LENGTH_SHORT).show();
@@ -138,6 +140,17 @@ public class Fragment_login extends Fragment {
         return view;
     }
 
+    private void check(){
+        if(user == null){
+            Toast.makeText(getContext(), "Username atau password tidak ditemukan",
+                    Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "onClick: Login TeError");
+        }else{
+            mUsername.setText("");
+            mPassword.setText("");
+            mCallbacks.onLoginButtonClicked(user);
+        }
+    }
     public interface Callbacks{
         public void onCreateAkunClicked();
         public void onLoginButtonClicked(Toko user);

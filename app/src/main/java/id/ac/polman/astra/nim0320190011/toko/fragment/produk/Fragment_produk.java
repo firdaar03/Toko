@@ -305,14 +305,14 @@ public class Fragment_produk extends Fragment {
                 public void onClick(View v) {
                     new AlertDialog
                             .Builder(getContext())
-                            .setTitle("Hapus data")
-                            .setMessage("Apakah anda yakin untuk menghapus data ini?")
-                            .setPositiveButton("Ya", (dialogInterface, i) -> {
+                            .setTitle(getText(R.string.hapus_data))
+                            .setMessage(getText(R.string.yakin_hapus_produk))
+                            .setPositiveButton(getText(R.string.ya), (dialogInterface, i) -> {
                                 mProdukViewModel.delete(String.valueOf(mProduk.getIdProduk()));
                                 mProdukList.remove(mProduk);
                                 updateUI();
                             })
-                            .setNegativeButton("Tidak", null)
+                            .setNegativeButton(getText(R.string.tidak), null)
                             .show();
                 }
             });

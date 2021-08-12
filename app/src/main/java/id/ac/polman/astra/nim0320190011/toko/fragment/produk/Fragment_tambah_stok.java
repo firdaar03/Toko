@@ -148,7 +148,7 @@ public class Fragment_tambah_stok extends Fragment {
                 if (!nama.equals("")){
                     filter(nama);
                 } else {
-                    Toast.makeText(getContext(), "Produk tidak ditemukan !",
+                    Toast.makeText(getContext(), getText(R.string.produk_tidak_ada),
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -170,10 +170,10 @@ public class Fragment_tambah_stok extends Fragment {
             public void onClick(View v) {
                 try{
                     if (mCariProduk.getText().toString().equals("")) {
-                        mCariProduk.setError("Harus diisi");
+                        mCariProduk.setError(getText(R.string.tidak_boleh_kosong));
                     } else {
                         if (mNamaProduk.getText().toString().equals("")) {
-                            Toast.makeText(getContext(), "Harus diisi",
+                            Toast.makeText(getContext(), getText(R.string.tidak_boleh_kosong),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             if (!mJumlah.getText().toString().equals("") ){
@@ -218,7 +218,7 @@ public class Fragment_tambah_stok extends Fragment {
                                 mJumlah.setText("");
 
                             } else {
-                                mJumlah.setError("Jumlah harus diisi");
+                                mJumlah.setError(getText(R.string.tidak_boleh_kosong));
                             }
                         }
 
@@ -252,7 +252,7 @@ public class Fragment_tambah_stok extends Fragment {
                     x.setCreaby(dataToko.getEmail());
                     mProdukViewModel.tambah_stok(x);
                 }
-                Toast.makeText(getContext(), "Add Stok Produk !",
+                Toast.makeText(getContext(), getText(R.string.sukses),
                         Toast.LENGTH_SHORT).show();
 
                 callbacks.onPenyetokan(mStokProdukList);

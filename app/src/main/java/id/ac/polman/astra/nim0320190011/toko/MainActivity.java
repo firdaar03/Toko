@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity
         } else {
             new AlertDialog
                     .Builder(this)
-                    .setTitle("Keluar")
-                    .setMessage("Apakah anda yakin menutup aplikasi?")
-                    .setPositiveButton("Ya", (dialogInterface, i) -> {
+                    .setTitle(getText(R.string.keluar))
+                    .setMessage(getText(R.string.yakin_keluar))
+                    .setPositiveButton(getText(R.string.ya), (dialogInterface, i) -> {
                         context= this;
                         super.onBackPressed();
                     })
-                    .setNegativeButton("Tidak", null)
+                    .setNegativeButton(getText(R.string.tidak), null)
                     .show();
         }
     }
@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = Fragment_menu_utama.newInstance(toko_user);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
                 .commit();
 
     }

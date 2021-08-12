@@ -76,7 +76,7 @@ public class Fragment_dompet_uang_masuk extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mNominal.getText().toString().equals("")) {
-                    mNominal.setError("Mohon isi field nominal dengan benar");
+                    mNominal.setError(getText(R.string.tidak_boleh_kosong));
                 } else {
 
                     Dompet dompet = new Dompet();

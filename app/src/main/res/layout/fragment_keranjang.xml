@@ -48,7 +48,7 @@
                     android:textColor="@color/black"/>
                 <TextView
                     android:layout_column="3"
-                    android:text="Harga"
+                    android:text="@string/harga_produk"
                     android:padding="3dip"
                     android:textSize="11dp"
                     android:fontFamily="@font/poppins_regular"

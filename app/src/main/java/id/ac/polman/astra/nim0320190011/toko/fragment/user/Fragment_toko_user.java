@@ -92,6 +92,7 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
         Log.i(TAG, "updateUI called");
         mTokoAdapter = new TokoAdapter(a);
         mTokoRecyclerview.setAdapter(mTokoAdapter);
+        mRefreshLayout.setRefreshing(false);
     }
 
     private void filter(String text) {
@@ -312,7 +313,6 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                             pengurutanTerdekat(mTokoList);
                         }
 //                        updateUI();
-                        mRefreshLayout.setRefreshing(false);
                         Log.i(TAG, "Got toko: " + tokos.size());
                     }
                 }
@@ -329,7 +329,6 @@ public class Fragment_toko_user extends Fragment implements LocationListener{
                         if(mLatLng != null && mTokoList.size() != 0){
                             pengurutanTerdekat(mTokoList);
                         }
-                        mRefreshLayout.setRefreshing(false);
                         Toast.makeText(getContext(), "Berhasil refresh!", Toast.LENGTH_SHORT)
                                 .show();
                         Log.i(TAG, "Got toko: " + tokos.size());

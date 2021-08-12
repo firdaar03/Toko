@@ -183,19 +183,19 @@ public class Fragment_dompet extends Fragment
                         .Builder(getContext())
                         .setTitle(getString(R.string.pembukuan_tahunan))
                         .setMessage(getString(R.string.pembukuan_message))
-                        .setPositiveButton("Ya, simpan", (dialogInterface, i) -> {
+                        .setPositiveButton(getText(R.string.ya_simpan), (dialogInterface, i) -> {
 
                             new AlertDialog
                                     .Builder(getContext())
                                     .setTitle(getString(R.string.pembukuan_tahunan_1))
                                     .setMessage(getString(R.string.pembukuan_message_2))
-                                    .setPositiveButton("Ya", (a, c) -> {
+                                    .setPositiveButton(getText(R.string.ya), (a, c) -> {
                                         startPembukuan();
                                     })
-                                    .setNegativeButton("Tidak", null)
+                                    .setNegativeButton(getText(R.string.tidak), null)
                                     .show();
                         })
-                        .setNegativeButton("Tidak", null)
+                        .setNegativeButton(getText(R.string.tidak), null)
                         .show();
             }
         });
@@ -305,6 +305,9 @@ public class Fragment_dompet extends Fragment
                         break;
                     case 2 :
                         pengeluaran += d.getJumlah();
+                        break;
+                    case 5 :
+                        pemasukkan += d.getJumlah();
                         break;
                 }
             }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -173,7 +174,8 @@ public class Fragment_edit_produk extends Fragment {
                         && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
 
                     try {
-                        mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
+                        Bitmap bitmap = mPictureUtils.Compress(((BitmapDrawable)mFotoProdukView.getDrawable()).getBitmap(),50);
+                        mProduk.setFoto(mPictureUtils.convertToString(bitmap));
                     }catch (Exception e){
 
                     }

@@ -105,10 +105,10 @@ public class Fragment_keranjang extends DialogFragment {
                         .Builder(getContext())
                         .setTitle(getString(R.string.simpan_keranjang))
                         .setMessage(getString(R.string.keranjang_message))
-                        .setPositiveButton("Ya, simpan", (dialogInterface, i) -> {
+                        .setPositiveButton(getText(R.string.ya_simpan), (dialogInterface, i) -> {
                             simpanKeranjang();
                         })
-                        .setNegativeButton("Tidak", null)
+                        .setNegativeButton(getText(R.string.tidak), null)
                         .show();
             }
         });

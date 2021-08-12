@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -185,22 +186,23 @@ public class Fragment_tambah_produk extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mHarga_produk.getText().toString().length() == 0){
-                    mHarga_produk.setError("Harga Harus Diisi");
+                    mHarga_produk.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if(mJumlah_produk.getText().toString().length() == 0){
-                    mJumlah_produk.setError("Jumlah Harus Diisi");
+                    mJumlah_produk.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if(mMerk_pruduk.getText().toString().length() == 0){
-                    mMerk_pruduk.setError("Merk Harus Diisi");
+                    mMerk_pruduk.setError(getText(R.string.tidak_boleh_kosong));
                 }
                 if(mNama_produk.getText().toString().length() == 0){
-                    mNama_produk.setError("Nama Harus Diisi");
+                    mNama_produk.setError(getText(R.string.tidak_boleh_kosong));
                 } else if(mHarga_produk.getText().toString().length() != 0 && mJumlah_produk.getText().toString().length() != 0
                             && mMerk_pruduk.getText().toString().length() != 0 && mNama_produk.getText().toString().length() != 0){
                     mProduk.setIdToko(dataToko.getIdToko());
 
                     try{
-                        mProduk.setFoto(mPictureUtils.convertToString(mFotoProdukFile.getPath()));
+                        Bitmap bitmap = mPictureUtils.Compress(((BitmapDrawable)mFotoProdukView.getDrawable()).getBitmap(),50);
+                        mProduk.setFoto(mPictureUtils.convertToString(bitmap));
                     }catch (Exception e){
                         mProduk.setFoto("");
                     }

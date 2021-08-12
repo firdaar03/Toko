@@ -55,7 +55,7 @@
             android:layout_marginBottom="40dp"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/radius_input"
-            android:hint="@string/nominal"
+            android:hint="@string/keteragan"
             android:fontFamily="@font/poppins_light"
             android:textSize="11dp"
             android:padding="3dp" />

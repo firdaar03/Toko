@@ -45,4 +45,7 @@ public class Login_view_model extends ViewModel {
         mTokoLiveData = mToko_repository.getToko(idToko);
         return mTokoLiveData;
     }
+    public LiveData<Toko> login(String username, String password){
+        return mToko_repository.login(username, password);
+    }
 }
