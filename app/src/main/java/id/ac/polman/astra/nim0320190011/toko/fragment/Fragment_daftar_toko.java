@@ -300,9 +300,16 @@ public class Fragment_daftar_toko extends Fragment
                         mToko.setAlamatToko(mAlamatToko.getText().toString());
                         mToko.setNIK(mNIK.getText().toString());
 
-                        mToko.setFoto_diri(mPictureUtils.convertToString(mFotoDiriFile.getPath()));
-                        mToko.setFoto_KTP(mPictureUtils.convertToString(mFotoKTPFile.getPath()));
-                        mToko.setFoto_toko(mPictureUtils.convertToString(mFotoTokoFile.getPath()));
+                        try{
+                            mToko.setFoto_diri(mPictureUtils.convertToString(mFotoDiriFile.getPath()));
+                            mToko.setFoto_KTP(mPictureUtils.convertToString(mFotoKTPFile.getPath()));
+                            mToko.setFoto_toko(mPictureUtils.convertToString(mFotoTokoFile.getPath()));
+                        }catch (Exception e){
+                            mToko.setFoto_diri("");
+                            mToko.setFoto_KTP("");
+                            mToko.setFoto_toko("");
+                        }
+
 
                         mTokoViewModel.save(mToko);
                         Toast.makeText(getContext(), "Registrasi Berhasil!",

@@ -121,7 +121,7 @@
     <string name="yakin_hapus">Are you sure you want to clear the cash at the cashier to IDR 0,-?</string>
 
     <!-- OPTION -->
-    <string name="penyetokan">Repository</string>
+    <string name="penyetokan">Penyetokan</string>
     <string name="produk_baru">New product</string>
     <string name="pembukuan_tahunan">Annual bookkeeping</string>
     <string name="pembukuan_tahunan_1">Dual auditing bookkeeping</string>
