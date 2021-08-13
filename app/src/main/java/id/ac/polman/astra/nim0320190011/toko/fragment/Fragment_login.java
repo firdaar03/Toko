@@ -95,6 +95,18 @@ public class Fragment_login extends Fragment {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean salah = false;
+                if(mUsername.getText().toString().equals("")){
+                    mUsername.setError(getText(R.string.tidak_boleh_kosong));
+                    salah = true;
+                }
+                if(mPassword.getText().toString().equals("")){
+                    mPassword.setError(getText(R.string.tidak_boleh_kosong));
+                    salah = true;
+                }
+                if(salah){
+                    return;
+                }
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
                 try {
@@ -113,6 +125,7 @@ public class Fragment_login extends Fragment {
                             }
 
                     );
+                    check();
                 }catch (Exception e){
                     Toast.makeText(getContext(), "Mohon tunggu!",
                             Toast.LENGTH_SHORT).show();
@@ -141,6 +154,7 @@ public class Fragment_login extends Fragment {
 
     private void check(){
         if(user == null){
+            Log.i(TAG, "check: Masuk null");
             Toast.makeText(getContext(), getText(R.string.data_tidak_ditemukan),
                     Toast.LENGTH_SHORT).show();
             mUsername.setText(getText(R.string.data_tidak_ditemukan));
