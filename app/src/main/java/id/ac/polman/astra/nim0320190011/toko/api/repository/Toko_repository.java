@@ -145,6 +145,7 @@ public class Toko_repository {
     public LiveData<Toko> login(String username, String password) {
         Call<Toko> call = mToko_service.login(username, password);
         MutableLiveData<Toko> toko = new MutableLiveData<>();
+        toko.setValue(null);
         call.enqueue(new Callback<Toko>() {
             @Override
             public void onResponse(Call<Toko> call, Response<Toko> response) {

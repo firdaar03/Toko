@@ -174,4 +174,5 @@
     <string name="yakin_keluar">Apakah anda yakin menutup aplikasi?</string>
     <string name="keluar">Keluar</string>
     <string name="login">Masuk</string>
+    <string name="data_tidak_ditemukan">Tidak ditemukan</string>
 </resources>

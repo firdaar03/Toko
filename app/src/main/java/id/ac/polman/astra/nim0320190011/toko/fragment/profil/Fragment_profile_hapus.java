@@ -21,6 +21,7 @@ import id.ac.polman.astra.nim0320190011.toko.R;
 import id.ac.polman.astra.nim0320190011.toko.api.model.Toko;
 import id.ac.polman.astra.nim0320190011.toko.api.viewmodel.Toko_view_model;
 import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_login;
+import id.ac.polman.astra.nim0320190011.toko.fragment.Fragment_menu_utama;
 
 public class Fragment_profile_hapus extends DialogFragment {
     private static final String TAG = "Fragment_profile_hapus";
@@ -71,16 +72,13 @@ public class Fragment_profile_hapus extends DialogFragment {
                         mTokoViewModel.delete(mToko);
                         getDialog().dismiss();
 
+                        getFragmentManager().popBackStack();
                         PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext()).edit().clear().apply();
                         Fragment fragment = Fragment_login.newInstance();
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fm.beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, fragment);
                         fragmentTransaction.commit(); // save the changes
-                        getFragmentManager().popBackStack();
-                        getFragmentManager().popBackStack();
-                        getFragmentManager().popBackStack();
-
                 }else{
                     mPassword.setError(getText(R.string.field_verif_password_salah));
                 }

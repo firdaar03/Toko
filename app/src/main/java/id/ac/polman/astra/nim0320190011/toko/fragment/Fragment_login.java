@@ -70,7 +70,6 @@ public class Fragment_login extends Fragment {
         super.onCreate(savedInstanceState);
 
         mLoginViewModel = getLoginViewModel();
-        user = new Toko();
     }
 
     @Override
@@ -142,8 +141,9 @@ public class Fragment_login extends Fragment {
 
     private void check(){
         if(user == null){
-            Toast.makeText(getContext(), "Username atau password tidak ditemukan",
+            Toast.makeText(getContext(), getText(R.string.data_tidak_ditemukan),
                     Toast.LENGTH_SHORT).show();
+            mUsername.setText(getText(R.string.data_tidak_ditemukan));
             Log.i(TAG, "onClick: Login TeError");
         }else{
             mUsername.setText("");

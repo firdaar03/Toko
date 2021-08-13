@@ -173,4 +173,5 @@
     <string name="yakin_keluar">Are you sure you close the app?</string>
     <string name="keluar">Exit</string>
     <string name="login">Login</string>
+    <string name="data_tidak_ditemukan">Not found</string>
 </resources>
